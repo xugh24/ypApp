@@ -1,0 +1,9 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">悦旁</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="forget_pwd">忘记密码</string>
+    <string name="special_string">特殊字符</string>
+    <string name="anzhi_get_authcode_waiting_txt">"剩下<xliff:g id="FILE">%s</xliff:g>秒 "</string>
+
+</resources>

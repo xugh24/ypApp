@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_grey_fillet"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dialog_tiltle"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="修改姓名"
+        android:textColor="#343434"
+        android:textSize="18.4dp" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d1d5e0" />
+
+
+    <TextView
+        android:id="@+id/tv_dialog_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13.33dp"
+        android:paddingBottom="13.33dp"
+        android:paddingLeft="13.33dp"
+        android:paddingRight="13.33dp"
+        android:textColor="#343434"
+        android:textSize="15.4dp" />
+
+    <EditText
+        android:id="@+id/ed_dialog_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13.33dp"
+        android:paddingBottom="13.33dp"
+        android:paddingLeft="13.33dp"
+        android:paddingRight="13.33dp"
+        android:textColor="#343434"
+        android:textSize="15.4dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="13.33dp"
+        android:paddingLeft="13.33dp"
+        android:paddingRight="13.33dp">
+
+        <Button
+            android:id="@+id/dialog_btnl"
+            style="@style/syt_btn_blue"
+            android:layout_width="0dp"
+            android:layout_marginRight="6dp"
+            android:layout_weight="1"
+            android:text="取消"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/dialog_btnr"
+            style="@style/syt_btn_blue"
+            android:layout_width="0dp"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="1"
+            android:text="确认"
+            android:visibility="visible" />
+    </LinearLayout>
+
+
+</LinearLayout>

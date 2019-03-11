@@ -1,0 +1,44 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="syt_btn">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_height">48dp</item>
+    </style>
+
+
+    <style name="syt_ed">
+        <item name="android:textColor">@color/color49</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:background">@drawable/bg_input_normal</item>
+        <item name="android:layout_height">48dp</item>
+    </style>
+
+
+    <style name="syt_btn_blue" parent="syt_btn">
+        <item name="android:background">@drawable/bg_btn_blue</item>
+    </style>
+
+    <style name="syt_btn_org" parent="syt_btn">
+        <item name="android:background">@drawable/bg_btn_org</item>
+    </style>
+
+    <style name="syt_btn_green" parent="syt_btn">
+        <item name="android:background">@drawable/bg_btn_green</item>
+    </style>
+
+    <style name="syt_btn_grey" parent="syt_btn">
+        <item name="android:background">@drawable/bg_btn_grey</item>
+    </style>
+
+
+</resources>

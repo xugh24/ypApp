@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/tv_rgtel"
+        style="@style/syt_ed"
+        android:layout_width="match_parent"
+        android:hint="请输入手机号" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_input_normal"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/ed_rgcoed"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:hint="请输入6位验证码"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textCursorDrawable="@null"
+            android:textSize="14dp" />
+
+
+        <TextView
+            android:id="@+id/tv_getrgcoed"
+            android:layout_width="71dp"
+            android:layout_height="18.6dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="13.3dp"
+            android:background="@null"
+            android:gravity="center"
+            android:text="获取验证码"
+            android:textColor="#01d45f"
+            android:textSize="11.4dp" />
+    </LinearLayout>
+</LinearLayout>
