@@ -11,6 +11,8 @@ import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.dialog.PersonalDialog;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by xugh on 2019/3/10.
  */
@@ -46,7 +48,7 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
 
     @BindView(id = R.id.tv_nick)
     private TextView tvNick;//
-    @BindView(id = R.id.tv_name)
+    @BindView(id = R.id.tv_realname)
     private TextView tvName;//
     @BindView(id = R.id.tv_sex)
     private TextView tvsex;//
@@ -81,25 +83,25 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
         super.onClick(v);
         switch (v.getId()) {
             case R.id.ll_nick:// 昵称
-
+                showInput(NICK);
                 break;
             case R.id.ll_realname: // 真实姓名
-
+                showInput(NAME);
                 break;
             case R.id.ll_sex: // 性别
-
+                showInput(SEX);
                 break;
             case R.id.ll_birthday: // 生日
-
+                showInput(BIR);
                 break;
             case R.id.ll_tel: // 电话
-
+                showInput(TEL);
                 break;
             case R.id.ll_id: // id
-
+                showInput(ID);
                 break;
             case R.id.ll_company: // 公司
-
+                showInput(COMPANY);
                 break;
         }
     }
@@ -108,10 +110,7 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
 
     private void showInput(int type) {
         if (personalDialog == null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                personalDialog = new PersonalDialog(this, this);//        }d:\Program Files\Gitd:\Program Files\Git
-
-            }
+            personalDialog = new PersonalDialog(this, this);//        }d:\Program Files\Gitd:\Program Files\Git
         }
         personalDialog.setType(type);
         personalDialog.show();
@@ -119,6 +118,29 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
 
     @Override
     public void callBack(int type, Object obj) {
+        if (obj != null && getTargetText(type) != null) {
+            String data = (String) obj;
+            getTargetText(type).setText(data);
+        }
+    }
 
+    private TextView getTargetText(int type) {
+        switch (type) {
+            case PersonageActivity.NICK:
+                return tvNick;
+            case PersonageActivity.NAME:
+                return tvName;
+            case PersonageActivity.SEX:
+                return tvsex;
+            case PersonageActivity.ID:
+                return tvId;
+            case PersonageActivity.TEL:
+                return tvTel;
+            case PersonageActivity.COMPANY:
+                return tvcompany;
+            case PersonageActivity.BIR:
+                return tvbirthday;
+        }
+        return null;
     }
 }

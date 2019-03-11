@@ -13,14 +13,10 @@ import com.yuepang.yuepang.Util.LogUtils;
  * Created by xugh on 2019/3/10.
  */
 
-public class MerchantFragment extends BaseFragment
+public class MerchantFragment extends BaseFragment{
 
-{
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.mine_ly, container, false);
-        LogUtils.e("----cccccccc-onCreate");
-        return view;
+    public int getLyId() {
+        return R.layout.handpick_ly;
     }
 }

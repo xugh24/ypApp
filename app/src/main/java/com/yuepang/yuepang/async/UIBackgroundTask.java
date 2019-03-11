@@ -45,6 +45,8 @@ public abstract class UIBackgroundTask<Params, Progress, Result> extends Backgro
     @Override
     protected final void onCancelledInBackground() {
 
+
+
     }
 
     private void finish(Result result) {

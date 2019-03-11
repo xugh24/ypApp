@@ -20,10 +20,11 @@ public class HandpickFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
     }
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.handpick_ly, container, false);
-        return view;
+    public int getLyId() {
+        return R.layout.handpick_ly;
     }
+
+
 }

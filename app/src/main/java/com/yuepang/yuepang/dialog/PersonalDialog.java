@@ -18,10 +18,9 @@ public class PersonalDialog extends SDKdialog {
     private int type;
 
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public PersonalDialog(final BaseActivity activity,  final CallBack callBack) {
         super(activity);
-        setTitle(getTitleByType());
+        setTitle("个人资料修改");
         setPositiveButton("确认", new OnClickListener() {
 
             @Override
@@ -33,7 +32,12 @@ public class PersonalDialog extends SDKdialog {
                 }
             }
         });
+    }
 
+    @Override
+    public void show() {
+
+        super.show();
     }
 
     public void setType(int type){

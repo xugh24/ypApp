@@ -36,11 +36,10 @@ public class SDKdialog extends Dialog implements android.view.View.OnClickListen
     private Button mNegativeBtn;
 
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public SDKdialog(BaseActivity activity) {
         super(activity);
         mContentView = View.inflate(activity, R.layout.dialog_layout, null);
-        getWindow().setBackgroundDrawable(activity.getDrawable(R.drawable.nothing));
+        getWindow().setBackgroundDrawableResource(R.drawable.nothing);
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getWindow().setDimAmount(0.7f);
         mTitle = (TextView) mContentView.findViewById(R.id.dialog_tiltle);
@@ -53,6 +52,9 @@ public class SDKdialog extends Dialog implements android.view.View.OnClickListen
 
     public final void setTitle(CharSequence title) {
         mTitle.setText(title);
+    }
+    public final void setMsg(CharSequence title) {
+        mMessage.setText(title);
     }
 
     public String getEdText(){
