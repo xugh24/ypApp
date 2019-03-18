@@ -41,6 +41,8 @@ public class MineFragment extends BaseFragment {
 
     @BindView(id = R.id.rl_uc_5, click = true)
     private RelativeLayout rlMerchant;
+    @BindView(id = R.id.rl_uc_6, click = true)
+    private RelativeLayout rl6;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,8 +69,11 @@ public class MineFragment extends BaseFragment {
                 startActivity(intent4);
                 break;
             case R.id.rl_uc_5:
-                Intent intent5 = new Intent(getContext(), MerchantActivity.class);
-                startActivity(intent5);
+//                Intent intent5 = new Intent(getContext(), MerchantActivity.class);
+//                startActivity(intent5);
+            case R.id.rl_uc_6:
+                Intent intent6 = new Intent(getContext(), MerchantActivity.class);
+                startActivity(intent6);
                 break;
         }
     }

@@ -290,7 +290,7 @@
                     android:id="@+id/tv_uc_6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="商家信息"
+                    android:text="商圈信息"
                     android:textColor="#242424"
                     android:textSize="16dp" />
             </LinearLayout>
@@ -333,7 +333,7 @@
                     android:id="@+id/tv_uc_7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="喜好"
+                    android:text="设置"
                     android:textColor="#242424"
                     android:textSize="16dp" />
             </LinearLayout>
