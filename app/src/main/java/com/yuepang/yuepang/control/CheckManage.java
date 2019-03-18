@@ -60,6 +60,27 @@ public class CheckManage {
         return true;
     }
 
+        public static boolean checkPwd(String pwd1, String pwd2 ,BaseActivity page) {
+        if (TextUtils.isEmpty(pwd1)) {
+            page.showToastSafe("请输入密码");
+            return false;
+        }
+        if (TextUtils.isEmpty(pwd2)) {
+            page.showToastSafe("请输入密码");
+            return false;
+        }
+
+        if (pwd1.getBytes().length < 6 || pwd1.getBytes().length > 16) {
+            page.showToastSafe("请输入6-16位新密码");
+            return false;
+        }
+        if (!pwd1.equals(pwd2)) {
+            page.showToastSafe("两次新密码输入不一致");
+            return false;
+        }
+        return true;
+    }
+
 //    /**
 //     * 判断昵称
 //     */
@@ -73,29 +94,7 @@ public class CheckManage {
 //        return true;
 //    }
 //
-//    public static boolean checkPwd(String oldPwd, String newPwd, String confirmPwd, ActionBarPage page) {
-//        if (TextUtils.isEmpty(oldPwd)) {
-//            page.showToastSafe("请输入原密码");
-//            return false;
-//        }
-//        if (TextUtils.isEmpty(newPwd)) {
-//            page.showToastSafe("请输入6-16位新密码");
-//            return false;
-//        }
-//        if (TextUtils.isEmpty(confirmPwd)) {
-//            page.showToastSafe("请确认新密码");
-//            return false;
-//        }
-//        if (newPwd.getBytes().length < 6 || newPwd.getBytes().length > 16) {
-//            page.showToastSafe("请输入6-16位新密码");
-//            return false;
-//        }
-//        if (!newPwd.equals(confirmPwd)) {
-//            page.showToastSafe("两次新密码输入不一致");
-//            return false;
-//        }
-//        return true;
-//    }
+
 //
 //    /**
 //     * 判断密码长度，密码位数为6-16

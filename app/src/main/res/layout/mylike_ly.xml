@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_cate"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/ic_item_gray_pressed"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="美食" />
+
+        <CheckBox
+            android:id="@+id/chb_cate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_movie"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/ic_item_gray_pressed"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="电影" />
+
+        <CheckBox
+            android:id="@+id/chb_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_recreation"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/ic_item_gray_pressed"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="娱乐" />
+
+        <CheckBox
+            android:id="@+id/chb_recreation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_group"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/ic_item_gray_pressed"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="团购" />
+
+        <CheckBox
+            android:id="@+id/chb_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_hotel"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/ic_item_gray_pressed"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="酒店" />
+
+        <CheckBox
+            android:id="@+id/chb_hotel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_travel"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/ic_item_gray_pressed"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="旅游" />
+
+        <CheckBox
+            android:id="@+id/chb_travel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_pedicure"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/ic_item_gray_pressed"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="足疗" />
+
+        <CheckBox
+            android:id="@+id/chb_pedicure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_ktv"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/ic_item_gray_pressed"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="KTV" />
+
+        <CheckBox
+            android:id="@+id/chb_ktv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_pet"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/ic_item_gray_pressed"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="宠物" />
+
+        <CheckBox
+            android:id="@+id/chb_pet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp" />
+    </LinearLayout>
+
+
+</LinearLayout>

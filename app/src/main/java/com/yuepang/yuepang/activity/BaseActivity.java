@@ -114,9 +114,12 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
                 break;
             case R.id.tv_r_title:
-
+                clikRt();
                 break;
         }
+    }
+
+    public void clikRt() {
     }
 
     /**

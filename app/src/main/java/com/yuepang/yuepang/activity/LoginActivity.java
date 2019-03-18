@@ -33,7 +33,7 @@ public class LoginActivity extends BaseActivity {
     @BindView(id = R.id.tv_register, click = true)
     private TextView tvRegister;// 注册文字
 
-    @BindView(id = R.id.forget_pwd)
+    @BindView(id = R.id.forget_pwd, click = true)
     private TextView tvforgetPwd; // 忘记密码文字
 
     private String loginName;
@@ -88,9 +88,8 @@ public class LoginActivity extends BaseActivity {
         String loginName = edTel.getText().toString().trim();
         String pwd = edPwd.getText().toString().trim();
         if (CheckManage.checklogin(loginName, pwd, this)) {
-            loginControl.loginByPwd(loginName,pwd);
+            loginControl.loginByPwd(loginName, pwd);
         }
-
     }
 
     @Override

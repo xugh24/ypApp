@@ -39,6 +39,12 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="#e2e2e2" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -198,7 +204,7 @@
                     android:id="@+id/tv_uc_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="设置"
+                    android:text="喜好"
                     android:textColor="#242424"
                     android:textSize="16dp" />
             </LinearLayout>
@@ -221,7 +227,7 @@
             android:layout_width="0dp"
             android:layout_height="90dp"
             android:layout_weight="1"
-            android:visibility="invisible">
+            android:visibility="visible">
 
             <LinearLayout
                 android:id="@+id/ll_uc_5"
@@ -234,6 +240,7 @@
                     android:id="@+id/iv_uc_5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:src="@drawable/ic_vip"
                     android:layout_marginBottom="5dp" />
 
                 <TextView
@@ -241,6 +248,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#242424"
+                    android:text="设置"
                     android:textSize="16dp" />
             </LinearLayout>
 

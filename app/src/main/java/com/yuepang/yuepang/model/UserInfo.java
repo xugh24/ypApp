@@ -12,7 +12,6 @@ import android.widget.ImageView;
 
 public class UserInfo {
 
-    private String userName ; // 用户名
     private int sex;// 性别
     private String birthday;// 生日
     private String tel ;// 手机号
@@ -21,13 +20,7 @@ public class UserInfo {
     private String id;// 身份证
     private String name;// 姓名
 
-    public String getUserName() {
-        return userName;
-    }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public int getSex() {
         return sex;

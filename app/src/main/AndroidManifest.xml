@@ -38,6 +38,14 @@
             android:name="com.yuepang.yuepang.activity.PersonageActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"/>
+        <activity
+            android:name="com.yuepang.yuepang.activity.ForgetPwdActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"/>
+        <activity
+            android:name="com.yuepang.yuepang.activity.MylikeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"/>
 
     </application>
 
