@@ -46,6 +46,10 @@
             android:name="com.yuepang.yuepang.activity.MylikeActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"/>
+        <activity
+            android:name="com.yuepang.yuepang.activity.MerchantActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"/>
 
     </application>
 

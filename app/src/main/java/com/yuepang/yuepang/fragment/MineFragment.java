@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.Util.LogUtils;
+import com.yuepang.yuepang.activity.MerchantActivity;
 import com.yuepang.yuepang.activity.MylikeActivity;
 import com.yuepang.yuepang.activity.PersonageActivity;
 
@@ -38,6 +39,9 @@ public class MineFragment extends BaseFragment {
     @BindView(id = R.id.rl_uc_4, click = true)
     private RelativeLayout rlLike;
 
+    @BindView(id = R.id.rl_uc_5, click = true)
+    private RelativeLayout rlMerchant;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +63,12 @@ public class MineFragment extends BaseFragment {
             case R.id.rl_uc_3:
                 break;
             case R.id.rl_uc_4:
-                Intent intent1 = new Intent(getContext(), MylikeActivity.class);
-                startActivity(intent1);
+                Intent intent4 = new Intent(getContext(), MylikeActivity.class);
+                startActivity(intent4);
+                break;
+            case R.id.rl_uc_5:
+                Intent intent5 = new Intent(getContext(), MerchantActivity.class);
+                startActivity(intent5);
                 break;
         }
     }
