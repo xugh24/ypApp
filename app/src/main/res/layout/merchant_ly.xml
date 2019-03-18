@@ -9,7 +9,7 @@
         style="@style/syt_ed"
         android:layout_width="match_parent"
         android:gravity="center_vertical"
-        android:text="入住商圈" />
+        android:text="入驻商圈" />
 
     <TextView
         android:id="@+id/tv_create"

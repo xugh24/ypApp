@@ -21,7 +21,7 @@ public class MerchantActivity extends BaseActivity {
 
     @Override
     protected String getMyTittle() {
-        return "商家认证";
+        return "商圈信息";
     }
 
     @Override

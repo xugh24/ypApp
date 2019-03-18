@@ -71,6 +71,7 @@ public class MineFragment extends BaseFragment {
             case R.id.rl_uc_5:
 //                Intent intent5 = new Intent(getContext(), MerchantActivity.class);
 //                startActivity(intent5);
+                break;
             case R.id.rl_uc_6:
                 Intent intent6 = new Intent(getContext(), MerchantActivity.class);
                 startActivity(intent6);
