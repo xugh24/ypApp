@@ -53,7 +53,7 @@ public class MerchantDetailActivity extends BaseActivity {
     public void onClick(View v) {
         super.onClick(v);
         if (v == btnBuy) {
-
+            startActivity(PayActivity.class);
         }
     }
 }

@@ -24,7 +24,7 @@ public class PayActivity extends BaseActivity {
     @BindView(id = R.id.tv_discount)
     private TextView tvdiscount;
 
-    @BindView(id = R.id.btn_buy)
+    @BindView(id = R.id.btn_pay)
     private Button btnPay;
 
     private float discount;
@@ -47,7 +47,7 @@ public class PayActivity extends BaseActivity {
 
     @Override
     protected String getMyTittle() {
-        return null;
+        return "商家名称";
     }
 
     @Override

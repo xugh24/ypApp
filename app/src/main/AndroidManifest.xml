@@ -72,6 +72,10 @@
             android:name="com.yuepang.yuepang.activity.MerchantDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"/>
+        <activity
+            android:name="com.yuepang.yuepang.activity.PayActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"/>
 
     </application>
 
