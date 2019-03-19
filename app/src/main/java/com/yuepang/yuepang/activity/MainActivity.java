@@ -81,6 +81,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         break;
                     case 2:
                         setTitle("话题");
+                        setRightTitle("创建");
                         break;
                     case 3:
                         break;
@@ -107,6 +108,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        super.onClick(v);
         switch (v.getId()) {
             case R.id.ll_bar1:
                 viewPager.setCurrentItem(0);
@@ -121,6 +123,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 viewPager.setCurrentItem(3);
                 LogUtils.e("---  viewPager");
                 break;
+        }
+    }
+
+    @Override
+    public void clikRt() {
+        LogUtils.e("---" + viewPager.getCurrentItem());
+        if (viewPager.getCurrentItem() == 2) {
+            startActivity(CreateTopicActivity.class);
         }
     }
 

@@ -94,6 +94,13 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         }
     }
 
+    public void setRightTitle(String title) {
+        if (tvRtitle != null) {
+            tvRtitle.setText(title);
+            tvRtitle.setVisibility(View.VISIBLE);
+        }
+    }
+
     /**
      * 是否展示bar
      */
@@ -121,6 +128,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
                 break;
             case R.id.tv_r_title:
+                LogUtils.e("---");
                 clikRt();
                 break;
         }
