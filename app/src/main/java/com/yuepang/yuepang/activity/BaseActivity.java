@@ -87,6 +87,13 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         llMain = findViewById(R.id.main_ly);
     }
 
+    public void setTitle(String title) {
+        if (tvTitle != null) {
+            tvTitle.setText(title);
+            tvTitle.setVisibility(View.VISIBLE);
+        }
+    }
+
     /**
      * 是否展示bar
      */

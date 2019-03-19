@@ -2,16 +2,11 @@ package com.yuepang.yuepang.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.AnnotateUtil;
 import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.adapter.MyFragmentPagerAdapter;
@@ -28,7 +23,7 @@ import java.util.List;
  * Created by xugh on 2019/3/6.
  */
 
-public class MainActivity extends BaseActivity implements View.OnClickListener{
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(id = R.id.main_vp)
     private ViewPager viewPager;
@@ -71,6 +66,32 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         MyFragmentPagerAdapter mfpa = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentList); //new myFragmentPagerAdater记得带上两个参数
         viewPager.setAdapter(mfpa);
         viewPager.setCurrentItem(0); //设置当前页是第一页
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case 0:
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        setTitle("话题");
+                        break;
+                    case 3:
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
