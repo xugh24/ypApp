@@ -6,6 +6,8 @@ import android.widget.RelativeLayout;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
+import com.yuepang.yuepang.adapter.TopicItemAdapter;
+import com.yuepang.yuepang.test.TestData;
 import com.yuepang.yuepang.widget.RefreshListView;
 
 /**
@@ -19,11 +21,16 @@ public class TopicDetailActivity extends BaseActivity {
 
     private RefreshListView refreshListView;
 
+    private int id;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        id = getIntent().getIntExtra("id", 0);
         refreshListView = new RefreshListView(this);
-        refreshListView.setOnClickListener(this);
+        TopicItemAdapter adapter = new TopicItemAdapter(TestData.gettopicItem(id), this);
+        refreshListView.setAdapter(adapter);
+        rlMain.addView(refreshListView);
     }
 
     @Override

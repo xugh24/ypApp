@@ -42,6 +42,7 @@ public class TopicFragment extends BaseFragment {
         }
         adapter = new TopicAdapter(TestData.gettops(), (BaseActivity) getActivity());
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(adapter);
         return contentView;
 
     }

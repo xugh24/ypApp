@@ -1,11 +1,15 @@
 package com.yuepang.yuepang.adapter;
 
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.activity.BaseActivity;
+import com.yuepang.yuepang.activity.TopicDetailActivity;
 import com.yuepang.yuepang.model.TopicInfo;
 
 import java.util.List;
@@ -14,7 +18,7 @@ import java.util.List;
  * Created by xugh on 2019/3/18.
  */
 
-public class TopicAdapter extends BaseAdapter {
+public class TopicAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
     private List<TopicInfo> topicInfos;
 
     private BaseActivity baseActivity;
@@ -59,6 +63,13 @@ public class TopicAdapter extends BaseAdapter {
         holder.content.setText(topicInfos.get(position).getContentSt());
         holder.time.setText(topicInfos.get(position).getTime());
         return convertView;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(baseActivity, TopicDetailActivity.class);
+        intent.putExtra("id", topicInfos.get(position).getId());
+        baseActivity.startActivity(intent);
     }
 
     private final class ViewHolder {
