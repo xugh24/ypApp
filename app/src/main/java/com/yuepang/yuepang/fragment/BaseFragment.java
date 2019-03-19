@@ -20,6 +20,8 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
     protected View contentView;
 
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,8 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         }
         return contentView;
     }
+
+
 
     public abstract int getLyId();
 

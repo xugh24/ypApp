@@ -22,6 +22,11 @@
         <item name="android:background">@drawable/bg_input_normal</item>
         <item name="android:layout_height">48dp</item>
     </style>
+    <style name="syt_ed1">
+        <item name="android:textColor">@color/color49</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_height">48dp</item>
+    </style>
 
 
     <style name="syt_btn_blue" parent="syt_btn">
@@ -38,6 +43,14 @@
 
     <style name="syt_btn_grey" parent="syt_btn">
         <item name="android:background">@drawable/bg_btn_grey</item>
+    </style>
+
+    <style name="sty_list" >
+        <item name="android:cacheColorHint">#00000000</item>
+        <item name="android:divider">@drawable/divider_shape</item>
+        <item name="android:dividerHeight">0dp</item>
+        <item name="android:fadingEdgeLength">0dp</item>
+        <item name="android:listSelector">@drawable/bg_account_list</item>
     </style>
 
 

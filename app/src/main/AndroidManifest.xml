@@ -68,6 +68,10 @@
             android:name="com.yuepang.yuepang.activity.CreateTopicActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"/>
+        <activity
+            android:name="com.yuepang.yuepang.activity.MerchantDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"/>
 
     </application>
 
