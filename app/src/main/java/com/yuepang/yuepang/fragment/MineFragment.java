@@ -13,6 +13,7 @@ import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.MerchantActivity;
+import com.yuepang.yuepang.activity.MerchantManageActivity;
 import com.yuepang.yuepang.activity.MylikeActivity;
 import com.yuepang.yuepang.activity.PersonageActivity;
 
@@ -69,8 +70,8 @@ public class MineFragment extends BaseFragment {
                 startActivity(intent4);
                 break;
             case R.id.rl_uc_5:
-//                Intent intent5 = new Intent(getContext(), MerchantActivity.class);
-//                startActivity(intent5);
+                Intent intent5 = new Intent(getContext(), MerchantManageActivity.class);
+                startActivity(intent5);
                 break;
             case R.id.rl_uc_6:
                 Intent intent6 = new Intent(getContext(), MerchantActivity.class);

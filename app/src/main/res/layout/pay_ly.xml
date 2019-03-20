@@ -36,7 +36,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="输入不参与优惠的金额（如酒水、套餐）"
+        android:button="@drawable/bg_check"
+        android:text="  输入不参与优惠的金额（如酒水、套餐）"
         android:textColor="#494949" />
 
 
