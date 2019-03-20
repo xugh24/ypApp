@@ -2,8 +2,13 @@ package com.yuepang.yuepang.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
@@ -21,23 +26,34 @@ public class PayActivity extends BaseActivity {
     @BindView(id = R.id.ed_price)
     private EditText edprice;
 
-    @BindView(id = R.id.tv_discount)
-    private TextView tvdiscount;
+    @BindView(id = R.id.ed_nodisprice)
+    private EditText edNodisPrice;
+
+    @BindView(id = R.id.ll_nodis)
+    private LinearLayout linearLayout;
+
 
     @BindView(id = R.id.btn_pay)
     private Button btnPay;
 
-    private float discount;
+    @BindView(id = R.id.radio)
+    private CheckBox chx;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getIntent() != null) {
-            discount = getIntent().getFloatExtra(DISCOUNT, 1.0f);
-            if (discount < 0 || discount > 1.0f) {
-                discount = 1.0f;
+        chx.setText("输入不参与优惠的金额（如酒水、套餐）");
+        chx.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    linearLayout.setVisibility(View.VISIBLE);
+                } else {
+                    linearLayout.setVisibility(View.GONE);
+                }
             }
-        }
+        });
     }
 
     @Override
