@@ -1,15 +1,8 @@
-package com.yuepang.yuepang.common.widget;
+package com.yuepang.yuepang.widget;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.os.Build;
-import android.os.Process;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +16,7 @@ import com.yuepang.yuepang.activity.BaseActivity;
  * 通用的dialog 类
  */
 
-public class SDKdialog extends Dialog implements android.view.View.OnClickListener {
+public class SDKdialog extends Dialog implements View.OnClickListener {
 
     private BaseActivity activity;
     private boolean hideBackgroundClose = true;
@@ -68,7 +61,7 @@ public class SDKdialog extends Dialog implements android.view.View.OnClickListen
     }
 
 
-    public final SDKdialog setPositiveButton(CharSequence text, final DialogInterface.OnClickListener listener) {
+    public final SDKdialog setPositiveButton(CharSequence text, final OnClickListener listener) {
         mPositiveBtn.setText(text);
         mPositiveBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -86,7 +79,7 @@ public class SDKdialog extends Dialog implements android.view.View.OnClickListen
         return this;
     }
 
-    public final SDKdialog setNegativeButton(CharSequence text, final DialogInterface.OnClickListener listener) {
+    public final SDKdialog setNegativeButton(CharSequence text, final OnClickListener listener) {
         mNegativeBtn.setText(text);
         mNegativeBtn.setOnClickListener(new View.OnClickListener() {
 

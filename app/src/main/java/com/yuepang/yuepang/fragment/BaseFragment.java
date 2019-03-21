@@ -34,9 +34,11 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
             contentView = inflater.inflate(getLyId(), container, false);
             AnnotateUtil.initBindView(this, contentView);
         }
+        initView();
         return contentView;
     }
 
+    protected abstract void initView();
 
 
     public abstract int getLyId();

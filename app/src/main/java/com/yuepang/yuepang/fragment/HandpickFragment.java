@@ -32,16 +32,10 @@ public class HandpickFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
     }
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (contentView == null) {
-            contentView = inflater.inflate(getLyId(), container, false);
-            AnnotateUtil.initBindView(this, contentView);
-        }
+    protected void initView() {
 
-
-        return contentView;
     }
 
     @Override

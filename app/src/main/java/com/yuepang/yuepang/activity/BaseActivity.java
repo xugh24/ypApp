@@ -46,7 +46,6 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     protected View contentView;
 
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,6 +104,8 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         if (tvRtitle != null) {
             tvRtitle.setText(title);
             tvRtitle.setVisibility(View.VISIBLE);
+        } else {
+            tvRtitle.setVisibility(View.GONE);
         }
     }
 

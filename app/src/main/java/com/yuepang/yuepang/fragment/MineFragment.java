@@ -50,6 +50,11 @@ public class MineFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    protected void initView() {
+
+    }
+
 
     @Override
     public void onClick(View v) {

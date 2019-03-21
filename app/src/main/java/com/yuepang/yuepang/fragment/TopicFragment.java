@@ -30,21 +30,14 @@ public class TopicFragment extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (contentView == null) {
-            contentView = inflater.inflate(getLyId(), container, false);
-            AnnotateUtil.initBindView(this, contentView);
-        }
+    protected void initView() {
         adapter = new TopicAdapter(TestData.gettops(), (BaseActivity) getActivity());
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(adapter);
-        return contentView;
-
     }
 
     @Override

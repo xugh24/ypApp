@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.yuepang.yuepang.R;
@@ -40,6 +41,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @BindView(id = R.id.ll_bar4, click = true)
     private LinearLayout ll4;//
 
+    @BindView(id = R.id.iv1)
+    private ImageView iv1;
+
+    @BindView(id = R.id.iv2)
+    private ImageView iv2;
+
+    @BindView(id = R.id.iv3)
+    private ImageView iv3;
+
+    @BindView(id = R.id.iv4)
+    private ImageView iv4;
+
     private HandpickFragment handpickFragment;// 精选
 
     private MerchantFragment merchantFragment;// 商家
@@ -50,10 +63,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private List<BaseFragment> fragmentList;
 
+    private List<ImageView> ivs = new ArrayList<>();
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ivs.add(iv1);
+        ivs.add(iv2);
+        ivs.add(iv3);
+        ivs.add(iv4);
         handpickFragment = new HandpickFragment();
         merchantFragment = new MerchantFragment();
         topicFragment = new TopicFragment();
@@ -66,6 +85,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         MyFragmentPagerAdapter mfpa = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentList); //new myFragmentPagerAdater记得带上两个参数
         viewPager.setAdapter(mfpa);
         viewPager.setCurrentItem(0); //设置当前页是第一页
+        selIv(0);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -74,16 +94,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             @Override
             public void onPageSelected(int position) {
+                selIv(position);
                 switch (position) {
                     case 0:
+                        setTitle("精选");
+                        setRightTitle(null);
                         break;
                     case 1:
+                        setTitle("商家");
+                        setRightTitle(null);
                         break;
                     case 2:
                         setTitle("话题");
                         setRightTitle("创建");
                         break;
                     case 3:
+                        setTitle("我的资料");
+                        setRightTitle(null);
                         break;
                 }
             }
@@ -93,6 +120,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             }
         });
+    }
+
+    private void selIv(int position) {
+        for (ImageView imageView : ivs) {
+            imageView.setSelected(false);
+        }
+        ivs.get(position).setSelected(true);
     }
 
     @Override
@@ -121,14 +155,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.ll_bar4:
                 viewPager.setCurrentItem(3);
-                LogUtils.e("---  viewPager");
                 break;
         }
     }
 
     @Override
-    public void clikRt() {
-        LogUtils.e("---" + viewPager.getCurrentItem());
+    public void clikRt() {// 右上角点击
         if (viewPager.getCurrentItem() == 2) {
             startActivity(CreateTopicActivity.class);
         }

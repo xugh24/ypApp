@@ -16,6 +16,11 @@ import com.yuepang.yuepang.Util.LogUtils;
 public class MerchantFragment extends BaseFragment{
 
     @Override
+    protected void initView() {
+        
+    }
+
+    @Override
     public int getLyId() {
         return R.layout.handpick_ly;
     }
