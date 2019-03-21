@@ -13,6 +13,7 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
@@ -33,6 +34,8 @@ public class SDKdialog extends Dialog implements android.view.View.OnClickListen
     private EditText edInput;
     private Button mPositiveBtn;
     private Button mNegativeBtn;
+    private RelativeLayout mainView;
+    private TextView msg;
 
 
     public SDKdialog(BaseActivity activity) {
@@ -45,17 +48,24 @@ public class SDKdialog extends Dialog implements android.view.View.OnClickListen
         edInput = mContentView.findViewById(R.id.ed_dialog_msg);
         mPositiveBtn = (Button) mContentView.findViewById(R.id.dialog_btnl);
         mNegativeBtn = (Button) mContentView.findViewById(R.id.dialog_btnr);
+        msg = mContentView.findViewById(R.id.tv_dialog_msg);
+        mainView = mContentView.findViewById(R.id.ll_content);
         setContentView(mContentView);
+    }
+
+    public void setView(View view) {
+        mainView.addView(view);
+        msg.setVisibility(View.GONE);
+        edInput.setVisibility(View.GONE);
     }
 
     public final void setTitle(CharSequence title) {
         mTitle.setText(title);
     }
 
-    public String getEdText(){
+    public String getEdText() {
         return edInput.getText().toString().trim();
     }
-
 
 
     public final SDKdialog setPositiveButton(CharSequence text, final DialogInterface.OnClickListener listener) {

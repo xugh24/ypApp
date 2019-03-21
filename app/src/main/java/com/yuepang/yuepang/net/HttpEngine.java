@@ -1,5 +1,8 @@
 package com.yuepang.yuepang.net;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 
 import com.yuepang.yuepang.Util.LogUtils;
@@ -126,6 +129,65 @@ public class HttpEngine {
         public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
         }
     };
+
+    /**
+     * 返回流，有参数
+     *
+     * @return
+     * @throws IOException
+     */
+    public static InputStream createGetRequest(Context context, String url) throws IOException {
+        LogUtils.e("market downloadGet url:" + url);
+        if (!hasNetwork(context)) {
+            LogUtils.e("market downloadGet net is unavailable!");
+            return null;
+        }
+        InputStream is = null;
+        long length = 0;
+        try {
+            HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();
+            con.setDoInput(true);
+            con.setRequestMethod("GET");
+            con.setConnectTimeout(10 * 1000);
+            con.setReadTimeout(10 * 1000);
+            con.setRequestProperty("Connection", "Keep-Alive");// 维持长连接
+            con.setRequestProperty("Charset", "UTF-8");
+            con.setRequestProperty("Content-Type", "text/plain; charset=UTF-8");
+            int code = con.getResponseCode();
+            LogUtils.e("code" + code);
+            if (code == HttpURLConnection.HTTP_OK) {
+                is = con.getInputStream();
+                length = con.getContentLength();
+                return is;
+            }
+
+
+        } catch (Exception e) {
+            LogUtils.e(e);
+        }
+        return null;
+    }
+
+
+
+
+
+    /**
+     * @param context
+     * @return
+     */
+    public static boolean hasNetwork(Context context) {
+        ConnectivityManager con = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo workinfo = con.getActiveNetworkInfo();
+        if (workinfo == null || !workinfo.isAvailable()) {
+            LogUtils.e(" market hasNetwork 网络异常");
+            return false;
+        } else {
+
+            LogUtils.e(" market hasNetwork 网络良好");
+        }
+        return true;
+    }
 
     public boolean isCanceled() {
         return isCanceled;

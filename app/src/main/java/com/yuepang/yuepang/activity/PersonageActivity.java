@@ -1,7 +1,5 @@
 package com.yuepang.yuepang.activity;
 
-import android.os.Build;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -10,8 +8,11 @@ import android.widget.TextView;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.dialog.PersonalDialog;
+import com.yuepang.yuepang.widget.CustomDatePicker;
 
-import org.w3c.dom.Text;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by xugh on 2019/3/10.
@@ -73,13 +74,28 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
                 showInput(SEX);
                 break;
             case R.id.ll_birthday: // 生日
-                showInput(BIR);
+                init();
                 break;
             case R.id.ll_tel: // 电话
                 showInput(TEL);
                 break;
         }
     }
+
+    private void init() {
+        String birthday = "1997年-1月-1日";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年-M月-d日", Locale.CHINA);
+        String now = sdf.format(new Date());
+        CustomDatePicker customDatePicker = new CustomDatePicker(this, new CustomDatePicker.ResultHandler() {
+            @Override
+            public void handle(String time) {
+                callBack(BIR, time);
+            }
+        }, "1910年-1月-1日", now, birthday);
+        customDatePicker.setIsLoop(true); // 不允许循环滚动
+        customDatePicker.show("1997年-1月-1日");
+    }
+
 
     PersonalDialog personalDialog;
 
