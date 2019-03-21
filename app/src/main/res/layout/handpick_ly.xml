@@ -2,13 +2,50 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_input_normal"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/ed_rgcoed"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:hint="点击搜索"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textCursorDrawable="@null"
+            android:textSize="14dp" />
+
+
+        <TextView
+            android:id="@+id/tv_getrgcoed"
+            android:layout_width="71dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:gravity="center"
+            android:text="搜索"
+            android:textColor="@color/c12"
+            android:textSize="11.4dp" />
+    </LinearLayout>
 
 
     <TextView
-        android:layout_width="wrap_content"
+        style="@style/c6f8"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
         android:text="推荐商家" />
 
     <LinearLayout
@@ -64,6 +101,7 @@
     </LinearLayout>
 
     <TextView
+        style="@style/c6f8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"

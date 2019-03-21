@@ -7,4 +7,31 @@
     <color name="colorwhite">#fffffb</color>
     <color name="color49">#494949</color>
 
+    <color name="c1">#FFFFFFFF</color>
+    <color name="c2">#FFF6F7F9</color>
+    <color name="c3">#ffEEEEEE</color>
+    <color name="c4">#FFC2C2C2</color>
+    <color name="c5">#FFA5A5A5</color>
+    <color name="c6">#FF343434</color>
+    <color name="c7">#FFFF5C23</color>
+    <color name="c9">#FFE4E4E4</color>
+    <color name="c10">#FFE93936</color>
+    <color name="c11">#FFD5D5D5</color>
+    <color name="c12">#FF00D45C</color>
+    <color name="c13">#FFECECEC</color>
+    <color name="c14">#FFF38381</color>
+    <color name="c15">#FF3BB2B8</color>
+    <color name="c16">#FFA4A4A4</color>
+
+    <!-- 一些通用字体大小 -->
+    <dimen name="f1">8dip</dimen>
+    <dimen name="f2">10dip</dimen>
+    <dimen name="f3">12dip</dimen>
+    <dimen name="f4">14dip</dimen>
+    <dimen name="f5">16dip</dimen>
+    <dimen name="f6">18dip</dimen>
+    <dimen name="f7">20dip</dimen>
+    <dimen name="f8">22dip</dimen>
+    <dimen name="f9">24dip</dimen>
+
 </resources>

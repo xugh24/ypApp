@@ -7,7 +7,7 @@ import android.text.TextUtils;
 
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.PersonageActivity;
-import com.yuepang.yuepang.common.widget.SDKdialog;
+import com.yuepang.yuepang.widget.SDKdialog;
 
 /**
  * Created by xugh on 2019/3/10.

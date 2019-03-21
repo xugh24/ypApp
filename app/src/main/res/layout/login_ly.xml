@@ -16,6 +16,7 @@
         android:id="@+id/ed_login_pwd"
         style="@style/syt_ed"
         android:layout_width="match_parent"
+        android:password="true"
         android:layout_marginTop="10dp"
         android:hint="输入密码" />
 

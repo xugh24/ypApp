@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.activity.BaseActivity;
-import com.yuepang.yuepang.common.widget.SDKdialog;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

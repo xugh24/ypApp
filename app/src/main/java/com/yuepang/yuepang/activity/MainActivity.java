@@ -89,35 +89,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
                 selIv(position);
-                switch (position) {
-                    case 0:
-                        setTitle("精选");
-                        setRightTitle(null);
-                        break;
-                    case 1:
-                        setTitle("商家");
-                        setRightTitle(null);
-                        break;
-                    case 2:
-                        setTitle("话题");
-                        setRightTitle("创建");
-                        break;
-                    case 3:
-                        setTitle("我的资料");
-                        setRightTitle(null);
-                        break;
-                }
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
     }
@@ -127,6 +107,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             imageView.setSelected(false);
         }
         ivs.get(position).setSelected(true);
+        switch (position) {
+            case 0:
+                setTitle("精选");
+                setRightTitle(null);
+                break;
+            case 1:
+                setTitle("商家");
+                setRightTitle(null);
+                break;
+            case 2:
+                setTitle("话题");
+                setRightTitle("创建");
+                break;
+            case 3:
+                setTitle("我的资料");
+                setRightTitle(null);
+                break;
+        }
     }
 
     @Override

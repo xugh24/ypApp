@@ -8,6 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="c6f8">
+        <item name="android:textColor">@color/c6</item>
+        <item name="android:textSize">@dimen/f8</item>
+    </style>
+
 
     <style name="syt_btn">
         <item name="android:textColor">@android:color/white</item>
