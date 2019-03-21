@@ -3,6 +3,7 @@ package com.yuepang.yuepang.adapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,8 +51,8 @@ public class MerchantAdapter extends BaseAdapter {
     private final class ViewHolder {
         ImageView iv;
         TextView name;
-        TextView tel;
-        TextView time;
+        TextView loction;
+        Button btnPay;
     }
 
 }
