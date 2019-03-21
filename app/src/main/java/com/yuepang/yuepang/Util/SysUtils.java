@@ -19,7 +19,6 @@ public class SysUtils {
             if (sm != null) {
                 Object[] svArray = ReflectUtils.invoke(Object[].class, sm.getClass(), "getVolumeList", null,
                         sm, null);
-                // StorageVolume[] svArray = sm.getVolumeList();
                 if (svArray != null) {
                     for (int i = 0; i < svArray.length; i++) {
                         String path = ReflectUtils.invoke(String.class, svArray[i].getClass(), "getPath",

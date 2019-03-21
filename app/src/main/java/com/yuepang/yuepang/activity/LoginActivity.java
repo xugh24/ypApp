@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
+import com.yuepang.yuepang.Util.Md5;
 import com.yuepang.yuepang.control.CheckManage;
 import com.yuepang.yuepang.control.DataControl;
 import com.yuepang.yuepang.control.LoginControl;
@@ -86,7 +87,7 @@ public class LoginActivity extends BaseActivity {
 
     private void login() {
         String loginName = edTel.getText().toString().trim();
-        String pwd = edPwd.getText().toString().trim();
+        String pwd = Md5.string2MD5(edPwd.getText().toString().trim());
         if (CheckManage.checklogin(loginName, pwd, this)) {
             loginControl.loginByPwd(loginName, pwd);
         }

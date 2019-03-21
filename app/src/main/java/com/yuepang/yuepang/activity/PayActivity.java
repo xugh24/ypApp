@@ -8,9 +8,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.TextView;
-
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
 
@@ -22,7 +19,6 @@ public class PayActivity extends BaseActivity {
 
     public static final String DISCOUNT = "discount";
 
-
     @BindView(id = R.id.ed_price)
     private EditText edprice;
 
@@ -31,7 +27,6 @@ public class PayActivity extends BaseActivity {
 
     @BindView(id = R.id.ll_nodis)
     private LinearLayout linearLayout;
-
 
     @BindView(id = R.id.btn_pay)
     private Button btnPay;

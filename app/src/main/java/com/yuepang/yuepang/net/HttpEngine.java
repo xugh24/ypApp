@@ -58,7 +58,6 @@ public class HttpEngine {
             con.setRequestMethod("POST");
             con.setConnectTimeout(10000);
             con.setReadTimeout(15000);
-//            con.addRequestProperty("appKey", appKey);
             con.setRequestProperty("Connection", "Keep-Alive");// 维持长连接
             con.setRequestProperty("Charset", "UTF-8");
             con.setRequestProperty("Content-Type", "text/plain; charset=UTF-8");
@@ -97,12 +96,12 @@ public class HttpEngine {
     private HttpURLConnection createHttpsConnection(String url) throws IOException, NoSuchAlgorithmException, KeyManagementException {
         HttpURLConnection con;
         con = (HttpsURLConnection) new URL(url).openConnection();
-        TrustManager[] tm = { MyX509TrustManager };
+        TrustManager[] tm = {MyX509TrustManager};
         SSLContext sslContext = SSLContext.getInstance("TLS");
         sslContext.init(null, tm, new java.security.SecureRandom());
         // 从上述SSLContext对象中得到SSLSocketFactory对象
         SSLSocketFactory ssf = sslContext.getSocketFactory();
-        ((HttpsURLConnection)con).setSSLSocketFactory(ssf);
+        ((HttpsURLConnection) con).setSSLSocketFactory(ssf);
         ((HttpsURLConnection) con).setHostnameVerifier(new HostnameVerifier() {
             @Override
             public boolean verify(String hostname, SSLSession session) {
@@ -128,7 +127,7 @@ public class HttpEngine {
         }
     };
 
-    private boolean isCanceled() {
+    public boolean isCanceled() {
         return isCanceled;
     }
 
