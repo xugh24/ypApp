@@ -18,7 +18,6 @@ public class UserInfo {
     private String headerImgUrl; // 头像地址
     private String pwd;// 密码
     private String nick;// 昵称
-    private String token;//
 
 
     public int getSex() {
@@ -70,13 +69,7 @@ public class UserInfo {
         this.nick = name;
     }
 
-    public String getToken() {
-        return token;
-    }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
 
 
     // ==========================================================================

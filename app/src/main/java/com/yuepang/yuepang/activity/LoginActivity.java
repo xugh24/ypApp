@@ -19,7 +19,7 @@ import com.yuepang.yuepang.control.LoginControl;
  * Created by xugh on 2019/3/1.
  */
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements LoginControl.LoginResult {
 
 
     @BindView(id = R.id.ed_login_tel)
@@ -49,7 +49,7 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         loginName = DataControl.getInstance(this).getLoginName();
         pwd = DataControl.getInstance(this).getPwd();
-        loginControl = new LoginControl(this);
+        loginControl = new LoginControl(this, this);
         if (!TextUtils.isEmpty(loginName)) {
             edTel.setText(loginName);
         }
@@ -89,6 +89,7 @@ public class LoginActivity extends BaseActivity {
         String loginName = edTel.getText().toString().trim();
         String pwd = Md5.string2MD5(edPwd.getText().toString().trim());
         if (CheckManage.checklogin(loginName, pwd, this)) {
+            showLoadingDialogSafe(true);
             loginControl.loginByPwd(loginName, pwd);
         }
     }
@@ -96,5 +97,17 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected int getContentViewId() {
         return R.layout.login_ly;
+    }
+
+    @Override
+    public void loginSuccess() {
+        dismissLoadingDialogSafe();
+        startActivity(MainActivity.class);
+        finish();
+    }
+
+    @Override
+    public void loginFailed() {
+        dismissLoadingDialogSafe();
     }
 }

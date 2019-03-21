@@ -3,6 +3,7 @@ package com.yuepang.yuepang.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Process;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
@@ -17,6 +18,11 @@ import android.widget.Toast;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.AnnotateUtil;
 import com.yuepang.yuepang.Util.LogUtils;
+import com.yuepang.yuepang.widget.SDKLoadingDialog;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -38,6 +44,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     private LinearLayout llMain; // 主View
 
     protected View contentView;
+
 
 
     @Override
@@ -157,5 +164,48 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
                 Toast.makeText(BaseActivity.this, var1, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    SDKLoadingDialog mLoadingDialog;
+
+    public synchronized void showLoadingDialogSafe(final boolean setCancelable) {
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                dismissLoadingDialogSafe();
+                mLoadingDialog = new SDKLoadingDialog(BaseActivity.this);
+                mLoadingDialog.setCancelable(setCancelable);
+                if (!isFinishing()) {
+                    mLoadingDialog.show();
+                }
+            }
+        });
+    }
+
+    public synchronized void dismissLoadingDialogSafe() {
+        if (null == mLoadingDialog) {
+            return;
+        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (null != mLoadingDialog) {
+                    mLoadingDialog.dismiss();
+                    mLoadingDialog = null;
+                }
+            }
+        });
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dismissLoadingDialogSafe();
     }
 }

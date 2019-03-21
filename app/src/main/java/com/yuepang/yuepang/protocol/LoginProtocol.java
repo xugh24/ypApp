@@ -1,6 +1,7 @@
 package com.yuepang.yuepang.protocol;
 
 import com.yuepang.yuepang.activity.BaseActivity;
+import com.yuepang.yuepang.model.UserInfo;
 
 import org.json.JSONObject;
 
@@ -12,6 +13,23 @@ public class LoginProtocol extends JsonProtocol {
 
     private final static String NAME = "username";
     private final static String PASSWORD = "password";
+
+    public final static String USERINFO = "userInfo";
+
+    public final static String TOKEN = "token";
+
+    public final static String AVATAR = "avatar";//头像地址
+
+    public final static String ID = "id"; // 用户ID
+
+    public final static String NICK = "nick";// 昵称
+
+    public final static String SEX = "sex";// 性别
+
+    public final static String TEL = "tel";// 电话
+
+    public final static String USERNAME = "username";// 用户名
+
 
     private String name;
 
@@ -35,7 +53,7 @@ public class LoginProtocol extends JsonProtocol {
     }
 
     @Override
-    public Object onResponse(int code, JSONObject response) throws Exception {
-        return null;
+    public JSONObject onResponse(int code, JSONObject response) throws Exception {
+        return response;
     }
 }

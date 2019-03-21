@@ -7,13 +7,14 @@ import android.widget.Button;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
+import com.yuepang.yuepang.control.UserCentreControl;
+import com.yuepang.yuepang.interFace.LoginSuccess;
 
 /**
  * Created by xugh on 2019/3/1.
- *
  */
 
-public class FirstActivity extends BaseActivity {
+public class FirstActivity extends BaseActivity implements LoginSuccess {
 
 
     /**
@@ -31,6 +32,7 @@ public class FirstActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        UserCentreControl.getInstance().addLoginMonitor(this);
     }
 
     @Override
@@ -64,5 +66,16 @@ public class FirstActivity extends BaseActivity {
     @Override
     protected int getContentViewId() {
         return R.layout.first_ly;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        UserCentreControl.getInstance().relieveLoginMonitor(this);
+    }
+
+    @Override
+    public void loginSuccess() {
+        finish();
     }
 }
