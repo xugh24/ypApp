@@ -20,46 +20,30 @@ import org.w3c.dom.Text;
 public class PersonageActivity extends BaseActivity implements PersonalDialog.CallBack {
 
     public static final int NICK = 0x01;
-    public static final int NAME = 0x02;
-    public static final int SEX = 0x03;
-    public static final int BIR = 0x04;
-    public static final int TEL = 0x05;
-    public static final int ID = 0x06;
-    public static final int COMPANY = 0x07;
+    public static final int SEX = 0x02;
+    public static final int BIR = 0x03;
+    public static final int TEL = 0x04;
 
     @BindView(id = R.id.iv_head, click = true)
     private ImageView ivHead;
-
     @BindView(id = R.id.ll_nick, click = true)
     private LinearLayout llnick;//昵称
-    @BindView(id = R.id.ll_realname, click = true)
-    private LinearLayout llname;//真实姓名
     @BindView(id = R.id.ll_sex, click = true)
     private LinearLayout llsex;//性别
     @BindView(id = R.id.ll_birthday, click = true)
     private LinearLayout llbirthday;//生日
     @BindView(id = R.id.ll_tel, click = true)
     private LinearLayout lltel;//联系方式
-    @BindView(id = R.id.ll_id, click = true)
-    private LinearLayout llid;//
-    @BindView(id = R.id.ll_company, click = true)
-    private LinearLayout llcompany;//
 
 
     @BindView(id = R.id.tv_nick)
     private TextView tvNick;//
-    @BindView(id = R.id.tv_realname)
-    private TextView tvName;//
     @BindView(id = R.id.tv_sex)
     private TextView tvsex;//
     @BindView(id = R.id.tv_birthday)
     private TextView tvbirthday;//
     @BindView(id = R.id.tv_tel)
     private TextView tvTel;//
-    @BindView(id = R.id.tv_id)
-    private TextView tvId;//
-    @BindView(id = R.id.tv_company)
-    private TextView tvcompany;//
 
 
     @Override
@@ -85,9 +69,6 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
             case R.id.ll_nick:// 昵称
                 showInput(NICK);
                 break;
-            case R.id.ll_realname: // 真实姓名
-                showInput(NAME);
-                break;
             case R.id.ll_sex: // 性别
                 showInput(SEX);
                 break;
@@ -96,12 +77,6 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
                 break;
             case R.id.ll_tel: // 电话
                 showInput(TEL);
-                break;
-            case R.id.ll_id: // id
-                showInput(ID);
-                break;
-            case R.id.ll_company: // 公司
-                showInput(COMPANY);
                 break;
         }
     }
@@ -128,16 +103,10 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
         switch (type) {
             case PersonageActivity.NICK:
                 return tvNick;
-            case PersonageActivity.NAME:
-                return tvName;
             case PersonageActivity.SEX:
                 return tvsex;
-            case PersonageActivity.ID:
-                return tvId;
             case PersonageActivity.TEL:
                 return tvTel;
-            case PersonageActivity.COMPANY:
-                return tvcompany;
             case PersonageActivity.BIR:
                 return tvbirthday;
         }

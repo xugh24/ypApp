@@ -28,20 +28,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="13.33dp"
-        android:paddingBottom="13.33dp"
         android:paddingLeft="13.33dp"
         android:paddingRight="13.33dp"
+        android:text="请输入你要修改的信息"
         android:textColor="#343434"
         android:textSize="15.4dp" />
 
     <EditText
         android:id="@+id/ed_dialog_msg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
+        android:layout_height="30dp"
         android:layout_margin="13.33dp"
         android:background="@drawable/bg_shuru"
-        android:paddingBottom="13.33dp"
+        android:gravity="center_vertical"
         android:paddingLeft="13.33dp"
         android:paddingRight="13.33dp"
         android:textColor="#343434"

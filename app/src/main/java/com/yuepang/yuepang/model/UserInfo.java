@@ -14,12 +14,11 @@ public class UserInfo {
 
     private int sex;// 性别
     private String birthday;// 生日
-    private String tel ;// 手机号
-    private String headerImgUrl ; // 头像地址
+    private String tel;// 手机号
+    private String headerImgUrl; // 头像地址
     private String pwd;// 密码
-    private String id;// 身份证
-    private String name;// 姓名
-
+    private String nick;// 昵称
+    private String token;//
 
 
     public int getSex() {
@@ -62,20 +61,21 @@ public class UserInfo {
         this.pwd = pwd;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getName() {
-        return name;
+        return nick;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.nick = name;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
 
@@ -86,7 +86,6 @@ public class UserInfo {
     // ==========================================================================
     // Setters
     // ==========================================================================
-
 
 
 }

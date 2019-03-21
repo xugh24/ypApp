@@ -30,7 +30,6 @@ public class SDKdialog extends Dialog implements android.view.View.OnClickListen
     private boolean interceptClose = false;
 
     private TextView mTitle;
-    private TextView mMessage;
     private EditText edInput;
     private Button mPositiveBtn;
     private Button mNegativeBtn;
@@ -43,7 +42,6 @@ public class SDKdialog extends Dialog implements android.view.View.OnClickListen
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getWindow().setDimAmount(0.7f);
         mTitle = (TextView) mContentView.findViewById(R.id.dialog_tiltle);
-        mMessage = (TextView) mContentView.findViewById(R.id.tv_dialog_msg);
         edInput = mContentView.findViewById(R.id.ed_dialog_msg);
         mPositiveBtn = (Button) mContentView.findViewById(R.id.dialog_btnl);
         mNegativeBtn = (Button) mContentView.findViewById(R.id.dialog_btnr);
@@ -53,32 +51,11 @@ public class SDKdialog extends Dialog implements android.view.View.OnClickListen
     public final void setTitle(CharSequence title) {
         mTitle.setText(title);
     }
-    public final void setMsg(CharSequence title) {
-        mMessage.setText(title);
-    }
 
     public String getEdText(){
         return edInput.getText().toString().trim();
     }
 
-    public final SDKdialog setMessage(CharSequence message) {
-        mMessage.setText(message);
-        //如果message显示行数为1行，则居中显示
-        mMessage.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            @Override
-            public boolean onPreDraw() {
-                //这个回调会调用多次，获取完行数记得注销监听
-                mMessage.getViewTreeObserver().removeOnPreDrawListener(this);
-
-                if (mMessage.getLineCount() <= 1) {
-                    mMessage.setPadding(0, 25, 0, 25);
-                    mMessage.setGravity(Gravity.CENTER);
-                }
-                return false;
-            }
-        });
-        return this;
-    }
 
 
     public final SDKdialog setPositiveButton(CharSequence text, final DialogInterface.OnClickListener listener) {
