@@ -23,6 +23,11 @@ public class MerchantFragment extends BaseFragment{
     private ListView lvMer;
 
     @Override
+    protected boolean getData() {
+        return true;
+    }
+
+    @Override
     protected void initView() {
         
     }

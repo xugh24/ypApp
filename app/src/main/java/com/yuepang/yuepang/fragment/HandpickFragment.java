@@ -32,6 +32,11 @@ public class HandpickFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    protected boolean getData() {
+        return true;
+    }
+
 
     @Override
     protected void initView() {

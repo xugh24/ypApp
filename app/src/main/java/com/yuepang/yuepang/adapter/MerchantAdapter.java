@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.model.MerchantInfo;
 
@@ -45,6 +46,22 @@ public class MerchantAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder = null;
+        if(convertView == null){
+            convertView = View.inflate(baseActivity, R.layout.merchant_item_ly,null);
+            holder = new ViewHolder();
+            holder.iv = convertView.findViewById(R.id.iv_pic);
+            holder.name = convertView.findViewById(R.id.tv_name);
+            holder.loction = convertView.findViewById(R.id.tv_location);
+            holder.btnPay = convertView.findViewById(R.id.btn_buy);
+            convertView.setTag(holder);
+        }else if (convertView.getTag() instanceof ViewHolder) {
+            holder = (ViewHolder) convertView.getTag();
+        }
+//        holder.head.setText(topicInfos.get(position).getHeader());
+//        holder.title.setText(topicInfos.get(position).getTitle());
+//        holder.content.setText(topicInfos.get(position).getContentSt());
+//        holder.time.setText(topicInfos.get(position).getTime());
         return null;
     }
 

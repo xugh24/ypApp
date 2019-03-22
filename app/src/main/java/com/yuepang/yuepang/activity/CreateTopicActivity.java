@@ -5,6 +5,8 @@ import android.widget.EditText;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
+import com.yuepang.yuepang.async.CommonTaskExecutor;
+import com.yuepang.yuepang.protocol.AddTopicProtocol;
 
 /**
  * Created by xugh on 2019/3/19.
@@ -36,7 +38,22 @@ public class CreateTopicActivity extends BaseActivity {
         if (TextUtils.isEmpty(title)) {
             showToastSafe("标题为空");
         } else {
+            creatTopic(title);
             finish();
         }
+    }
+
+    private void creatTopic(final String title) {
+        CommonTaskExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                AddTopicProtocol protocol = new AddTopicProtocol(CreateTopicActivity.this, title);
+                if (protocol.request() == 200) {
+                    showToastSafe("创建成功");
+                    finish();
+                }
+            }
+        });
+
     }
 }

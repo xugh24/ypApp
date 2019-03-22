@@ -51,6 +51,11 @@ public class MineFragment extends BaseFragment {
     }
 
     @Override
+    protected boolean getData() {
+        return true;
+    }
+
+    @Override
     protected void initView() {
 
     }

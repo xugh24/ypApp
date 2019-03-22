@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.AnnotateUtil;
+import com.yuepang.yuepang.activity.BaseActivity;
+import com.yuepang.yuepang.widget.LoadingFrame;
 
 /**
  * Created by xugh on 2019/3/6.
@@ -19,6 +21,8 @@ import com.yuepang.yuepang.Util.AnnotateUtil;
 public abstract class BaseFragment extends Fragment implements View.OnClickListener {
 
     protected View contentView;
+
+    private LoadingFrame loadingFrame;
 
 
 
@@ -34,12 +38,27 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
             contentView = inflater.inflate(getLyId(), container, false);
             AnnotateUtil.initBindView(this, contentView);
         }
-        initView();
-        return contentView;
+        loadingFrame = new LoadingFrame((BaseActivity) getActivity()) {
+            @Override
+            public boolean load(View loadingView) {
+                return getData();
+            }
+
+            @Override
+            public View createLoadedView() {
+                initView();
+                return contentView;
+            }
+        };
+        loadingFrame.show();
+        return loadingFrame;
     }
+
+    protected abstract boolean getData();
 
     protected abstract void initView();
 
+    
 
     public abstract int getLyId();
 

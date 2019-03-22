@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:tag="azplg_nodata_cerid_11"
+        android:visibility="gone">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入礼券兑换码"
+            android:maxLines="1"
+            android:tag="azplg_nodata_cerid_ed"
+            android:textColor="#494949"
+            android:textColorHint="#a6a6a6"
+            android:textSize="14dp" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12dp"
+            android:background="@null"
+            android:gravity="center"
+            android:tag="azplg_nodata_cerid_btn"
+            android:text="兑换" />
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:tag="azplg_no_content_layout_img_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="53dp"
+                android:layout_marginRight="53dp"
+                android:layout_marginTop="14dip"
+                android:lineSpacingExtra="5dp"
+                android:tag="azplg_no_content_layout_txt_no_content"
+                android:text="每每这个时候,感觉心里空荡荡的~"
+                android:textColor="#999999"
+                android:textSize="14dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:tag="azplg_no_content_layout_ll_botton"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btn_myfeedback"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:tag="azplg_no_content_layout_btn_myfeedback"
+                android:text="我的反馈" />
+
+            <Button
+                android:id="@+id/btn_feedback"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:tag="azplg_no_content_layout_btn_feedback"
+                android:text="在线反馈" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

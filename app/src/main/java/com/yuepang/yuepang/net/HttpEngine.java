@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
+import com.yuepang.yuepang.control.UserCentreControl;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -61,6 +62,8 @@ public class HttpEngine {
             con.setRequestMethod("POST");
             con.setConnectTimeout(10000);
             con.setReadTimeout(15000);
+            LogUtils.e("token -- "+UserCentreControl.getInstance().getToken());
+            con.addRequestProperty("token", UserCentreControl.getInstance().getToken());
             con.setRequestProperty("Connection", "Keep-Alive");// 维持长连接
             con.setRequestProperty("Charset", "UTF-8");
             con.setRequestProperty("Content-Type", "text/plain; charset=UTF-8");

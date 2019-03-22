@@ -13,6 +13,8 @@ import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.adapter.TopicAdapter;
+import com.yuepang.yuepang.model.TopicInfo;
+import com.yuepang.yuepang.protocol.GetTopicProtocol;
 import com.yuepang.yuepang.test.TestData;
 
 import java.util.List;
@@ -26,12 +28,26 @@ public class TopicFragment extends BaseFragment {
     @BindView(id = R.id.top_lv)
     private ListView listView;
     private TopicAdapter adapter;
+    private List<TopicInfo> topicInfos;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    protected boolean getData() {
+        GetTopicProtocol protocol = new GetTopicProtocol((BaseActivity) getActivity());
+        if (protocol.request() == 200) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 
     @Override
     protected void initView() {
