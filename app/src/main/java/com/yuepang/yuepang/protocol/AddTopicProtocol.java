@@ -28,7 +28,7 @@ public class AddTopicProtocol extends JsonProtocol {
     }
 
     @Override
-    public Object onResponse(int code, JSONObject response) throws Exception {
-        return null;
+    public Object onResponse(int code, String response) throws Exception {
+        return new JSONObject(response);
     }
 }

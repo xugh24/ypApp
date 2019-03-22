@@ -100,8 +100,7 @@ public abstract class JsonProtocol<T> {
             mResponse = new JSONObject(response);
             mCode = mResponse.optInt(CODE);
             mCodeDesc = mResponse.optString(MSG);
-            JSONObject jsonMsg = mResponse.optJSONObject(DATA);
-            mData = onResponse(mCode, jsonMsg);
+            mData = onResponse(mCode, mResponse.optString(DATA));
         }
         return mCode;
     }
@@ -116,7 +115,7 @@ public abstract class JsonProtocol<T> {
      */
     public abstract String getUrlToken();
 
-    public abstract T onResponse(int code, JSONObject response) throws Exception;
+    public abstract T onResponse(int code, String response) throws Exception;
 
     // ==========================================================================
     // Inner/Nested Classes

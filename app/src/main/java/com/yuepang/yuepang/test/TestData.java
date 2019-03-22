@@ -18,7 +18,6 @@ public class TestData {
         for (int i = 0; i < 5; i++) {
             TopicInfo info = new TopicInfo();
             info.setId(i);
-            info.setHeader("测");
             info.setTitle("测试数据第" + i + "条");
             info.setContentSt("Msg部分测试数据第" + i + "条");
             info.setTime(i + "小时");

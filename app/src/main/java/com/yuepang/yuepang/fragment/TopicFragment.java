@@ -13,9 +13,14 @@ import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.adapter.TopicAdapter;
+import com.yuepang.yuepang.async.CommonTaskExecutor;
 import com.yuepang.yuepang.model.TopicInfo;
 import com.yuepang.yuepang.protocol.GetTopicProtocol;
 import com.yuepang.yuepang.test.TestData;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -29,6 +34,7 @@ public class TopicFragment extends BaseFragment {
     private ListView listView;
     private TopicAdapter adapter;
     private List<TopicInfo> topicInfos;
+    private boolean isFirstShow = true;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,7 +45,10 @@ public class TopicFragment extends BaseFragment {
     protected boolean getData() {
         GetTopicProtocol protocol = new GetTopicProtocol((BaseActivity) getActivity());
         if (protocol.request() == 200) {
-            return true;
+            topicInfos = (List<TopicInfo>) protocol.getData();
+            if (topicInfos.size() > 0) {
+                return true;
+            }
         }
         return false;
     }
@@ -47,13 +56,48 @@ public class TopicFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        LogUtils.e("TopicFragment  + onResume");
     }
 
     @Override
     protected void initView() {
-        adapter = new TopicAdapter(TestData.gettops(), (BaseActivity) getActivity());
+        adapter = new TopicAdapter(topicInfos, (BaseActivity) getActivity());
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(adapter);
+    }
+
+    @Override
+    public void show() {
+        if (!isFirstShow) {
+            CommonTaskExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    GetTopicProtocol protocol = new GetTopicProtocol((BaseActivity) getActivity());
+                    if (protocol.request() == 200) {
+                        topicInfos = (List<TopicInfo>) protocol.getData();
+                        if (topicInfos.size() > 0) {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (adapter != null) {
+                                        adapter.setTopicInfos(topicInfos);
+                                        adapter.notifyDataSetInvalidated();
+                                    }
+                                }
+                            });
+
+                        }
+                    }
+                }
+            });
+        }
+        isFirstShow = false;
+
+    }
+
+    @Override
+    public void hide() {
+
     }
 
     @Override

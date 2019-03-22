@@ -22,7 +22,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
     protected View contentView;
 
-    private LoadingFrame loadingFrame;
+    protected LoadingFrame loadingFrame;
 
 
 
@@ -58,7 +58,10 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
     protected abstract void initView();
 
-    
+    public abstract void show();
+
+    public abstract void hide();
+
 
     public abstract int getLyId();
 

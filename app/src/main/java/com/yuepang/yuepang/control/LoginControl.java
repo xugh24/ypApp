@@ -34,7 +34,8 @@ public class LoginControl {
                     JSONObject json = (JSONObject) protocol.getData();
                     UserCentreControl.getInstance().setToken(json.optString(LoginProtocol.TOKEN));
                     JSONObject jsonUser = json.optJSONObject(LoginProtocol.USERINFO);
-                    UserCentreControl.getInstance().getInfo().setHeaderImgUrl(LoginProtocol.AVATAR);
+                    UserCentreControl.getInstance().getInfo().setHeaderImgUrl(jsonUser.optString(LoginProtocol.AVATAR));
+                    UserCentreControl.getInstance().getInfo().setName(jsonUser.optString(LoginProtocol.USERNAME));
                     baseActivity.showToastSafe("登录成功");
                     loginResult.loginSuccess();
                 } else {

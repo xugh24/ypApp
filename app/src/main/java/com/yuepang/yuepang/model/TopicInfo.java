@@ -6,7 +6,6 @@ package com.yuepang.yuepang.model;
 
 public class TopicInfo {
 
-    private String header;
 
     private String title;
 
@@ -16,13 +15,6 @@ public class TopicInfo {
 
     private String time;
 
-    public String getHeader() {
-        return header;
-    }
-
-    public void setHeader(String header) {
-        this.header = header;
-    }
 
     public String getTitle() {
         return title;

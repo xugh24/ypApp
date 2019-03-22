@@ -53,7 +53,7 @@ public class LoginProtocol extends JsonProtocol {
     }
 
     @Override
-    public JSONObject onResponse(int code, JSONObject response) throws Exception {
-        return response;
+    public JSONObject onResponse(int code, String response) throws Exception {
+        return new JSONObject(response);
     }
 }

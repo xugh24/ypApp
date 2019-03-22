@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
+import com.yuepang.yuepang.Util.SysUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.TopicDetailActivity;
 import com.yuepang.yuepang.model.TopicInfo;
@@ -28,6 +29,10 @@ public class TopicAdapter extends BaseAdapter implements AdapterView.OnItemClick
         this.baseActivity = baseActivity;
     }
 
+
+    public void setTopicInfos(List<TopicInfo> topicInfos) {
+        this.topicInfos = topicInfos;
+    }
 
     @Override
     public int getCount() {
@@ -58,10 +63,13 @@ public class TopicAdapter extends BaseAdapter implements AdapterView.OnItemClick
         } else if (convertView.getTag() instanceof ViewHolder) {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.head.setText(topicInfos.get(position).getHeader());
+        if (topicInfos.get(position).getTitle().length() > 0) {
+            String head = String.valueOf(topicInfos.get(position).getTitle().charAt(0));
+            holder.head.setText(head);
+        }
         holder.title.setText(topicInfos.get(position).getTitle());
         holder.content.setText(topicInfos.get(position).getContentSt());
-        holder.time.setText(topicInfos.get(position).getTime());
+        holder.time.setText(SysUtils.stampToDate(topicInfos.get(position).getTime()));
         return convertView;
     }
 

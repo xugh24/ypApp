@@ -33,6 +33,16 @@ public class MerchantFragment extends BaseFragment{
     }
 
     @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
     public int getLyId() {
         return R.layout.merchant_list;
     }

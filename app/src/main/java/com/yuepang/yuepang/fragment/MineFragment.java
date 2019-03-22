@@ -60,6 +60,16 @@ public class MineFragment extends BaseFragment {
 
     }
 
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
 
     @Override
     public void onClick(View v) {

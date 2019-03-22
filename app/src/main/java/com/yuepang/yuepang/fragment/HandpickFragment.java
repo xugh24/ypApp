@@ -44,6 +44,16 @@ public class HandpickFragment extends BaseFragment {
     }
 
     @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
     public int getLyId() {
         return R.layout.handpick_ly;
     }
