@@ -18,7 +18,6 @@ import java.util.Calendar;
 import java.util.Locale;
 
 /**
- * Created by yangfafen on 2018/5/4.
  */
 public class CustomDatePicker {
 

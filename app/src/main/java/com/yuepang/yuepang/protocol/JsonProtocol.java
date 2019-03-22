@@ -1,8 +1,5 @@
 /**
  * File Name: Protocol.java
- * History:
- *
- * @author xugh
  */
 package com.yuepang.yuepang.protocol;
 

@@ -12,7 +12,6 @@ import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
 
 /**
- * Created by xugh on 2019/3/19.
  *
  * 支付页面
  */

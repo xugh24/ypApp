@@ -17,7 +17,6 @@ import com.yuepang.yuepang.model.TopicItemInfo;
 import java.util.List;
 
 /**
- * Created by xugh on 2019/3/18.
  */
 
 public class TopicAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {

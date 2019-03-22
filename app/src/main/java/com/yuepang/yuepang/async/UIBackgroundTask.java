@@ -1,8 +1,3 @@
-/*
- * File Name: UIBackgroundTask.java 
- * History:
- * Created by Siyang.Miao on 2012-3-6
- */
 package com.yuepang.yuepang.async;
 
 import android.os.Handler;

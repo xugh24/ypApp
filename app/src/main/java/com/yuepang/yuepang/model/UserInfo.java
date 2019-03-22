@@ -1,14 +1,4 @@
-/*
- * File Name: UserInfo.java 
- * History:
- * Created by Administrator on 2013-7-30
- */
 package com.yuepang.yuepang.model;
-
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.ImageView;
-
 
 public class UserInfo {
 

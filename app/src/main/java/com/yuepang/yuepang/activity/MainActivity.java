@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by xugh on 2019/3/6.
  *
  * 主页面用于加载 精选、商家、话题、我的 功能页
  */

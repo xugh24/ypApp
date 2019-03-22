@@ -16,7 +16,6 @@ import com.yuepang.yuepang.activity.MerchantActivity;
 import com.yuepang.yuepang.activity.MerchantDetailActivity;
 
 /**
- * Created by xugh on 2019/3/6.
  */
 
 public class HandpickFragment extends BaseFragment {

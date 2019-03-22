@@ -1,8 +1,3 @@
-/*
- * File Name: LoadingFrame.java
- * History:
- * Created by Siyang.Miao on 2011-9-22
- */
 package com.yuepang.yuepang.widget;
 
 import android.annotation.SuppressLint;

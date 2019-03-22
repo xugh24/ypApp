@@ -1,8 +1,3 @@
-/*
- * File Name: ThreadPool.java 
- * History:
- * Created by Siyang.Miao on 2012-2-20
- */
 package com.yuepang.yuepang.async;
 
 import android.os.Process;

@@ -10,7 +10,6 @@ import com.yuepang.yuepang.activity.PersonageActivity;
 import com.yuepang.yuepang.widget.SDKdialog;
 
 /**
- * Created by xugh on 2019/3/10.
  */
 
 public class PersonalDialog extends SDKdialog {

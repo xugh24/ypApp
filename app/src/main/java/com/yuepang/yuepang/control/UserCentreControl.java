@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by xugh on 2019/3/21.
  */
 
 public class UserCentreControl {

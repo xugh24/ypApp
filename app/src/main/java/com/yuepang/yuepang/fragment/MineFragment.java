@@ -18,7 +18,6 @@ import com.yuepang.yuepang.activity.MylikeActivity;
 import com.yuepang.yuepang.activity.PersonageActivity;
 
 /**
- * Created by xugh on 2019/3/10.
  */
 
 public class MineFragment extends BaseFragment {

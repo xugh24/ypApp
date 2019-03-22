@@ -5,7 +5,6 @@ import com.yuepang.yuepang.activity.BaseActivity;
 import org.json.JSONObject;
 
 /**
- * Created by xugh on 2019/3/22.
  */
 
 public class AddTopicProtocol extends JsonProtocol {

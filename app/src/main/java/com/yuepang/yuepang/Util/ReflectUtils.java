@@ -1,8 +1,3 @@
-/*
- * File Name: ReflectUtils.java 
- * History:
- * Created by Siyang.Miao on 2011-7-14
- */
 package com.yuepang.yuepang.Util;
 
 import java.lang.reflect.Field;

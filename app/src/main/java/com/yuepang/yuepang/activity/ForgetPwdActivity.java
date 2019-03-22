@@ -13,7 +13,6 @@ import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.control.GetTelCodeControl;
 
 /**
- * Created by xugh on 2019/3/4.
  *
  * 忘记密码页面
  */

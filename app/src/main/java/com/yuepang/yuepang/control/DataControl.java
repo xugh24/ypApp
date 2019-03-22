@@ -1,8 +1,3 @@
-/*
- * File Name: DataControl.java 
- * History:
- * Created by Administrator on 2015-1-31
- */
 package com.yuepang.yuepang.control;
 
 import android.content.Context;

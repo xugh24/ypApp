@@ -11,7 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by xugh on 2019/3/19.
  */
 
 public class SysUtils {

@@ -1,6 +1,5 @@
 package com.yuepang.yuepang.control;
 
-import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.net.Uri;

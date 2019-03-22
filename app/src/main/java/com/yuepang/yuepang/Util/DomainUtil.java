@@ -1,7 +1,6 @@
 package com.yuepang.yuepang.Util;
 
 /**
- * Created by xugh on 2019/3/21.
  */
 
 public class DomainUtil {

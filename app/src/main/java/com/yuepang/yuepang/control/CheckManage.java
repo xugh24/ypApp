@@ -1,8 +1,3 @@
-/*
- * File Name: CheckManage.java 
- * History:
- * Created by Administrator on 2015-6-10
- */
 package com.yuepang.yuepang.control;
 
 import android.text.TextUtils;

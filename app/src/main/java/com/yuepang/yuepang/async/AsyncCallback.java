@@ -1,7 +1,4 @@
 /*
- * File Name: AsyncCallback.java 
- * History:
- * Created by Siyang.Miao on 2012-5-25
  */
 package com.yuepang.yuepang.async;
 

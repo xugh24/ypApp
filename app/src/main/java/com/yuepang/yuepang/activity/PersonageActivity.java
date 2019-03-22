@@ -15,7 +15,6 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * Created by xugh on 2019/3/10.
  * 个人信息页面
  */
 

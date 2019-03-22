@@ -3,7 +3,6 @@ package com.yuepang.yuepang.activity;
 import com.yuepang.yuepang.R;
 
 /**
- * Created by xugh on 2019/3/18.
  *
  * 我的喜好页面
  */

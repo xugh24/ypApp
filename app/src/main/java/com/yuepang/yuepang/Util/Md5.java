@@ -3,7 +3,6 @@ package com.yuepang.yuepang.Util;
 import java.security.MessageDigest;
 
 /**
- * Created by xugh on 2019/3/21.
  */
 
 public class Md5 {

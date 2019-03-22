@@ -1,7 +1,6 @@
 package com.yuepang.yuepang.model;
 
 /**
- * Created by xugh on 2019/3/18.
  */
 
 public class TopicInfo {

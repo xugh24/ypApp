@@ -1,6 +1,5 @@
 package com.yuepang.yuepang.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -8,7 +7,6 @@ import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
 
 /**
- * Created by xugh on 2019/3/1.
  *
  * 闪屏页面
  */

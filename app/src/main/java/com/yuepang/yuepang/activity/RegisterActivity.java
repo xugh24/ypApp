@@ -11,7 +11,6 @@ import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.control.GetTelCodeControl;
 
 /**
- * Created by xugh on 2019/3/1.
  *
  * 注册页面
  */

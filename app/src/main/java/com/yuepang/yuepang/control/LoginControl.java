@@ -8,7 +8,6 @@ import com.yuepang.yuepang.protocol.LoginProtocol;
 import org.json.JSONObject;
 
 /**
- * Created by xugh on 2019/3/6.
  */
 
 public class LoginControl {

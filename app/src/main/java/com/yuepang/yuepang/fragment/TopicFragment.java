@@ -25,7 +25,6 @@ import org.json.JSONObject;
 import java.util.List;
 
 /**
- * Created by xugh on 2019/3/10.
  */
 
 public class TopicFragment extends BaseFragment {

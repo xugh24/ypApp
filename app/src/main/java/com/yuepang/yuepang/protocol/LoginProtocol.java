@@ -6,7 +6,6 @@ import com.yuepang.yuepang.model.UserInfo;
 import org.json.JSONObject;
 
 /**
- * Created by xugh on 2019/3/21.
  */
 
 public class LoginProtocol extends JsonProtocol {

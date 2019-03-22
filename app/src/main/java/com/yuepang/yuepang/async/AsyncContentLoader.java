@@ -1,7 +1,4 @@
 /*
- * File Name: AsyncContentLoader.java 
- * History:
- * Created by Siyang.Miao on 2012-2-28
  */
 package com.yuepang.yuepang.async;
 import java.util.LinkedList;

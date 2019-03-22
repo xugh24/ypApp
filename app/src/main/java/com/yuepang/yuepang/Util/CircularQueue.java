@@ -1,8 +1,3 @@
-/*
- * File Name: CircularQueue.java 
- * History:
- * Created by Siyang.Miao on 2011-10-28
- */
 package com.yuepang.yuepang.Util;
 
 import java.util.Collection;

@@ -16,7 +16,6 @@ import com.yuepang.yuepang.control.DataControl;
 import com.yuepang.yuepang.control.LoginControl;
 
 /**
- * Created by xugh on 2019/3/1.
  *
  * 登录页面
  */

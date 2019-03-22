@@ -9,9 +9,8 @@ import com.yuepang.yuepang.async.CommonTaskExecutor;
 import com.yuepang.yuepang.protocol.AddTopicProtocol;
 
 /**
- * Created by xugh on 2019/3/19.
  *
- * 创建话题页面
+ * 创建话题
  */
 
 public class CreateTopicActivity extends BaseActivity {

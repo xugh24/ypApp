@@ -29,7 +29,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 /**
- * Created by xugh on 2019/3/20.
  */
 
 public class HttpEngine {

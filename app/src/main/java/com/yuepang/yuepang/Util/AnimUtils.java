@@ -1,8 +1,3 @@
-/*
- * File Name: AnimUtils.java 
- * History:
- * Created by Siyang.Miao on 2012-3-22
- */
 package com.yuepang.yuepang.Util;
 
 import android.view.animation.AccelerateInterpolator;

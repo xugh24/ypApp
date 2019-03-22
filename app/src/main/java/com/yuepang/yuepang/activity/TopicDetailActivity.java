@@ -25,8 +25,6 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Created by xugh on 2019/3/18.
- * <p>
  * 话题聊天页面
  */
 

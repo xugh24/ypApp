@@ -8,7 +8,6 @@ import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.async.AsyncImageLoader;
 
 /**
- * Created by xugh on 2019/3/21.
  */
 
 public class DrawableUtil {

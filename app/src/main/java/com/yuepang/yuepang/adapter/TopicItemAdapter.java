@@ -14,7 +14,6 @@ import com.yuepang.yuepang.model.TopicItemInfo;
 import java.util.List;
 
 /**
- * Created by xugh on 2019/3/19.
  */
 
 public class TopicItemAdapter extends BaseAdapter {

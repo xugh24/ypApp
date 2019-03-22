@@ -6,7 +6,6 @@ import com.yuepang.yuepang.control.UserCentreControl;
 import org.json.JSONObject;
 
 /**
- * Created by xugh on 2019/3/22.
  */
 
 public class SendMsgProtocol extends JsonProtocol {

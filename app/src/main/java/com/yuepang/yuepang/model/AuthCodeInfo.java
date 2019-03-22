@@ -1,8 +1,3 @@
-/*
- * File Name: AuthCodeInfo.java 
- * History:
- * Created by zhangzhiyong on 2013-8-7
- */
 package com.yuepang.yuepang.model;
 
 public class AuthCodeInfo {

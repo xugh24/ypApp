@@ -14,7 +14,6 @@ import com.yuepang.yuepang.model.MerchantInfo;
 import java.util.List;
 
 /**
- * Created by xugh on 2019/3/21.
  */
 
 public class MerchantAdapter extends BaseAdapter {

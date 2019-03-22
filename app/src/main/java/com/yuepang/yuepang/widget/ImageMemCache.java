@@ -1,8 +1,3 @@
-/*
- * File Name: ImageMemCache.java 
- * History:
- * Created by Siyang.Miao on 2012-5-5
- */
 package com.yuepang.yuepang.widget;
 
 import android.graphics.Bitmap;

@@ -1,8 +1,3 @@
-/*
- * File Name: FileUtils.java 
- * History:
- * Created by Siyang.Miao on 2011-12-2
- */
 package com.yuepang.yuepang.Util;
 
 import android.text.TextUtils;

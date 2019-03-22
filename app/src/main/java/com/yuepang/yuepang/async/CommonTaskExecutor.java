@@ -1,8 +1,3 @@
-/*
- * File Name: CommonTaskExecutor.java 
- * History:
- * Created by Siyang.Miao on 2012-2-29
- */
 package com.yuepang.yuepang.async;
 
 import android.os.Process;
