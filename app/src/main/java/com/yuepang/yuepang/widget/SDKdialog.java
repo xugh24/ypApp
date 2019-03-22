@@ -50,6 +50,7 @@ public class SDKdialog extends Dialog implements View.OnClickListener {
         mainView.addView(view);
         msg.setVisibility(View.GONE);
         edInput.setVisibility(View.GONE);
+        mainView.setVisibility(View.VISIBLE);
     }
 
     public final void setTitle(CharSequence title) {

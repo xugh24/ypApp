@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_grey_fillet"
     android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/dialog_tiltle"
@@ -25,7 +26,8 @@
     <RelativeLayout
         android:id="@+id/ll_content"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
 
     <TextView
@@ -43,7 +45,6 @@
         android:id="@+id/ed_dialog_msg"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_margin="13.33dp"
         android:background="@drawable/bg_shuru"
         android:gravity="center_vertical"
         android:paddingLeft="13.33dp"
@@ -55,10 +56,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="13.33dp"
-        android:paddingLeft="13.33dp"
-        android:paddingRight="13.33dp">
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/dialog_btnl"

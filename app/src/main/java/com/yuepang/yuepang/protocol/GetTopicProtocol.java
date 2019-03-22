@@ -27,7 +27,7 @@ public class GetTopicProtocol extends JsonProtocol {
 
     @Override
     public String getUrlToken() {
-        return "/yuepang/topicList/";
+        return "yuepang/topicList/";
     }
 
     @Override
