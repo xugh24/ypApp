@@ -29,6 +29,12 @@ public class TopicItemAdapter extends BaseAdapter {
     }
 
 
+    public void setTopicItemInfos( List<TopicItemInfo> topicItemInfos){
+        this.topicItemInfos = topicItemInfos;
+    }
+
+
+
     @Override
     public int getCount() {
         return topicItemInfos.size();

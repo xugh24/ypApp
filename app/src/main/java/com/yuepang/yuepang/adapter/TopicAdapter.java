@@ -12,6 +12,7 @@ import com.yuepang.yuepang.Util.SysUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.TopicDetailActivity;
 import com.yuepang.yuepang.model.TopicInfo;
+import com.yuepang.yuepang.model.TopicItemInfo;
 
 import java.util.List;
 
@@ -73,10 +74,12 @@ public class TopicAdapter extends BaseAdapter implements AdapterView.OnItemClick
         return convertView;
     }
 
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(baseActivity, TopicDetailActivity.class);
         intent.putExtra("id", topicInfos.get(position).getId());
+        intent.putExtra("title", topicInfos.get(position).getTitle());
         baseActivity.startActivity(intent);
     }
 

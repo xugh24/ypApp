@@ -13,16 +13,22 @@ import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.adapter.TopicItemAdapter;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
+import com.yuepang.yuepang.control.UserCentreControl;
+import com.yuepang.yuepang.model.TopicItemInfo;
 import com.yuepang.yuepang.protocol.GetChatProtocol;
 import com.yuepang.yuepang.protocol.SendMsgProtocol;
 import com.yuepang.yuepang.test.TestData;
 import com.yuepang.yuepang.widget.RefreshListView;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 /**
  * Created by xugh on 2019/3/18.
  */
 
-public class TopicDetailActivity extends BaseActivity {
+public class TopicDetailActivity extends BaseActivity implements RefreshListView.OnRefreshListener {
 
     @BindView(id = R.id.rl_main)
     private RelativeLayout rlMain;
@@ -37,29 +43,55 @@ public class TopicDetailActivity extends BaseActivity {
 
     private int id;
 
+    private String title;
+
+    private List<TopicItemInfo> topicItemInfos;
+
+    private TopicItemAdapter adapter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         id = getIntent().getIntExtra("id", 0);
-        LogUtils.e("id " + id);
+        title = getIntent().getStringExtra("title");
+        TopicItemInfo info = new TopicItemInfo();
+        topicItemInfos = new ArrayList<>();
+        info.setMsg(title);
+        info.setName("发起人");
+        info.setId(id);
+        topicItemInfos.add(info);
         refreshListView = new RefreshListView(this);
-        TopicItemAdapter adapter = new TopicItemAdapter(TestData.gettopicItem(id), this);
+        refreshListView.setOnRefreshListener(this);
+        adapter = new TopicItemAdapter(topicItemInfos, this);
         refreshListView.setAdapter(adapter);
         rlMain.addView(refreshListView);
+        addInfo();
+    }
+
+
+    private void addInfo() {
+        CommonTaskExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                GetChatProtocol protocol = new GetChatProtocol(TopicDetailActivity.this, id);
+                if (protocol.request() == 200) {
+                    topicItemInfos.addAll((Collection<TopicItemInfo>) protocol.getData());
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            adapter.setTopicItemInfos(topicItemInfos);
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
+                }
+            }
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        CommonTaskExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                GetChatProtocol protocol = new GetChatProtocol(TopicDetailActivity.this, id);
-                if (protocol.request() == 0) {
 
-                }
-            }
-        });
     }
 
     @Override
@@ -71,6 +103,13 @@ public class TopicDetailActivity extends BaseActivity {
                 showToastSafe("消息为空");
             } else {
                 sendMsg(msg);
+                TopicItemInfo info = new TopicItemInfo();
+                info.setMsg(msg);
+                info.setName(UserCentreControl.getInstance().getInfo().getName());
+                topicItemInfos.add(info);
+                adapter.setTopicItemInfos(topicItemInfos);
+                adapter.notifyDataSetChanged();
+                edMsg.setText("");
             }
         }
     }
@@ -83,8 +122,6 @@ public class TopicDetailActivity extends BaseActivity {
                 if (protocol.request() == 200) {
 
                 }
-
-
             }
         });
 
@@ -103,5 +140,10 @@ public class TopicDetailActivity extends BaseActivity {
     @Override
     protected int getContentViewId() {
         return R.layout.chat_log_layout;
+    }
+
+    @Override
+    public void onPullRefresh() {
+
     }
 }
