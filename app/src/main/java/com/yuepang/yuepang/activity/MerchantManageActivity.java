@@ -11,11 +11,6 @@ import com.yuepang.yuepang.Util.BindView;
 
 public class MerchantManageActivity extends BaseActivity {
 
-    @BindView(id = R.id.tv_attestation)
-    private TextView tvAttestation;
-
-    @BindView(id = R.id.tv_attestation)
-    private TextView tvMerchant;
 
     @Override
     protected String getMyRTitle() {
