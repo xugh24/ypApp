@@ -7,6 +7,8 @@ import com.yuepang.yuepang.Util.BindView;
 
 /**
  * Created by xugh on 2019/3/20.
+ *
+ * 设置页面
  */
 
 public class MerchantManageActivity extends BaseActivity {

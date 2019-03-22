@@ -6,6 +6,8 @@ import com.yuepang.yuepang.R;
 
 /**
  * Created by xugh on 2019/3/18.
+ *
+ * 废弃
  */
 
 public class MerchantActivity extends BaseActivity {

@@ -4,6 +4,8 @@ import com.yuepang.yuepang.R;
 
 /**
  * Created by xugh on 2019/3/18.
+ *
+ * 我的喜好页面
  */
 
 public class MylikeActivity extends BaseActivity {

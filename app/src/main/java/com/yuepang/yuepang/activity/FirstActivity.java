@@ -12,6 +12,8 @@ import com.yuepang.yuepang.interFace.LoginSuccess;
 
 /**
  * Created by xugh on 2019/3/1.
+ * <p>
+ * 首页 包含登录和注册按钮
  */
 
 public class FirstActivity extends BaseActivity implements LoginSuccess {

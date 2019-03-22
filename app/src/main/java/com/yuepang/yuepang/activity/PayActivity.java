@@ -13,6 +13,8 @@ import com.yuepang.yuepang.Util.BindView;
 
 /**
  * Created by xugh on 2019/3/19.
+ *
+ * 支付页面
  */
 
 public class PayActivity extends BaseActivity {

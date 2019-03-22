@@ -9,6 +9,8 @@ import com.yuepang.yuepang.async.CommonTaskExecutor;
 
 /**
  * Created by xugh on 2019/3/1.
+ *
+ * 闪屏页面
  */
 
 public class SplshActivity extends BaseActivity {

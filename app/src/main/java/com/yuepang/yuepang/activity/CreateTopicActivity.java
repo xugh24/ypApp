@@ -10,6 +10,8 @@ import com.yuepang.yuepang.protocol.AddTopicProtocol;
 
 /**
  * Created by xugh on 2019/3/19.
+ *
+ * 创建话题页面
  */
 
 public class CreateTopicActivity extends BaseActivity {
