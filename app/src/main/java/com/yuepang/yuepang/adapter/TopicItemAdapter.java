@@ -8,8 +8,7 @@ import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.activity.BaseActivity;
-import com.yuepang.yuepang.model.TopicInfo;
-import com.yuepang.yuepang.model.TopicItemInfo;
+import com.yuepang.yuepang.info.TopicItemInfo;
 
 import java.util.List;
 

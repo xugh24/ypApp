@@ -50,13 +50,14 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
     private LinearLayout llMain; // 主View
 
-
     protected View contentView;
 
+    public static List<Activity> activities = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activities.add(this);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);// 设置全屏
@@ -89,7 +90,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     }
 
     /**
-     *
+     * 绑定UI
      */
     private void bindView() {
         llBar = findViewById(R.id.title_ll);
@@ -218,6 +219,19 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         });
     }
 
+
+    public static void removeActivity(Activity activity){
+        activities.remove(activity);
+    }
+
+    public static void finishAll(){
+        for (Activity activity:activities){
+            if (!activity.isFinishing()){
+                activity.finish();
+            }
+        }
+    }
+
     @Override
     public void finish() {
         super.finish();
@@ -226,6 +240,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        activities.remove(this);
         dismissLoadingDialogSafe();
     }
 }

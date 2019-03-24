@@ -11,8 +11,7 @@ import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.SysUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.TopicDetailActivity;
-import com.yuepang.yuepang.model.TopicInfo;
-import com.yuepang.yuepang.model.TopicItemInfo;
+import com.yuepang.yuepang.info.TopicInfo;
 
 import java.util.List;
 

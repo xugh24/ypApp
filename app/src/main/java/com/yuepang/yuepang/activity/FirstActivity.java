@@ -12,6 +12,7 @@ import com.yuepang.yuepang.interFace.LoginSuccess;
 
 /**
  * <p>
+ * Completed
  * 首页 包含登录和注册按钮
  */
 
@@ -33,7 +34,7 @@ public class FirstActivity extends BaseActivity implements LoginSuccess {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UserCentreControl.getInstance().addLoginMonitor(this);
+        UserCentreControl.getInstance().addLoginMonitor(this);//设置登录成功的监听
     }
 
     @Override
@@ -75,6 +76,9 @@ public class FirstActivity extends BaseActivity implements LoginSuccess {
         UserCentreControl.getInstance().relieveLoginMonitor(this);
     }
 
+    /**
+     * 登录成功监听回调
+     */
     @Override
     public void loginSuccess() {
         finish();

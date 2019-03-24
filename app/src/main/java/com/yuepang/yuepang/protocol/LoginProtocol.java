@@ -1,7 +1,6 @@
 package com.yuepang.yuepang.protocol;
 
 import com.yuepang.yuepang.activity.BaseActivity;
-import com.yuepang.yuepang.model.UserInfo;
 
 import org.json.JSONObject;
 

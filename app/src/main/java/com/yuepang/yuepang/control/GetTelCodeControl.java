@@ -13,7 +13,7 @@ import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
-import com.yuepang.yuepang.model.AuthCodeInfo;
+import com.yuepang.yuepang.info.AuthCodeInfo;
 
 /**
  * Created by xugh on 2019/3/6.

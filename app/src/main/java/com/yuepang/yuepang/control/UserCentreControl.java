@@ -1,7 +1,7 @@
 package com.yuepang.yuepang.control;
 
+import com.yuepang.yuepang.info.UserInfo;
 import com.yuepang.yuepang.interFace.LoginSuccess;
-import com.yuepang.yuepang.model.UserInfo;
 
 import java.util.ArrayList;
 import java.util.List;

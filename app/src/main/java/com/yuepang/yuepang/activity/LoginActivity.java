@@ -10,17 +10,15 @@ import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
-import com.yuepang.yuepang.Util.Md5;
-import com.yuepang.yuepang.control.CheckManage;
-import com.yuepang.yuepang.control.DataControl;
-import com.yuepang.yuepang.control.LoginControl;
+import com.yuepang.yuepang.presenter.LoginPresenter;
 
 /**
- *
  * 登录页面
+ * 登录注册功能实现MVP模式
+ * activity 做为V 实现页面展示，提供页面数据获得接口
  */
 
-public class LoginActivity extends BaseActivity implements LoginControl.LoginResult {
+public class LoginActivity extends BaseActivity {
 
 
     @BindView(id = R.id.ed_login_tel)
@@ -38,27 +36,16 @@ public class LoginActivity extends BaseActivity implements LoginControl.LoginRes
     @BindView(id = R.id.forget_pwd, click = true)
     private TextView tvforgetPwd; // 忘记密码文字
 
-    private String loginName;
-
-    private String pwd;
-
-    private LoginControl loginControl;
+    private LoginPresenter presenter;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loginName = DataControl.getInstance(this).getLoginName();
-        pwd = DataControl.getInstance(this).getPwd();
-        loginControl = new LoginControl(this, this);
-        if (!TextUtils.isEmpty(loginName)) {
-            edTel.setText(loginName);
-        }
-        if (!TextUtils.isEmpty(pwd)) {
-            edPwd.setText(pwd);
-        }
+        presenter = new LoginPresenter(this);
+        edTel.setText(presenter.getLoginName());
+        edPwd.setText(presenter.getPwd());
     }
-
 
     @Override
     protected String getMyRTitle() {
@@ -75,7 +62,7 @@ public class LoginActivity extends BaseActivity implements LoginControl.LoginRes
         super.onClick(v);
         switch (v.getId()) {
             case R.id.btn_login:// 登录按钮
-                login();
+                presenter.login();
                 break;
             case R.id.tv_register:// 跳转注册页面
                 startActivity(RegisterActivity.class);
@@ -86,29 +73,28 @@ public class LoginActivity extends BaseActivity implements LoginControl.LoginRes
         }
     }
 
-    private void login() {
-        String loginName = edTel.getText().toString().trim();
-        String pwd = Md5.string2MD5(edPwd.getText().toString().trim());
-        if (CheckManage.checklogin(loginName, pwd, this)) {
-            showLoadingDialogSafe(true);
-            loginControl.loginByPwd(loginName, pwd);
-        }
-    }
-
     @Override
     protected int getContentViewId() {
         return R.layout.login_ly;
     }
 
-    @Override
-    public void loginSuccess() {
-        dismissLoadingDialogSafe();
-        startActivity(MainActivity.class);
-        finish();
+    /**
+     * 获得用户名
+     */
+    public String getLoginName() {
+        if (edTel != null) {
+            return edTel.getText().toString().trim();
+        }
+        return null;
     }
 
-    @Override
-    public void loginFailed() {
-        dismissLoadingDialogSafe();
+    /**
+     * 获得用户名
+     */
+    public String getPwd() {
+        if (edTel != null) {
+            return edPwd.getText().toString().trim();
+        }
+        return null;
     }
 }

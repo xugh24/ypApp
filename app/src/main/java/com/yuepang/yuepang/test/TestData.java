@@ -1,7 +1,7 @@
 package com.yuepang.yuepang.test;
 
-import com.yuepang.yuepang.model.TopicInfo;
-import com.yuepang.yuepang.model.TopicItemInfo;
+import com.yuepang.yuepang.info.TopicInfo;
+import com.yuepang.yuepang.info.TopicItemInfo;
 
 import java.util.ArrayList;
 import java.util.List;
