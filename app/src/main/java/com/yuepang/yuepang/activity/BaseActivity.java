@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Process;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
@@ -41,7 +42,14 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
     private TextView tvRtitle; // 右边的文字说明
 
+    private TextView tvLeftTitle;// 左边的文字说明
+
+    private ImageView ivArrows;// 箭头商家页面使用
+
+    private ImageView ivStar;// 收藏星星页面使用
+
     private LinearLayout llMain; // 主View
+
 
     protected View contentView;
 
@@ -91,6 +99,10 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         tvRtitle = findViewById(R.id.tv_r_title);
         tvRtitle.setOnClickListener(this);
         llMain = findViewById(R.id.main_ly);
+        ivArrows = findViewById(R.id.iv_arrows);
+        ivArrows.setOnClickListener(this);
+        ivStar = findViewById(R.id.iv_star);
+        ivStar.setOnClickListener(this);
     }
 
     public void setTitle(String title) {
@@ -138,6 +150,13 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
             case R.id.tv_r_title:
                 LogUtils.e("---");
                 clikRt();
+                break;
+
+            case R.id.iv_star:
+
+                break;
+            case R.id.iv_arrows:
+
                 break;
         }
     }

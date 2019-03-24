@@ -18,7 +18,23 @@
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_back" />
+            android:src="@drawable/ic_back"
+            android:visibility="gone" />
+
+
+        <TextView
+            android:id="@+id/tv_left_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="测试商圈" />
+
+        <ImageView
+            android:id="@+id/iv_arrows"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="3dp"
+            android:src="@drawable/ic_arrow_down_green" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -30,9 +46,16 @@
             android:textColor="@color/color49"
             android:textSize="20sp" />
 
+        <ImageView
+            android:id="@+id/iv_star"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_stars_yellow"/>
+
         <TextView
             android:id="@+id/tv_r_title"
             android:layout_width="60dp"
+            android:visibility="gone"
             android:layout_height="wrap_content" />
     </LinearLayout>
 

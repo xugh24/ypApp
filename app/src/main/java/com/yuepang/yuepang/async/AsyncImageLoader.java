@@ -2,36 +2,39 @@ package com.yuepang.yuepang.async;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Environment;
 import android.os.Process;
 import android.text.TextUtils;
 
 import com.yuepang.yuepang.Util.CircularQueue;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.Util.SysUtils;
-import com.yuepang.yuepang.net.HttpEngine;
+import com.yuepang.yuepang.net.MyOkHttpEngine;
 import com.yuepang.yuepang.widget.ImageMemCache;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.LinkedList;
+
+
+/**
+ * 获取图片线程线程池
+ */
 
 public class AsyncImageLoader extends ThreadPool.Workgroup {
 
     private static final int MAX_LARGE_IMAGE_NUM = 20;
     private static final int MAX_ICON_NUM = 50;
-    private ReferenceKeeper mLargeImageCacheKeep = new ReferenceKeeper(MAX_LARGE_IMAGE_NUM);
-    private ReferenceKeeper mIconCacheKeep = new ReferenceKeeper(MAX_ICON_NUM);
+    private ReferenceKeeper mLargeImageCacheKeep = new ReferenceKeeper(MAX_LARGE_IMAGE_NUM); // 大图片循环队列
+    private ReferenceKeeper mIconCacheKeep = new ReferenceKeeper(MAX_ICON_NUM);// 小图片循环队列
     private static AsyncImageLoader sInstance;
     public Context mContext;
-    private LinkedList<CommonTask> mTaskQueue;
+    /**
+     * 下载、保存图片任务队列
+     */
+    private LinkedList<CommonTask> mTaskQueue;//
 
     public static synchronized AsyncImageLoader getInstance(Context context) {
         if (sInstance == null) {
@@ -46,7 +49,6 @@ public class AsyncImageLoader extends ThreadPool.Workgroup {
         ThreadPool.registerWorkgroup(this);
     }
 
-
     private void keepImage(Drawable d, boolean isLargeImage) {
         if (isLargeImage) {
             mLargeImageCacheKeep.keep(d);
@@ -55,135 +57,60 @@ public class AsyncImageLoader extends ThreadPool.Workgroup {
         }
     }
 
-    // 通过名称来获得图片
-    public Bitmap getLocalBitmap(String name) {
-        if (!TextUtils.isEmpty(name)) {
-            File file = new File(getImageCacheDir(), String.valueOf(name.hashCode()));
-            if (file != null && file.exists()) {
-                try {
-                    Bitmap bmp = BitmapFactory.decodeFile(file.getAbsolutePath());
-                    if (bmp != null) {
-                        return bmp;
-                    } else {
-                        file.delete();
-                    }
-                } catch (OutOfMemoryError e) {
-                    LogUtils.e(e);
-                } catch (Exception e) {
-                    file.delete(); // 如果加载失败删除本地文件，下次重新下载
-                    LogUtils.e(e);
-                }
-            }
-        }
-        return null;
-    }
-
-
-
-    private String getImageCacheDir() {
-        String path = null;
-        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-            path = Environment.getExternalStorageDirectory() + "/usercenter/img_cache";
-        } else {
-            path = mContext.getCacheDir().getAbsolutePath();
-        }
-        File dir = new File(path);
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
-        return path;
-    }
 
     public void loadDrawable(final String imageUrl, final ImageCallback imageCallback) {
         loadDrawable(imageUrl, imageCallback, false);
     }
 
+
+    /**
+     * 根据bitmap 三级缓存思想获得图片依次重内存、本地、网络按照顺序获得获得图片
+     */
     public void loadDrawable(final String imageUrl, final ImageCallback imageCallback, boolean isLargeImage) {
-        if (TextUtils.isEmpty(imageUrl)) {
+        if (TextUtils.isEmpty(imageUrl)) {// 判断图片地址是否为空
             LogUtils.w("Load image url is null!!");
             return;
         }
-        if (imageUrl != null) {
-            Bitmap bmp = ImageMemCache.getIcon(imageUrl);
-            if (bmp != null) {
-                if (imageCallback != null) {
-                    imageCallback.onLoadedFromMemCache(new BitmapDrawable(bmp), imageUrl);
-                }
-                return;
+        Bitmap bmp = ImageMemCache.getIcon(imageUrl);// 重内存中获取图片
+        if (bmp != null) {
+            if (imageCallback != null) {
+                imageCallback.onLoadedFromMemCache(new BitmapDrawable(bmp), imageUrl);
             }
+            return;
         }
-        asyncLoad(imageUrl, imageCallback, isLargeImage);
+        asyncLoad(imageUrl, imageCallback, isLargeImage);// 获得是吧继续获取
     }
 
     /**
-     * 
-     * 
-     * @param url
-     * 
-     * 
-     * @return
+     * @param url 图片地址
+     * @return 资源
      * @throws IOException
      */
     public Drawable loadImageFromUrl(String url) throws Exception {
         if (TextUtils.isEmpty(url)) {
             return null;
         }
-        FileOutputStream fos = null;
         FileInputStream fis = null;
         try {
             if (SysUtils.isSDCardAvailable()) {// sd卡存在并且控件足够
                 String fileName = String.valueOf(url.hashCode());
-                File f = new File(getImageCacheDir(), fileName);
-                if (f.exists()) {
+                File f = new File(SysUtils.getImageCacheDir(mContext), fileName);
+                if (f.exists()) {// 如果内存中图片存下则直接返回
                     fis = new FileInputStream(f);
                     return Drawable.createFromStream(fis, null);
                 }
             }
-
-            InputStream is = HttpEngine.createGetRequest(mContext, url);
-            Drawable drawable = Drawable.createFromStream(is, null);
-            if (is != null) {
-                is.close();
-            }
-            fos = new FileOutputStream(new File(getImageCacheDir(), String.valueOf(url.hashCode())));
-            ((BitmapDrawable) drawable).getBitmap().compress(CompressFormat.PNG, 100, fos);
-
-            return drawable;
+            return MyOkHttpEngine.createGetRequest(mContext, url);// 重网络获取图片
         } catch (Exception e) {
             LogUtils.e(e);
         } finally {
-            if (fis != null) {
-                try {
-                    fis.close();
-                }catch (Exception e){}
-            }
-            try {
-                if (fos != null) {
-                    fos.close();
-                }
-            } catch (Exception e2) {
-            }
-
+            if (fis != null)
+                fis.close();
         }
         return null;
 
     }
 
-
-
-
-
-    public void cancel(String url, ImageCallback callback) {
-        if (null == callback) {
-            return;
-        }
-        synchronized (mTaskQueue) {
-            if (!cancelExecutingTasks(false, url, callback)) {
-                CommonTask toRemove = new CommonTask(url, callback, false);
-                mTaskQueue.remove(toRemove);
-            }
-        }
-    }
 
     private void asyncLoad(String key, ImageCallback item, boolean isLargeImage) {
         final CommonTask task = new CommonTask(key, item, isLargeImage);
@@ -243,9 +170,8 @@ public class AsyncImageLoader extends ThreadPool.Workgroup {
             Drawable drawable = null;
             try {
                 drawable = loadImageFromUrl(mImgUrl);
-
                 if (drawable != null) {
-                    ImageMemCache.putIcon(mImgUrl, ((BitmapDrawable)drawable).getBitmap());
+                    ImageMemCache.putIcon(mImgUrl, ((BitmapDrawable) drawable).getBitmap());
                     keepImage(drawable, isLargeImage);
                     if (mCallback != null) {
                         mCallback.onLoadedFromBackground(drawable, mImgUrl);
@@ -259,6 +185,7 @@ public class AsyncImageLoader extends ThreadPool.Workgroup {
 
         @Override
         protected void onDoneInBackground(Void result) {
+
         }
 
         @Override
@@ -284,9 +211,8 @@ public class AsyncImageLoader extends ThreadPool.Workgroup {
 
         /**
          * Keep a reference. This may kick out one old reference if the reference queue is full.
-         * 
-         * @param ref
-         *            New reference to keep
+         *
+         * @param ref New reference to keep
          */
         public void keep(Object ref) {
             remove(ref);

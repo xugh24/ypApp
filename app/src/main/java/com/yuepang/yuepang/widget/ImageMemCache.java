@@ -10,6 +10,13 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
+/**
+ * 根据bitmap 的三层缓存理论，图片分别重内存、本地、网络依次获得
+ * 本类实现 图片在内存中的保存，根据图片的类型我们分别预先定义了
+ * 三个HashMap来保存图片，根据图片大小的不同，图片的数量分别是20、10、20
+ */
+
+
 public class ImageMemCache {
     // ==========================================================================
     // Constants
@@ -113,28 +120,7 @@ public class ImageMemCache {
         }
     }
 
-//    public static boolean containsDownLoadKey(Object key) {
-//        return sDownLoadCache.containsKey(key);
-//    }
-//
-//    public static void putDownLoad(Object key, Drawable d) {
-//        sDownLoadCache.put(key, new WeakReference<Drawable>(d));
-//    }
-//
-//    public static Drawable getDownLoad(Object key) {
-//        Drawable d = null;
-//        WeakReference<Drawable> ref = sDownLoadCache.get(key);
-//        if (null != ref) {
-//            d = ref.get();
-//        }
-//        return d;
-//    }
-//
-//    public static void keepDownLoad(Drawable d) {
-//        synchronized (sDownLoadRefKeeper) {
-//            sDownLoadRefKeeper.keep(d);
-//        }
-//    }
+
 
     public static void putImage(Object key, Bitmap bmp) {
         sImageCache.put(key, new WeakReference<Bitmap>(bmp));

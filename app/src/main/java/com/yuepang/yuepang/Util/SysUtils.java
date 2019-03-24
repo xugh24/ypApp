@@ -1,11 +1,14 @@
 package com.yuepang.yuepang.Util;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 import android.text.TextUtils;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,6 +17,8 @@ import java.util.Date;
  */
 
 public class SysUtils {
+
+    public static final String YUEPANG = "yuepang";
 
     public static String[] getStoragePath(Object storageManager, boolean withSlash) {
         String sdcardPath = null;
@@ -76,16 +81,10 @@ public class SysUtils {
     }
 
 
+    /**
+     * @return 判断手机存储是否可用，可用返回true
+     */
     public static boolean isSDCardAvailable() {
-        /**
-         * mk_u950-userdebug 4.4.4 KTU84P 6e8311657c test-keys 机型 java.lang.NullPointerException at
-         * android.os.Environment.getStorageState(Environment.java:719) at
-         * android.os.Environment.getExternalStorageState(Environment.java:694) at
-         * de.robv.android.xposed.XposedBridge.invokeOriginalMethodNative(Native Method) at
-         * de.robv.android.xposed.XposedBridge.handleHookedMethod(XposedBridge.java:631) at
-         * android.os.Environment.getExternalStorageState(Native Method) at rn.b(SystemUtils.java:483) 在某些机型上出现该空指针异常
-         * 此处给进行catch处理 2015-11-03
-         */
         try {
             return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
         } catch (Exception e) {
@@ -122,10 +121,11 @@ public class SysUtils {
         res = String.valueOf(ts);
         return res;
     }
+
     /*
      * 将时间戳转换为时间
      */
-    public static String stampToDate(String s){
+    public static String stampToDate(String s) {
         String res;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         long lt = new Long(s);
@@ -134,4 +134,38 @@ public class SysUtils {
         return res;
     }
 
+
+    /**
+     * 获得图片缓存的地址
+     */
+    public static String getImageCacheDir(Context context) {
+        String path = null;
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+            path = Environment.getExternalStorageDirectory() + "/" + YUEPANG + "/img_cache";
+        } else {
+            path = context.getCacheDir().getAbsolutePath();
+        }
+        File dir = new File(path);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        return path;
+    }
+
+    /**
+     * @param context
+     * @return 判断当前网络是否正常
+     */
+    public static boolean hasNetwork(Context context) {
+        ConnectivityManager con = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo workinfo = con.getActiveNetworkInfo();
+        if (workinfo == null || !workinfo.isAvailable()) {
+            LogUtils.e(" Android hasNetwork 网络异常");
+            return false;
+        } else {
+
+            LogUtils.e(" Android hasNetwork 网络良好");
+        }
+        return true;
+    }
 }

@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import com.yuepang.yuepang.Util.DomainUtil;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
-import com.yuepang.yuepang.net.HttpEngine;
+import com.yuepang.yuepang.net.MyOkHttpEngine;
 
 import org.json.JSONObject;
 
@@ -31,13 +31,13 @@ public abstract class JsonProtocol<T> {
     public int mCode = 0;
     protected JSONObject mResponse;
     protected T mData;
-    private HttpEngine mHttpEngine;
+    private MyOkHttpEngine mHttpEngine;
     protected BaseActivity baseActivity;
 
 
     public JsonProtocol(BaseActivity baseActivity) {
         this.baseActivity = baseActivity;
-        mHttpEngine = new HttpEngine(baseActivity);
+        mHttpEngine = new MyOkHttpEngine(baseActivity);
     }
 
     /**
@@ -89,7 +89,7 @@ public abstract class JsonProtocol<T> {
     protected int executePost(JSONObject json) throws Exception {
         String reqAddr = getHeardUrl() + getUrlToken();
         String response = mHttpEngine.executePost(json.toString(), reqAddr);
-        if (mHttpEngine.isCanceled()) {
+        if (mHttpEngine.isCancel()) {
             LogUtils.w("protocol canceled ignore!!");
             return -2;
         }
