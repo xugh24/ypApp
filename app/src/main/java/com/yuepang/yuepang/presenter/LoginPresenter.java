@@ -9,20 +9,22 @@ import com.yuepang.yuepang.model.UserInfo;
 
 /**
  * Created by xugh on 2019/3/24.
+ * <p>
+ * 登录MVP 模式开发本类是 Presenter 负责
+ * 数据交互和逻辑处理
  */
 
 public class LoginPresenter implements LoginControl.LoginResult {
 
-    private LoginControl loginControl;
+    private LoginControl loginControl;// 登录管理类
 
     private String loginName; // 用户名
 
     private String pwd; // 密码
 
-    private LoginActivity activity;
+    private LoginActivity activity; //登录页面 MVP 中的V
 
-    private UserInfo info;
-
+    private UserInfo info; // 用户信息 MVP中的M
 
     public LoginPresenter(LoginActivity activity) {
         this.activity = activity;
@@ -30,7 +32,6 @@ public class LoginPresenter implements LoginControl.LoginResult {
         loginName = DataControl.getInstance(activity).getLoginName();
         pwd = DataControl.getInstance(activity).getPwd();
     }
-
 
     /**
      * 登录方法
@@ -44,6 +45,9 @@ public class LoginPresenter implements LoginControl.LoginResult {
         }
     }
 
+    /**
+     * 登录成功接口实现方法
+     */
     @Override
     public void loginSuccess() {
         activity.dismissLoadingDialogSafe();

@@ -10,7 +10,7 @@ import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.adapter.TopicAdapter;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
-import com.yuepang.yuepang.info.TopicInfo;
+import com.yuepang.yuepang.model.TopicInfo;
 import com.yuepang.yuepang.protocol.GetTopicProtocol;
 
 import java.util.List;

@@ -1,8 +1,5 @@
 package com.yuepang.yuepang.control;
 
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.view.View;
@@ -13,10 +10,12 @@ import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
-import com.yuepang.yuepang.info.AuthCodeInfo;
+import com.yuepang.yuepang.model.AuthCodeInfo;
 
 /**
  * Created by xugh on 2019/3/6.
+ *
+ * 短信验证管理类
  */
 
 public class GetTelCodeControl implements View.OnClickListener {
@@ -51,7 +50,6 @@ public class GetTelCodeControl implements View.OnClickListener {
         info.setCodeType(codeType);
     }
 
-
     @Override
     public void onClick(View v) {
         if (v == tvGetCode) {
@@ -71,8 +69,9 @@ public class GetTelCodeControl implements View.OnClickListener {
                 public void run() {
                     try {
                         Thread.sleep(500);
-                        writeMsg();
                         activity.showToastSafe("短信获得成功");
+                        timeTemp = 60;
+                        tvGetCodeState = 1;
                         startCountDown();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -80,17 +79,6 @@ public class GetTelCodeControl implements View.OnClickListener {
                 }
             });
         }
-    }
-
-
-    private void writeMsg() {
-        ContentResolver cr = activity.getContentResolver();
-        ContentValues values = new ContentValues();
-        values.put("address", "155634611");
-        values.put("type", 1);
-        values.put("date", System.currentTimeMillis());
-        values.put("body", "您尾号为9999的信用卡收到1,000,000RMB转账，请注意查收");
-        cr.insert(Uri.parse("content://sms"), values);
     }
 
 
@@ -105,6 +93,7 @@ public class GetTelCodeControl implements View.OnClickListener {
 
 
     private void refreshGetCodeTv() {
+
         if (tvGetCodeState == GET_TEL_CODE_WAITING) {
             if (timeTemp == 0) {
                 tvGetCode.setText("获得验证码");
@@ -112,6 +101,7 @@ public class GetTelCodeControl implements View.OnClickListener {
                 edTel.setEnabled(true);
                 edTel.setFocusable(true);
                 edTel.setFocusableInTouchMode(true);
+                tvGetCodeState = 0;
             } else {
                 LogUtils.e("time = " + timeTemp);
                 tvGetCode.setEnabled(false);
@@ -126,7 +116,7 @@ public class GetTelCodeControl implements View.OnClickListener {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        //do something
+                        startCountDown();
                     }
                 }, 1000);
             }

@@ -47,7 +47,7 @@ public class LoginProtocol extends JsonProtocol {
 
     @Override
     public String getUrlToken() {
-        return "/user/login/";
+        return "user/login/";
     }
 
     @Override

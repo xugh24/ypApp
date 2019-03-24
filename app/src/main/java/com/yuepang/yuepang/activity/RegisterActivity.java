@@ -3,6 +3,7 @@ package com.yuepang.yuepang.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -25,6 +26,9 @@ public class RegisterActivity extends BaseActivity {
 
     @BindView(id = R.id.tv_getrgcoed)
     private TextView tvGetCode;
+
+    @BindView(id = R.id.tv_register)
+    private Button bbtnReg;
 
     private GetTelCodeControl codeControl;
 

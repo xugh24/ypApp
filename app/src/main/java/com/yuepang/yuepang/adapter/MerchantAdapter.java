@@ -9,9 +9,10 @@ import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.activity.BaseActivity;
-import com.yuepang.yuepang.info.MerchantInfo;
+import com.yuepang.yuepang.model.MerchantInfo;
 
 import java.util.List;
+
 
 /**
  */

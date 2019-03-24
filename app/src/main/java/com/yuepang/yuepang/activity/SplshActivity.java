@@ -2,7 +2,6 @@ package com.yuepang.yuepang.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
 
@@ -13,7 +12,7 @@ import com.yuepang.yuepang.async.CommonTaskExecutor;
 
 public class SplshActivity extends BaseActivity {
 
-    private final int TIME = 2 * 1000; // 首页展示时间 默认2s ， 可修改
+    private final int TIME = 3 * 1000; // 首页展示时间 默认2s ， 可修改
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

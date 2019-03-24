@@ -1,5 +1,8 @@
 package com.yuepang.yuepang.control;
 
+import android.text.TextUtils;
+
+import com.yuepang.yuepang.Util.Md5;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.MainActivity;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
@@ -22,8 +25,8 @@ public class LoginControl {
     }
 
 
-    public void loginByPwd(String loginName, String pwd) {
-        final LoginProtocol protocol = new LoginProtocol(baseActivity, loginName, pwd);
+    public void loginByPwd(String loginName, final String pwd) {
+        final LoginProtocol protocol = new LoginProtocol(baseActivity, loginName, Md5.string2MD5(pwd));
         CommonTaskExecutor.execute(new Runnable() {
             @Override
             public void run() {
@@ -38,7 +41,10 @@ public class LoginControl {
                     baseActivity.showToastSafe("登录成功");
                     loginResult.loginSuccess();
                 } else {
-
+                    if (!TextUtils.isEmpty(protocol.getCodeDesc())) {
+                        baseActivity.showToastSafe(protocol.getCodeDesc());
+                    }
+                    loginResult.loginFailed();
                 }
             }
         });

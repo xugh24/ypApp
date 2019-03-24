@@ -2,7 +2,7 @@ package com.yuepang.yuepang.protocol;
 
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
-import com.yuepang.yuepang.info.TopicItemInfo;
+import com.yuepang.yuepang.model.TopicItemInfo;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

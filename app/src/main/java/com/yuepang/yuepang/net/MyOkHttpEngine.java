@@ -54,6 +54,7 @@ public class MyOkHttpEngine {
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public String executePost(String requestJson, String url) {
+        LogUtils.e("requestJson == " + requestJson);
         RequestBody body = RequestBody.create(JSON, requestJson);
         OkHttpClient okHttpClient = new OkHttpClient();//Form表单格式的参数传递
         Request request = new Request.Builder().url(url).post(body).build();

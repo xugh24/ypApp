@@ -34,7 +34,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:padding="3dp"
-            android:src="@drawable/ic_arrow_down_green" />
+            android:src="@drawable/ic_arrow_down_green"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -50,13 +51,14 @@
             android:id="@+id/iv_star"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_stars_yellow"/>
+            android:src="@drawable/ic_stars_yellow"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_r_title"
             android:layout_width="60dp"
-            android:visibility="gone"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout

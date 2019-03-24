@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <EditText
+        android:id="@+id/feedback"
+        style="@style/syt_ed"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:gravity="top"
+        android:hint="请输入您的反馈"
+        android:lines="10"
+        android:paddingTop="5dp" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btn_sub"
+        style="@style/syt_btn_green"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="提交" />
+
+
+</LinearLayout>

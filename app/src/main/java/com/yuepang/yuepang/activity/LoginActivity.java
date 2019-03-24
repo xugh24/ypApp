@@ -30,8 +30,9 @@ public class LoginActivity extends BaseActivity {
     @BindView(id = R.id.btn_login, click = true)
     private Button btnLogin;// 登录按钮
 
-    @BindView(id = R.id.tv_register, click = true)
-    private TextView tvRegister;// 注册文字
+    @BindView(id = R.id.btn_reg, click = true)
+    private Button btnReg;// 注册按钮
+
 
     @BindView(id = R.id.forget_pwd, click = true)
     private TextView tvforgetPwd; // 忘记密码文字
@@ -64,7 +65,7 @@ public class LoginActivity extends BaseActivity {
             case R.id.btn_login:// 登录按钮
                 presenter.login();
                 break;
-            case R.id.tv_register:// 跳转注册页面
+            case R.id.btn_reg:// 跳转注册页面
                 startActivity(RegisterActivity.class);
                 break;
             case R.id.forget_pwd://跳转忘记密码页面

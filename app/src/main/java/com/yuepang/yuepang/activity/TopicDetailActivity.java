@@ -13,7 +13,7 @@ import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.adapter.TopicItemAdapter;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
 import com.yuepang.yuepang.control.UserCentreControl;
-import com.yuepang.yuepang.info.TopicItemInfo;
+import com.yuepang.yuepang.model.TopicItemInfo;
 import com.yuepang.yuepang.protocol.GetChatProtocol;
 import com.yuepang.yuepang.protocol.SendMsgProtocol;
 import com.yuepang.yuepang.widget.RefreshListView;
