@@ -13,24 +13,19 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="38dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/bg_input_normal"
         android:gravity="center_vertical">
 
         <EditText
             android:id="@+id/ed_coed"
+            style="@style/syt_ed"
             android:layout_width="0dp"
-            android:layout_height="38dp"
             android:layout_weight="1"
             android:background="@null"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:hint="请输入6位验证码"
-            android:inputType="number"
-            android:singleLine="true"
-            android:textCursorDrawable="@null"
-            android:textSize="14dp" />
+            android:hint="请输入验证码"
+            android:inputType="number" />
 
 
         <TextView
@@ -62,9 +57,11 @@
         android:layout_marginTop="10dp"
         android:hint="请输确认密码" />
 
+
     <Button
         android:id="@+id/btn_sub"
-        style="@style/syt_btn_blue"
+        style="@style/syt_btn_green"
         android:layout_width="match_parent"
+        android:layout_marginTop="60dp"
         android:text="提交" />
 </LinearLayout>

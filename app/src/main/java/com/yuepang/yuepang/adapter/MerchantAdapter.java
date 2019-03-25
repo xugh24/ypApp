@@ -58,10 +58,6 @@ public class MerchantAdapter extends BaseAdapter {
         }else if (convertView.getTag() instanceof ViewHolder) {
             holder = (ViewHolder) convertView.getTag();
         }
-//        holder.head.setText(topicInfos.get(position).getHeader());
-//        holder.title.setText(topicInfos.get(position).getTitle());
-//        holder.content.setText(topicInfos.get(position).getContentSt());
-//        holder.time.setText(topicInfos.get(position).getTime());
         return null;
     }
 

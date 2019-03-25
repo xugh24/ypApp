@@ -1,7 +1,9 @@
 package com.yuepang.yuepang.presenter;
 
+import com.yuepang.yuepang.activity.ForgetPwdActivity;
 import com.yuepang.yuepang.activity.LoginActivity;
 import com.yuepang.yuepang.activity.MainActivity;
+import com.yuepang.yuepang.activity.RegisterActivity;
 import com.yuepang.yuepang.control.CheckManage;
 import com.yuepang.yuepang.control.DataControl;
 import com.yuepang.yuepang.control.LoginControl;
@@ -50,9 +52,15 @@ public class LoginPresenter implements LoginControl.LoginResult {
      */
     @Override
     public void loginSuccess() {
+        saveAccount();
         activity.dismissLoadingDialogSafe();
         activity.startActivity(MainActivity.class);
         activity.finish();
+    }
+
+    private void saveAccount() {
+        DataControl.getInstance(activity).setLoginName(loginName);
+        DataControl.getInstance(activity).setPwd(pwd);
     }
 
     @Override
@@ -66,5 +74,13 @@ public class LoginPresenter implements LoginControl.LoginResult {
 
     public String getPwd() {
         return pwd;
+    }
+
+    public void toRegPage() {
+        activity.startActivity(RegisterActivity.class);
+    }
+
+    public void toForgetPage() {
+        activity.startActivity(ForgetPwdActivity.class);
     }
 }

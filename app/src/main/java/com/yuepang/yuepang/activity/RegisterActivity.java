@@ -27,7 +27,7 @@ public class RegisterActivity extends BaseActivity {
     @BindView(id = R.id.tv_getrgcoed)
     private TextView tvGetCode;
 
-    @BindView(id = R.id.tv_register)
+    @BindView(id = R.id.btn_reg,click = true)
     private Button bbtnReg;
 
     private GetTelCodeControl codeControl;

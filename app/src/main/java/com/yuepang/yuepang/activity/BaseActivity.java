@@ -27,8 +27,6 @@ import java.util.List;
 
 
 /**
- * Created by Yaoqq on 2019/3/1.
- * <p>
  * Android 基类
  */
 

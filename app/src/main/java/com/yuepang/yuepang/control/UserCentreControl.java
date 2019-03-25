@@ -43,6 +43,10 @@ public class UserCentreControl {
         }
     }
 
+    public void outLogin(){
+
+    }
+
     public UserInfo getInfo() {
         return info;
     }

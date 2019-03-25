@@ -1,13 +1,10 @@
 package com.yuepang.yuepang.activity;
 
-import com.yuepang.yuepang.R;
-
 /**
- *
- * 设置页面
+ * Created by xugh on 2019/3/25.
  */
 
-public class MerchantManageActivity extends BaseActivity {
+public class AboutActivity extends BaseActivity {
 
 
     @Override
@@ -17,11 +14,11 @@ public class MerchantManageActivity extends BaseActivity {
 
     @Override
     protected String getMyTittle() {
-        return "设置";
+        return null;
     }
 
     @Override
     protected int getContentViewId() {
-        return R.layout.merchant_manage_ly;
+        return 0;
     }
 }
