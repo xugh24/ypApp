@@ -2,11 +2,12 @@ package com.yuepang.yuepang.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
+import com.yuepang.yuepang.control.UserCentreControl;
 
 /**
- *
  * 闪屏页面
  */
 
@@ -17,6 +18,7 @@ public class SplshActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        UserCentreControl.getInstance().initLocation(this);
         CommonTaskExecutor.execute(new Runnable() {
             @Override
             public void run() {

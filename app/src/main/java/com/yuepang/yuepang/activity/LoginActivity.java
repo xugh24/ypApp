@@ -46,8 +46,7 @@ public class LoginActivity extends BaseActivity {
         presenter = new LoginPresenter(this);
         edTel.setText(presenter.getLoginName());
         edPwd.setText(presenter.getPwd());
-        Location location = new Location(this);
-        location.initLocationOption();
+
     }
 
     @Override

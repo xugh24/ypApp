@@ -7,9 +7,12 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.yuepang.yuepang.Util.LogUtils;
+import com.yuepang.yuepang.control.UserCentreControl;
 
 /**
  * Created by xugh on 2019/3/25.
+ * <p>
+ * 百度SDK 获得位置服务 封装类
  */
 
 public class Location {
@@ -34,7 +37,7 @@ public class Location {
         //可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
         locationOption.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
         //可选，默认gcj02，设置返回的定位结果坐标系，如果配合百度地图使用，建议设置为bd09ll;
-        locationOption.setCoorType("gcj02");
+        locationOption.setCoorType("bd09ll");
         //可选，默认0，即仅定位一次，设置发起连续定位请求的间隔需要大于等于1000ms才是有效的
         locationOption.setScanSpan(1000);
         //可选，设置是否需要地址信息，默认不需要
@@ -82,14 +85,15 @@ public class Location {
             double latitude = location.getLatitude();
             //获取经度信息
             double longitude = location.getLongitude();
-            LogUtils.e("latitude " + latitude);
-            LogUtils.e("longitude " + longitude);
             //获取定位精度，默认值为0.0f
             float radius = location.getRadius();
             //获取经纬度坐标类型，以LocationClientOption中设置过的坐标类型为准
             String coorType = location.getCoorType();
             //获取定位类型、定位错误返回码，具体信息可参照类参考中BDLocation类中的说明
             int errorCode = location.getLocType();
+            UserCentreControl.getInstance().setLatitude(latitude);
+            UserCentreControl.getInstance().setLongitude(longitude);
+            LogUtils.e("位置信息获得结果  ： " + errorCode);
 
         }
     }
