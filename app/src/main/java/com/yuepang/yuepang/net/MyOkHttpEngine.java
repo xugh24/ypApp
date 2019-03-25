@@ -12,6 +12,7 @@ import android.os.Build;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.Util.SysUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
+import com.yuepang.yuepang.control.UserCentreControl;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -57,7 +58,7 @@ public class MyOkHttpEngine {
         LogUtils.e("requestJson == " + requestJson);
         RequestBody body = RequestBody.create(JSON, requestJson);
         OkHttpClient okHttpClient = new OkHttpClient();//Form表单格式的参数传递
-        Request request = new Request.Builder().url(url).post(body).build();
+        Request request = new Request.Builder().url(url).post(body).addHeader("token", UserCentreControl.getInstance().getToken()).build();
         try {
             Response response = okHttpClient.newCall(request).execute();
             String data = response.body().string();

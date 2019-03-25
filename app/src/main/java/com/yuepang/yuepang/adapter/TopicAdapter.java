@@ -56,7 +56,6 @@ public class TopicAdapter extends BaseAdapter implements AdapterView.OnItemClick
             holder = new ViewHolder();
             holder.head = convertView.findViewById(R.id.title_name);
             holder.title = convertView.findViewById(R.id.tv_title);
-            holder.content = convertView.findViewById(R.id.tv_msg);
             holder.time = convertView.findViewById(R.id.time);
             convertView.setTag(holder);
         } else if (convertView.getTag() instanceof ViewHolder) {
@@ -67,7 +66,6 @@ public class TopicAdapter extends BaseAdapter implements AdapterView.OnItemClick
             holder.head.setText(head);
         }
         holder.title.setText(topicInfos.get(position).getTitle());
-        holder.content.setText(topicInfos.get(position).getContentSt());
         holder.time.setText(SysUtils.stampToDate(topicInfos.get(position).getTime()));
         return convertView;
     }
@@ -84,7 +82,6 @@ public class TopicAdapter extends BaseAdapter implements AdapterView.OnItemClick
     private final class ViewHolder {
         TextView head;
         TextView title;
-        TextView content;
         TextView time;
     }
 }

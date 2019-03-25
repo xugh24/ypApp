@@ -18,7 +18,7 @@ public class UserCentreControl {
 
     private UserInfo info = new UserInfo();// 用户信息
 
-    private String token; // 用户登录token
+    private String token = ""; // 用户登录token
 
     /**
      * 用户纬度信息

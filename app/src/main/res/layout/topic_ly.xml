@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:cacheColorHint="#00000000"
         android:divider="@drawable/divider_shape"
-        android:dividerHeight="0dp"
+        android:dividerHeight="1px"
         android:fadingEdgeLength="0dp"
         android:listSelector="@drawable/bg_account_list" />
 
