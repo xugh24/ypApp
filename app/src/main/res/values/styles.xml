@@ -13,11 +13,32 @@
         <item name="android:textSize">@dimen/f8</item>
     </style>
 
+    <style name="tv_1">
+        <item name="android:textColor">@color/c6</item>
+        <item name="android:textSize">@dimen/f4</item>
+    </style>
+
 
     <style name="syt_btn">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">16dp</item>
         <item name="android:layout_height">38dp</item>
+    </style>
+
+
+    <style name="sty_ll">
+        <item name="android:background">@drawable/bg_input_normal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="sty_chb1">
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:button">@drawable/bg_check_sel</item>
+        <item name="android:duplicateParentState">true</item>
+        <item name="android:clickable">false</item>
+
     </style>
 
 
@@ -55,7 +76,7 @@
         <item name="android:background">@drawable/bg_btn_grey</item>
     </style>
 
-    <style name="sty_list" >
+    <style name="sty_list">
         <item name="android:cacheColorHint">#00000000</item>
         <item name="android:divider">@drawable/divider_shape</item>
         <item name="android:dividerHeight">0dp</item>
