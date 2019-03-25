@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
+import com.yuepang.yuepang.Util.AnnotateUtil;
+import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.model.TopicItemInfo;
 
@@ -15,48 +17,21 @@ import java.util.List;
 /**
  */
 
-public class TopicItemAdapter extends BaseAdapter {
+public class TopicItemAdapter extends YueBaseAdapter {
 
     private List<TopicItemInfo> topicItemInfos;
 
-    private BaseActivity baseActivity;
-
     public TopicItemAdapter(List<TopicItemInfo> topicItemInfos, BaseActivity baseActivity) {
+        super(baseActivity, topicItemInfos);
         this.topicItemInfos = topicItemInfos;
-        this.baseActivity = baseActivity;
-    }
-
-
-    public void setTopicItemInfos( List<TopicItemInfo> topicItemInfos){
-        this.topicItemInfos = topicItemInfos;
-    }
-
-
-
-    @Override
-    public int getCount() {
-        return topicItemInfos.size();
-    }
-
-    @Override
-    public TopicItemInfo getItem(int position) {
-        return topicItemInfos.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
         if (convertView == null) {
-            convertView = View.inflate(baseActivity, R.layout.chat_item, null);
-            holder = new ViewHolder();
-            holder.ivHead = convertView.findViewById(R.id.iv_head);
-            holder.name = convertView.findViewById(R.id.tv_name);
-            holder.msg = convertView.findViewById(R.id.tv_msg);
+            convertView = View.inflate(activity, R.layout.chat_item, null);
+            holder = new ViewHolder(convertView);
             convertView.setTag(holder);
         } else if (convertView.getTag() instanceof ViewHolder) {
             holder = (ViewHolder) convertView.getTag();
@@ -66,10 +41,21 @@ public class TopicItemAdapter extends BaseAdapter {
         return convertView;
     }
 
+    public void setTopicItemInfos(List<TopicItemInfo> topicItemInfos) {
+        this.topicItemInfos = topicItemInfos;
+        setList(topicItemInfos);
+    }
 
     private final class ViewHolder {
+        @BindView(id = R.id.iv_head)
         ImageView ivHead;
+        @BindView(id = R.id.tv_name)
         TextView name;
+        @BindView(id = R.id.tv_msg)
         TextView msg;
+
+        public ViewHolder(View view) {
+            AnnotateUtil.initBindView(this, view);
+        }
     }
 }

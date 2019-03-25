@@ -2,7 +2,6 @@ package com.yuepang.yuepang.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,38 +16,21 @@ import java.util.List;
 /**
  */
 
-public class MerchantAdapter extends BaseAdapter {
+public class MerchantAdapter extends YueBaseAdapter {
 
     private List<MerchantInfo> merchantInfos;
 
-    private BaseActivity baseActivity;
-
     public MerchantAdapter(BaseActivity baseActivity, List<MerchantInfo> merchantInfos) {
-        this.baseActivity = baseActivity;
+        super(baseActivity,merchantInfos);
         this.merchantInfos = merchantInfos;
     }
 
 
     @Override
-    public int getCount() {
-        return merchantInfos.size();
-    }
-
-    @Override
-    public MerchantInfo getItem(int position) {
-        return merchantInfos.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
         if(convertView == null){
-            convertView = View.inflate(baseActivity, R.layout.merchant_item_ly,null);
+            convertView = View.inflate(activity, R.layout.merchant_item_ly,null);
             holder = new ViewHolder();
             holder.iv = convertView.findViewById(R.id.iv_pic);
             holder.name = convertView.findViewById(R.id.tv_name);
@@ -66,6 +48,8 @@ public class MerchantAdapter extends BaseAdapter {
         TextView name;
         TextView loction;
         Button btnPay;
+
+
     }
 
 }

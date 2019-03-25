@@ -3,8 +3,6 @@ package com.yuepang.yuepang.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Process;
-import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
@@ -13,15 +11,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.AnnotateUtil;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.widget.SDKLoadingDialog;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +28,7 @@ import java.util.List;
 
 public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener {
 
-    private LinearLayout llBar;// 顶部控制bar
+    private RelativeLayout rlBar;// 顶部控制bar
 
     private ImageView ivBack; // 返回按钮
 
@@ -41,8 +37,6 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     private TextView tvRtitle; // 右边的文字说明
 
     private TextView tvLeftTitle;// 左边的文字说明
-
-    private ImageView ivArrows;// 箭头商家页面使用
 
     private ImageView ivStar;// 收藏星星页面使用
 
@@ -76,9 +70,9 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
             tvRtitle.setText(getMyRTitle());
         }
         if (isShowBar()) {
-            llBar.setVisibility(View.VISIBLE);
+            rlBar.setVisibility(View.VISIBLE);
         } else {
-            llBar.setVisibility(View.GONE);
+            rlBar.setVisibility(View.GONE);
         }
         if (getContentViewId() != -1) {
             contentView = View.inflate(this, getContentViewId(), null);
@@ -91,15 +85,13 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
      * 绑定UI
      */
     private void bindView() {
-        llBar = findViewById(R.id.title_ll);
+        rlBar = findViewById(R.id.rl_title);
         ivBack = findViewById(R.id.iv_back);
         ivBack.setOnClickListener(this);
         tvTitle = findViewById(R.id.tv_title);
         tvRtitle = findViewById(R.id.tv_r_title);
         tvRtitle.setOnClickListener(this);
         llMain = findViewById(R.id.main_ly);
-        ivArrows = findViewById(R.id.iv_arrows);
-        ivArrows.setOnClickListener(this);
         ivStar = findViewById(R.id.iv_star);
         ivStar.setOnClickListener(this);
     }
@@ -154,9 +146,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
             case R.id.iv_star:
 
                 break;
-            case R.id.iv_arrows:
 
-                break;
         }
     }
 

@@ -5,62 +5,68 @@
     android:background="@color/colorwhite"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/title_ll"
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/colorgray"
-        android:orientation="horizontal"
-        android:visibility="visible">
+        android:background="#1fdeaa">
+
 
         <ImageView
             android:id="@+id/iv_back"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
+            android:layout_centerVertical="true"
             android:src="@drawable/ic_back"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
 
         <TextView
             android:id="@+id/tv_left_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/iv_back"
             android:text="测试商圈"
+            android:textColor="#494949"
+            android:textSize="@dimen/f5"
             android:visibility="gone" />
 
-        <ImageView
-            android:id="@+id/iv_arrows"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:padding="3dp"
-            android:src="@drawable/ic_arrow_down_green"
-            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="0dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_centerInParent="true"
             android:gravity="center"
             android:text="登录"
-            android:textColor="@color/color49"
-            android:textSize="20sp" />
+            android:textColor="#494949"
+            android:textSize="@dimen/f7" />
 
         <ImageView
             android:id="@+id/iv_star"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="10dp"
             android:src="@drawable/ic_stars_yellow"
             android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_r_title"
-            android:layout_width="60dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone" />
-    </LinearLayout>
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/iv_star"
+            android:text="创建"
+            android:textColor="#494949"
+            android:textSize="@dimen/f5"
+            android:visibility="visible" />
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/main_ly"

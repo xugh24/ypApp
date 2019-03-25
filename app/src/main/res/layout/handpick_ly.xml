@@ -6,19 +6,16 @@
     android:padding="10dp">
 
 
-
-
     <TextView
         style="@style/c6f8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
         android:text="推荐商家" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
 
@@ -34,6 +31,7 @@
                 android:id="@+id/iv_merchant1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:scaleType="fitXY"
                 android:src="@drawable/test1" />
 
             <TextView
@@ -56,6 +54,7 @@
                 android:id="@+id/iv_merchant2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:scaleType="fitXY"
                 android:src="@drawable/test2" />
 
             <TextView
@@ -63,6 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
+
                 android:text="测试商家2" />
         </LinearLayout>
 
@@ -72,40 +72,16 @@
         style="@style/c6f8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:text="今日特卖" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:src="@drawable/test2" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="测试商品名称" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="测试商家说明xxxxxxx" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="电话 1234156" />
-    </LinearLayout>
-
-    <!--<ListView-->
-    <!--android:id="@+id/goodlist"-->
-    <!--style="@style/sty_list"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginLeft="10dp" />-->
+    <ListView
+    android:id="@+id/goodlist"
+    style="@style/sty_list"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp" />
 
 </LinearLayout>
