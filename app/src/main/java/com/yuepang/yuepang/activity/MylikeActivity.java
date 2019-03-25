@@ -56,16 +56,16 @@ public class MylikeActivity extends BaseActivity {
     @BindView(id = R.id.chb_hotel)
     private CheckBox chbhotel;// 旅馆
 
-    @BindView(id = R.id.ll_travel)
+    @BindView(id = R.id.chb_travel)
     private CheckBox chbTravel;
 
-    @BindView(id = R.id.ll_ktv)
+    @BindView(id = R.id.chb_ktv)
     private CheckBox chbktv;
 
-    @BindView(id = R.id.ll_pet)
+    @BindView(id = R.id.chb_pet)
     private CheckBox chbpet;
 
-    @BindView(id = R.id.ll_cate, click = true)
+    @BindView(id = R.id.chb_cate, click = true)
     private Button btn_sub;
 
 
@@ -89,8 +89,30 @@ public class MylikeActivity extends BaseActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.ll_cate:
-                chbCate.setChecked(chbCate.isChecked()? false:true);
+                chbCate.setChecked(chbCate.isChecked() ? false : true);
                 break;
+            case R.id.ll_movie:
+                chbMovie.setChecked(chbMovie.isChecked() ? false : true);
+                break;
+            case R.id.ll_recreation:
+                chbRecreation.setChecked(chbRecreation.isChecked() ? false : true);
+                break;
+            case R.id.ll_group:
+                chbGroup.setChecked(chbGroup.isChecked() ? false : true);
+                break;
+            case R.id.ll_travel:
+                chbTravel.setChecked(chbTravel.isChecked() ? false : true);
+                break;
+            case R.id.ll_hotel:
+                chbhotel.setChecked(chbhotel.isChecked() ? false : true);
+                break;
+            case R.id.ll_ktv:
+                chbktv.setChecked(chbktv.isChecked() ? false : true);
+                break;
+            case R.id.ll_pet:
+                chbpet.setChecked(chbpet.isChecked() ? false : true);
+                break;
+
 
         }
     }
