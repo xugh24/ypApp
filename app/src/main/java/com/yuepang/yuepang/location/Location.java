@@ -6,6 +6,7 @@ import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.yuepang.yuepang.Util.LogUtils;
 
 /**
  * Created by xugh on 2019/3/25.
@@ -18,7 +19,11 @@ public class Location {
      */
     private Context mContext;
 
-    private void initLocationOption() {
+    public Location(Context mContext) {
+        this.mContext = mContext;
+    }
+
+    public void initLocationOption() {
         //定位服务的客户端。宿主程序在客户端声明此类，并调用，目前只支持在主线程中启动
         LocationClient locationClient = new LocationClient(mContext.getApplicationContext());
         //声明LocationClient类实例并配置定位参数
@@ -60,6 +65,7 @@ public class Location {
         locationClient.setLocOption(locationOption);
         //开始定位
         locationClient.start();
+
     }
 
     /**
@@ -76,6 +82,8 @@ public class Location {
             double latitude = location.getLatitude();
             //获取经度信息
             double longitude = location.getLongitude();
+            LogUtils.e("latitude " + latitude);
+            LogUtils.e("longitude " + longitude);
             //获取定位精度，默认值为0.0f
             float radius = location.getRadius();
             //获取经纬度坐标类型，以LocationClientOption中设置过的坐标类型为准

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
+import com.yuepang.yuepang.location.Location;
 import com.yuepang.yuepang.presenter.LoginPresenter;
 
 /**
@@ -45,6 +46,8 @@ public class LoginActivity extends BaseActivity {
         presenter = new LoginPresenter(this);
         edTel.setText(presenter.getLoginName());
         edPwd.setText(presenter.getPwd());
+        Location location = new Location(this);
+        location.initLocationOption();
     }
 
     @Override
