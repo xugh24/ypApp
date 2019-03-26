@@ -13,7 +13,11 @@ import android.widget.PopupWindow;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
+import com.yuepang.yuepang.Util.LogUtils;
+import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.MerchantDetailActivity;
+import com.yuepang.yuepang.adapter.AreaAdapter;
+import com.yuepang.yuepang.test.TestData;
 
 /**
  */
@@ -30,6 +34,8 @@ public class HandpickFragment extends BaseFragment {
 
     private ListView areaList;
 
+    private View popRootView;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,13 +49,21 @@ public class HandpickFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        View v = View.inflate(activity, R.layout.common_list, null);
-        areaList = v.findViewById(R.id.com_lv);// 初始化商圈列
+        popRootView = View.inflate(getActivity(), R.layout.common_list, null);
+        areaList = popRootView.findViewById(R.id.com_lv);// 初始化商圈列
+        AreaAdapter areaAdapter = new AreaAdapter((BaseActivity) getActivity(), TestData.getinfos());
+        areaList.setAdapter(areaAdapter);
+        ((BaseActivity) getActivity()).setTvLeftTitle("测试商家");
     }
 
     @Override
     public void show() {
 
+    }
+
+
+    public void showAreaPop() {
+        initPopupWindow();
     }
 
     @Override
@@ -79,10 +93,9 @@ public class HandpickFragment extends BaseFragment {
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void initPopupWindow() {
-        int width = activity.getTvRtitle().getWidth() + 2;// 获得右边商圈文字的大小
-        if (null == pw) {
-            pw = new PopupWindow(areaList, width, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-        }
+        int width = activity.getTvLeftTitle().getWidth() + 2;// 获得右边商圈文字的大小
+        LogUtils.e("width " + width);
+        pw = new PopupWindow(popRootView, width, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         // 设置pw如果点击外面区域，便关闭。
         pw.setOutsideTouchable(true);
         pw.setFocusable(true);
@@ -92,7 +105,7 @@ public class HandpickFragment extends BaseFragment {
 
             }
         });
-        pw.showAsDropDown(activity.getTvRtitle(), -1, 0);
+        pw.showAsDropDown(activity.getTvLeftTitle(), -1, 0);
         if (Build.VERSION.SDK_INT >= 11) {
             activity.getWindow().getDecorView().getRootView().addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
                 @Override

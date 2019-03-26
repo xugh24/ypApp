@@ -25,14 +25,15 @@
         <TextView
             android:id="@+id/tv_left_title"
             android:layout_width="72dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/iv_back"
             android:text="测试商圈"
             android:textColor="#494949"
+            android:gravity="center"
             android:textSize="@dimen/f4"
-            android:visibility="visible" />
+            android:visibility="invisible" />
 
 
         <TextView

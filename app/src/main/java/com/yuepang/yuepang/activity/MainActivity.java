@@ -74,9 +74,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         ivs.add(iv3);
         ivs.add(iv4);
         handpickFragment = new HandpickFragment();
+        handpickFragment.setActivity(this);
         merchantFragment = new MerchantFragment();
+        merchantFragment.setActivity(this);
         topicFragment = new TopicFragment();
+        topicFragment.setActivity(this);
         mineFragment = new MineFragment();
+        mineFragment.setActivity(this);
         fragmentList = new ArrayList<>();
         fragmentList.add(handpickFragment);
         fragmentList.add(merchantFragment);
@@ -134,6 +138,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 setRightTitle(null);
                 break;
         }
+    }
+
+    @Override
+    public void clikLeftTv() {
+        if (viewPager.getCurrentItem() == 0) {// 精选页面的点击商圈文字处理逻辑
+            handpickFragment.showAreaPop();
+        }
+
+        if (viewPager.getCurrentItem() == 1) {// 商家页面的点击商圈文字处理逻辑
+
+        }
+
     }
 
     @Override

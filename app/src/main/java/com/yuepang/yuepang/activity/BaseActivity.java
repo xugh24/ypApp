@@ -14,13 +14,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.AnnotateUtil;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.widget.SDKLoadingDialog;
-
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -46,7 +45,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
     protected View contentView;
 
-    public static List<Activity> activities = new ArrayList<>();
+    public static List<BaseActivity> activities = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -93,6 +92,17 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         llMain = findViewById(R.id.main_ly);
         ivStar = findViewById(R.id.iv_star);
         ivStar.setOnClickListener(this);
+        tvLeftTitle=findViewById(R.id.tv_left_title);
+        tvLeftTitle.setOnClickListener(this);
+    }
+
+    public void setTvLeftTitle(String title) {
+        if (TextUtils.isEmpty(title)) {
+            tvLeftTitle.setVisibility(View.GONE);
+        } else {
+            tvLeftTitle.setVisibility(View.VISIBLE);
+            tvLeftTitle.setText(title);
+        }
     }
 
     public void setTitle(String title) {
@@ -149,16 +159,31 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
             case R.id.iv_star:
 
                 break;
-
+            case R.id.tv_left_title:
+                clikLeftTv();
+                break;
         }
+    }
+
+    /**
+     * 点击左边文字
+     */
+    public void clikLeftTv() {
     }
 
     public TextView getTvRtitle() {
         return tvRtitle;
     }
 
-    public void clikRt() {
 
+    public TextView getTvLeftTitle() {
+        return tvLeftTitle;
+    }
+
+    /**
+     * 点击右边文字
+     */
+    public void clikRt() {
     }
 
     /**
@@ -220,12 +245,24 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         activities.remove(activity);
     }
 
-    public static void finishAll() {
-        for (Activity activity : activities) {
-            if (!activity.isFinishing()) {
-                activity.finish();
-            }
+
+
+    public static  void finishAll() {
+        List<BaseActivity> copy = new ArrayList<BaseActivity>(activities);
+        for (BaseActivity activity : copy) {
+            activity.finish();
         }
+        copy.clear();
+        activities.removeAll(copy);
+    }
+
+    public static void finishAll(BaseActivity except) {
+        List<BaseActivity> copy = new ArrayList<BaseActivity>(activities);
+        for (BaseActivity activity : copy) {
+            if (activity != except)
+                activity.finish();
+        }
+        copy.clear();
     }
 
     @Override
