@@ -14,10 +14,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.AnnotateUtil;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.widget.SDKLoadingDialog;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,11 +71,8 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
             tvRtitle.setVisibility(View.VISIBLE);
             tvRtitle.setText(getMyRTitle());
         }
-        if (isShowBar()) {
-            rlBar.setVisibility(View.VISIBLE);
-        } else {
-            rlBar.setVisibility(View.GONE);
-        }
+        rlBar.setVisibility(isShowBar() ? View.VISIBLE : View.GONE);
+        ivBack.setVisibility(isShowBack() ? View.VISIBLE : View.GONE);
         if (getContentViewId() != -1) {
             contentView = View.inflate(this, getContentViewId(), null);
             AnnotateUtil.initBindView(this, contentView);// 绑定子类View
@@ -110,6 +109,10 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         } else {
             tvRtitle.setVisibility(View.GONE);
         }
+    }
+
+    protected boolean isShowBack() {
+        return true;
     }
 
     /**
@@ -208,13 +211,13 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     }
 
 
-    public static void removeActivity(Activity activity){
+    public static void removeActivity(Activity activity) {
         activities.remove(activity);
     }
 
-    public static void finishAll(){
-        for (Activity activity:activities){
-            if (!activity.isFinishing()){
+    public static void finishAll() {
+        for (Activity activity : activities) {
+            if (!activity.isFinishing()) {
                 activity.finish();
             }
         }

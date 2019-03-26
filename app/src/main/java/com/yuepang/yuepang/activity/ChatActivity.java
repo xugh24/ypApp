@@ -66,6 +66,9 @@ public class ChatActivity extends BaseActivity {
         return edMsg.getText().toString();
     }
 
+    public EditText getEdMsg() {
+        return edMsg;
+    }
 
     @Override
     protected String getMyRTitle() {

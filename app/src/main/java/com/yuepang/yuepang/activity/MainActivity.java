@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * 主页面用于加载 精选、商家、话题、我的 功能页
  */
 
@@ -172,6 +171,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (viewPager.getCurrentItem() == 2) {
             startActivity(CreateTopicActivity.class);
         }
+    }
+
+    @Override
+    protected boolean isShowBack() {
+        return false;
     }
 
     @Override

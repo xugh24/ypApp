@@ -37,7 +37,7 @@
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="80dp"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:gravity="center"
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="20dp"
             android:text="创建"
             android:textColor="#494949"
             android:textSize="@dimen/f5"
