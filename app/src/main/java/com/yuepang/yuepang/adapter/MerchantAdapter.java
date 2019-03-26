@@ -5,7 +5,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.model.MerchantInfo;
@@ -48,8 +47,6 @@ public class MerchantAdapter extends YueBaseAdapter {
         TextView name;
         TextView loction;
         Button btnPay;
-
-
     }
 
 }
