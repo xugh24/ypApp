@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.yuepang.yuepang.R;
@@ -14,6 +15,7 @@ import com.yuepang.yuepang.adapter.ChatAdapter;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
 import com.yuepang.yuepang.control.UserCentreControl;
 import com.yuepang.yuepang.model.TopicItemInfo;
+import com.yuepang.yuepang.presenter.ChatPresenter;
 import com.yuepang.yuepang.protocol.GetChatProtocol;
 import com.yuepang.yuepang.protocol.SendMsgProtocol;
 import com.yuepang.yuepang.widget.RefreshListView;
@@ -21,15 +23,14 @@ import com.yuepang.yuepang.widget.RefreshListView;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.TimerTask;
 
 /**
  * 话题聊天页面
  */
 
-public class ChatActivity extends BaseActivity implements RefreshListView.OnRefreshListener {
+public class ChatActivity extends BaseActivity {
 
-    @BindView(id = R.id.rl_main)
-    private RelativeLayout rlMain;
 
     @BindView(id = R.id.btn_send_message, click = true)
     private Button btnSend;
@@ -37,93 +38,34 @@ public class ChatActivity extends BaseActivity implements RefreshListView.OnRefr
     @BindView(id = R.id.et_message_content)
     private EditText edMsg;
 
-    private RefreshListView refreshListView;
+    @BindView(id = R.id.chat_lv)
+    private ListView chatListView;
 
-    private int id;
-
-    private String title;
-
-    private List<TopicItemInfo> topicItemInfos;
-
-    private ChatAdapter adapter;
+    private ChatPresenter chatPresenter;// 消息逻辑处理类
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        id = getIntent().getIntExtra("id", 0);
-        title = getIntent().getStringExtra("title");
-        TopicItemInfo info = new TopicItemInfo();
-        topicItemInfos = new ArrayList<>();
-        info.setMsg(title);
-        info.setName("发起人");
-        info.setId(id);
-        topicItemInfos.add(info);
-        refreshListView = new RefreshListView(this);
-        refreshListView.setOnRefreshListener(this);
-        adapter = new ChatAdapter(topicItemInfos, this);
-        refreshListView.setAdapter(adapter);
-        rlMain.addView(refreshListView);
-        addInfo();
-    }
-
-
-    private void addInfo() {
-        CommonTaskExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                GetChatProtocol protocol = new GetChatProtocol(ChatActivity.this, id);
-                if (protocol.request() == 200) {
-                    topicItemInfos.addAll((Collection<TopicItemInfo>) protocol.getData());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            adapter.setTopicItemInfos(topicItemInfos);
-                            adapter.notifyDataSetChanged();
-                        }
-                    });
-                }
-            }
-        });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
+        chatPresenter = new ChatPresenter(this);
+        chatPresenter.getNewChatInfo();// 获得新消息
     }
 
     @Override
     public void onClick(View v) {
         super.onClick(v);
         if (v == btnSend) {
-            String msg = edMsg.getText().toString().trim();
-            if (TextUtils.isEmpty(msg)) {
-                showToastSafe("消息为空");
-            } else {
-                sendMsg(msg);
-                TopicItemInfo info = new TopicItemInfo();
-                info.setMsg(msg);
-                info.setName(UserCentreControl.getInstance().getInfo().getName());
-                topicItemInfos.add(info);
-                adapter.setTopicItemInfos(topicItemInfos);
-                adapter.notifyDataSetChanged();
-                edMsg.setText("");
-            }
+            chatPresenter.sendMsg();
         }
     }
 
-    private void sendMsg(final String msg) {
-        CommonTaskExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                SendMsgProtocol protocol = new SendMsgProtocol(ChatActivity.this, id, msg);
-                if (protocol.request() == 200) {
-
-                }
-            }
-        });
-
+    public ListView getChatListView() {
+        return chatListView;
     }
+
+    public String getMsg() {
+        return edMsg.getText().toString();
+    }
+
 
     @Override
     protected String getMyRTitle() {
@@ -141,7 +83,8 @@ public class ChatActivity extends BaseActivity implements RefreshListView.OnRefr
     }
 
     @Override
-    public void onPullRefresh() {
-
+    protected void onDestroy() {
+        super.onDestroy();
+        chatPresenter.onDestroy();
     }
 }

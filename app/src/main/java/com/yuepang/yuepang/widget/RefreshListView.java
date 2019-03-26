@@ -18,6 +18,10 @@ import com.yuepang.yuepang.activity.BaseActivity;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
+/**
+ * 废弃
+ */
 public class RefreshListView extends ListView {
 
     private View headerView;// headerView
@@ -25,9 +29,7 @@ public class RefreshListView extends ListView {
     private ProgressBar pb_rotate;
     private TextView tv_state, tv_time;
     private int headerViewHeight;// headerView高
-
     private int downY;// 按下时y坐标
-
     private final int PULL_REFRESH = 0;// 下拉刷新的状态
     private final int RELEASE_REFRESH = 1;// 松开刷新的状态
     private final int REFRESHING = 2;// 正在刷新的状态
@@ -36,6 +38,8 @@ public class RefreshListView extends ListView {
     private RotateAnimation upAnimation, downAnimation;
 
     private BaseActivity mActivity;
+
+    private boolean refresh = false;// 下拉刷新标志位，是否打开下拉刷新本项目默认关闭
 
     public RefreshListView(BaseActivity activity) {
         super(activity);
@@ -101,7 +105,6 @@ public class RefreshListView extends ListView {
                 int paddingTop = -headerViewHeight + deltaY;
                 if (paddingTop > -headerViewHeight && getFirstVisiblePosition() == 0) {
                     headerView.setPadding(0, paddingTop, 0, 0);
-
                     if (paddingTop >= 0 && currentState == PULL_REFRESH) {
                         // 从下拉刷新进入松开刷新状态
                         currentState = RELEASE_REFRESH;
@@ -181,7 +184,6 @@ public class RefreshListView extends ListView {
         iv_arrow.setVisibility(View.VISIBLE);
         tv_state.setText("下拉刷新");
         tv_time.setText("最后刷新：" + getCurrentTime());
-
     }
 
     // 获取当前时间
@@ -198,7 +200,6 @@ public class RefreshListView extends ListView {
 
     public interface OnRefreshListener {
         void onPullRefresh();
-
     }
 
 }

@@ -4,12 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/rl_main"
+    <ListView
+        android:id="@+id/chat_lv"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="10dp" />
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:cacheColorHint="#00000000"
+        android:divider="#00ffffff"
+        android:dividerHeight="18dp"
+        android:fadingEdgeLength="0dp"
+        android:listSelector="@drawable/bg_account_list" />
 
     <View
         android:layout_width="match_parent"
