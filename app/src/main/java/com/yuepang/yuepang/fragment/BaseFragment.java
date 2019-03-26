@@ -21,7 +21,11 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
     protected LoadingFrame loadingFrame;
 
+    protected BaseActivity activity;
 
+    public BaseFragment() {
+
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +55,10 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         return loadingFrame;
     }
 
+    public void setActivity(BaseActivity activity) {
+        this.activity = activity;
+    }
+
     protected abstract boolean getData();
 
     protected abstract void initView();
@@ -59,12 +67,9 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
     public abstract void hide();
 
-
     public abstract int getLyId();
 
-    public BaseFragment() {
 
-    }
 
     @Override
     public void onClick(View v) {

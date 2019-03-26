@@ -153,7 +153,12 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         }
     }
 
+    public TextView getTvRtitle() {
+        return tvRtitle;
+    }
+
     public void clikRt() {
+
     }
 
     /**

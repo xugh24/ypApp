@@ -24,15 +24,15 @@
 
         <TextView
             android:id="@+id/tv_left_title"
-            android:layout_width="wrap_content"
+            android:layout_width="72dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/iv_back"
             android:text="测试商圈"
             android:textColor="#494949"
-            android:textSize="@dimen/f5"
-            android:visibility="gone" />
+            android:textSize="@dimen/f4"
+            android:visibility="visible" />
 
 
         <TextView
