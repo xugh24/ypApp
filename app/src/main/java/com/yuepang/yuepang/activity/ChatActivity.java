@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
-import com.yuepang.yuepang.adapter.TopicItemAdapter;
+import com.yuepang.yuepang.adapter.ChatAdapter;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
 import com.yuepang.yuepang.control.UserCentreControl;
 import com.yuepang.yuepang.model.TopicItemInfo;
@@ -26,7 +26,7 @@ import java.util.List;
  * 话题聊天页面
  */
 
-public class TopicDetailActivity extends BaseActivity implements RefreshListView.OnRefreshListener {
+public class ChatActivity extends BaseActivity implements RefreshListView.OnRefreshListener {
 
     @BindView(id = R.id.rl_main)
     private RelativeLayout rlMain;
@@ -45,7 +45,7 @@ public class TopicDetailActivity extends BaseActivity implements RefreshListView
 
     private List<TopicItemInfo> topicItemInfos;
 
-    private TopicItemAdapter adapter;
+    private ChatAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class TopicDetailActivity extends BaseActivity implements RefreshListView
         topicItemInfos.add(info);
         refreshListView = new RefreshListView(this);
         refreshListView.setOnRefreshListener(this);
-        adapter = new TopicItemAdapter(topicItemInfos, this);
+        adapter = new ChatAdapter(topicItemInfos, this);
         refreshListView.setAdapter(adapter);
         rlMain.addView(refreshListView);
         addInfo();
@@ -71,7 +71,7 @@ public class TopicDetailActivity extends BaseActivity implements RefreshListView
         CommonTaskExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                GetChatProtocol protocol = new GetChatProtocol(TopicDetailActivity.this, id);
+                GetChatProtocol protocol = new GetChatProtocol(ChatActivity.this, id);
                 if (protocol.request() == 200) {
                     topicItemInfos.addAll((Collection<TopicItemInfo>) protocol.getData());
                     runOnUiThread(new Runnable() {
@@ -116,7 +116,7 @@ public class TopicDetailActivity extends BaseActivity implements RefreshListView
         CommonTaskExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                SendMsgProtocol protocol = new SendMsgProtocol(TopicDetailActivity.this, id, msg);
+                SendMsgProtocol protocol = new SendMsgProtocol(ChatActivity.this, id, msg);
                 if (protocol.request() == 200) {
 
                 }

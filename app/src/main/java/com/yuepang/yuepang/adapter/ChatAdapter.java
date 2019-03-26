@@ -2,10 +2,8 @@ package com.yuepang.yuepang.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.AnnotateUtil;
 import com.yuepang.yuepang.Util.BindView;
@@ -17,11 +15,11 @@ import java.util.List;
 /**
  */
 
-public class TopicItemAdapter extends YueBaseAdapter {
+public class ChatAdapter extends YueBaseAdapter {
 
     private List<TopicItemInfo> topicItemInfos;
 
-    public TopicItemAdapter(List<TopicItemInfo> topicItemInfos, BaseActivity baseActivity) {
+    public ChatAdapter(List<TopicItemInfo> topicItemInfos, BaseActivity baseActivity) {
         super(baseActivity, topicItemInfos);
         this.topicItemInfos = topicItemInfos;
     }

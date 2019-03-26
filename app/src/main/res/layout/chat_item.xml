@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
+    android:gravity="center_vertical"
     android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/iv_head"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:src="@drawable/cs_head" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
@@ -21,18 +25,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="测试名字"
-            android:textSize="12dp" />
+            android:textColor="@color/color49"
+            android:textSize="14dp" />
 
 
         <TextView
             android:id="@+id/tv_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/pic_dialog_server"
             android:gravity="center_vertical"
-            android:padding="2dp"
-            android:text="消息内容测试是" />
+            android:paddingLeft="14dp"
+            android:paddingRight="10dp"
+            android:paddingTop="2dp"
+            android:text="消息内容测试是"
+            android:textColor="@color/c6"
+            android:textSize="@dimen/f6" />
 
     </LinearLayout>
 </LinearLayout>

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.LogUtils;
+import com.yuepang.yuepang.Util.SysUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 
 import java.text.SimpleDateFormat;
@@ -42,7 +43,7 @@ public class RefreshListView extends ListView {
         setFastScrollEnabled(false);
         setVerticalScrollBarEnabled(false);
         setDivider(new ColorDrawable(0xffffff));
-        setDividerHeight(0);
+        setDividerHeight(SysUtils.dip2px(mActivity, 24));
         setCacheColorHint(0);
         setSelector(new ColorDrawable(0x00ffffff));
         init();

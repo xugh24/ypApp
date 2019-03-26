@@ -49,7 +49,6 @@
             android:textSize="@dimen/f4"
             android:text="时间" />
 
-
     </LinearLayout>
 
 </LinearLayout>
