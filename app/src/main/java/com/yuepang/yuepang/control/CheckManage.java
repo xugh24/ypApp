@@ -55,7 +55,7 @@ public class CheckManage {
         return true;
     }
 
-        public static boolean checkPwd(String pwd1, String pwd2 ,BaseActivity page) {
+    public static boolean checkPwd(String pwd1, String pwd2, BaseActivity page) {
         if (TextUtils.isEmpty(pwd1)) {
             page.showToastSafe("请输入密码");
             return false;
@@ -71,6 +71,71 @@ public class CheckManage {
         }
         if (!pwd1.equals(pwd2)) {
             page.showToastSafe("两次新密码输入不一致");
+            return false;
+        }
+        return true;
+    }
+
+
+    /**
+     * 手机注册表单检查
+     *
+     * @param tel
+     * @param password
+     * @param code
+     * @param activity
+     * @return
+     */
+    public static boolean checkTelRg(String tel, String password, String code, BaseActivity activity) {
+        if (!checkTel(tel, activity)) {
+            return false;
+        }
+        if (!checkCode(code, activity)) {
+            return false;
+        }
+        return checkPwd(password, activity);
+    }
+
+
+    /**
+     * 检查验证码
+     *
+     * @param code
+     * @return
+     */
+    public static boolean checkCode(String code, BaseActivity mActivity) {
+        if (TextUtils.isEmpty(code)) {
+            mActivity.showToastSafe("请输入验证码");
+            return false;
+        }
+        if (code.length() != 6) {
+            mActivity.showToastSafe("验证码格式不正确");
+            return false;
+        }
+        return true;
+    }
+
+
+    /**
+     * 检查密码格式是否正确
+     *
+     * @param pwd1
+     * @return
+     */
+    public static boolean checkPwd(String pwd1, BaseActivity mActivity) {
+        if (TextUtils.isEmpty(pwd1)) {
+            mActivity.showToastSafe("请输入密码");
+            return false;
+        }
+
+        for (char c : "%,<>".toCharArray()) {
+            if (pwd1.contains(c + "")) {
+                mActivity.showToastSafe(mActivity.getString(R.string.special_string));
+                return false;
+            }
+        }
+        if (pwd1.getBytes().length < 6 || pwd1.getBytes().length > 16) {
+            mActivity.showToastSafe("密码为6-16位字符");
             return false;
         }
         return true;
@@ -195,24 +260,7 @@ public class CheckManage {
 //        return checkCode(code, mActivity);
 //    }
 //
-//    /**
-//     * 手机注册表单检查
-//     *
-//     * @param tel
-//     * @param password
-//     * @param code
-//     * @param activity
-//     * @return
-//     */
-//    public static boolean checkTelRg(String tel, String password, String code, ActionBarPage activity) {
-//        if (!checkTel(tel, activity)) {
-//            return false;
-//        }
-//        if (!checkCode(code, activity)) {
-//            return false;
-//        }
-//        return checkPwd(password, activity);
-//    }
+
 //
 //    /**
 //     * 手机注册表单检查
@@ -364,48 +412,8 @@ public class CheckManage {
 //        return null;
 //    }
 //
-//    /**
-//     * 检查验证码
-//     *
-//     * @param code
-//     * @return
-//     */
-//    public static boolean checkCode(String code, ActionBarPage mActivity) {
-//        if (TextUtils.isEmpty(code)) {
-//            mActivity.showToastSafe("请输入验证码");
-//            return false;
-//        }
-//        if (code.length() != 6) {
-//            mActivity.showToastSafe("验证码格式不正确");
-//            return false;
-//        }
-//        return true;
-//    }
-//
-//    /**
-//     * 检查密码格式是否正确
-//     *
-//     * @param pwd1
-//     * @return
-//     */
-//    public static boolean checkPwd(String pwd1, ActionBarPage mActivity) {
-//        if (TextUtils.isEmpty(pwd1)) {
-//            mActivity.showToastSafe("请输入密码");
-//            return false;
-//        }
-//
-//        for (char c : "%,<>".toCharArray()) {
-//            if (pwd1.contains(c + "")) {
-//                mActivity.showToastSafe(mActivity.getString(R.string.anzhi_user_pwd_error2), 0);
-//                return false;
-//            }
-//        }
-//        if (pwd1.getBytes().length < 6 || pwd1.getBytes().length > 16) {
-//            mActivity.showToastSafe("密码为6-16位字符");
-//            return false;
-//        }
-//        return true;
-//    }
+
+
 //
 //    /**
 //     * 判断url 是否为论坛的

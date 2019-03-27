@@ -58,7 +58,7 @@ public class ForgetPwdActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        control = new GetTelCodeControl(this, edTel, code, tvGetCode, 1);
+        control = new GetTelCodeControl(this, edTel, code, tvGetCode);
     }
 
     @Override

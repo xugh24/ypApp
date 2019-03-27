@@ -21,13 +21,13 @@ public class TestData {
         info1.setName("商圈1");
         AreaInfo info2 = new AreaInfo();
         info2.setId(2);
-        info2.setName("商圈1");
+        info2.setName("商圈2");
         AreaInfo info3 = new AreaInfo();
         info3.setId(3);
-        info3.setName("商圈1");
+        info3.setName("商圈3");
         AreaInfo info4 = new AreaInfo();
         info4.setId(4);
-        info4.setName("商圈1");
+        info4.setName("商圈4");
         list.add(info1);
         list.add(info2);
         list.add(info3);

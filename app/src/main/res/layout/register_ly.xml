@@ -12,6 +12,13 @@
         android:layout_width="match_parent"
         android:hint="请输入手机号" />
 
+    <EditText
+        android:id="@+id/ed_regpwd"
+        style="@style/syt_ed"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:hint="请输入密码" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="38dp"

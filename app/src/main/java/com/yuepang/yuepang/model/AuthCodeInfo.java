@@ -5,7 +5,6 @@ public class AuthCodeInfo {
     private String mTel;// 用户手机号
     private String mValidCode;// 校验码
     private String code;// 验证码
-    private int codeType;// 验证码类型
 
 
     public String getmTel() {
@@ -32,11 +31,4 @@ public class AuthCodeInfo {
         this.code = code;
     }
 
-    public int getCodeType() {
-        return codeType;
-    }
-
-    public void setCodeType(int codeType) {
-        this.codeType = codeType;
-    }
 }

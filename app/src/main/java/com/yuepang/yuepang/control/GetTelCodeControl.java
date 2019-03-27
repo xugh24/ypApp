@@ -40,14 +40,13 @@ public class GetTelCodeControl implements View.OnClickListener {
     private int tvGetCodeState;
 
 
-    public GetTelCodeControl(BaseActivity activity, EditText edTel, EditText code, TextView tvGetCode, int codeType) {
+    public GetTelCodeControl(BaseActivity activity, EditText edTel, EditText code, TextView tvGetCode) {
         this.activity = activity;
         this.edTel = edTel;
         this.code = code;
         this.tvGetCode = tvGetCode;
         tvGetCode.setOnClickListener(this);
         info = new AuthCodeInfo();
-        info.setCodeType(codeType);
     }
 
     @Override

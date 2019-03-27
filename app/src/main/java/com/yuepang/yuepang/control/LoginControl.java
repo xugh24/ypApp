@@ -7,6 +7,7 @@ import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.MainActivity;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
 import com.yuepang.yuepang.protocol.LoginProtocol;
+import com.yuepang.yuepang.protocol.RegisterProtocol;
 
 import org.json.JSONObject;
 
@@ -43,6 +44,27 @@ public class LoginControl {
                 } else {
                     if (!TextUtils.isEmpty(protocol.getCodeDesc())) {
                         baseActivity.showToastSafe(protocol.getCodeDesc());
+                    }
+                    loginResult.loginFailed();
+                }
+            }
+        });
+    }
+    public void regByPwd(String tel ,String pwd,  String code) {
+        final RegisterProtocol registerProtocol = new RegisterProtocol(baseActivity,tel,code,pwd);
+        CommonTaskExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                int code = registerProtocol.request();
+                if (code == 200) {
+                    baseActivity.startActivity(MainActivity.class);
+                    JSONObject json = (JSONObject) registerProtocol.getData();
+                    // TODO 协议好了具体处理
+                    baseActivity.showToastSafe("登录成功");
+                    loginResult.loginSuccess();
+                } else {
+                    if (!TextUtils.isEmpty(registerProtocol.getCodeDesc())) {
+                        baseActivity.showToastSafe(registerProtocol.getCodeDesc());
                     }
                     loginResult.loginFailed();
                 }

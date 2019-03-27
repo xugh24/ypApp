@@ -44,7 +44,6 @@ public class AreaAdapter extends YueBaseAdapter {
     private final class ViewHolder {
         @BindView(id = R.id.tv_name)
         TextView name;
-
         public ViewHolder(View view) {
             AnnotateUtil.initBindView(this, view);
         }

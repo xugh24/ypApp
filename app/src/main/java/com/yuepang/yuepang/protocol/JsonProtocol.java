@@ -97,7 +97,9 @@ public abstract class JsonProtocol<T> {
             mResponse = new JSONObject(response);
             mCode = mResponse.optInt(CODE);
             mCodeDesc = mResponse.optString(MSG);
-            mData = onResponse(mCode, mResponse.optString(DATA));
+            if(mCode == 200){
+                mData = onResponse(mCode, mResponse.optString(DATA));
+            }
         }
         return mCode;
     }
