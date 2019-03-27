@@ -6,6 +6,7 @@ import com.yuepang.yuepang.Util.Md5;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.MainActivity;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
+import com.yuepang.yuepang.model.AuthCodeInfo;
 import com.yuepang.yuepang.protocol.LoginProtocol;
 import com.yuepang.yuepang.protocol.RegisterProtocol;
 
@@ -50,8 +51,8 @@ public class LoginControl {
             }
         });
     }
-    public void regByPwd(String tel ,String pwd,  String code) {
-        final RegisterProtocol registerProtocol = new RegisterProtocol(baseActivity,tel,code,pwd);
+    public void regByPwd(AuthCodeInfo info, String pwd) {
+        final RegisterProtocol registerProtocol = new RegisterProtocol(baseActivity,info,pwd);
         CommonTaskExecutor.execute(new Runnable() {
             @Override
             public void run() {

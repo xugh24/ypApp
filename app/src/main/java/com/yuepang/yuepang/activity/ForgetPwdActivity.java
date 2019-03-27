@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.control.GetTelCodeControl;
+import com.yuepang.yuepang.presenter.ForgetPwdPresenter;
 
 /**
  *
@@ -25,7 +26,7 @@ public class ForgetPwdActivity extends BaseActivity {
     @BindView(id = R.id.ed_coed)
     private EditText code;
 
-    @BindView(id = R.id.tv_getcoed, click = true)
+    @BindView(id = R.id.tv_getcoed)
     private TextView tvGetCode;
 
     @BindView(id = R.id.tv_pwd1)
@@ -34,11 +35,16 @@ public class ForgetPwdActivity extends BaseActivity {
     @BindView(id = R.id.tv_pwd2)
     private EditText pwd2;
 
-    @BindView(id = R.id.btn_sub)
+    @BindView(id = R.id.btn_sub,click = true)
     private Button btnSure;
 
-    private GetTelCodeControl control;
+    private ForgetPwdPresenter forgetPwdPresenter;
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        forgetPwdPresenter = new ForgetPwdPresenter(this);
+    }
 
     @Override
     protected String getMyRTitle() {
@@ -55,34 +61,33 @@ public class ForgetPwdActivity extends BaseActivity {
         return R.layout.forgetpwd_ly;
     }
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        control = new GetTelCodeControl(this, edTel, code, tvGetCode);
-    }
+
 
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        switch (v.getId()) {
-            case R.id.tv_getcoed:
-                control.getTelCode();
-                break;
-            case R.id.btn_sub:
-                String tel = edTel.getText().toString();
-                String pw1 = pwd1.getText().toString();
-                String pw2 = pwd2.getText().toString();
-                if (TextUtils.isEmpty(tel)) {
-                    showToastSafe("手机号为空");
-                    return;
-                }
-                resetPwd(tel, pw1, pw2);
-                break;
+        if(v==btnSure){
+            forgetPwdPresenter.resetPwd();
         }
-    }
-
-    private void resetPwd(String pw1, String pw2, String pw3) {
-
 
     }
+
+    public EditText getEdTel() {
+        return edTel;
+    }
+
+    public EditText getCode() {
+        return code;
+    }
+
+    public TextView getTvGetCode() { return tvGetCode; }
+
+    public String getPwd1() {
+        return pwd1.getText().toString();
+    }
+
+    public String getPwd2() {
+        return pwd1.getText().toString();
+    }
+
 }

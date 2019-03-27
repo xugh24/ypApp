@@ -9,17 +9,15 @@ import org.json.JSONObject;
  * Created by xugh on 2019/3/27.
  */
 
-public class RegisterProtocol extends JsonProtocol {
-
-
+public class ResetPwdProtocol extends JsonProtocol {
     private String pwd; // 密码
 
     private AuthCodeInfo info;
 
-    public RegisterProtocol(BaseActivity baseActivity, AuthCodeInfo info, String pwd) {
+    public ResetPwdProtocol(BaseActivity baseActivity,AuthCodeInfo info, String pwd) {
         super(baseActivity);
-        this.pwd = pwd;
         this.info = info;
+        this.pwd = pwd;
     }
 
     @Override
@@ -32,7 +30,7 @@ public class RegisterProtocol extends JsonProtocol {
 
     @Override
     public String getUrlToken() {
-        return "yuepang/reg";
+        return null;
     }
 
     @Override

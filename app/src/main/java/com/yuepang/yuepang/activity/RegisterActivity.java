@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
-import com.yuepang.yuepang.control.GetTelCodeControl;
 import com.yuepang.yuepang.presenter.RegPresenter;
 
 /**
@@ -78,19 +77,7 @@ public class RegisterActivity extends BaseActivity {
         return tvGetCode;
     }
 
-    public EditText getEdPwd() {
-        return edPwd;
-    }
-
-    public String getTel() {
-        return edtel.getText().toString();
-    }
-
     public String getPwd() {
         return edPwd.getText().toString();
-    }
-
-    public String getcode() {
-        return edCode.getText().toString();
     }
 }

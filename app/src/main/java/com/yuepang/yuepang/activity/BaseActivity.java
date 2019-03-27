@@ -256,10 +256,10 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         activities.removeAll(copy);
     }
 
-    public static void finishAll(BaseActivity except) {
+    public static void finishAll(String className) {
         List<BaseActivity> copy = new ArrayList<BaseActivity>(activities);
         for (BaseActivity activity : copy) {
-            if (activity != except)
+            if (!activity.getClass().getName().equals(className))
                 activity.finish();
         }
         copy.clear();

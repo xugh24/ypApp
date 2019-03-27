@@ -78,6 +78,14 @@ public class CheckManage {
 
 
     /**
+     * 重置密码的表单校验方法
+     */
+    public static boolean resetPwd(String tel, String code, String pwd1, String pwd2, BaseActivity activity) {
+        return checkPwd(pwd1, pwd2, activity) && checkTelRg(tel, code, pwd1, activity);
+    }
+
+
+    /**
      * 手机注册表单检查
      *
      * @param tel

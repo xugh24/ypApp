@@ -11,10 +11,11 @@ import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
 import com.yuepang.yuepang.model.AuthCodeInfo;
+import com.yuepang.yuepang.protocol.GetCodeProtocol;
 
 /**
  * Created by xugh on 2019/3/6.
- *
+ * <p>
  * 短信验证管理类
  */
 
@@ -51,28 +52,35 @@ public class GetTelCodeControl implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v == tvGetCode) {
-            getTelCode();
-        }
+        getTelCode();
     }
-
 
     /**
      * 获得手机号验证码
      */
-    public void getTelCode() {
-        String telNum = edTel.getText().toString().trim();
+    private void getTelCode() {
+        final String telNum = edTel.getText().toString().trim();
+
         if (CheckManage.checkTel(telNum, activity)) {
+
             CommonTaskExecutor.execute(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                        Thread.sleep(500);
-                        activity.showToastSafe("短信获得成功");
-                        timeTemp = 60;
-                        tvGetCodeState = 1;
-                        startCountDown();
-                    } catch (InterruptedException e) {
+                        GetCodeProtocol protocol = new GetCodeProtocol(activity, telNum);
+                        if (protocol.request() == 200) {
+                            // TODO
+                            info.setmValidCode("");// 设置校验码
+                            activity.showToastSafe("短信获得成功");
+                            timeTemp = 60;
+                            tvGetCodeState = 1;
+                            startCountDown();
+                        } else {
+
+                        }
+
+
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -89,7 +97,6 @@ public class GetTelCodeControl implements View.OnClickListener {
             }
         });
     }
-
 
     private void refreshGetCodeTv() {
 
@@ -120,6 +127,23 @@ public class GetTelCodeControl implements View.OnClickListener {
                 }, 1000);
             }
         }
+    }
+
+
+    public AuthCodeInfo getInfo() {
+        info.setCode(code.getText().toString());
+        info.setmTel(edTel.getText().toString());
+        if (checkDate()) {
+            return info;
+        }
+        return null;
+    }
+
+    /**
+     *
+     */
+    private boolean checkDate() {
+        return CheckManage.checkTel(getInfo().getmTel(), activity) && CheckManage.checkCode(getInfo().getCode(), activity);
     }
 
 

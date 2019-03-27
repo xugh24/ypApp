@@ -7,6 +7,7 @@ import com.yuepang.yuepang.control.CheckManage;
 import com.yuepang.yuepang.control.DataControl;
 import com.yuepang.yuepang.control.GetTelCodeControl;
 import com.yuepang.yuepang.control.LoginControl;
+import com.yuepang.yuepang.model.AuthCodeInfo;
 
 /**
  * Created by xugh on 2019/3/27.
@@ -27,17 +28,19 @@ public class RegPresenter extends BasePresenter implements LoginControl.LoginRes
         loginControl = new LoginControl(registerActivity, this);
     }
 
-    private String tel;
 
     private String pwd;
 
+    private String tel;
+
     public void register() {
-        tel = registerActivity.getTel();// 获得手机号
-        String code = registerActivity.getcode();// 获得验证码
         pwd = registerActivity.getPwd();// 获得密码
-        if (CheckManage.checkTelRg(tel, pwd, code, registerActivity)) {// 校验通过
+
+        AuthCodeInfo info = codeControl.getInfo();
+        if (info != null && CheckManage.checkPwd(pwd, registerActivity)) {
+            tel = info.getmTel();//缓存手机号
             registerActivity.showLoadingDialogSafe(true);
-            loginControl.regByPwd(tel, pwd, code);
+            loginControl.regByPwd(info, pwd);
         }
     }
 
