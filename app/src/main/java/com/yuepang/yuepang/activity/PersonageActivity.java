@@ -68,7 +68,6 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
         super.onResume();
         String tel = YuePangExternalDB.getInstance(this).getValueById(UserCentreControl.getInstance().getInfo().getId() + "", YuePangExternalDB.FIELD_TEL);
         DrawableUtil.loadImageForUrl(ivHead, UserCentreControl.getInstance().getInfo().getHeaderImgUrl(), this);
-
     }
 
     @Override
@@ -165,6 +164,8 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
                 return tvNick;
             case PersonageActivity.BIR:
                 return tvbirthday;
+            case PersonageActivity.SEX:
+                return tvsex;
         }
         return null;
     }

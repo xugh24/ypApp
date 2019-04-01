@@ -93,6 +93,10 @@
             android:name="com.yuepang.yuepang.activity.SettingActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.yuepang.yuepang.activity.FeedbackActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 
         <service
             android:name="com.baidu.location.f"

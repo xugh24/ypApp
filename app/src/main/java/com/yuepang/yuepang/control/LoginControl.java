@@ -38,9 +38,9 @@ public class LoginControl {
                     baseActivity.startActivity(MainActivity.class);
                     JSONObject json = (JSONObject) protocol.getData();
                     setUser(json);
-
                     baseActivity.showToastSafe("登录成功");
                     loginResult.loginSuccess();
+                    UserCentreControl.getInstance().loginSuccesses();
                 } else {
                     if (!TextUtils.isEmpty(protocol.getCodeDesc())) {
                         baseActivity.showToastSafe(protocol.getCodeDesc());
@@ -62,6 +62,7 @@ public class LoginControl {
                     // TODO 协议好了具体处理
                     baseActivity.showToastSafe("登录成功");
                     loginResult.loginSuccess();
+                    UserCentreControl.getInstance().loginSuccesses();
                 } else {
                     if (!TextUtils.isEmpty(registerProtocol.getCodeDesc())) {
                         baseActivity.showToastSafe(registerProtocol.getCodeDesc());

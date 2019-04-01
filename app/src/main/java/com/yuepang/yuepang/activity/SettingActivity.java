@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
+import com.yuepang.yuepang.control.UserCentreControl;
 
 /**
  * 设置页面
@@ -52,7 +53,7 @@ public class SettingActivity extends BaseActivity {
             startActivity(FeedbackActivity.class);
                 break;
             case  R.id.tv_out:
-
+                UserCentreControl.getInstance().outLogin(this);
                 break;
         }
     }

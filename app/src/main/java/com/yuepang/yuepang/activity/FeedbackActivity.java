@@ -1,5 +1,6 @@
 package com.yuepang.yuepang.activity;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,6 +45,11 @@ public class FeedbackActivity extends BaseActivity {
 
     private void subFeedBack() {
         String msg = edMsg.getText().toString();
-
+        if(TextUtils.isEmpty(msg)){
+            showToastSafe("请输入您的反馈信息");
+        }else{
+            showToastSafe("反馈成功");
+            finish();
+        }
     }
 }

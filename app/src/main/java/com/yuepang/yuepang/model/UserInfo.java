@@ -51,9 +51,6 @@ public class UserInfo {
         this.pwd = pwd;
     }
 
-
-
-
     public int getId() {
         return id;
     }
@@ -68,6 +65,19 @@ public class UserInfo {
 
     public void setNick(String nick) {
         this.nick = nick;
+    }
+
+    /**
+     * 清理用户信息
+     */
+    public void clear() {
+        sex = 0;
+        birthday = null;
+        tel = null;// 手机号
+        headerImgUrl = null; // 头像地址
+        pwd = null;// 密码
+        nick = null;// 昵称
+        id = 0;
     }
 
 

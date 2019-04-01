@@ -37,9 +37,7 @@ public class ForgetPwdPresenter extends BasePresenter {
                 public void run() {
                     RegisterProtocol protocol = new RegisterProtocol(forgetPwdActivity, info, pw1);
                     if (protocol.request() == 200) {
-                        UserCentreControl.getInstance().outLogin();
-                        forgetPwdActivity.startActivity(LoginActivity.class);
-                        BaseActivity.finishAll(LoginActivity.class.getName());
+                        UserCentreControl.getInstance().outLogin(forgetPwdActivity);
                     }
                 }
             });

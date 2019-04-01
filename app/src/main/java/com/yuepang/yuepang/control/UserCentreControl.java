@@ -2,6 +2,8 @@ package com.yuepang.yuepang.control;
 
 import android.content.Context;
 
+import com.yuepang.yuepang.activity.BaseActivity;
+import com.yuepang.yuepang.activity.FirstActivity;
 import com.yuepang.yuepang.db.YuePangExternalDB;
 import com.yuepang.yuepang.interFace.LoginSuccess;
 import com.yuepang.yuepang.location.Location;
@@ -58,7 +60,7 @@ public class UserCentreControl {
         loginSuccesses.remove(loginSuccess);
     }
 
-    public void addLoginSuccesses() {
+    public void loginSuccesses() {
         if (loginSuccesses.size() > 0) {
             for (LoginSuccess loginSuccess : loginSuccesses) {
                 loginSuccess.loginSuccess();
@@ -75,8 +77,11 @@ public class UserCentreControl {
     }
 
 
-    public void outLogin() {
-
+    public void outLogin(BaseActivity activity) {
+        token = "";//置空当前token
+        info.clear();// 清理用户信息
+        activity.startActivity(FirstActivity.class);
+        BaseActivity.finishAll(FirstActivity.class);
     }
 
     public UserInfo getInfo() {
