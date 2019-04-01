@@ -98,6 +98,8 @@ public class AsyncImageLoader extends ThreadPool.Workgroup {
                 if (f.exists()) {// 如果内存中图片存下则直接返回
                     fis = new FileInputStream(f);
                     return Drawable.createFromStream(fis, null);
+                }else{
+                    f.createNewFile();
                 }
             }
             return MyOkHttpEngine.createGetRequest(mContext, url);// 重网络获取图片

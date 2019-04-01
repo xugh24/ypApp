@@ -8,6 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+
     <style name="c6f8">
         <item name="android:textColor">@color/c6</item>
         <item name="android:textSize">@dimen/f8</item>
@@ -16,6 +18,12 @@
     <style name="tv_1">
         <item name="android:textColor">@color/c6</item>
         <item name="android:textSize">@dimen/f4</item>
+    </style>
+    <style name="tv_2">
+        <item name="android:textColor">@color/c6</item>
+        <item name="android:textSize">@dimen/f4</item>
+        <item name="android:gravity">center_vertical</item>
+
     </style>
 
 

@@ -1,5 +1,7 @@
 package com.yuepang.yuepang.activity;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -7,7 +9,13 @@ import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
+import com.yuepang.yuepang.Util.DrawableUtil;
+import com.yuepang.yuepang.control.DataControl;
+import com.yuepang.yuepang.control.UserCentreControl;
+import com.yuepang.yuepang.db.YuePangExternalDB;
 import com.yuepang.yuepang.dialog.PersonalDialog;
+import com.yuepang.yuepang.dialog.SexDialog;
+import com.yuepang.yuepang.model.UserInfo;
 import com.yuepang.yuepang.widget.CustomDatePicker;
 
 import java.text.SimpleDateFormat;
@@ -16,6 +24,10 @@ import java.util.Locale;
 
 /**
  * 个人信息页面
+ *
+ * 头像动态获得
+ * 用户可以修改自己昵称和性别
+ * 不可以修改自己手机号
  */
 
 public class PersonageActivity extends BaseActivity implements PersonalDialog.CallBack {
@@ -33,8 +45,6 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     private LinearLayout llsex;//性别
     @BindView(id = R.id.ll_birthday, click = true)
     private LinearLayout llbirthday;//生日
-    @BindView(id = R.id.ll_tel, click = true)
-    private LinearLayout lltel;//联系方式
 
 
     @BindView(id = R.id.tv_nick)
@@ -46,6 +56,20 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     @BindView(id = R.id.tv_tel)
     private TextView tvTel;//
 
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String tel = YuePangExternalDB.getInstance(this).getValueById(UserCentreControl.getInstance().getInfo().getId() + "", YuePangExternalDB.FIELD_TEL);
+        DrawableUtil.loadImageForUrl(ivHead, UserCentreControl.getInstance().getInfo().getHeaderImgUrl(), this);
+
+    }
 
     @Override
     protected String getMyRTitle() {
@@ -71,13 +95,13 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
                 showInput(NICK);
                 break;
             case R.id.ll_sex: // 性别
-                showInput(SEX);
+                if (sexDialog == null) {
+                    sexDialog = new SexDialog(this, this);//
+                }
+                sexDialog.show();
                 break;
             case R.id.ll_birthday: // 生日
                 init();
-                break;
-            case R.id.ll_tel: // 电话
-                showInput(TEL);
                 break;
         }
     }
@@ -98,6 +122,7 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
 
 
     PersonalDialog personalDialog;
+    SexDialog sexDialog;
 
     private void showInput(int type) {
         if (personalDialog == null) {
@@ -109,20 +134,35 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
 
     @Override
     public void callBack(int type, Object obj) {
-        if (obj != null && getTargetText(type) != null) {
+
+        if (type == SEX) {
+            int sex = (int) obj;
+            if (sex == 1) {
+                getTargetText(type).setText("男");
+            } else {
+                getTargetText(type).setText("女");
+            }
+            UserCentreControl.getInstance().getInfo().setSex(sex);
+        } else {
             String data = (String) obj;
-            getTargetText(type).setText(data);
+            if (obj != null && getTargetText(type) != null) {
+                getTargetText(type).setText(data);
+            }
+            if (type == PersonageActivity.NICK) {
+                UserCentreControl.getInstance().getInfo().setNick(data);
+            }
+            if (type == PersonageActivity.BIR) {
+                UserCentreControl.getInstance().getInfo().setBirthday(data);
+            }
         }
+
+
     }
 
     private TextView getTargetText(int type) {
         switch (type) {
             case PersonageActivity.NICK:
                 return tvNick;
-            case PersonageActivity.SEX:
-                return tvsex;
-            case PersonageActivity.TEL:
-                return tvTel;
             case PersonageActivity.BIR:
                 return tvbirthday;
         }

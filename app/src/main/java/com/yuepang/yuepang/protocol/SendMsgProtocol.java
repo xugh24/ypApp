@@ -22,7 +22,7 @@ public class SendMsgProtocol extends JsonProtocol {
 
     @Override
     public void creatDataJson(JSONObject json) throws Exception {
-        json.put("username", UserCentreControl.getInstance().getInfo().getName());
+        json.put("username", UserCentreControl.getInstance().getInfo().getTel());
         json.put("topicId", id);
         json.put("msg", msg);
     }

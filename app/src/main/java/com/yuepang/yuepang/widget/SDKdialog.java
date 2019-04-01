@@ -61,6 +61,12 @@ public class SDKdialog extends Dialog implements View.OnClickListener {
         return edInput.getText().toString().trim();
     }
 
+    public void hideEdInput(){
+        if(edInput!=null){
+            edInput.setVisibility(View.GONE);
+        }
+    }
+
 
     public final SDKdialog setPositiveButton(CharSequence text, final OnClickListener listener) {
         mPositiveBtn.setText(text);

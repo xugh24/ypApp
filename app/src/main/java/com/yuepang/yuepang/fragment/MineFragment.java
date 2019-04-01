@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.activity.SettingActivity;
@@ -30,7 +29,6 @@ public class MineFragment extends BaseFragment {
 
     @BindView(id = R.id.rl_uc_3, click = true)
     private RelativeLayout rlsetting;
-
 
     @BindView(id = R.id.rl_uc_4, click = true)
     private RelativeLayout rlLike;

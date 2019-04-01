@@ -20,6 +20,7 @@ public class SysUtils {
 
     public static final String YUEPANG = "yuepang";
 
+
     public static String[] getStoragePath(Object storageManager, boolean withSlash) {
         String sdcardPath = null;
         String internalPath = null;
@@ -149,6 +150,25 @@ public class SysUtils {
         if (!dir.exists()) {
             dir.mkdirs();
         }
+        LogUtils.e("图片缓存地址  " + path);
+        return path;
+    }
+
+    /**
+     * 获得图片缓存的地址
+     */
+    public static String getDBDir(Context context) {
+        String path = null;
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+            path = Environment.getExternalStorageDirectory() + "/" + YUEPANG + "/db";
+        } else {
+            path = context.getCacheDir().getAbsolutePath();
+        }
+        File dir = new File(path);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        LogUtils.e("数据库地址  " + path);
         return path;
     }
 

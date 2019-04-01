@@ -15,7 +15,6 @@ import java.lang.reflect.Field;
 public class AnnotateUtil {
 
     public static void initBindView(Object currentClass, View sourceView) {
-
         Field[] fields = currentClass.getClass().getDeclaredFields();
         if (fields != null && fields.length > 0) {
             Field[] var6 = fields;

@@ -65,6 +65,7 @@ public class TopicAdapter extends YueBaseAdapter implements AdapterView.OnItemCl
     private final class ViewHolder {
         @BindView(id = R.id.title_name)
         TextView head;
+
         @BindView(id = R.id.tv_title)
         TextView title;
         @BindView(id = R.id.time)

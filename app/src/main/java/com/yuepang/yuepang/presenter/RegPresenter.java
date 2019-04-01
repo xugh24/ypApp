@@ -21,6 +21,10 @@ public class RegPresenter extends BasePresenter implements LoginControl.LoginRes
 
     private LoginControl loginControl;
 
+    private String pwd;
+
+    private String tel;
+
     public RegPresenter(BaseActivity activity) {
         super(activity);
         this.registerActivity = (RegisterActivity) activity;
@@ -29,13 +33,9 @@ public class RegPresenter extends BasePresenter implements LoginControl.LoginRes
     }
 
 
-    private String pwd;
-
-    private String tel;
 
     public void register() {
         pwd = registerActivity.getPwd();// 获得密码
-
         AuthCodeInfo info = codeControl.getInfo();
         if (info != null && CheckManage.checkPwd(pwd, registerActivity)) {
             tel = info.getmTel();//缓存手机号

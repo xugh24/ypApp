@@ -2,6 +2,7 @@ package com.yuepang.yuepang.control;
 
 import android.content.Context;
 
+import com.yuepang.yuepang.db.YuePangExternalDB;
 import com.yuepang.yuepang.interFace.LoginSuccess;
 import com.yuepang.yuepang.location.Location;
 import com.yuepang.yuepang.model.UserInfo;
@@ -39,6 +40,14 @@ public class UserCentreControl {
         return centreControl;
     }
 
+    /**
+     * 程序初始化方法
+     */
+    public void init(Context context) {
+        YuePangExternalDB.getInstance(context);
+        initLocation(context);
+    }
+
     public void addLoginMonitor(LoginSuccess loginSuccess) {
         if (loginSuccess != null) {
             loginSuccesses.add(loginSuccess);
@@ -57,7 +66,10 @@ public class UserCentreControl {
         }
     }
 
-    public void initLocation(Context context){
+    /**
+     * 初始化位置信息
+     */
+    private void initLocation(Context context) {
         Location location = new Location(context);
         location.initLocationOption();
     }

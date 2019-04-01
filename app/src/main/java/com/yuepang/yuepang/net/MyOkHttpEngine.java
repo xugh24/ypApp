@@ -88,6 +88,7 @@ public class MyOkHttpEngine {
             in.close();
             FileOutputStream fos = new FileOutputStream(new File(SysUtils.getImageCacheDir(context), String.valueOf(url.hashCode())));// 保存图片
             ((BitmapDrawable) drawable).getBitmap().compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.close();
             return drawable;
         }
         return null;

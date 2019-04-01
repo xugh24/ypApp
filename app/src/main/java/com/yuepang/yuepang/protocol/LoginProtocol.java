@@ -20,11 +20,11 @@ public class LoginProtocol extends JsonProtocol {
 
     public final static String ID = "id"; // 用户ID
 
-    public final static String NICK = "nick";// 昵称
+    public final static String NICK = "nick_name";// 昵称
 
     public final static String SEX = "sex";// 性别
 
-    public final static String TEL = "tel";// 电话
+    public final static String tel = "tel";// 电话
 
     public final static String USERNAME = "username";// 用户名
 

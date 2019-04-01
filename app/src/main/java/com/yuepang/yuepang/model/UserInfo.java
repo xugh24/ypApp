@@ -8,6 +8,7 @@ public class UserInfo {
     private String headerImgUrl; // 头像地址
     private String pwd;// 密码
     private String nick;// 昵称
+    private int id;
 
 
     public int getSex() {
@@ -51,15 +52,23 @@ public class UserInfo {
     }
 
 
-    public String getName() {
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNick() {
         return nick;
     }
 
-    public void setName(String name) {
-        this.nick = name;
+    public void setNick(String nick) {
+        this.nick = nick;
     }
-
-
 
 
     // ==========================================================================

@@ -41,21 +41,6 @@ public class PersonalDialog extends SDKdialog {
         this.type = type;
     }
 
-    public String getTitleByType() {
-        switch (type) {
-            case PersonageActivity.NICK:
-                return "请输入用户名";
-            case PersonageActivity.SEX:
-                return "请选择性别";
-            case PersonageActivity.TEL:
-                return "请输入手机号";
-            case PersonageActivity.BIR:
-                return "请选择生日";
-        }
-        return "";
-    }
-
-
     public interface CallBack {
         public void callBack(int type, Object obj);
     }
