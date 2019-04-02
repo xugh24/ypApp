@@ -23,10 +23,13 @@
         <item name="android:textColor">@color/c6</item>
         <item name="android:textSize">@dimen/f4</item>
         <item name="android:gravity">center_vertical</item>
-
     </style>
 
-
+    <style name="tv_3">
+        <item name="android:textColor">@color/c6</item>
+        <item name="android:textSize">@dimen/f6</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
     <style name="syt_btn">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">16dp</item>

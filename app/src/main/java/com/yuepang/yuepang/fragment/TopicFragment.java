@@ -12,6 +12,7 @@ import com.yuepang.yuepang.adapter.TopicAdapter;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
 import com.yuepang.yuepang.model.TopicInfo;
 import com.yuepang.yuepang.protocol.GetTopicProtocol;
+import com.yuepang.yuepang.view.TopicView;
 
 import java.util.List;
 
@@ -22,9 +23,7 @@ public class TopicFragment extends BaseFragment {
 
     @BindView(id = R.id.top_lv)
     private ListView listView;
-    private TopicAdapter adapter;
-    private List<TopicInfo> topicInfos;
-    private boolean isFirstShow = true;
+    private TopicView topicView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,61 +32,21 @@ public class TopicFragment extends BaseFragment {
 
     @Override
     protected boolean getData() {
-        GetTopicProtocol protocol = new GetTopicProtocol((BaseActivity) getActivity());
-        if (protocol.request() == 200) {
-            topicInfos = (List<TopicInfo>) protocol.getData();
-            if (topicInfos.size() > 0) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        LogUtils.e("TopicFragment  + onResume");
+        return topicView.getData();
     }
 
     @Override
     protected void initView() {
-        adapter = new TopicAdapter(topicInfos, (BaseActivity) getActivity());
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(adapter);
+        topicView = new TopicView((BaseActivity) getActivity(), listView);
     }
 
     @Override
     public void show() {
-        if (!isFirstShow) {
-            CommonTaskExecutor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    GetTopicProtocol protocol = new GetTopicProtocol((BaseActivity) getActivity());
-                    if (protocol.request() == 200) {
-                        topicInfos = (List<TopicInfo>) protocol.getData();
-                        if (topicInfos.size() > 0) {
-                            getActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    if (adapter != null) {
-                                        adapter.setTopicInfos(topicInfos);
-                                        adapter.notifyDataSetInvalidated();
-                                    }
-                                }
-                            });
-
-                        }
-                    }
-                }
-            });
-        }
-        isFirstShow = false;
-
+        topicView.show();
     }
 
     @Override
     public void hide() {
-
     }
 
     @Override

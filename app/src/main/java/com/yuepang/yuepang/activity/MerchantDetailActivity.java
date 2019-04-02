@@ -1,18 +1,24 @@
 package com.yuepang.yuepang.activity;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
+import com.yuepang.yuepang.Util.SysUtils;
+import com.yuepang.yuepang.model.MerchantInfo;
 
 /**
- *
  * 商家详情页
  */
 
 public class MerchantDetailActivity extends BaseActivity {
+
+    public final static String MERCHANTINFO = "MerchantInfo";
 
     @BindView(id = R.id.mer_pic)
     private ImageView ivMer;
@@ -29,8 +35,16 @@ public class MerchantDetailActivity extends BaseActivity {
     @BindView(id = R.id.mer_loction)
     private TextView tvloction;
 
-    @BindView(id = R.id.mer_tel)
+    @BindView(id = R.id.mer_tel,click = true)
     private TextView tvTel;
+
+    private MerchantInfo merchantInfo;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        merchantInfo = getIntent().getParcelableExtra(MERCHANTINFO);
+    }
 
     @Override
     protected String getMyRTitle() {
@@ -42,6 +56,7 @@ public class MerchantDetailActivity extends BaseActivity {
         return "商家名称";
     }
 
+
     @Override
     protected int getContentViewId() {
         return R.layout.merchantdetails_ly;
@@ -52,6 +67,8 @@ public class MerchantDetailActivity extends BaseActivity {
         super.onClick(v);
         if (v == btnBuy) {
             startActivity(PayActivity.class);
+        }else if(v == tvTel){
+            SysUtils.call(this,merchantInfo.getTel());
         }
     }
 }

@@ -8,7 +8,8 @@
     <ImageView
         android:id="@+id/mer_pic"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="180dp"
+        android:scaleType="fitXY"
         android:src="@drawable/test3" />
 
     <LinearLayout
@@ -20,6 +21,7 @@
 
         <TextView
             android:id="@+id/mer_title"
+            style="@style/tv_3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -27,7 +29,7 @@
 
         <Button
             android:id="@+id/btn_buy"
-            style="@style/syt_btn_org"
+            style="@style/syt_btn_green"
             android:layout_width="80dp"
             android:layout_height="37dp"
             android:text="买单" />
@@ -35,20 +37,23 @@
 
     <TextView
         android:id="@+id/mer_msg"
+        style="@style/tv_3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="38dp"
         android:text="悦旁测试商家提供美食服务" />
 
     <TextView
         android:id="@+id/mer_loction"
+        style="@style/tv_3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="38dp"
         android:text="地址：南京XXX" />
 
     <TextView
         android:id="@+id/mer_tel"
+        style="@style/tv_3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="38dp"
         android:text="电话：1234567" />
 
 </LinearLayout>

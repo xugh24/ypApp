@@ -149,7 +149,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (viewPager.getCurrentItem() == 1) {// 商家页面的点击商圈文字处理逻辑
 
         }
-
     }
 
     @Override

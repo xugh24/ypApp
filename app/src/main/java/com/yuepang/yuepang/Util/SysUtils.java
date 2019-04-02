@@ -1,12 +1,16 @@
 package com.yuepang.yuepang.Util;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 import android.text.TextUtils;
+
+import com.yuepang.yuepang.activity.MerchantDetailActivity;
 
 import java.io.File;
 import java.text.ParseException;
@@ -187,5 +191,15 @@ public class SysUtils {
             LogUtils.e(" Android hasNetwork 网络良好");
         }
         return true;
+    }
+
+    /**
+     * 拨打电话程序调用
+     */
+    public static void call(Context context, String phoneNum) {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        Uri data = Uri.parse("tel:" + phoneNum);
+        intent.setData(data);
+        context.startActivity(intent);
     }
 }
