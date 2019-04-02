@@ -125,7 +125,7 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
 
     private void showInput(int type) {
         if (personalDialog == null) {
-            personalDialog = new PersonalDialog(this, this);//        }d:\Program Files\Gitd:\Program Files\Git
+            personalDialog = new PersonalDialog(this, this);//
         }
         personalDialog.setType(type);
         personalDialog.show();

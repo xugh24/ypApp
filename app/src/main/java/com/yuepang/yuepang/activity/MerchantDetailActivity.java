@@ -25,7 +25,6 @@ public class MerchantDetailActivity extends BaseActivity {
     @BindView(id = R.id.btn_buy, click = true)
     private Button btnBuy;
 
-
     @BindView(id = R.id.mer_msg)
     private TextView tvMsg;
 

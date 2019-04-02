@@ -14,6 +14,8 @@ public class RecordInfo {
 
     private String OrderId;// 订单
 
+    private int state;// 订单状态
+
     public String getMerchantName() {
         return merchantName;
     }
@@ -44,5 +46,13 @@ public class RecordInfo {
 
     public void setOrderId(String orderId) {
         OrderId = orderId;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }

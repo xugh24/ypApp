@@ -53,6 +53,9 @@ public class RecordAdapter extends YueBaseAdapter {
         @BindView(id = R.id.orderid)
         TextView orderId;
 
+        @BindView(id = R.id.tv_state)
+        TextView state;
+
         @BindView(id = R.id.time)
         TextView time;
 
