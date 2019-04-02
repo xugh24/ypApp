@@ -1,11 +1,9 @@
 package com.yuepang.yuepang.activity;
 
-import android.net.wifi.p2p.WifiP2pManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
 
