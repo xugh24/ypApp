@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
+import com.yuepang.yuepang.activity.PayRecordActivity;
 import com.yuepang.yuepang.activity.SettingActivity;
 import com.yuepang.yuepang.activity.MylikeActivity;
 import com.yuepang.yuepang.activity.PersonageActivity;
@@ -73,6 +74,8 @@ public class MineFragment extends BaseFragment {
                 startActivity(intent);
                 break;
             case R.id.rl_uc_1:
+                Intent intent1 = new Intent(getContext(), PayRecordActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.rl_uc_2:
                 break;

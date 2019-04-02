@@ -37,14 +37,14 @@ public class RecordAdapter extends YueBaseAdapter {
         }
         viewHolder.name.setText(recordInfos.get(position).getMerchantName());
         viewHolder.orderId.setText(recordInfos.get(position).getOrderId());
-        viewHolder.price.setText(recordInfos.get(position).getPrice());
+        viewHolder.price.setText(recordInfos.get(position).getPrice()+"");
         viewHolder.time.setText(recordInfos.get(position).getTime() + "");
         return convertView;
     }
 
 
     private final class ViewHolder {
-        @BindView(id = R.id.title_name)
+        @BindView(id = R.id.tv_name)
         TextView name;
 
         @BindView(id = R.id.price)

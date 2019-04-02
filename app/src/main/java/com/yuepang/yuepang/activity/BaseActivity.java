@@ -76,10 +76,16 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         }
         rlBar.setVisibility(isShowBar() ? View.VISIBLE : View.GONE);
         ivBack.setVisibility(isShowBack() ? View.VISIBLE : View.GONE);
+        LogUtils.e("getContentViewId()--- " +getContentViewId());
         if (getContentViewId() != -1) {
             contentView = View.inflate(this, getContentViewId(), null);
             AnnotateUtil.initBindView(this, contentView);// 绑定子类View
             llMain.addView(contentView, -1, -1);
+        }else{
+            if(getContentView()!=null){
+                contentView = getContentView();
+                llMain.addView(contentView, -1, -1);
+            }
         }
     }
 
@@ -282,5 +288,9 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
     public UserInfo getUserInfo() {
         return UserCentreControl.getInstance().getInfo();
+    }
+
+    public View getContentView() {
+        return null;
     }
 }

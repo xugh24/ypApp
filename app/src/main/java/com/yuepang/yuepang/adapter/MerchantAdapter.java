@@ -49,6 +49,10 @@ public class MerchantAdapter extends YueBaseAdapter {
         TextView name;
         TextView loction;
         Button btnPay;
+
+        public ViewHolder(){
+
+        }
     }
 
 }

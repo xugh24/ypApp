@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
+import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.widget.LoadingFrame;
 
 /**
@@ -17,12 +19,17 @@ public abstract class BaseLoadFrameActivity extends BaseActivity {
 
     private LoadingFrame loadingFrame;
 
-    @BindView(id = R.id.main_ll)
-    private LinearLayout llmain;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    protected abstract View getMainView();
+
+    protected abstract boolean getdata();
+
+    @Override
+    public View getContentView() {
         loadingFrame = new LoadingFrame(this) {
             @Override
             public boolean load(View loadingView) {
@@ -34,16 +41,12 @@ public abstract class BaseLoadFrameActivity extends BaseActivity {
                 return getMainView();
             }
         };
-        llmain.addView(llmain, -1, -1);
         loadingFrame.show();
+        return loadingFrame;
     }
-
-    protected abstract View getMainView();
-
-    protected abstract boolean getdata();
 
     @Override
     protected int getContentViewId() {
-        return R.layout.comm_ly;
+        return -1;
     }
 }
