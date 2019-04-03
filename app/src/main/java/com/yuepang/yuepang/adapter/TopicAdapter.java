@@ -13,6 +13,7 @@ import com.yuepang.yuepang.Util.SysUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.ChatActivity;
 import com.yuepang.yuepang.model.TopicInfo;
+import com.yuepang.yuepang.protocol.GetTopicProtocol;
 
 import java.util.List;
 
@@ -28,11 +29,6 @@ public class TopicAdapter extends YueBaseAdapter implements AdapterView.OnItemCl
         this.topicInfos = topicInfos;
     }
 
-
-    public void setTopicInfos(List<TopicInfo> topicInfos) {
-        this.topicInfos = topicInfos;
-        setList(list);
-    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -65,14 +61,24 @@ public class TopicAdapter extends YueBaseAdapter implements AdapterView.OnItemCl
     private final class ViewHolder {
         @BindView(id = R.id.title_name)
         TextView head;
-
         @BindView(id = R.id.tv_title)
         TextView title;
         @BindView(id = R.id.time)
         TextView time;
-
         public ViewHolder(View view) {
             AnnotateUtil.initBindView(this, view);
         }
+    }
+
+    public boolean getData() {
+        GetTopicProtocol protocol = new GetTopicProtocol(activity);
+        if (protocol.request() == 200) {
+            topicInfos = (List<TopicInfo>) protocol.getData();
+            setList(topicInfos);
+            if (topicInfos.size() > 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }

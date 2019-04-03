@@ -74,13 +74,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         ivs.add(iv3);
         ivs.add(iv4);
         handpickFragment = new HandpickFragment();
-        handpickFragment.setActivity(this);
         merchantFragment = new MerchantFragment();
-        merchantFragment.setActivity(this);
         topicFragment = new TopicFragment();
-        topicFragment.setActivity(this);
         mineFragment = new MineFragment();
-        mineFragment.setActivity(this);
         fragmentList = new ArrayList<>();
         fragmentList.add(handpickFragment);
         fragmentList.add(merchantFragment);

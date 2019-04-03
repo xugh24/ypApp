@@ -6,15 +6,8 @@ import android.widget.ListView;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
-import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.adapter.TopicAdapter;
-import com.yuepang.yuepang.async.CommonTaskExecutor;
-import com.yuepang.yuepang.model.TopicInfo;
-import com.yuepang.yuepang.protocol.GetTopicProtocol;
-import com.yuepang.yuepang.view.TopicView;
-
-import java.util.List;
 
 /**
  */
@@ -23,7 +16,8 @@ public class TopicFragment extends BaseFragment {
 
     @BindView(id = R.id.top_lv)
     private ListView listView;
-    private TopicView topicView;
+    private TopicAdapter adapter;// 数据
+    private boolean isFirstShow = true;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,22 +25,34 @@ public class TopicFragment extends BaseFragment {
     }
 
     @Override
-    protected boolean getData() {
-        return topicView.getData();
+    protected void refreshView() {
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(adapter);
     }
 
     @Override
-    protected void initView() {
-        topicView = new TopicView((BaseActivity) getActivity(), listView);
+    protected boolean getData() {
+        return adapter.getData();
+    }
+
+    @Override
+    protected void init() {
+        adapter = new TopicAdapter(null, getMainActivity());
     }
 
     @Override
     public void show() {
-        topicView.show();
-    }
-
-    @Override
-    public void hide() {
+        if (!isFirstShow && adapter.getData()) {
+            getMainActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (adapter != null) {
+                        adapter.notifyDataSetInvalidated();
+                    }
+                }
+            });
+        }
+        isFirstShow = false;
     }
 
     @Override

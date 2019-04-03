@@ -42,18 +42,22 @@ public class HandpickFragment extends BaseFragment {
     }
 
     @Override
+    protected void refreshView() {
+        AreaAdapter areaAdapter = new AreaAdapter((BaseActivity) getActivity(), TestData.getinfos());
+        areaList.setAdapter(areaAdapter);
+        ((BaseActivity) getActivity()).setTvLeftTitle("测试商家");
+    }
+
+    @Override
     protected boolean getData() {
         return true;
     }
 
 
     @Override
-    protected void initView() {
+    protected void init() {
         popRootView = View.inflate(getActivity(), R.layout.common_list, null);
         areaList = popRootView.findViewById(R.id.com_lv);// 初始化商圈列
-        AreaAdapter areaAdapter = new AreaAdapter((BaseActivity) getActivity(), TestData.getinfos());
-        areaList.setAdapter(areaAdapter);
-        ((BaseActivity) getActivity()).setTvLeftTitle("测试商家");
     }
 
     @Override
@@ -93,7 +97,7 @@ public class HandpickFragment extends BaseFragment {
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void initPopupWindow() {
-        int width = activity.getTvLeftTitle().getWidth() + 2;// 获得右边商圈文字的大小
+        int width = getMainActivity().getTvLeftTitle().getWidth() + 2;// 获得右边商圈文字的大小
         LogUtils.e("width " + width);
         pw = new PopupWindow(popRootView, width, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         // 设置pw如果点击外面区域，便关闭。
@@ -105,12 +109,12 @@ public class HandpickFragment extends BaseFragment {
 
             }
         });
-        pw.showAsDropDown(activity.getTvLeftTitle(), -1, 0);
+        pw.showAsDropDown(getMainActivity().getTvLeftTitle(), -1, 0);
         if (Build.VERSION.SDK_INT >= 11) {
-            activity.getWindow().getDecorView().getRootView().addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            getMainActivity().getWindow().getDecorView().getRootView().addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
                 @Override
                 public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                    activity.getWindow().getDecorView().getRootView().removeOnLayoutChangeListener(this);
+                    getMainActivity().getWindow().getDecorView().getRootView().removeOnLayoutChangeListener(this);
                     if (oldBottom < bottom) {
                         pw.dismiss();
                     }

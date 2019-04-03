@@ -5,6 +5,7 @@ package com.yuepang.yuepang.Util;
  */
 
 public class LatLng {
+
     public double longitude;
 
     public double latitude;

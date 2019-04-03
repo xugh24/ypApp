@@ -7,12 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.yuepang.yuepang.Util.AnnotateUtil;
 import com.yuepang.yuepang.activity.BaseActivity;
+import com.yuepang.yuepang.activity.MainActivity;
 import com.yuepang.yuepang.widget.LoadingFrame;
 
 /**
+ * Fragment 基类处理方法
  */
 
 public abstract class BaseFragment extends Fragment implements View.OnClickListener {
@@ -20,8 +21,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     protected View contentView;
 
     protected LoadingFrame loadingFrame;
-
-    protected BaseActivity activity;
 
     public BaseFragment() {
 
@@ -35,10 +34,11 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (contentView == null) {
-            contentView = inflater.inflate(getLyId(), container, false);
-            AnnotateUtil.initBindView(this, contentView);
+        if (contentView == null) {// 创建View
+            contentView = inflater.inflate(getLyId(), container, false); // 绑定基类View
+            AnnotateUtil.initBindView(this, contentView);// 绑架组件
         }
+        init(); // 初始化子类View
         loadingFrame = new LoadingFrame((BaseActivity) getActivity()) {
             @Override
             public boolean load(View loadingView) {
@@ -47,7 +47,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
             @Override
             public View createLoadedView() {
-                initView();
+                refreshView();
                 return contentView;
             }
         };
@@ -55,24 +55,47 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         return loadingFrame;
     }
 
-    public void setActivity(BaseActivity activity) {
-        this.activity = activity;
-    }
 
+    /**
+     * 刷新View
+     */
+    protected abstract void refreshView();
+
+    /**
+     * 获得服务端数据
+     *
+     * @return true 获得成功 false 获得失败
+     */
     protected abstract boolean getData();
 
-    protected abstract void initView();
+    /**
+     * 初始化View
+     */
+    protected abstract void init();
 
-    public abstract void show();
+    /**
+     * 展示Frament 调用的的方法
+     */
+    public  void show(){
 
-    public abstract void hide();
+    }
+
+    /**
+     * 隐藏Frament 调用的的方法
+     */
+    public  void hide(){
+
+    }
 
     public abstract int getLyId();
-
 
 
     @Override
     public void onClick(View v) {
 
+    }
+
+    public MainActivity getMainActivity(){
+        return (MainActivity) getActivity();
     }
 }

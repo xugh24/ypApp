@@ -44,12 +44,17 @@ public class MineFragment extends BaseFragment {
     }
 
     @Override
+    protected void refreshView() {
+
+    }
+
+    @Override
     protected boolean getData() {
         return true;
     }
 
     @Override
-    protected void initView() {
+    protected void init() {
 
     }
 
@@ -81,7 +86,6 @@ public class MineFragment extends BaseFragment {
             case R.id.rl_uc_3:
                 Intent intent3 = new Intent(getContext(), MyTopicActivity.class);
                 startActivity(intent3);
-
                 break;
             case R.id.rl_uc_4:
                 Intent intent4 = new Intent(getContext(), MylikeActivity.class);
