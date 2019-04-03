@@ -7,10 +7,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 
-import com.yuepang.yuepang.Util.AnimUtils;
 import com.yuepang.yuepang.Util.LogUtils;
 
 
@@ -71,7 +72,12 @@ public class CustomImageView extends ImageView {
     }
 
     protected Animation getFadeInAnimation() {
-        return AnimUtils.makeFadeInAnim();
+            Animation anim;
+            // Create a fade in alpha animation
+            anim = new AlphaAnimation(0f, 1f);
+            anim.setDuration(300);
+            anim.setInterpolator(new AccelerateInterpolator());
+            return anim;
     }
 
     public void cancelAnimation() {

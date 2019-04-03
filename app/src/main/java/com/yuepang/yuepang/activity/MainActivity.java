@@ -128,10 +128,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case 2:
                 setTitle("话题");
                 setRightTitle("创建");
+                setTvLeftTitle(null);
                 break;
             case 3:
                 setTitle("我的资料");
                 setRightTitle(null);
+                setTvLeftTitle(null);
                 break;
         }
     }

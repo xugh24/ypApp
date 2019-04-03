@@ -1,9 +1,11 @@
-package com.yuepang.yuepang.Util;
+package com.yuepang.yuepang.location;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.widget.Toast;
+
+import com.yuepang.yuepang.Util.AppManage;
 
 /**
  * Created by xugh on 2019/4/2.

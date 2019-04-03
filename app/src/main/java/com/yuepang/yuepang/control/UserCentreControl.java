@@ -6,6 +6,7 @@ import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.FirstActivity;
 import com.yuepang.yuepang.db.YuePangExternalDB;
 import com.yuepang.yuepang.interFace.LoginSuccess;
+import com.yuepang.yuepang.location.LatLng;
 import com.yuepang.yuepang.location.Location;
 import com.yuepang.yuepang.model.UserInfo;
 
@@ -23,15 +24,8 @@ public class UserCentreControl {
 
     private String token = ""; // 用户登录token
 
-    /**
-     * 用户纬度信息
-     */
-    private double latitude;
+    private LatLng latLng;
 
-    /**
-     * 用户经度信息
-     */
-    private double longitude;
 
     private List<LoginSuccess> loginSuccesses = new ArrayList<>();
 
@@ -100,19 +94,11 @@ public class UserCentreControl {
         this.token = token;
     }
 
-    public double getLatitude() {
-        return latitude;
-    }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
+    public LatLng getLatLng() {
+        if (latLng == null) {
+            latLng = new LatLng(0, 0);
+        }
+        return latLng;
     }
 }

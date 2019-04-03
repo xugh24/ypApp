@@ -6,6 +6,8 @@ import org.json.JSONObject;
 
 /**
  * Created by xugh on 2019/3/27.
+ *
+ * 获得验证码接口
  */
 
 public class GetCodeProtocol extends JsonProtocol {

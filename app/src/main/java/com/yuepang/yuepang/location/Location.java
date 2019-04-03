@@ -91,10 +91,10 @@ public class Location {
             String coorType = location.getCoorType();
             //获取定位类型、定位错误返回码，具体信息可参照类参考中BDLocation类中的说明
             int errorCode = location.getLocType();
-            UserCentreControl.getInstance().setLatitude(latitude);
-            UserCentreControl.getInstance().setLongitude(longitude);
+            UserCentreControl.getInstance().getLatLng().latitude = latitude;
+            UserCentreControl.getInstance().getLatLng().longitude = longitude;
+            LogUtils.e("位置信息获得结果  ： " + UserCentreControl.getInstance().getLatLng().toString());
             LogUtils.e("位置信息获得结果  ： " + errorCode);
-
         }
     }
 }

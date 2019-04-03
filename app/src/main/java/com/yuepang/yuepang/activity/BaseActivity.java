@@ -131,6 +131,8 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         }
     }
 
+
+
     protected boolean isShowBack() {
         return true;
     }

@@ -4,6 +4,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yuepang.yuepang.activity.BaseActivity;
+import com.yuepang.yuepang.async.CommonTaskExecutor;
+import com.yuepang.yuepang.model.GoodInfo;
+import com.yuepang.yuepang.protocol.HandpickInfoProtocol;
 
 import java.util.List;
 
@@ -12,12 +15,32 @@ import java.util.List;
  */
 
 public class GoodAdapter extends YueBaseAdapter {
-    public GoodAdapter(BaseActivity activity, List<?> list) {
-        super(activity, list);
+
+    private List<GoodInfo> goodInfos;
+
+    private int areaId;
+
+    public GoodAdapter(BaseActivity activity) {
+        super(activity);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         return null;
+    }
+
+    private boolean getData() {
+
+        CommonTaskExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                HandpickInfoProtocol protocol = new HandpickInfoProtocol(activity, areaId);
+                if (protocol.request() == 200){
+
+                }
+            }
+        });
+
+        return false;
     }
 }

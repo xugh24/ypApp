@@ -9,10 +9,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Environment;
 import android.text.TextUtils;
 
-import com.yuepang.yuepang.Util.FileUtils;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.Util.SysUtils;
 import com.yuepang.yuepang.model.UserInfo;
@@ -42,7 +40,6 @@ public class YuePangExternalDB {
 
     public static String FIELD_ID = "id";//身份证号
 
-    private static final String TAG = "db_tag";
 
     public static YuePangExternalDB sInstance;
 

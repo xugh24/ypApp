@@ -21,14 +21,16 @@ public class MyTopicActivity extends BaseLoadFrameActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         adapter = new TopicAdapter(null,this);
+        super.onCreate(savedInstanceState);
     }
 
     @Override
     protected View getMainView() {
         view = View.inflate(this, R.layout.common_list, null);
         recordLv = view.findViewById(R.id.com_lv);
+        recordLv.setAdapter(adapter);
+        recordLv.setOnItemClickListener(adapter);
         return view;
     }
 

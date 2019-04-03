@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 获得话题接口
  */
 
 public class GetTopicProtocol extends JsonProtocol {

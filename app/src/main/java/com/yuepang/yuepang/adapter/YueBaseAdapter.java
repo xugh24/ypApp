@@ -24,9 +24,16 @@ public abstract class YueBaseAdapter extends BaseAdapter {
         this.list = list;
     }
 
+    public YueBaseAdapter(BaseActivity activity) {
+        this.activity = activity;
+    }
+
     @Override
     public int getCount() {
-        return list.size();
+        if (list != null) {
+            return list.size();
+        }
+        return 0;
     }
 
     @Override
@@ -36,10 +43,13 @@ public abstract class YueBaseAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return list.get(position);
+        if (list != null) {
+            return list.get(position);
+        }
+        return null;
     }
 
-    public void setList(List<?> list){
+    public void setList(List<?> list) {
         this.list = list;
     }
 

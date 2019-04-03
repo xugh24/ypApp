@@ -24,68 +24,6 @@ public class SysUtils {
 
     public static final String YUEPANG = "yuepang";
 
-
-    public static String[] getStoragePath(Object storageManager, boolean withSlash) {
-        String sdcardPath = null;
-        String internalPath = null;
-        if (Build.VERSION.SDK_INT >= 14) {
-            Object sm = storageManager;
-            if (sm != null) {
-                Object[] svArray = ReflectUtils.invoke(Object[].class, sm.getClass(), "getVolumeList", null,
-                        sm, null);
-                if (svArray != null) {
-                    for (int i = 0; i < svArray.length; i++) {
-                        String path = ReflectUtils.invoke(String.class, svArray[i].getClass(), "getPath",
-                                null, svArray[i], null);
-                        if (!FileUtils.isWriteable(path)) {
-                            LogUtils.w("path read only:" + path);
-                            continue;
-                        }
-                        LogUtils.i("path:" + path);
-                        if ((ReflectUtils.invoke(boolean.class, svArray[i].getClass(), "isRemovable", null,
-                                svArray[i], null))) {
-                            sdcardPath = path + (withSlash ? "/" : "");
-                        } else {
-                            internalPath = path + (withSlash ? "/" : "");
-                        }
-                    }
-                }
-            }
-        } else if (isSDCardAvailable()) {
-            sdcardPath = Environment.getExternalStorageDirectory().getAbsolutePath() + (withSlash ? "/" : "");
-            if (!TextUtils.isEmpty(sdcardPath)) {
-                if (!FileUtils.isWriteable(sdcardPath) || getAvailableSpace(sdcardPath) < 1024) {
-                    sdcardPath = null;
-                }
-            }
-
-        }
-        LogUtils.i("sdcardPath:" + sdcardPath);
-        LogUtils.i("internalPath:" + internalPath);
-        return new String[]{sdcardPath, internalPath};
-    }
-
-    private static StatFs sStatFs = null;
-
-    public static long getAvailableSpace(String path) {
-        long availableSpace = -1l;
-        if (path == null) {
-            return availableSpace;
-        }
-        try {
-            if (sStatFs == null)
-                sStatFs = new StatFs(path);
-            else
-                sStatFs.restat(path);
-            availableSpace = sStatFs.getAvailableBlocks() * (long) sStatFs.getBlockSize();
-        } catch (Exception e) {
-            LogUtils.e(e);
-        }
-
-        return availableSpace;
-    }
-
-
     /**
      * @return 判断手机存储是否可用，可用返回true
      */

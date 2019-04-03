@@ -9,6 +9,8 @@ import java.util.List;
 
 /**
  * Created by xugh on 2019/3/27.
+ *
+ * 获得买单记录接口
  */
 
 public class GetRecordProtocol extends JsonProtocol {
