@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/tv_success"
+        android:layout_width="match_parent"
+        android:layout_height="86.6dp"
+        android:background="@color/colorwhite"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="支付成功"
+        android:textColor="#343434"
+        android:textSize="24.4dp" />
+
+
+    <TextView
+        android:id="@+id/tv_tel"
+        style="@style/tv_4"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:text="充值账号：" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#eeeeee" />
+
+
+    <TextView
+        android:id="@+id/tv_orderid"
+        style="@style/tv_4"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:text="订  单  号：" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#eeeeee" />
+
+    <TextView
+        android:id="@+id/tv_price"
+        style="@style/tv_4"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:text="支付金额：" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#eeeeee" />
+
+    <TextView
+        android:id="@+id/tv_medname"
+        style="@style/tv_4"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:text="商家名称：" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#00eeeeee" />
+
+    <Button
+        android:id="@+id/btn_back"
+        style="@style/syt_btn_green"
+        android:layout_width="match_parent"
+        android:layout_margin="13.3dp"
+        android:text="返回" />
+
+
+</LinearLayout>

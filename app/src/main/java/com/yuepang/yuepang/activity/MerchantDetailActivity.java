@@ -1,5 +1,6 @@
 package com.yuepang.yuepang.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -10,6 +11,9 @@ import android.widget.TextView;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.Util.SysUtils;
+import com.yuepang.yuepang.dialog.CallDialog;
+import com.yuepang.yuepang.dialog.MapDialog;
+import com.yuepang.yuepang.location.LatLng;
 import com.yuepang.yuepang.model.MerchantInfo;
 
 /**
@@ -32,10 +36,10 @@ public class MerchantDetailActivity extends BaseActivity {
     @BindView(id = R.id.mer_msg)
     private TextView tvMsg;
 
-    @BindView(id = R.id.mer_loction)
+    @BindView(id = R.id.mer_loction, click = true)
     private TextView tvloction;
 
-    @BindView(id = R.id.mer_tel,click = true)
+    @BindView(id = R.id.mer_tel, click = true)
     private TextView tvTel;
 
     private MerchantInfo merchantInfo;
@@ -66,9 +70,15 @@ public class MerchantDetailActivity extends BaseActivity {
     public void onClick(View v) {
         super.onClick(v);
         if (v == btnBuy) {
-            startActivity(PayActivity.class);
-        }else if(v == tvTel){
-            SysUtils.call(this,merchantInfo.getTel());
+            Intent intent = new Intent();
+            intent.putExtra(MERCHANTINFO,merchantInfo);
+            intent.setClass(this,PayActivity.class);
+            startActivity(intent);
+        } else if (v == tvTel) {
+            new CallDialog(this, merchantInfo.getTel()).show();
+        } else if (tvloction == v) {
+            LatLng latLng = new LatLng(merchantInfo.getLatitude(), merchantInfo.getLongitude());
+            new MapDialog(this, latLng, "西小口").show();
         }
     }
 }

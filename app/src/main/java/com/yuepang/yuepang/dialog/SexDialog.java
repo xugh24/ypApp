@@ -11,7 +11,6 @@ import com.yuepang.yuepang.widget.SDKdialog;
 
 public class SexDialog extends SDKdialog {
 
-    private PersonalDialog.CallBack callBack;
 
     public SexDialog(final BaseActivity activity, final PersonalDialog.CallBack callBack) {
         super(activity);

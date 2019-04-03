@@ -2,6 +2,7 @@ package com.yuepang.yuepang.test;
 
 
 import com.yuepang.yuepang.model.AreaInfo;
+import com.yuepang.yuepang.model.MerchantInfo;
 import com.yuepang.yuepang.model.RecordInfo;
 import com.yuepang.yuepang.model.TopicInfo;
 import com.yuepang.yuepang.model.TopicItemInfo;
@@ -63,6 +64,29 @@ public class TestData {
         list.add(info2);
         list.add(info3);
         list.add(info4);
+        return list;
+    }
+
+    public static List<MerchantInfo> getMerinfos() {
+        List<MerchantInfo> list = new ArrayList<>();
+        MerchantInfo info = new MerchantInfo();
+        info.setDetails("测试商家介绍1xxxxxxxxxx");
+        info.setDiscount(0.7f);
+        info.setLongitude(116.35424366614518);
+        info.setLatitude(40.041263057322254);
+        info.setName("测试商家名称");
+        info.setLocation("测试商家地址");
+        info.setTel("1234567");
+        MerchantInfo info1 = new MerchantInfo();
+        info1.setDetails("测试商家介绍2xxxxxxxxxx");
+        info1.setDiscount(0.8f);
+        info1.setLongitude(116.36043915298258);
+        info1.setLatitude(40.034671107747194);
+        info1.setName("测试商家名称2");
+        info1.setLocation("测试商家地址2");
+        info1.setTel("01234567");
+        list.add(info);
+        list.add(info1);
         return list;
     }
 

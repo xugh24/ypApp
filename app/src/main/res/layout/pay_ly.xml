@@ -8,54 +8,63 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="38dp"
         android:background="@drawable/bg_input_normal"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <TextView
+            style="@style/tv_2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="请输入消费金额"
-            android:textColor="#494949"
-            android:textSize="18dp" />
+            android:text="请输入消费金额" />
 
         <EditText
             android:id="@+id/ed_price"
             style="@style/syt_ed1"
             android:layout_width="wrap_content"
+            android:layout_marginRight="12dp"
             android:background="@null"
             android:gravity="center_vertical|right"
             android:hint="请向店员询问金额"
+            android:maxLength="4"
             android:inputType="number"
             android:textSize="12dp" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tv_dis"
+        style="@style/tv_2"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:text="无折扣"
+        android:textColor="@color/c7" />
+
     <CheckBox
         android:id="@+id/radio"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:button="@drawable/bg_check"
-        android:text="  输入不参与优惠的金额（如酒水、套餐）"
+        android:text=" 输入不参与优惠的金额（如酒水、套餐）"
         android:textColor="#494949" />
 
 
     <LinearLayout
         android:id="@+id/ll_nodis"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/bg_input_normal"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:visibility="gone">
+        android:visibility="invisible">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="请输入不参与优惠的金额"
-            android:textColor="#494949"
-            android:textSize="18dp" />
+            android:text="请输入不参与优惠的金额" />
 
         <EditText
             android:id="@+id/ed_nodisprice"
@@ -63,7 +72,9 @@
             android:layout_width="wrap_content"
             android:background="@null"
             android:gravity="center_vertical|right"
+            android:layout_marginRight="10dp"
             android:hint="请向店员询问金额"
+            android:maxLength="4"
             android:inputType="number"
             android:textSize="12dp" />
     </LinearLayout>
@@ -71,11 +82,12 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:visibility="visible" />
 
     <Button
         android:id="@+id/btn_pay"
-        style="@style/syt_btn_org"
+        style="@style/syt_btn_green"
         android:layout_width="match_parent"
         android:layout_gravity="bottom"
         android:text="确认支付" />

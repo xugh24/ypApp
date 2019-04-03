@@ -32,6 +32,7 @@ public class MapUtils {
 
     /**
      * BD-09 坐标转换成 GCJ-02 坐标
+     *
      */
     public static LatLng BD2GCJ(LatLng bd) {
         double x = bd.longitude - 0.0065, y = bd.latitude - 0.006;
@@ -59,7 +60,7 @@ public class MapUtils {
     /**
      * 跳转百度地图
      */
-    private void goToBaiduMap(Context context, LatLng latLng, String mAddressStr) {
+    public static void goToBaiduMap(Context context, LatLng latLng, String mAddressStr) {
         if (!AppManage.isInstalled("com.baidu.BaiduMap", context)) {
             Toast.makeText(context, "请先安装百度地图客户端", Toast.LENGTH_SHORT).show();
             return;
@@ -77,7 +78,7 @@ public class MapUtils {
     /**
      * 跳转高德地图
      */
-    private void goToGaodeMap(Context context, LatLng latLng, String mAddressStr) {
+    public static void goToGaodeMap(Context context, LatLng latLng, String mAddressStr) {
         if (!AppManage.isInstalled("com.autonavi.minimap", context)) {
             Toast.makeText(context, "请先安装高德地图客户端", Toast.LENGTH_SHORT).show();
             return;

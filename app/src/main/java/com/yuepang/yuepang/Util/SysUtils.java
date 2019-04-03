@@ -125,7 +125,6 @@ public class SysUtils {
             LogUtils.e(" Android hasNetwork 网络异常");
             return false;
         } else {
-
             LogUtils.e(" Android hasNetwork 网络良好");
         }
         return true;

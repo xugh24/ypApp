@@ -24,6 +24,10 @@ public class MerchantInfo implements Parcelable {
 
     private float discount;// 折扣
 
+    public MerchantInfo(){
+
+    }
+
 
     protected MerchantInfo(Parcel in) {
         name = in.readString();

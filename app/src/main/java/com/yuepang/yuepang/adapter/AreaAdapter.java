@@ -3,12 +3,15 @@ package com.yuepang.yuepang.adapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.AnnotateUtil;
 import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.activity.BaseActivity;
+import com.yuepang.yuepang.interFace.AreaInterFace;
+import com.yuepang.yuepang.interFace.CutAreaInterFace;
 import com.yuepang.yuepang.model.AreaInfo;
 
 import java.util.List;
@@ -17,13 +20,16 @@ import java.util.List;
  * Created by xugh on 2019/3/26.
  */
 
-public class AreaAdapter extends YueBaseAdapter {
+public class AreaAdapter extends YueBaseAdapter implements AdapterView.OnItemClickListener {
 
     private List<AreaInfo> areaInfos;
 
-    public AreaAdapter(BaseActivity activity, List<AreaInfo> list) {
+    private CutAreaInterFace cutAreaInterFace;
+
+    public AreaAdapter(BaseActivity activity, List<AreaInfo> list, CutAreaInterFace cutAreaInterFace) {
         super(activity, list);
         this.areaInfos = list;
+        this.cutAreaInterFace = cutAreaInterFace;
     }
 
 
@@ -41,9 +47,15 @@ public class AreaAdapter extends YueBaseAdapter {
         return convertView;
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        cutAreaInterFace.cutAreaInfo(areaInfos.get(position));
+    }
+
     private final class ViewHolder {
         @BindView(id = R.id.tv_name)
         TextView name;
+
         public ViewHolder(View view) {
             AnnotateUtil.initBindView(this, view);
         }

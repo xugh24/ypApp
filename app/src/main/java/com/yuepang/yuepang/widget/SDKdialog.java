@@ -2,6 +2,7 @@ package com.yuepang.yuepang.widget;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -51,6 +52,16 @@ public class SDKdialog extends Dialog implements View.OnClickListener {
         msg.setVisibility(View.GONE);
         edInput.setVisibility(View.GONE);
         mainView.setVisibility(View.VISIBLE);
+    }
+
+    public void setMsg(String stmsg){
+        if(TextUtils.isEmpty(stmsg)){
+            msg.setVisibility(View.GONE);
+        }else {
+            msg.setVisibility(View.VISIBLE);
+            msg.setText(stmsg);
+        }
+
     }
 
     public final void setTitle(CharSequence title) {

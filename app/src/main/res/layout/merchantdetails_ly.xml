@@ -14,7 +14,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="38dp"
         android:layout_marginTop="5dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -30,10 +30,17 @@
         <Button
             android:id="@+id/btn_buy"
             style="@style/syt_btn_green"
-            android:layout_width="80dp"
-            android:layout_height="37dp"
-            android:text="买单" />
+            android:layout_width="60dp"
+            android:layout_height="26dp"
+            android:layout_marginRight="8dp"
+            android:text="买单"
+            android:textSize="@dimen/f3" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#e2e2e2" />
 
     <TextView
         android:id="@+id/mer_msg"
@@ -42,12 +49,22 @@
         android:layout_height="38dp"
         android:text="悦旁测试商家提供美食服务" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#e2e2e2" />
+
     <TextView
         android:id="@+id/mer_loction"
         style="@style/tv_3"
         android:layout_width="match_parent"
         android:layout_height="38dp"
         android:text="地址：南京XXX" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#e2e2e2" />
 
     <TextView
         android:id="@+id/mer_tel"
