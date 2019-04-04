@@ -72,10 +72,9 @@ public class MerchantDetailActivity extends BaseActivity {
         if (v == btnBuy) {
             toPay(merchantInfo);
         } else if (v == tvTel) {
-            new CallDialog(this, merchantInfo.getTel()).show();
+            showCallDialog( merchantInfo.getTel());
         } else if (tvloction == v) {
-            LatLng latLng = new LatLng(merchantInfo.getLatitude(), merchantInfo.getLongitude());
-            new MapDialog(this, latLng, "西小口").show();
+            showMapDialog(merchantInfo);
         }
     }
 }

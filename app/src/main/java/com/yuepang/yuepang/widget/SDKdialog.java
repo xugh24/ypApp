@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
+import com.yuepang.yuepang.Util.SysUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 
 /**
@@ -38,13 +40,16 @@ public class SDKdialog extends Dialog implements View.OnClickListener {
         getWindow().setBackgroundDrawableResource(R.drawable.nothing);
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getWindow().setDimAmount(0.7f);
+        getWindow().getDecorView().setPadding(SysUtils.dip2px(activity,24), 0, SysUtils.dip2px(activity,24), 0);
         mTitle = (TextView) mContentView.findViewById(R.id.dialog_tiltle);
         edInput = mContentView.findViewById(R.id.ed_dialog_msg);
         mPositiveBtn = (Button) mContentView.findViewById(R.id.dialog_btnl);
         mNegativeBtn = (Button) mContentView.findViewById(R.id.dialog_btnr);
         msg = mContentView.findViewById(R.id.tv_dialog_msg);
         mainView = mContentView.findViewById(R.id.ll_content);
-        setContentView(mContentView);
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams
+                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        setContentView(mContentView, params);
     }
 
     public void setView(View view) {
@@ -54,10 +59,10 @@ public class SDKdialog extends Dialog implements View.OnClickListener {
         mainView.setVisibility(View.VISIBLE);
     }
 
-    public void setMsg(String stmsg){
-        if(TextUtils.isEmpty(stmsg)){
+    public void setMsg(String stmsg) {
+        if (TextUtils.isEmpty(stmsg)) {
             msg.setVisibility(View.GONE);
-        }else {
+        } else {
             msg.setVisibility(View.VISIBLE);
             msg.setText(stmsg);
         }
@@ -72,8 +77,8 @@ public class SDKdialog extends Dialog implements View.OnClickListener {
         return edInput.getText().toString().trim();
     }
 
-    public void hideEdInput(){
-        if(edInput!=null){
+    public void hideEdInput() {
+        if (edInput != null) {
             edInput.setVisibility(View.GONE);
         }
     }

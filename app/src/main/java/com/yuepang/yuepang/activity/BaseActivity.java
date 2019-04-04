@@ -19,6 +19,9 @@ import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.AnnotateUtil;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.control.UserCentreControl;
+import com.yuepang.yuepang.dialog.CallDialog;
+import com.yuepang.yuepang.dialog.MapDialog;
+import com.yuepang.yuepang.location.LatLng;
 import com.yuepang.yuepang.model.MerchantInfo;
 import com.yuepang.yuepang.model.UserInfo;
 import com.yuepang.yuepang.widget.SDKLoadingDialog;
@@ -79,13 +82,13 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         }
         rlBar.setVisibility(isShowBar() ? View.VISIBLE : View.GONE);
         ivBack.setVisibility(isShowBack() ? View.VISIBLE : View.GONE);
-        LogUtils.e("getContentViewId()--- " +getContentViewId());
+        LogUtils.e("getContentViewId()--- " + getContentViewId());
         if (getContentViewId() != -1) {
             contentView = View.inflate(this, getContentViewId(), null);
             AnnotateUtil.initBindView(this, contentView);// 绑定子类View
             llMain.addView(contentView, -1, -1);
-        }else{
-            if(getContentView()!=null){
+        } else {
+            if (getContentView() != null) {
                 contentView = getContentView();
                 llMain.addView(contentView, -1, -1);
             }
@@ -134,13 +137,12 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         }
     }
 
-    public void toPay(MerchantInfo merchantInfo){
+    public void toPay(MerchantInfo merchantInfo) {
         Intent intent = new Intent();
-        intent.putExtra(MERCHANTINFO,merchantInfo);
-        intent.setClass(this,PayActivity.class);
+        intent.putExtra(MERCHANTINFO, merchantInfo);
+        intent.setClass(this, PayActivity.class);
         startActivity(intent);
     }
-
 
 
     protected boolean isShowBack() {
@@ -260,6 +262,15 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
                 }
             }
         });
+    }
+
+    public void showCallDialog(String tel) {
+        new CallDialog(this, tel).show();
+    }
+
+    public void showMapDialog(MerchantInfo info) {
+        LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
+        new MapDialog(this, latLng, "西小口").show();
     }
 
 

@@ -12,6 +12,8 @@ import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.adapter.AreaAdapter;
 import com.yuepang.yuepang.adapter.GoodAdapter;
 
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+
 /**
  * 精选页面和商家页面的商圈选择View
  * 使用Android PopupWindow类实现
@@ -25,10 +27,6 @@ import com.yuepang.yuepang.adapter.GoodAdapter;
 
 public class AreaPopupWindow extends PopupWindow {
 
-    /**
-     * PopupWindow 参考View
-     */
-    private View referenceView;
 
     private BaseActivity activity;
 
@@ -36,10 +34,9 @@ public class AreaPopupWindow extends PopupWindow {
 
     private ListView areaList;
 
-    public AreaPopupWindow(final BaseActivity activity, View referenceView) {
-        super(referenceView.getWidth() + 2, ViewGroup.LayoutParams.WRAP_CONTENT);
+    public AreaPopupWindow(final BaseActivity activity) {
         this.activity = activity;
-        this.referenceView = referenceView;
+        setHeight(WRAP_CONTENT);
         initView();
         setContentView(popRootView);
         setOutsideTouchable(true);
@@ -57,7 +54,8 @@ public class AreaPopupWindow extends PopupWindow {
         }
     }
 
-    public void show() {
+    public void show(View referenceView) {
+        setWidth(referenceView.getWidth() + 2);
         showAsDropDown(referenceView, -1, 0);
     }
 
@@ -66,9 +64,9 @@ public class AreaPopupWindow extends PopupWindow {
         areaList = popRootView.findViewById(R.id.com_lv);// 初始化商圈列
     }
 
-    public void setAdapter(AreaAdapter areaAdapter){
+    public void setAdapter(AreaAdapter areaAdapter) {
         areaList.setAdapter(areaAdapter);
         areaList.setOnItemClickListener(areaAdapter);
-        areaAdapter.notifyDataSetChanged();
+
     }
 }

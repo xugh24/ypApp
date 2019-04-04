@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
+import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.MerchantDetailActivity;
 import com.yuepang.yuepang.adapter.AreaAdapter;
@@ -64,7 +65,6 @@ public class HandpickFragment extends BaseFragment implements AreaInterFace, Cut
 
     @Override
     protected void refreshView() {
-        ((BaseActivity) getActivity()).setTvLeftTitle("测试商家");
         ivNot.setVisibility(View.GONE);
         goodLv.setVisibility(View.VISIBLE);
     }
@@ -85,7 +85,7 @@ public class HandpickFragment extends BaseFragment implements AreaInterFace, Cut
     @Override
     protected void init() {
         // 新建 View
-        areaPopupWindow = new AreaPopupWindow(getMainActivity(), getMainActivity().getTvLeftTitle());
+        areaPopupWindow = new AreaPopupWindow(getMainActivity());
         // 新建适配器
         goodAdapter = new GoodAdapter(getMainActivity(), this);
         goodLv.setAdapter(goodAdapter);
@@ -93,8 +93,9 @@ public class HandpickFragment extends BaseFragment implements AreaInterFace, Cut
     }
 
     public void showAreaPop() {
+        LogUtils.e("showAreaPop");
         if (areaPopupWindow != null) {
-            areaPopupWindow.show();
+            areaPopupWindow.show(getMainActivity().getTvLeftTitle());
         }
     }
 
@@ -123,9 +124,10 @@ public class HandpickFragment extends BaseFragment implements AreaInterFace, Cut
 
 
     @Override
-    public void callAreaInfo(List<AreaInfo> areaInfos, List<MerchantInfo> merchantInfos, AreaInfo currentInfo) {
+    public void callAreaInfo(List<AreaInfo> areaInfos, List<MerchantInfo> merchantInfos, final AreaInfo currentInfo) {
         areaAdapter = new AreaAdapter((BaseActivity) getActivity(), areaInfos, this);
         areaPopupWindow.setAdapter(areaAdapter);
+        areaAdapter.notifyDataSetChanged();
         info1 = merchantInfos.get(0);
         info2 = merchantInfos.get(1);
         getMainActivity().runOnUiThread(new Runnable() {
@@ -133,6 +135,7 @@ public class HandpickFragment extends BaseFragment implements AreaInterFace, Cut
             public void run() {
                 tvName1.setText(info1.getName());
                 tvName2.setText(info2.getName());
+                getMainActivity().setTvLeftTitle(currentInfo.getName());
             }
         });
     }
@@ -145,4 +148,5 @@ public class HandpickFragment extends BaseFragment implements AreaInterFace, Cut
         getMainActivity().setTvLeftTitle(info.getName());
         goodAdapter.refresh(info);
     }
+
 }

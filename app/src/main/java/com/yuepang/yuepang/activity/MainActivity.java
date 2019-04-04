@@ -12,6 +12,7 @@ import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.adapter.AreaAdapter;
 import com.yuepang.yuepang.adapter.MyFragmentPagerAdapter;
+import com.yuepang.yuepang.dialog.OutDialog;
 import com.yuepang.yuepang.fragment.BaseFragment;
 import com.yuepang.yuepang.fragment.HandpickFragment;
 import com.yuepang.yuepang.fragment.MerchantFragment;
@@ -65,8 +66,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private List<BaseFragment> fragmentList;
 
     private List<ImageView> ivs = new ArrayList<>();
-
-
 
 
     @Override
@@ -143,6 +142,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void clikLeftTv() {
+        LogUtils.e("-----viewPager.getCurrentItem()----" + viewPager.getCurrentItem());
         if (viewPager.getCurrentItem() == 0) {// 精选页面的点击商圈文字处理逻辑
             handpickFragment.showAreaPop();
         }
@@ -162,6 +162,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         return null;
     }
 
+    @Override
+    public void onBackPressed() {
+        new OutDialog(this).show();
+    }
 
     @Override
     public void onClick(View v) {
