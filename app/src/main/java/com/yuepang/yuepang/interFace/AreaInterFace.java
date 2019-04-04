@@ -11,5 +11,11 @@ import java.util.List;
  */
 
 public interface AreaInterFace {
-    public void callAreaInfo(List<AreaInfo> areaInfos, List<MerchantInfo> merchantInfos);
+    /**
+     * 获得当前商圈信息的通知接口
+     * @param areaInfos     所有商圈的数据
+     * @param merchantInfos 推荐商家的列表
+     * @param currentInfo   当前商圈
+     */
+    public void callAreaInfo(List<AreaInfo> areaInfos, List<MerchantInfo> merchantInfos, AreaInfo currentInfo);
 }

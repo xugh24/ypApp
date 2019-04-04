@@ -15,9 +15,13 @@ public class GoodInfo implements Parcelable {
 
     private String picUrl; // 商品图片地址
 
-    private String title;// 商品地址
+    private String title;// 商品名称
 
-    private String msg;// 商品名称
+    private String msg;// 商品简介
+
+    public GoodInfo(){
+
+    }
 
     protected GoodInfo(Parcel in) {
         info = in.readParcelable(MerchantInfo.class.getClassLoader());

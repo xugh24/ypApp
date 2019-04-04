@@ -2,7 +2,13 @@ package com.yuepang.yuepang.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.yuepang.yuepang.R;
+import com.yuepang.yuepang.Util.AnnotateUtil;
+import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
 import com.yuepang.yuepang.interFace.AreaInterFace;
@@ -17,7 +23,7 @@ import java.util.List;
  * Created by xugh on 2019/4/2.
  */
 
-public class GoodAdapter extends YueBaseAdapter {
+public class GoodAdapter extends YueBaseAdapter implements AdapterView.OnItemClickListener {
 
     private List<GoodInfo> goodInfos;
 
@@ -32,31 +38,67 @@ public class GoodAdapter extends YueBaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+        ViewHolder viewHolder = null;
+        if (convertView == null) {
+            convertView = View.inflate(activity, R.layout.good_item, null);
+            viewHolder = new ViewHolder(convertView);
+            convertView.setTag(viewHolder);
+        }
+        if (convertView.getTag() instanceof ViewHolder) {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+        return convertView;
     }
 
+
+    /**
+     * 请求数据
+     */
     public boolean getData() {
         CommonTaskExecutor.execute(new Runnable() {
             @Override
             public void run() {
                 HandpickInfoProtocol protocol = new HandpickInfoProtocol(activity, areaId);
 //                if (protocol.request() == 200) {
-//
+//                    // TODO 接口参数
 //                }
             }
         });
-        if (interFace != null) {
-            interFace.callAreaInfo(TestData.getinfos(), TestData.getMerinfos());
+        if (interFace != null) { // 通知主页面刷新View
+            interFace.callAreaInfo(TestData.getinfos(), TestData.getMerinfos(), TestData.getinfos().get(0));
         }
+        goodInfos = TestData.getGoods();
+        setList(goodInfos);
+        notifyDataSetChanged();
         return true;
     }
 
-    public void setInterFace(AreaInterFace interFace) {
-        this.interFace = interFace;
-    }
-
+    /**
+     * 切换商圈 重新刷新数据
+     */
     public void refresh(AreaInfo info) {
         areaId = info.getId();
         getData();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+    }
+
+    private final class ViewHolder {
+        @BindView(id = R.id.iv_good)
+        ImageView ivPic;
+
+        @BindView(id = R.id.goodname)
+        TextView name;
+
+        @BindView(id = R.id.goodmsg)
+        TextView msg;
+
+        public ViewHolder(View view) {
+            AnnotateUtil.initBindView(this, view);
+        }
     }
 }

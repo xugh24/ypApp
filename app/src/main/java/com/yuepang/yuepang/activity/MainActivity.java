@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.Util.LogUtils;
+import com.yuepang.yuepang.adapter.AreaAdapter;
 import com.yuepang.yuepang.adapter.MyFragmentPagerAdapter;
 import com.yuepang.yuepang.fragment.BaseFragment;
 import com.yuepang.yuepang.fragment.HandpickFragment;
@@ -64,6 +65,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private List<BaseFragment> fragmentList;
 
     private List<ImageView> ivs = new ArrayList<>();
+
+
 
 
     @Override

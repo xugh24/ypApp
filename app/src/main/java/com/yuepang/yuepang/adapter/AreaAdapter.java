@@ -26,10 +26,10 @@ public class AreaAdapter extends YueBaseAdapter implements AdapterView.OnItemCli
 
     private CutAreaInterFace cutAreaInterFace;
 
-    public AreaAdapter(BaseActivity activity, List<AreaInfo> list, CutAreaInterFace cutAreaInterFace) {
-        super(activity, list);
-        this.areaInfos = list;
+    public AreaAdapter(BaseActivity activity, List<AreaInfo> areaInfos, CutAreaInterFace cutAreaInterFace) {
+        super(activity, areaInfos);
         this.cutAreaInterFace = cutAreaInterFace;
+        this.areaInfos = areaInfos;
     }
 
 

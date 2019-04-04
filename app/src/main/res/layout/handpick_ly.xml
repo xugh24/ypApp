@@ -60,9 +60,9 @@
 
             <TextView
                 android:id="@+id/tv_merchant2"
+                style="@style/tv_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                style="@style/tv_2"
                 android:layout_margin="5dp"
                 android:text="测试商家2" />
         </LinearLayout>
@@ -77,17 +77,18 @@
         android:text="今日特卖" />
 
     <ImageView
+        android:id="@+id/iv_not"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/bg_2"/>
-
+        android:src="@drawable/bg_2" />
 
 
     <ListView
-    android:id="@+id/goodlist"
-    style="@style/sty_list"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp" />
+        android:id="@+id/goodlist"
+        style="@style/sty_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginLeft="10dp" />
 
 </LinearLayout>

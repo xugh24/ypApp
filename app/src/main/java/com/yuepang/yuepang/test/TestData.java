@@ -2,6 +2,7 @@ package com.yuepang.yuepang.test;
 
 
 import com.yuepang.yuepang.model.AreaInfo;
+import com.yuepang.yuepang.model.GoodInfo;
 import com.yuepang.yuepang.model.MerchantInfo;
 import com.yuepang.yuepang.model.RecordInfo;
 import com.yuepang.yuepang.model.TopicInfo;
@@ -16,6 +17,9 @@ import java.util.List;
 public class TestData {
 
 
+    /**
+     * 订单测试数据
+     */
     public static List<RecordInfo> getRecInfos() {
         List<RecordInfo> list = new ArrayList<>();
         RecordInfo info1 = new RecordInfo();
@@ -46,6 +50,9 @@ public class TestData {
     }
 
 
+    /**
+     * 商圈测试数据
+     */
     public static List<AreaInfo> getinfos() {
         List<AreaInfo> list = new ArrayList<>();
         AreaInfo info1 = new AreaInfo();
@@ -88,6 +95,32 @@ public class TestData {
         list.add(info);
         list.add(info1);
         return list;
+    }
+
+    public static List<GoodInfo> getGoods() {
+        List<GoodInfo> list = new ArrayList<>();
+        GoodInfo info1 = new GoodInfo();
+        info1.setTitle("商品名称1xxxxxx");
+        info1.setMsg("测试商品的介绍1xxxxx");
+        info1.setInfo(getMerinfos().get(0));
+        GoodInfo info2 = new GoodInfo();
+        info2.setTitle("商品名称2xxxxxx");
+        info2.setMsg("测试商品的介绍2xxxxx");
+        info1.setInfo(getMerinfos().get(0));
+        GoodInfo info3 = new GoodInfo();
+        info3.setTitle("商品名称3xxxxxx");
+        info3.setMsg("测试商品的介绍3xxxxx");
+        info1.setInfo(getMerinfos().get(1));
+        GoodInfo info4 = new GoodInfo();
+        info4.setTitle("商品名称4xxxxxx");
+        info4.setMsg("测试商品的介绍4xxxxx");
+        info1.setInfo(getMerinfos().get(1));
+        list.add(info1);
+        list.add(info2);
+        list.add(info3);
+        list.add(info4);
+        return list;
+
     }
 
 }

@@ -69,7 +69,6 @@ public class ForgetPwdActivity extends BaseActivity {
         if(v==btnSure){
             forgetPwdPresenter.resetPwd();
         }
-
     }
 
     public EditText getEdTel() {
