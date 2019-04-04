@@ -1,5 +1,6 @@
 package com.yuepang.yuepang.adapter;
 
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -10,6 +11,7 @@ import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.AnnotateUtil;
 import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.activity.BaseActivity;
+import com.yuepang.yuepang.activity.GoodDetailActivity;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
 import com.yuepang.yuepang.interFace.AreaInterFace;
 import com.yuepang.yuepang.model.AreaInfo;
@@ -83,8 +85,9 @@ public class GoodAdapter extends YueBaseAdapter implements AdapterView.OnItemCli
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-
+        Intent intent = new Intent(activity, GoodDetailActivity.class);
+        intent.putExtra(GoodDetailActivity.GOODINFO, goodInfos.get(position));
+        activity.startActivity(intent);
     }
 
     private final class ViewHolder {

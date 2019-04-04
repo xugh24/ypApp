@@ -19,12 +19,15 @@ import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.AnnotateUtil;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.control.UserCentreControl;
+import com.yuepang.yuepang.model.MerchantInfo;
 import com.yuepang.yuepang.model.UserInfo;
 import com.yuepang.yuepang.widget.SDKLoadingDialog;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import static com.yuepang.yuepang.activity.MerchantDetailActivity.MERCHANTINFO;
 
 
 /**
@@ -129,6 +132,13 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         } else {
             tvRtitle.setVisibility(View.GONE);
         }
+    }
+
+    public void toPay(MerchantInfo merchantInfo){
+        Intent intent = new Intent();
+        intent.putExtra(MERCHANTINFO,merchantInfo);
+        intent.setClass(this,PayActivity.class);
+        startActivity(intent);
     }
 
 

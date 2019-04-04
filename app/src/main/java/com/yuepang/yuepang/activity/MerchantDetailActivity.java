@@ -70,10 +70,7 @@ public class MerchantDetailActivity extends BaseActivity {
     public void onClick(View v) {
         super.onClick(v);
         if (v == btnBuy) {
-            Intent intent = new Intent();
-            intent.putExtra(MERCHANTINFO,merchantInfo);
-            intent.setClass(this,PayActivity.class);
-            startActivity(intent);
+            toPay(merchantInfo);
         } else if (v == tvTel) {
             new CallDialog(this, merchantInfo.getTel()).show();
         } else if (tvloction == v) {
