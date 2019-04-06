@@ -5,6 +5,7 @@ import android.widget.BaseAdapter;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.model.MerchantInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +27,7 @@ public abstract class YueBaseAdapter extends BaseAdapter {
 
     public YueBaseAdapter(BaseActivity activity) {
         this.activity = activity;
+        list = new ArrayList<>();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.yuepang.yuepang.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -18,6 +19,7 @@ import com.yuepang.yuepang.fragment.HandpickFragment;
 import com.yuepang.yuepang.fragment.MerchantFragment;
 import com.yuepang.yuepang.fragment.MineFragment;
 import com.yuepang.yuepang.fragment.TopicFragment;
+import com.yuepang.yuepang.model.MerchantInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -202,6 +204,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected int getContentViewId() {
         return R.layout.main_ly;
     }
+
 
 
 }

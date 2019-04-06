@@ -316,4 +316,11 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     public View getContentView() {
         return null;
     }
+
+
+    public void toMerActivity(MerchantInfo info) {
+        Intent intent1 = new Intent(this, MerchantDetailActivity.class);
+        intent1.putExtra(MerchantDetailActivity.MERCHANTINFO, info);
+        startActivity(intent1);
+    }
 }

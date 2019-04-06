@@ -92,8 +92,35 @@ public class TestData {
         info1.setName("测试商家名称2");
         info1.setLocation("测试商家地址2");
         info1.setTel("01234567");
+        MerchantInfo info2 = new MerchantInfo();
+        info2.setDetails("测试商家介绍2xxxxxxxxxx");
+        info2.setDiscount(0.9f);
+        info2.setLongitude(116.36043915298258);
+        info2.setLatitude(40.034671107747194);
+        info2.setName("测试商家名称2");
+        info2.setLocation("测试商家地址2");
+        info2.setTel("01234567");
+        MerchantInfo info3 = new MerchantInfo();
+        info3.setDetails("测试商家介绍2xxxxxxxxxx");
+        info3.setDiscount(1.0f);
+        info3.setLongitude(116.36043915298258);
+        info3.setLatitude(40.034671107747194);
+        info3.setName("测试商家名称3");
+        info3.setLocation("测试商家地址3");
+        info3.setTel("54301234567");
+        MerchantInfo info4 = new MerchantInfo();
+        info4.setDetails("测试商家介绍2xxxxxxxxxx");
+        info4.setDiscount(0.8f);
+        info4.setLongitude(116.36043915298258);
+        info4.setLatitude(40.034671107747194);
+        info4.setName("测试商家名称4");
+        info4.setLocation("测试商家地址4");
+        info4.setTel("2301234567");
         list.add(info);
         list.add(info1);
+        list.add(info2);
+        list.add(info3);
+        list.add(info4);
         return list;
     }
 

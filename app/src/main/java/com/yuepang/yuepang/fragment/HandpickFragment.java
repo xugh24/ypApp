@@ -110,14 +110,10 @@ public class HandpickFragment extends BaseFragment implements AreaInterFace, Cut
         super.onClick(v);
         switch (v.getId()) {
             case R.id.merchant1_ly:
-                Intent intent1 = new Intent(getActivity(), MerchantDetailActivity.class);
-                intent1.putExtra(MerchantDetailActivity.MERCHANTINFO, info1);
-                getActivity().startActivity(intent1);
+                getMainActivity().toMerActivity(info1);
                 break;
             case R.id.merchant2_ly:
-                Intent intent2 = new Intent(getActivity(), MerchantDetailActivity.class);
-                intent2.putExtra(MerchantDetailActivity.MERCHANTINFO, info2);
-                getActivity().startActivity(intent2);
+                getMainActivity().toMerActivity(info2);
                 break;
         }
     }
