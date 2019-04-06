@@ -93,7 +93,6 @@ public class HandpickFragment extends BaseFragment implements AreaInterFace, Cut
     }
 
     public void showAreaPop() {
-        LogUtils.e("showAreaPop");
         if (areaPopupWindow != null) {
             areaPopupWindow.show(getMainActivity().getTvLeftTitle());
         }

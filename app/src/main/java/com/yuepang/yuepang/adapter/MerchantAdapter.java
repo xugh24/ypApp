@@ -13,6 +13,8 @@ import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
+import com.yuepang.yuepang.interFace.AreaInterFace;
+import com.yuepang.yuepang.model.AreaInfo;
 import com.yuepang.yuepang.model.MerchantInfo;
 import com.yuepang.yuepang.test.TestData;
 
@@ -23,12 +25,17 @@ import java.util.List;
  * 商家设配器类
  */
 
-public class MerchantAdapter extends YueBaseAdapter implements AdapterView.OnItemClickListener {
+public class MerchantAdapter extends YueBaseAdapter {
 
     private List<MerchantInfo> merchantInfos;
 
-    public MerchantAdapter(BaseActivity baseActivity) {
+    private AreaInterFace interFace;
+
+    private int areaId;
+
+    public MerchantAdapter(BaseActivity baseActivity,  AreaInterFace interFace) {
         super(baseActivity);
+        this.interFace = interFace;
     }
 
 
@@ -56,16 +63,24 @@ public class MerchantAdapter extends YueBaseAdapter implements AdapterView.OnIte
 
             }
         });
+        if (interFace != null) { // 通知主页面刷新View
+            interFace.callAreaInfo(TestData.getinfos(), TestData.getMerinfos(), TestData.getinfos().get(0));
+        }
         merchantInfos = TestData.getMerinfos();
         setList(merchantInfos);
         return true;
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        LogUtils.e("---onItemClick-------"+position);
 
+    /**
+     * 切换商圈 重新刷新数据
+     */
+    public void refresh(AreaInfo info) {
+        areaId = info.getId();
+        getData();
     }
+
+
 
     private final class ViewHolder implements View.OnClickListener {
         @BindView(id = R.id.iv_pic)
@@ -91,7 +106,6 @@ public class MerchantAdapter extends YueBaseAdapter implements AdapterView.OnIte
             }else {
                 activity.toMerActivity(merchantInfos.get(position));
             }
-
         }
     }
 
