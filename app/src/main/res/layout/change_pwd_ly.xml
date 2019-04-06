@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+
+    <EditText
+        android:id="@+id/tv_oldpwd"
+        style="@style/syt_ed"
+        android:layout_width="match_parent"
+        android:hint="请输入原密码" />
+
+    <EditText
+        android:id="@+id/tv_pwd1"
+        style="@style/syt_ed"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:hint="请输入密码" />
+
+    <EditText
+        android:id="@+id/tv_pwd2"
+        style="@style/syt_ed"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:hint="请输确认密码" />
+
+
+    <Button
+        android:id="@+id/btn_sub"
+        style="@style/syt_btn_green"
+        android:layout_width="match_parent"
+        android:layout_marginTop="60dp"
+        android:text="提交" />
+
+</LinearLayout>

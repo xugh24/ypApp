@@ -133,6 +133,10 @@
             android:name="com.yuepang.yuepang.activity.GoodDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.yuepang.yuepang.activity.ChangePwdActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 
         <service
             android:name="com.baidu.location.f"

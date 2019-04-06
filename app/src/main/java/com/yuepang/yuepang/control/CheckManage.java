@@ -4,7 +4,10 @@ import android.text.TextUtils;
 
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
+import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
+
+import java.io.UnsupportedEncodingException;
 
 public class CheckManage {
 
@@ -149,27 +152,14 @@ public class CheckManage {
         return true;
     }
 
-//    /**
-//     * 判断昵称
-//     */
-//    public static boolean checkNickName(String nickName, BaseActivity mActivity) {
-//        for (char c : "'\"%,<>".toCharArray()) {
-//            if (nickName.contains(c + "")) {
-//                mActivity.showToastSafe("昵称存在特殊字符");
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
 
-//
-//    /**
-//     * 判断密码长度，密码位数为6-16
-//     */
-//    public static boolean checkPwd(String pwd) {
-//        return checkSize(pwd, 16, 6);
-//    }
+
+    /**
+     * 判断密码长度，密码位数为6-16
+     */
+    public static boolean checkPwd(String pwd) {
+        return checkSize(pwd, 16, 6);
+    }
 //
 //    /**
 //     * 判断昵称长度，密码位数为1-16
@@ -178,80 +168,36 @@ public class CheckManage {
 //        return checkSize(pwd, 16, 1);
 //    }
 //
-//    /**
-//     * 判断一个字符串的区间
-//     *
-//     * @param string 所需判断的字符串
-//     * @param max    最大长度
-//     * @param min    最小长度
-//     */
-//    public static boolean checkSize(String string, int max, int min) {
-//        if (TextUtils.isEmpty(string) || min > max || min < 0) {// 如果判断值为空或者最小值 大于最大 则返回为空
-//            return false;
-//        }
-//        return !(getLength(string) > max || getLength(string) < min);
-//    }
+    /**
+     * 判断一个字符串的区间
+     *
+     * @param string 所需判断的字符串
+     * @param max    最大长度
+     * @param min    最小长度
+     */
+    public static boolean checkSize(String string, int max, int min) {
+        if (TextUtils.isEmpty(string) || min > max || min < 0) {// 如果判断值为空或者最小值 大于最大 则返回为空
+            return false;
+        }
+        return !(getLength(string) > max || getLength(string) < min);
+    }
 //
-//    /**
-//     * 获得字符串的长度
-//     */
-//    public static int getLength(String string) {
-//        if (TextUtils.isEmpty(string)) {
-//            return 0;
-//        } else {
-//            try {
-//                return string.getBytes("GB2312").length;
-//            } catch (UnsupportedEncodingException e) {
-//                LogUtils.e(e);
-//                return 0;
-//            }
-//        }
-//    }
+    /**
+     * 获得字符串的长度
+     */
+    public static int getLength(String string) {
+        if (TextUtils.isEmpty(string)) {
+            return 0;
+        } else {
+            try {
+                return string.getBytes("GB2312").length;
+            } catch (UnsupportedEncodingException e) {
+                LogUtils.e(e);
+                return 0;
+            }
+        }
+    }
 //
-//    /**
-//     * 检查邮箱的标准格式
-//     */
-//    public static boolean checkEmailPattern(String email) {
-//        Pattern p = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
-//        Matcher m = p.matcher(email);
-//        return m.find();
-//    }
-//
-//
-
-//
-//    /**
-//     * 检查邮箱
-//     *
-//     * @param mail
-//     * @return
-//     */
-//    public static boolean checkEmail(String mail, ActionBarPage mActivity) {
-//        if (TextUtils.isEmpty(mail)) {
-//            mActivity.showToastSafe(mActivity.getString(R.string.anzhi_user_email_null), 0);
-//            return false;
-//        }
-//        if (!checkEmailPattern(mail)) {
-//            mActivity.showToastSafe(mActivity.getString(R.string.anzhi_user_email_error), 0);
-//            return false;
-//        }
-//        return true;
-//    }
-//
-//    /**
-//     * 绑定邮箱表单检查
-//     *
-//     * @param mail
-//     * @param mCode
-//     * @param mActivity
-//     * @return
-//     */
-//    public static boolean bindEmailCheck(String mail, String mCode, ActionBarPage mActivity) {
-//        if (!checkEmail(mail, mActivity)) {
-//            return false;
-//        }
-//        return checkCode(mCode, mActivity);
-//    }
 //
 //    /**
 //     * 绑定手机表单检查

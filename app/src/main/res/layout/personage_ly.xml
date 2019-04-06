@@ -17,10 +17,11 @@
 
             <ImageView
                 android:id="@+id/iv_head"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:src="@drawable/cs_head" />
         </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/ll_nick"
@@ -49,6 +50,11 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#eeeeee" />
+
         <LinearLayout
             android:id="@+id/ll_sex"
             android:layout_width="match_parent"
@@ -75,6 +81,11 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#eeeeee" />
+
         <LinearLayout
             android:id="@+id/ll_birthday"
             android:layout_width="match_parent"
@@ -99,8 +110,12 @@
                 android:textColor="#494949"
                 android:textSize="16dp" />
 
-
         </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#eeeeee" />
 
         <LinearLayout
             android:id="@+id/ll_tel"
@@ -108,7 +123,6 @@
             android:layout_height="54dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
-
 
             <TextView
                 android:layout_width="0dp"
@@ -125,9 +139,20 @@
                 android:layout_height="wrap_content"
                 android:textColor="#494949"
                 android:textSize="16dp" />
-
-
         </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="修改密码"
+            android:textColor="#494949"
+            android:textSize="16dp" />
+
 
     </LinearLayout>
 </ScrollView>

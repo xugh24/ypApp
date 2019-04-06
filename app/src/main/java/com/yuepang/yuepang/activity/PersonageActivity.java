@@ -46,6 +46,9 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     @BindView(id = R.id.ll_birthday, click = true)
     private LinearLayout llbirthday;//生日
 
+    @BindView(id = R.id.tv_pwd, click = true)
+    private TextView tvPwd;
+
 
     @BindView(id = R.id.tv_nick)
     private TextView tvNick;//
@@ -101,6 +104,9 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
                 break;
             case R.id.ll_birthday: // 生日
                 init();
+                break;
+            case R.id.tv_pwd: // 修改密码
+                startActivity(ChangePwdActivity.class);
                 break;
         }
     }
