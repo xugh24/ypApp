@@ -56,7 +56,7 @@ public class ChatPresenter {
         firstinfo.setMsg(title);
         firstinfo.setName("发起人");
         topicItemInfos.add(firstinfo);
-        adapter = new ChatAdapter(topicItemInfos, activity);
+        adapter = new ChatAdapter(activity,topicItemInfos );
         activity.getChatListView().setAdapter(adapter);
         timer = new Timer(true);
         timer.schedule(task, periodTime, periodTime);// 启动心跳线程定时刷新数据

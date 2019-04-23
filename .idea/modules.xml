@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://D:\Users\Administrator\AndroidStudioProjects\yuepang\TestApk1\TestApk1.iml" filepath="D:\Users\Administrator\AndroidStudioProjects\yuepang\TestApk1\TestApk1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/androidlib/androidlib.iml" filepath="$PROJECT_DIR$/androidlib/androidlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/yuepang.iml" filepath="$PROJECT_DIR$/yuepang.iml" />
     </modules>

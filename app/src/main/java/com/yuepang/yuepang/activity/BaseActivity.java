@@ -1,10 +1,10 @@
 package com.yuepang.yuepang.activity;
 
+
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
@@ -15,9 +15,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.common.activity.BaseFragmentActivity;
+import com.android.common.utils.LogUtils;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.AnnotateUtil;
-import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.control.UserCentreControl;
 import com.yuepang.yuepang.dialog.CallDialog;
 import com.yuepang.yuepang.dialog.MapDialog;
@@ -27,7 +28,6 @@ import com.yuepang.yuepang.model.UserInfo;
 import com.yuepang.yuepang.widget.SDKLoadingDialog;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import static com.yuepang.yuepang.activity.MerchantDetailActivity.MERCHANTINFO;
@@ -37,7 +37,7 @@ import static com.yuepang.yuepang.activity.MerchantDetailActivity.MERCHANTINFO;
  * Android 基类
  */
 
-public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener {
+public abstract class BaseActivity extends BaseFragmentActivity implements View.OnClickListener {
 
     private RelativeLayout rlBar;// 顶部控制bar
 
@@ -58,7 +58,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     public static List<BaseActivity> activities = new ArrayList<>();
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activities.add(this);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
