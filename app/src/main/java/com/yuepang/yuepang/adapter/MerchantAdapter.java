@@ -25,9 +25,8 @@ import java.util.List;
  * 商家设配器类
  */
 
-public class MerchantAdapter extends YueBaseAdapter {
+public class MerchantAdapter extends YueBaseAdapter <MerchantInfo> {
 
-    private List<MerchantInfo> merchantInfos;
 
     private AreaInterFace interFace;
 
@@ -50,8 +49,8 @@ public class MerchantAdapter extends YueBaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         convertView.setOnClickListener(holder);
-        holder.name.setText(merchantInfos.get(position).getName());
-        holder.loction.setText(merchantInfos.get(position).getLocation());
+        holder.name.setText(getItem(position).getName());
+        holder.loction.setText(getItem(position).getLocation());
         holder.position = position;
         return convertView;
     }
@@ -66,8 +65,7 @@ public class MerchantAdapter extends YueBaseAdapter {
         if (interFace != null) { // 通知主页面刷新View
             interFace.callAreaInfo(TestData.getinfos(), TestData.getMerinfos(), TestData.getinfos().get(0));
         }
-        merchantInfos = TestData.getMerinfos();
-        setList(merchantInfos);
+        setList(TestData.getMerinfos());
         return true;
     }
 
@@ -102,9 +100,9 @@ public class MerchantAdapter extends YueBaseAdapter {
         public void onClick(View v) {
             LogUtils.e("----onClick------"+position);
             if (v == btnPay) {
-                activity.toPay(merchantInfos.get(position));
+                activity.toPay(getItem(position) );
             }else {
-                activity.toMerActivity(merchantInfos.get(position));
+                activity.toMerActivity(getItem(position) );
             }
         }
     }

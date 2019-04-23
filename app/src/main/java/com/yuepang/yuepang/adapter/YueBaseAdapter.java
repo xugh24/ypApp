@@ -14,20 +14,20 @@ import java.util.List;
  * 悦旁 Adapter的基类
  */
 
-public abstract class YueBaseAdapter extends BaseAdapter {
+public abstract class YueBaseAdapter <T>  extends BaseAdapter {
 
     public BaseActivity activity;
 
-    public List<?> list;
+    public List<T> list;
 
-    public YueBaseAdapter(BaseActivity activity, List<?> list) {
+    public YueBaseAdapter(BaseActivity activity, List<T> list) {
         this.activity = activity;
         this.list = list;
     }
 
     public YueBaseAdapter(BaseActivity activity) {
         this.activity = activity;
-        list = new ArrayList<>();
+        list = new ArrayList<T>();
     }
 
     @Override
@@ -44,14 +44,14 @@ public abstract class YueBaseAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public T getItem(int position) {
         if (list != null) {
             return list.get(position);
         }
         return null;
     }
 
-    public void setList(List<?> list) {
+    public void setList(List<T> list) {
         this.list = list;
     }
 

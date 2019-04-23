@@ -105,7 +105,7 @@ public class ChatPresenter {
                         activity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {// 更新消息数据后刷新UI
-                                adapter.setTopicItemInfos(topicItemInfos);
+                                adapter.setList(topicItemInfos);
                                 adapter.notifyDataSetChanged();
                             }
                         });

@@ -20,13 +20,11 @@ import java.util.List;
 /**
  */
 
-public class TopicAdapter extends YueBaseAdapter implements AdapterView.OnItemClickListener {
-    private List<TopicInfo> topicInfos;
+public class TopicAdapter extends YueBaseAdapter<TopicInfo> implements AdapterView.OnItemClickListener {
 
 
     public TopicAdapter(List<TopicInfo> topicInfos, BaseActivity baseActivity) {
         super(baseActivity, topicInfos);
-        this.topicInfos = topicInfos;
     }
 
 
@@ -40,12 +38,12 @@ public class TopicAdapter extends YueBaseAdapter implements AdapterView.OnItemCl
         } else if (convertView.getTag() instanceof ViewHolder) {
             holder = (ViewHolder) convertView.getTag();
         }
-        if (topicInfos.get(position).getTitle().length() > 0) {
-            String head = String.valueOf(topicInfos.get(position).getTitle().charAt(0));
+        if (getItem(position).getTitle().length() > 0) {
+            String head = String.valueOf(getItem(position).getTitle().charAt(0));
             holder.head.setText(head);
         }
-        holder.title.setText(topicInfos.get(position).getTitle());
-        holder.time.setText(SysUtils.stampToDate(topicInfos.get(position).getTime()));
+        holder.title.setText(getItem(position).getTitle());
+        holder.time.setText(SysUtils.stampToDate(getItem(position).getTime()));
         return convertView;
     }
 
@@ -53,8 +51,8 @@ public class TopicAdapter extends YueBaseAdapter implements AdapterView.OnItemCl
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(activity, ChatActivity.class);
-        intent.putExtra("id", topicInfos.get(position).getId());
-        intent.putExtra("title", topicInfos.get(position).getTitle());
+        intent.putExtra("id", getItem(position).getId());
+        intent.putExtra("title", getItem(position).getTitle());
         activity.startActivity(intent);
     }
 
@@ -65,6 +63,7 @@ public class TopicAdapter extends YueBaseAdapter implements AdapterView.OnItemCl
         TextView title;
         @BindView(id = R.id.time)
         TextView time;
+
         public ViewHolder(View view) {
             AnnotateUtil.initBindView(this, view);
         }
@@ -73,9 +72,8 @@ public class TopicAdapter extends YueBaseAdapter implements AdapterView.OnItemCl
     public boolean getData() {
         GetTopicProtocol protocol = new GetTopicProtocol(activity);
         if (protocol.request() == 200) {
-            topicInfos = (List<TopicInfo>) protocol.getData();
-            setList(topicInfos);
-            if (topicInfos.size() > 0) {
+            setList((List<TopicInfo>) protocol.getData());
+            if (getCount() > 0) {
                 return true;
             }
         }

@@ -37,7 +37,6 @@ public class AnnotateUtil {
                 }
             }
         }
-
     }
 
     public static void initBindView(Activity aty) {

@@ -21,15 +21,11 @@ import java.util.List;
  * 采用心跳方法来实现数据刷新
  */
 
-public class ChatAdapter extends YueBaseAdapter {
+public class ChatAdapter extends YueBaseAdapter<TopicItemInfo> {
 
-    private List<TopicItemInfo> topicItemInfos;
-
-    public ChatAdapter(List<TopicItemInfo> topicItemInfos, BaseActivity baseActivity) {
-        super(baseActivity, topicItemInfos);
-        this.topicItemInfos = topicItemInfos;
+    public ChatAdapter(BaseActivity activity, List<TopicItemInfo> list) {
+        super(activity, list);
     }
-
 
     /**
      * 获得 item View
@@ -44,17 +40,9 @@ public class ChatAdapter extends YueBaseAdapter {
         } else if (convertView.getTag() instanceof ViewHolder) {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.name.setText(topicItemInfos.get(position).getName());
-        holder.msg.setText(topicItemInfos.get(position).getMsg());
+        holder.name.setText(getItem(position).getName());
+        holder.msg.setText(getItem(position).getMsg());
         return convertView;
-    }
-
-    /**
-     * 刷新数据
-     */
-    public void setTopicItemInfos(List<TopicItemInfo> topicItemInfos) {
-        this.topicItemInfos = topicItemInfos;
-        setList(topicItemInfos);
     }
 
 
@@ -73,10 +61,6 @@ public class ChatAdapter extends YueBaseAdapter {
             AnnotateUtil.initBindView(this, view);
         }
     }
-
-
-
-
 
 
 }

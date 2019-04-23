@@ -20,16 +20,14 @@ import java.util.List;
  * Created by xugh on 2019/3/26.
  */
 
-public class AreaAdapter extends YueBaseAdapter implements AdapterView.OnItemClickListener {
+public class AreaAdapter extends YueBaseAdapter <AreaInfo> implements AdapterView.OnItemClickListener {
 
-    private List<AreaInfo> areaInfos;
 
     private CutAreaInterFace cutAreaInterFace;
 
     public AreaAdapter(BaseActivity activity, List<AreaInfo> areaInfos, CutAreaInterFace cutAreaInterFace) {
         super(activity, areaInfos);
         this.cutAreaInterFace = cutAreaInterFace;
-        this.areaInfos = areaInfos;
     }
 
 
@@ -43,13 +41,13 @@ public class AreaAdapter extends YueBaseAdapter implements AdapterView.OnItemCli
         } else if (convertView.getTag() instanceof ViewHolder) {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.name.setText(areaInfos.get(position).getName());
+        holder.name.setText(getItem(position).getName());
         return convertView;
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        cutAreaInterFace.cutAreaInfo(areaInfos.get(position));
+        cutAreaInterFace.cutAreaInfo(getItem(position));
     }
 
     private final class ViewHolder {

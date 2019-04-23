@@ -25,9 +25,7 @@ import java.util.List;
  * Created by xugh on 2019/4/2.
  */
 
-public class GoodAdapter extends YueBaseAdapter implements AdapterView.OnItemClickListener {
-
-    private List<GoodInfo> goodInfos;
+public class GoodAdapter extends YueBaseAdapter <GoodInfo> implements AdapterView.OnItemClickListener {
 
     private int areaId;
 
@@ -69,8 +67,7 @@ public class GoodAdapter extends YueBaseAdapter implements AdapterView.OnItemCli
         if (interFace != null) { // 通知主页面刷新View
             interFace.callAreaInfo(TestData.getinfos(), TestData.getMerinfos(), TestData.getinfos().get(0));
         }
-        goodInfos = TestData.getGoods();
-        setList(goodInfos);
+        setList( TestData.getGoods());
         notifyDataSetChanged();
         return true;
     }
@@ -86,7 +83,7 @@ public class GoodAdapter extends YueBaseAdapter implements AdapterView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(activity, GoodDetailActivity.class);
-        intent.putExtra(GoodDetailActivity.GOODINFO, goodInfos.get(position));
+        intent.putExtra(GoodDetailActivity.GOODINFO, getItem(position));
         activity.startActivity(intent);
     }
 

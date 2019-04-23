@@ -16,13 +16,11 @@ import java.util.List;
  * Created by xugh on 2019/3/27.
  */
 
-public class RecordAdapter extends YueBaseAdapter {
+public class RecordAdapter extends YueBaseAdapter <RecordInfo>{
 
-    private List<RecordInfo> recordInfos;
 
     public RecordAdapter(BaseActivity activity, List<RecordInfo> recordInfos) {
         super(activity, recordInfos);
-        this.recordInfos = recordInfos;
     }
 
     @Override
@@ -35,10 +33,10 @@ public class RecordAdapter extends YueBaseAdapter {
         } else if (convertView.getTag() instanceof ViewHolder) {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.name.setText(recordInfos.get(position).getMerchantName());
-        viewHolder.orderId.setText(recordInfos.get(position).getOrderId());
-        viewHolder.price.setText(recordInfos.get(position).getPrice()+"");
-        viewHolder.time.setText(recordInfos.get(position).getTime() + "");
+        viewHolder.name.setText(getItem(position).getMerchantName());
+        viewHolder.orderId.setText(getItem(position).getOrderId());
+        viewHolder.price.setText(getItem(position).getPrice()+"");
+        viewHolder.time.setText(getItem(position).getTime() + "");
         return convertView;
     }
 
