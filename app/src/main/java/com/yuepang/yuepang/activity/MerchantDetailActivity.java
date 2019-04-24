@@ -1,5 +1,6 @@
 package com.yuepang.yuepang.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -45,18 +46,18 @@ public class MerchantDetailActivity extends BaseActivity {
     private MerchantInfo merchantInfo;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         merchantInfo = getIntent().getParcelableExtra(MERCHANTINFO);
     }
 
     @Override
-    protected String getMyRTitle() {
+    public String getMyRTitle() {
         return null;
     }
 
     @Override
-    protected String getMyTittle() {
+    public String getMyTittle() {
         return "商家名称";
     }
 
@@ -70,11 +71,17 @@ public class MerchantDetailActivity extends BaseActivity {
     public void onClick(View v) {
         super.onClick(v);
         if (v == btnBuy) {
-            toPay(merchantInfo);
+            PayActivity.toPay(this,merchantInfo);
         } else if (v == tvTel) {
-            showCallDialog( merchantInfo.getTel());
+            showCallDialog(merchantInfo.getTel());
         } else if (tvloction == v) {
             showMapDialog(merchantInfo);
         }
+    }
+
+    public static void toMerActivity(Context context, MerchantInfo info) {
+        Intent intent1 = new Intent(context, MerchantDetailActivity.class);
+        intent1.putExtra(MerchantDetailActivity.MERCHANTINFO, info);
+        context.startActivity(intent1);
     }
 }

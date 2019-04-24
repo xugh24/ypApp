@@ -29,13 +29,9 @@ public class PayRecordActivity extends BaseLoadFrameActivity {
     private RecordAdapter adapter;
 
 
-    @Override
-    protected String getMyRTitle() {
-        return null;
-    }
 
     @Override
-    protected String getMyTittle() {
+    public String getMyTittle() {
         return "消费记录";
     }
 

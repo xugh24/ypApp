@@ -37,13 +37,9 @@ public class FirstActivity extends BaseActivity implements LoginSuccess {
         UserCentreControl.getInstance().addLoginMonitor(this);//设置登录成功的监听
     }
 
-    @Override
-    protected String getMyRTitle() {
-        return null;
-    }
 
     @Override
-    protected String getMyTittle() {
+    public String getMyTittle() {
         return null;
     }
 

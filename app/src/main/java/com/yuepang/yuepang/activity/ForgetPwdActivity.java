@@ -46,13 +46,9 @@ public class ForgetPwdActivity extends BaseActivity {
         forgetPwdPresenter = new ForgetPwdPresenter(this);
     }
 
-    @Override
-    protected String getMyRTitle() {
-        return null;
-    }
 
     @Override
-    protected String getMyTittle() {
+    public String getMyTittle() {
         return "忘记密码";
     }
 

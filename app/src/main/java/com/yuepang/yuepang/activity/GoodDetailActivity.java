@@ -58,12 +58,7 @@ public class GoodDetailActivity extends BaseActivity {
     }
 
     @Override
-    protected String getMyRTitle() {
-        return null;
-    }
-
-    @Override
-    protected String getMyTittle() {
+    public String getMyTittle() {
         return "商品介绍";
     }
 
@@ -76,7 +71,7 @@ public class GoodDetailActivity extends BaseActivity {
     public void onClick(View v) {
         super.onClick(v);
         if (v == btnPay) {
-            toPay(info.getInfo());
+            PayActivity.toPay(this,info.getInfo());
         } else if (merTel == v) {
             new CallDialog(this, info.getInfo().getTel()).show();
         } else if (merLoaction == v) {

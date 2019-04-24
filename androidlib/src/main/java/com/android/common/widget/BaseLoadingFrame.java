@@ -7,9 +7,11 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.android.common.async.AsyncContentLoader;
 import com.android.common.async.UIBackgroundTask;
 import com.android.common.utils.LogUtils;
+
 import static com.android.common.widget.BaseLoadingFrame.LoadingFrameState.STATE_LOADED;
 import static com.android.common.widget.BaseLoadingFrame.LoadingFrameState.STATE_LOADING;
 import static com.android.common.widget.BaseLoadingFrame.LoadingFrameState.STATE_UNLOADED;
@@ -162,8 +164,6 @@ public abstract class BaseLoadingFrame extends RelativeLayout {
     }
 
 
-
-
     protected abstract View createNoContentView();
 
     protected abstract View createOfflineView();
@@ -220,6 +220,10 @@ public abstract class BaseLoadingFrame extends RelativeLayout {
         }
     }
 
+    public void show() {
+        show(true);
+    }
+
     // ==========================================================================
     // Inner/Nested Classes
     // ==========================================================================
@@ -227,7 +231,7 @@ public abstract class BaseLoadingFrame extends RelativeLayout {
         @Override
         protected Boolean doInBackground() {
             android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
-            return load(mLoadingView);
+            return load();
         }
 
         @Override
@@ -302,7 +306,7 @@ public abstract class BaseLoadingFrame extends RelativeLayout {
         }
     }
 
-    protected abstract Boolean load(View mLoadingView);
+    protected abstract boolean load();
 
     protected abstract CharSequence getNoContentText();
 

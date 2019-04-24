@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.yuepang.yuepang.widget.LoadingFrame;
+
 /**
  * Created by xugh on 2019/3/27.
  */
@@ -25,7 +27,7 @@ public abstract class BaseLoadFrameActivity extends BaseActivity {
     public View getContentView() {
         loadingFrame = new LoadingFrame(this) {
             @Override
-            public boolean load(View loadingView) {
+            public boolean load() {
                 return getdata();
             }
 

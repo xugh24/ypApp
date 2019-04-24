@@ -1,5 +1,7 @@
 package com.yuepang.yuepang.activity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -100,30 +102,37 @@ public class PayActivity extends BaseActivity {
         if (!TextUtils.isEmpty(price2)) {
             p2 = Integer.valueOf(price2);
         }
-        price = (int) (p1*100*info.getDiscount())+p2*100;
+        price = (int) (p1 * 100 * info.getDiscount()) + p2 * 100;
         PayItem payItem = new PayItem();
         payItem.setMerchantName(info.getName());
         payItem.setOrderId("2018545565");
         payItem.setPrice(price);
         Intent intent = new Intent();
-        intent.putExtra(PAYITEM,payItem);
-        intent.setClass(this,PaySuccessActivity.class);
+        intent.putExtra(PAYITEM, payItem);
+        intent.setClass(this, PaySuccessActivity.class);
         finish();
         startActivity(intent);
     }
 
     @Override
-    protected String getMyRTitle() {
+    public String getMyRTitle() {
         return null;
     }
 
     @Override
-    protected String getMyTittle() {
+    public String getMyTittle() {
         return "商家名称";
     }
 
     @Override
     protected int getContentViewId() {
         return R.layout.pay_ly;
+    }
+
+    public static void toPay(Context context, MerchantInfo merchantInfo) {
+        Intent intent = new Intent();
+        intent.putExtra(MERCHANTINFO, merchantInfo);
+        intent.setClass(context, PayActivity.class);
+        context.startActivity(intent);
     }
 }

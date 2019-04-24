@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,7 +18,7 @@ import com.yuepang.yuepang.Util.SysUtils;
  * Created by xugh on 2019/4/24.
  */
 
-public class LoadingFrame extends BaseLoadingFrame {
+public abstract class LoadingFrame extends BaseLoadingFrame {
 
 
     public LoadingFrame(Context context) {
@@ -83,20 +82,12 @@ public class LoadingFrame extends BaseLoadingFrame {
         return layout;
     }
 
-    @Override
-    protected Boolean load(View mLoadingView) {
-        return null;
-    }
 
     @Override
     protected CharSequence getNoContentText() {
         return null;
     }
 
-    @Override
-    protected View createLoadedView() {
-        return null;
-    }
 
     @Override
     protected View createUnloadedView() {

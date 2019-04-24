@@ -35,13 +35,9 @@ public class ChangePwdActivity extends BaseActivity {
 
     private String pwd2;
 
-    @Override
-    protected String getMyRTitle() {
-        return null;
-    }
 
     @Override
-    protected String getMyTittle() {
+    public String getMyTittle() {
         return "修改密码";
     }
 

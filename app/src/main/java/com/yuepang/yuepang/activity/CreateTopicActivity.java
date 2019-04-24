@@ -19,12 +19,12 @@ public class CreateTopicActivity extends BaseActivity {
     private EditText edTop;
 
     @Override
-    protected String getMyRTitle() {
+    public String getMyRTitle() {
         return "创建";
     }
 
     @Override
-    protected String getMyTittle() {
+    public String getMyTittle() {
         return "创建话题";
     }
 

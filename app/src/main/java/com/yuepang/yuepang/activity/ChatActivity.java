@@ -71,12 +71,7 @@ public class ChatActivity extends BaseActivity {
     }
 
     @Override
-    protected String getMyRTitle() {
-        return null;
-    }
-
-    @Override
-    protected String getMyTittle() {
+    public String getMyTittle() {
         return null;
     }
 

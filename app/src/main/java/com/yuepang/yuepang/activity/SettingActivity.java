@@ -27,13 +27,9 @@ public class SettingActivity extends BaseActivity {
     private TextView outLogin;
 
 
-    @Override
-    protected String getMyRTitle() {
-        return null;
-    }
 
     @Override
-    protected String getMyTittle() {
+    public String getMyTittle() {
         return "设置";
     }
 

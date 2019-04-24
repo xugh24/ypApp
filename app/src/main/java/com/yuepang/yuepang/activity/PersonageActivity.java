@@ -81,12 +81,7 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     }
 
     @Override
-    protected String getMyRTitle() {
-        return null;
-    }
-
-    @Override
-    protected String getMyTittle() {
+    public String getMyTittle() {
         return "修改资料";
     }
 

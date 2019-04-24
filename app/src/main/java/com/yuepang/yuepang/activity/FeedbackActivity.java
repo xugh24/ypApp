@@ -20,13 +20,9 @@ public class FeedbackActivity extends BaseActivity {
     @BindView(id = R.id.btn_sub,click = true)
     private Button btnSub;
 
-    @Override
-    protected String getMyRTitle() {
-        return null;
-    }
 
     @Override
-    protected String getMyTittle() {
+    public String getMyTittle() {
         return "我的反馈";
     }
 

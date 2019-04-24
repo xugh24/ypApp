@@ -69,13 +69,9 @@ public class MylikeActivity extends BaseActivity {
     private Button btn_sub;
 
 
-    @Override
-    protected String getMyRTitle() {
-        return null;
-    }
 
     @Override
-    protected String getMyTittle() {
+    public String getMyTittle() {
         return "喜好";
     }
 

@@ -39,13 +39,9 @@ public class MyTopicActivity extends BaseLoadFrameActivity {
         return adapter.getData();
     }
 
-    @Override
-    protected String getMyRTitle() {
-        return null;
-    }
 
     @Override
-    protected String getMyTittle() {
+    public String getMyTittle() {
         return "我的话题";
     }
 }

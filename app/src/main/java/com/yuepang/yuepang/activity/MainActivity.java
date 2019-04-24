@@ -123,21 +123,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (position) {
             case 0:
                 setTitle("精选");
-                setRightTitle(null);
+                getBarTitle().setRightTitle(null);
                 break;
             case 1:
                 setTitle("商家");
-                setRightTitle(null);
+                getBarTitle().setRightTitle(null);
                 break;
             case 2:
                 setTitle("话题");
-                setRightTitle("创建");
-                setTvLeftTitle(null);
+                getBarTitle().setRightTitle("创建");
+                getBarTitle().setTvLeftTitle(null);
                 break;
             case 3:
                 setTitle("我的资料");
-                setRightTitle(null);
-                setTvLeftTitle(null);
+                getBarTitle().setRightTitle(null);
+                getBarTitle().setTvLeftTitle(null);
                 break;
         }
     }
@@ -155,12 +155,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     @Override
-    protected String getMyRTitle() {
+    public String getMyRTitle() {
         return null;
     }
 
     @Override
-    protected String getMyTittle() {
+    public String getMyTittle() {
         return null;
     }
 
