@@ -1,4 +1,4 @@
-package com.enumutils;
+package com.android.common.enums;
 
 /**
  * Created by xugh on 2019/4/23.

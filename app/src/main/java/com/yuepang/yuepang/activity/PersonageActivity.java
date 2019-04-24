@@ -55,11 +55,8 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     private LinearLayout llsex;//性别
     @BindView(id = R.id.ll_birthday, click = true)
     private LinearLayout llbirthday;//生日
-
     @BindView(id = R.id.tv_pwd, click = true)
     private TextView tvPwd;
-
-
     @BindView(id = R.id.tv_nick)
     private TextView tvNick;//
     @BindView(id = R.id.tv_sex)
@@ -81,7 +78,6 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     protected void onResume() {
         super.onResume();
         String tel = YuePangExternalDB.getInstance(this).getValueById(UserCentreControl.getInstance().getInfo().getId() + "", YuePangExternalDB.FIELD_TEL);
-       // DrawableUtil.loadImageForUrl(ivHead, UserCentreControl.getInstance().getInfo().getHeaderImgUrl(), this);
     }
 
     @Override
@@ -153,7 +149,6 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
 
     @Override
     public void callBack(int type, Object obj) {
-
         if (type == SEX) {
             int sex = (int) obj;
             if (sex == 1) {
@@ -181,7 +176,7 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
         super.onActivityResult(requestCode, resultCode, data);
         LogUtils.e("---requestCode-----" + requestCode + "===" + data);
         if (requestCode == PHOTO_CODE) {
-           startPhotoZoom(Uri.fromFile(PicDialog.getHeaderTempBmpFile()));//获取地址并调用裁剪
+            startPhotoZoom(Uri.fromFile(PicDialog.getHeaderTempBmpFile()));//获取地址并调用裁剪
             startPhotoZoom(data.getData());//返回的是地址，然后对图片裁剪
         } else if (requestCode == REQ_CROP) {
             if (data != null) {

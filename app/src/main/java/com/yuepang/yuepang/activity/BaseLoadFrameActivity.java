@@ -3,13 +3,6 @@ package com.yuepang.yuepang.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.BindView;
-import com.yuepang.yuepang.Util.LogUtils;
-import com.yuepang.yuepang.widget.LoadingFrame;
 
 /**
  * Created by xugh on 2019/3/27.

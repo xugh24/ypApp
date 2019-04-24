@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import com.yuepang.yuepang.Util.AnnotateUtil;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.MainActivity;
-import com.yuepang.yuepang.widget.LoadingFrame;
 
 /**
  * Fragment 基类处理方法
