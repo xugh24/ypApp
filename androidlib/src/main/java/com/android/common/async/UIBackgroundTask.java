@@ -3,7 +3,7 @@ package com.android.common.async;
 import android.os.Handler;
 import android.os.Message;
 
-import com.yuepang.yuepang.Util.LogUtils;
+import com.android.common.utils.LogUtils;
 
 
 public abstract class UIBackgroundTask<Params, Progress, Result> extends BackgroundTask<Result> {

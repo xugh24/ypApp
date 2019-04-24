@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
-import com.yuepang.yuepang.fragment.BaseFragment;
+import com.yuepang.yuepang.fragment.BaseSecFragment;
 
 import java.util.List;
 
@@ -15,10 +15,10 @@ import java.util.List;
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private FragmentManager fragmetnmanager;  //创建FragmentManager
-    private List<BaseFragment> listfragment; //创建一个List<Fragment>
+    private List<BaseSecFragment> listfragment; //创建一个List<Fragment>
 
 
-    public MyFragmentPagerAdapter(FragmentManager fm, List<BaseFragment> list) {
+    public MyFragmentPagerAdapter(FragmentManager fm, List<BaseSecFragment> list) {
         super(fm);
         this.fragmetnmanager = fm;
         this.listfragment = list;

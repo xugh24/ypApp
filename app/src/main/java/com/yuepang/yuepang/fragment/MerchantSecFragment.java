@@ -20,7 +20,7 @@ import java.util.List;
 /**
  */
 
-public class MerchantFragment extends BaseFragment implements AreaInterFace, CutAreaInterFace {
+public class MerchantSecFragment extends BaseSecFragment implements AreaInterFace, CutAreaInterFace {
 
     private AreaPopupWindow areaPopupWindow; // 商家popvindow
 
@@ -47,7 +47,7 @@ public class MerchantFragment extends BaseFragment implements AreaInterFace, Cut
 
     public void showAreaPop() {
         if (areaPopupWindow != null) {
-            areaPopupWindow.show(getMainActivity().getTvLeftTitle());
+            areaPopupWindow.show(getMainActivity().getBarTitle().getTvLeftTitle());
         }
     }
 
@@ -76,7 +76,7 @@ public class MerchantFragment extends BaseFragment implements AreaInterFace, Cut
 
     @Override
     public void cutAreaInfo(AreaInfo info) {
-        getMainActivity().setTvLeftTitle(info.getName());
+        getMainActivity().getBarTitle().setTvLeftTitle(info.getName());
         merchantAdapter.refresh(info);
     }
 }

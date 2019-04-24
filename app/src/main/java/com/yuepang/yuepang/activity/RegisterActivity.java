@@ -29,7 +29,6 @@ public class RegisterActivity extends BaseActivity {
     @BindView(id = R.id.tv_getrgcoed)
     private TextView tvGetCode; // 获得验证码输入框
 
-
     @BindView(id = R.id.btn_reg, click = true)
     private Button btnReg;// 点击注册按钮
 
@@ -39,7 +38,6 @@ public class RegisterActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         regPresenter = new RegPresenter(this);
-
     }
 
 

@@ -1,5 +1,7 @@
 package com.yuepang.yuepang.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -43,5 +45,10 @@ public class MyTopicActivity extends BaseLoadFrameActivity {
     @Override
     public String getMyTittle() {
         return "我的话题";
+    }
+
+    public static void toThisActivity(Context context) {
+        Intent intent = new Intent(context, MyTopicActivity.class);
+        context.startActivity(intent);
     }
 }

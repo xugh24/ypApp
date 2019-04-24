@@ -1,5 +1,7 @@
 package com.yuepang.yuepang.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ListView;
 
@@ -29,7 +31,6 @@ public class PayRecordActivity extends BaseLoadFrameActivity {
     private RecordAdapter adapter;
 
 
-
     @Override
     public String getMyTittle() {
         return "消费记录";
@@ -54,5 +55,10 @@ public class PayRecordActivity extends BaseLoadFrameActivity {
 //        }
         recordInfos = TestData.getRecInfos();
         return true;
+    }
+
+    public static void toThisActivity(Context context) {
+        Intent intent1 = new Intent(context, PayRecordActivity.class);
+        context.startActivity(intent1);
     }
 }

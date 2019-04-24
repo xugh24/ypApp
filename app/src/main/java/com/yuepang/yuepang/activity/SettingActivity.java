@@ -1,9 +1,12 @@
 package com.yuepang.yuepang.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.common.annotation.view.OnClickView;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.control.UserCentreControl;
@@ -13,19 +16,6 @@ import com.yuepang.yuepang.control.UserCentreControl;
  */
 
 public class SettingActivity extends BaseActivity {
-
-    /**
-     *
-     */
-    @BindView(id = R.id.tv_about, click = true)
-    private TextView aboutly;
-
-    @BindView(id = R.id.tv_feedback,click = true)
-    private TextView feedBackly;
-
-    @BindView(id = R.id.tv_out,click = true)
-    private TextView outLogin;
-
 
 
     @Override
@@ -38,19 +28,24 @@ public class SettingActivity extends BaseActivity {
         return R.layout.merchant_manage_ly;
     }
 
+    @OnClickView({R.id.tv_about,R.id.tv_feedback,R.id.tv_out})
     @Override
     public void onClick(View v) {
-        super.onClick(v);
-        switch (v.getId()){
-            case  R.id.tv_about:
+        switch (v.getId()) {
+            case R.id.tv_about:
 
                 break;
-            case  R.id.tv_feedback:
-            startActivity(FeedbackActivity.class);
+            case R.id.tv_feedback:
+                startActivity(FeedbackActivity.class);
                 break;
-            case  R.id.tv_out:
+            case R.id.tv_out:
                 UserCentreControl.getInstance().outLogin(this);
                 break;
         }
+    }
+
+    public static void toThisActivity(Context context) {
+        Intent intent5 = new Intent(context, SettingActivity.class);
+        context.startActivity(intent5);
     }
 }

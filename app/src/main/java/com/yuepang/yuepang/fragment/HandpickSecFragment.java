@@ -1,6 +1,5 @@
 package com.yuepang.yuepang.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -9,11 +8,10 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.common.annotation.view.OnClickView;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
-import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
-import com.yuepang.yuepang.activity.MerchantDetailActivity;
 import com.yuepang.yuepang.adapter.AreaAdapter;
 import com.yuepang.yuepang.adapter.GoodAdapter;
 import com.yuepang.yuepang.interFace.AreaInterFace;
@@ -28,13 +26,9 @@ import java.util.List;
  * 精选页面
  */
 
-public class HandpickFragment extends BaseFragment implements AreaInterFace, CutAreaInterFace {
+public class HandpickSecFragment extends BaseSecFragment implements AreaInterFace, CutAreaInterFace {
 
-    @BindView(id = R.id.merchant1_ly, click = true)
-    private LinearLayout llmerchant1; // 商家推荐位1
 
-    @BindView(id = R.id.merchant2_ly, click = true)
-    private LinearLayout llmerchant2;// 商家推荐位2
 
     @BindView(id = R.id.tv_merchant1)
     private TextView tvName1; // 商家1的名称
@@ -62,6 +56,8 @@ public class HandpickFragment extends BaseFragment implements AreaInterFace, Cut
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
+
 
     @Override
     protected void refreshView() {
@@ -94,7 +90,7 @@ public class HandpickFragment extends BaseFragment implements AreaInterFace, Cut
 
     public void showAreaPop() {
         if (areaPopupWindow != null) {
-            areaPopupWindow.show(getMainActivity().getTvLeftTitle());
+            areaPopupWindow.show(getMainActivity().getBarTitle().getTvLeftTitle());
         }
     }
 
@@ -104,15 +100,16 @@ public class HandpickFragment extends BaseFragment implements AreaInterFace, Cut
         return R.layout.handpick_ly;
     }
 
+    @OnClickView({R.id.merchant1_ly,R.id.merchant2_ly})
     @Override
     public void onClick(View v) {
-        super.onClick(v);
         switch (v.getId()) {
-            case R.id.merchant1_ly:
-                getMainActivity().toMerActivity(info1);
+            case R.id.merchant1_ly:// 商家推荐位1
+           //     getMainActivity().toMerActivity(info1);
+
                 break;
-            case R.id.merchant2_ly:
-                getMainActivity().toMerActivity(info2);
+            case R.id.merchant2_ly:// 商家推荐位2
+            //    getMainActivity().toMerActivity(info2);
                 break;
         }
     }
@@ -130,7 +127,7 @@ public class HandpickFragment extends BaseFragment implements AreaInterFace, Cut
             public void run() {
                 tvName1.setText(info1.getName());
                 tvName2.setText(info2.getName());
-                getMainActivity().setTvLeftTitle(currentInfo.getName());
+                getMainActivity().getBarTitle().setTvLeftTitle(currentInfo.getName());
             }
         });
     }
@@ -140,7 +137,7 @@ public class HandpickFragment extends BaseFragment implements AreaInterFace, Cut
      */
     @Override
     public void cutAreaInfo(AreaInfo info) {
-        getMainActivity().setTvLeftTitle(info.getName());
+        getMainActivity().getBarTitle().setTvLeftTitle(info.getName());
         goodAdapter.refresh(info);
     }
 

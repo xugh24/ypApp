@@ -19,17 +19,22 @@ public abstract class BaseFragment extends Fragment {
     private boolean isInitView = false;
     private boolean isVisible = false; // 对用户可见
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(getLayoutId(), container, false);
+        rootView = initView(inflater,container);
         init();
         isInitView = true;
         isCanLoadData();
         return rootView;
     }
 
-    protected abstract int getLayoutId();
+    protected abstract View initView(LayoutInflater inflater, ViewGroup container);
 
     protected abstract void init();
 

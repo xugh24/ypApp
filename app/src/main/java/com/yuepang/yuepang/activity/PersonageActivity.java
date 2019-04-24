@@ -1,5 +1,6 @@
 package com.yuepang.yuepang.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -20,6 +21,7 @@ import com.yuepang.yuepang.db.YuePangExternalDB;
 import com.yuepang.yuepang.dialog.PersonalDialog;
 import com.yuepang.yuepang.dialog.PicDialog;
 import com.yuepang.yuepang.dialog.SexDialog;
+import com.yuepang.yuepang.fragment.MineSecFragment;
 import com.yuepang.yuepang.model.UserInfo;
 import com.yuepang.yuepang.widget.CustomDatePicker;
 
@@ -175,22 +177,24 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
             startPhotoZoom(data.getData());//返回的是地址，然后对图片裁剪
         } else if (requestCode == REQ_CROP) {
             if (data != null) {
-                Bundle bundle=data.getExtras();//把数据取出来，Bundle是一个装数据的可以在activity之间传输的类
-                Bitmap bitmap =bundle.getParcelable("data");//获取位图
+                Bundle bundle = data.getExtras();//把数据取出来，Bundle是一个装数据的可以在activity之间传输的类
+                Bitmap bitmap = bundle.getParcelable("data");//获取位图
                 ivHead.setImageBitmap(bitmap);//设置位图，显示
             }
-        }else if(requestCode == CODE){
+        } else if (requestCode == CODE) {
             startPhotoZoom(data.getData());//返回的是地址，然后对图片裁剪
         }
     }
-    private static final String IMAGE_UNSPECIFIED="image/*";
+
+    private static final String IMAGE_UNSPECIFIED = "image/*";
 
     /**
      * 照片压缩
+     *
      * @param uri
      */
-    public void startPhotoZoom(Uri uri){
-        Intent intent =new Intent("com.android.camera.action.CROP");//裁剪意图
+    public void startPhotoZoom(Uri uri) {
+        Intent intent = new Intent("com.android.camera.action.CROP");//裁剪意图
         intent.setDataAndType(uri, IMAGE_UNSPECIFIED);//设置裁剪的地址和类型
         intent.putExtra("crop", false);//把未裁剪信息附加到intent上
         //设置宽高比例为1:1
@@ -213,5 +217,10 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
                 return tvsex;
         }
         return null;
+    }
+
+    public static void toThisActivity(Context context) {
+        Intent intent = new Intent(context, PersonageActivity.class);
+        context.startActivity(intent);
     }
 }

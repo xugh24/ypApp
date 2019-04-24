@@ -1,6 +1,5 @@
 package com.yuepang.yuepang.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -11,15 +10,13 @@ import android.widget.LinearLayout;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.Util.LogUtils;
-import com.yuepang.yuepang.adapter.AreaAdapter;
 import com.yuepang.yuepang.adapter.MyFragmentPagerAdapter;
 import com.yuepang.yuepang.dialog.OutDialog;
-import com.yuepang.yuepang.fragment.BaseFragment;
-import com.yuepang.yuepang.fragment.HandpickFragment;
-import com.yuepang.yuepang.fragment.MerchantFragment;
-import com.yuepang.yuepang.fragment.MineFragment;
-import com.yuepang.yuepang.fragment.TopicFragment;
-import com.yuepang.yuepang.model.MerchantInfo;
+import com.yuepang.yuepang.fragment.BaseSecFragment;
+import com.yuepang.yuepang.fragment.HandpickSecFragment;
+import com.yuepang.yuepang.fragment.MerchantSecFragment;
+import com.yuepang.yuepang.fragment.MineSecFragment;
+import com.yuepang.yuepang.fragment.TopicSecFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,18 +54,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @BindView(id = R.id.iv4)
     private ImageView iv4;
 
-    private HandpickFragment handpickFragment;// 精选
+    private HandpickSecFragment handpickFragment;// 精选
 
-    private MerchantFragment merchantFragment;// 商家
+    private MerchantSecFragment merchantFragment;// 商家
 
-    private TopicFragment topicFragment;//话题
+    private TopicSecFragment topicFragment;//话题
 
-    private MineFragment mineFragment;// 我的
+    private MineSecFragment mineFragment;// 我的
 
-    private List<BaseFragment> fragmentList;
+    private List<BaseSecFragment> fragmentList;
 
     private List<ImageView> ivs = new ArrayList<>();
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,10 +73,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         ivs.add(iv2);
         ivs.add(iv3);
         ivs.add(iv4);
-        handpickFragment = new HandpickFragment();
-        merchantFragment = new MerchantFragment();
-        topicFragment = new TopicFragment();
-        mineFragment = new MineFragment();
+        handpickFragment = new HandpickSecFragment();
+        merchantFragment = new MerchantSecFragment();
+        topicFragment = new TopicSecFragment();
+        mineFragment = new MineSecFragment();
         fragmentList = new ArrayList<>();
         fragmentList.add(handpickFragment);
         fragmentList.add(merchantFragment);
@@ -148,7 +144,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (viewPager.getCurrentItem() == 0) {// 精选页面的点击商圈文字处理逻辑
             handpickFragment.showAreaPop();
         }
-
         if (viewPager.getCurrentItem() == 1) {// 商家页面的点击商圈文字处理逻辑
 
         }

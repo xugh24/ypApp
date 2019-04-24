@@ -1,5 +1,7 @@
 package com.yuepang.yuepang.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -69,7 +71,6 @@ public class MylikeActivity extends BaseActivity {
     private Button btn_sub;
 
 
-
     @Override
     public String getMyTittle() {
         return "喜好";
@@ -111,5 +112,10 @@ public class MylikeActivity extends BaseActivity {
 
 
         }
+    }
+
+    public static void toThisActivity(Context context) {
+        Intent intent4 = new Intent(context, MylikeActivity.class);
+        context.startActivity(intent4);
     }
 }
