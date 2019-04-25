@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * Created by xugh on 2019/4/24.
  */
 
-@Target(ElementType.METHOD)
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface OnClickView {
     int[] value();

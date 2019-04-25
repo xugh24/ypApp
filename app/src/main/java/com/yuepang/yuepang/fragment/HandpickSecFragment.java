@@ -4,13 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.common.annotation.view.OnClickView;
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.adapter.AreaAdapter;
 import com.yuepang.yuepang.adapter.GoodAdapter;
@@ -28,16 +26,12 @@ import java.util.List;
 
 public class HandpickSecFragment extends BaseSecFragment implements AreaInterFace, CutAreaInterFace {
 
-    @BindView(id = R.id.tv_merchant1)
     private TextView tvName1; // 商家1的名称
 
-    @BindView(id = R.id.tv_merchant2)
     private TextView tvName2; // 商家2的名称
 
-    @BindView(id = R.id.goodlist)
     private ListView goodLv;
 
-    @BindView(id = R.id.iv_not)
     private ImageView ivNot;
 
     private GoodAdapter goodAdapter; // 商品
@@ -95,6 +89,7 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
     }
 
     @OnClickView({R.id.merchant1_ly,R.id.merchant2_ly})
+    private String string;
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

@@ -32,6 +32,7 @@ public class MineSecFragment extends BaseSecFragment {
 
     @OnClickView({R.id.personal_ly, R.id.rl_uc_1, R.id.rl_uc_2,
             R.id.rl_uc_3, R.id.rl_uc_4, R.id.rl_uc_5})
+    private String string;
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.personal_ly:

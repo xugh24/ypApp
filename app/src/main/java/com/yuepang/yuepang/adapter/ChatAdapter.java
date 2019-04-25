@@ -5,9 +5,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.AnnotateUtil;
-import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.model.TopicItemInfo;
 
@@ -50,15 +49,13 @@ public class ChatAdapter extends YueBaseAdapter<TopicItemInfo> {
      * item View 类
      */
     private final class ViewHolder {
-        @BindView(id = R.id.iv_head)
         ImageView ivHead;
-        @BindView(id = R.id.tv_name)
         TextView name;
-        @BindView(id = R.id.tv_msg)
         TextView msg;
 
         public ViewHolder(View view) {
-            AnnotateUtil.initBindView(this, view);
+            AnnotateBindViewUtil.initBindView(this,view,null);
+
         }
     }
 

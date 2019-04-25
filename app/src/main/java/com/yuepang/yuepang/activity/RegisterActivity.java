@@ -7,8 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.common.annotation.view.BindView;
+import com.android.common.annotation.view.BindViewByTag;
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.presenter.RegPresenter;
 
 /**
@@ -17,19 +18,16 @@ import com.yuepang.yuepang.presenter.RegPresenter;
 
 public class RegisterActivity extends BaseActivity {
 
-    @BindView(id = R.id.tv_rgtel)
+    @BindViewByTag
     private EditText edtel;// 注册手机号输入框
-
-    @BindView(id = R.id.tv_rgtel)
+    @BindViewByTag
     private EditText edCode;// 验证码输框
-
-    @BindView(id = R.id.ed_regpwd)
+    @BindViewByTag
     private EditText edPwd;// 密码输入框
-
-    @BindView(id = R.id.tv_getrgcoed)
+    @BindViewByTag
     private TextView tvGetCode; // 获得验证码输入框
 
-    @BindView(id = R.id.btn_reg, click = true)
+    @BindViewByTag(click = true)
     private Button btnReg;// 点击注册按钮
 
     private RegPresenter regPresenter;
@@ -48,7 +46,6 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
-        super.onClick(v);
         if (v == btnReg) {
             regPresenter.register();
         }

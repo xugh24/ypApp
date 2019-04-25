@@ -2,15 +2,12 @@ package com.yuepang.yuepang.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.BindView;
-import com.yuepang.yuepang.control.GetTelCodeControl;
 import com.yuepang.yuepang.presenter.ForgetPwdPresenter;
 
 /**
@@ -20,22 +17,16 @@ import com.yuepang.yuepang.presenter.ForgetPwdPresenter;
 
 public class ForgetPwdActivity extends BaseActivity {
 
-    @BindView(id = R.id.ed_tel)
     private EditText edTel;
 
-    @BindView(id = R.id.ed_coed)
     private EditText code;
 
-    @BindView(id = R.id.tv_getcoed)
     private TextView tvGetCode;
 
-    @BindView(id = R.id.tv_pwd1)
     private EditText pwd1;
 
-    @BindView(id = R.id.tv_pwd2)
     private EditText pwd2;
 
-    @BindView(id = R.id.btn_sub,click = true)
     private Button btnSure;
 
     private ForgetPwdPresenter forgetPwdPresenter;

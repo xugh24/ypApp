@@ -1,5 +1,6 @@
 package com.android.common.annotation.view;
 
+import android.text.TextUtils;
 import android.view.View;
 
 import com.android.common.model.PayResultInfo;
@@ -28,22 +29,52 @@ public class AnnotateBindViewUtil {
                 bindView(currentClass, field, sourceView, listener);
             } else if (field.isAnnotationPresent(OnClickView.class)) {//如果
                 bindOnclick(field, sourceView, listener);
+            } else if (field.isAnnotationPresent(BindViewByTag.class)) {
+                bindViewByTag(currentClass, field, sourceView, listener);
+            }
+        }
+    }
+
+    private static void bindViewByTag(Object currentClass, Field field, View sourceView, View.OnClickListener listener) {
+        String tag = field.getName();
+        BindViewByTag bindView = (BindViewByTag) field.getAnnotation(BindViewByTag.class);
+        if (!TextUtils.isEmpty(tag) && sourceView != null && bindView != null) {
+            field.setAccessible(true);
+            View view = sourceView.findViewWithTag(tag);
+            boolean clickL = bindView.click();
+            if (view != null) {
+                try {
+                    field.set(currentClass, view);
+                    if (clickL) view.setOnClickListener(listener);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                LogUtils.e("子 view 为空 子view tag " + tag);
             }
         }
     }
 
     private static void bindOnclick(final Field field, View sourceView, View.OnClickListener listene) {
         OnClickView onClick = field.getAnnotation(OnClickView.class);
+
         if (onClick != null) {
-            int[] ids = onClick.value();
-            if (ids != null && ids.length > 0) {
-                for (int id : ids) {
-                    View view = sourceView.findViewById(id);
-                    if (view != null && listene != null) {
-                        view.setOnClickListener(listene);
+            try {
+                field.setAccessible(true);
+                int[] ids = onClick.value();
+                if (ids != null && ids.length > 0) {
+                    for (int id : ids) {
+                        LogUtils.e("id" + id);
+                        View view = sourceView.findViewById(id);
+                        if (view != null && listene != null) {
+                            view.setOnClickListener(listene);
+                        }
                     }
                 }
+            } catch (Exception e) {
+
             }
+
         }
     }
 

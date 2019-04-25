@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.control.CheckManage;
 import com.yuepang.yuepang.control.UserCentreControl;
 
@@ -17,16 +16,12 @@ import com.yuepang.yuepang.control.UserCentreControl;
 public class ChangePwdActivity extends BaseActivity {
 
 
-    @BindView(id = R.id.tv_oldpwd)
     private EditText edoldpwd;
 
-    @BindView(id = R.id.tv_pwd1)
     private EditText edpwd1;
 
-    @BindView(id = R.id.tv_pwd2)
     private EditText edPwd2;
 
-    @BindView(id = R.id.btn_sub,click = true)
     private Button btnChange;
 
     private String oldPwd;

@@ -7,9 +7,8 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.AnnotateUtil;
-import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.GoodDetailActivity;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
@@ -18,8 +17,6 @@ import com.yuepang.yuepang.model.AreaInfo;
 import com.yuepang.yuepang.model.GoodInfo;
 import com.yuepang.yuepang.protocol.HandpickInfoProtocol;
 import com.yuepang.yuepang.test.TestData;
-
-import java.util.List;
 
 /**
  * Created by xugh on 2019/4/2.
@@ -88,17 +85,14 @@ public class GoodAdapter extends YueBaseAdapter <GoodInfo> implements AdapterVie
     }
 
     private final class ViewHolder {
-        @BindView(id = R.id.iv_good)
         ImageView ivPic;
 
-        @BindView(id = R.id.goodname)
         TextView name;
 
-        @BindView(id = R.id.goodmsg)
         TextView msg;
 
         public ViewHolder(View view) {
-            AnnotateUtil.initBindView(this, view);
+            AnnotateBindViewUtil.initBindView(this,view,null);
         }
     }
 }

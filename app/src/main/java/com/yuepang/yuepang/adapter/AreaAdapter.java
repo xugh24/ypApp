@@ -4,9 +4,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
+
+import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.AnnotateUtil;
-import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.interFace.CutAreaInterFace;
 import com.yuepang.yuepang.model.AreaInfo;
@@ -48,11 +48,10 @@ public class AreaAdapter extends YueBaseAdapter <AreaInfo> implements AdapterVie
     }
 
     private final class ViewHolder {
-        @BindView(id = R.id.tv_name)
         TextView name;
 
         public ViewHolder(View view) {
-            AnnotateUtil.initBindView(this, view);
+            AnnotateBindViewUtil.initBindView(this,view,null);
         }
     }
 

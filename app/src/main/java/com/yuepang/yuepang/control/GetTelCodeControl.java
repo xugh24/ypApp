@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.common.annotation.view.BindView;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
@@ -23,9 +24,6 @@ public class GetTelCodeControl implements View.OnClickListener {
 
     public final static int GET_TEL_CODE_WAITING = 1;
 
-    /**
-     *
-     */
     private EditText edTel;
 
     private EditText code;
@@ -143,7 +141,7 @@ public class GetTelCodeControl implements View.OnClickListener {
      *
      */
     private boolean checkDate() {
-        return CheckManage.checkTel(getInfo().getmTel(), activity) && CheckManage.checkCode(getInfo().getCode(), activity);
+         return CheckManage.checkTel(info.getmTel(), activity) && CheckManage.checkCode(info.getCode(), activity);
     }
 
 

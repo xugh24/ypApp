@@ -3,12 +3,9 @@ package com.yuepang.yuepang.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.android.common.annotation.view.OnClickView;
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.control.UserCentreControl;
 
 /**
@@ -29,6 +26,7 @@ public class SettingActivity extends BaseActivity {
     }
 
     @OnClickView({R.id.tv_about,R.id.tv_feedback,R.id.tv_out})
+    private String string;
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

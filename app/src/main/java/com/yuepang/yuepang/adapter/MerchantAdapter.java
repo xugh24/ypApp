@@ -2,14 +2,12 @@ package com.yuepang.yuepang.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.AnnotateUtil;
-import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
@@ -17,8 +15,6 @@ import com.yuepang.yuepang.interFace.AreaInterFace;
 import com.yuepang.yuepang.model.AreaInfo;
 import com.yuepang.yuepang.model.MerchantInfo;
 import com.yuepang.yuepang.test.TestData;
-
-import java.util.List;
 
 
 /**
@@ -81,19 +77,15 @@ public class MerchantAdapter extends YueBaseAdapter <MerchantInfo> {
 
 
     private final class ViewHolder implements View.OnClickListener {
-        @BindView(id = R.id.iv_pic)
         ImageView iv;
-        @BindView(id = R.id.tv_name)
         TextView name;
-        @BindView(id = R.id.tv_location)
         TextView loction;
-        @BindView(id = R.id.btn_buy, click = true)
         Button btnPay;
 
         private int position;
 
         public ViewHolder(View view) {
-            AnnotateUtil.initBindView(this, view);
+            AnnotateBindViewUtil.initBindView(this,view,this);
         }
 
         @Override

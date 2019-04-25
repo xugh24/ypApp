@@ -76,6 +76,7 @@ public class ActionBarTitle implements View.OnClickListener {
     }
 
    @OnClickView({R.id.iv_back})
+   private String string;
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

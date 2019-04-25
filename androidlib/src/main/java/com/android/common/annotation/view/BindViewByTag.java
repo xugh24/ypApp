@@ -1,4 +1,4 @@
-package com.yuepang.yuepang.Util;
+package com.android.common.annotation.view;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,18 +6,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 自定义注解，用来绑定页面UI控件
+ * Created by xugh on 2019/4/25.
  */
 
-@Target(ElementType.FIELD)
+
+@Target(value = {ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface BindView {
-
-    /**
-     *   控件ID
-     */
-    int id();
-
+public @interface BindViewByTag {
     /**
      * 是否注册点击事件，默认不注册
      */

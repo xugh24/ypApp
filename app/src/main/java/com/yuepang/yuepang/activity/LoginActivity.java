@@ -3,11 +3,11 @@ package com.yuepang.yuepang.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+
+import com.android.common.annotation.view.BindView;
 import com.android.common.annotation.view.OnClickView;
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.presenter.LoginPresenter;
 
 /**
@@ -23,9 +23,6 @@ public class LoginActivity extends BaseActivity {
 
     @BindView(id = R.id.ed_login_pwd)
     private EditText edPwd;// 用户密码
-
-    @BindView(id = R.id.btn_reg, click = true)
-    private Button btnReg;// 注册按钮
 
     private LoginPresenter presenter;
 
@@ -43,6 +40,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     @OnClickView({R.id.btn_login,R.id.btn_reg,R.id.forget_pwd})
+    private String string;
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

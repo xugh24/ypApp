@@ -1,6 +1,5 @@
 package com.yuepang.yuepang.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.model.MerchantInfo;
 import com.yuepang.yuepang.model.PayItem;
 
@@ -32,22 +30,16 @@ public class PayActivity extends BaseActivity {
 
     private MerchantInfo info;
 
-    @BindView(id = R.id.ed_price)
     private EditText edprice;
 
-    @BindView(id = R.id.ed_nodisprice)
     private EditText edNodisPrice;
 
-    @BindView(id = R.id.ll_nodis)
     private LinearLayout linearLayout;
 
-    @BindView(id = R.id.btn_pay, click = true)
     private Button btnPay;
 
-    @BindView(id = R.id.radio)
     private CheckBox chx;
 
-    @BindView(id = R.id.tv_dis)
     private TextView tvDis;
 
 

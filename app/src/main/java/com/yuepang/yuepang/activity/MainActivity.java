@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.adapter.MyFragmentPagerAdapter;
 import com.yuepang.yuepang.dialog.OutDialog;
@@ -27,31 +26,22 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
-    @BindView(id = R.id.main_vp)
     private ViewPager viewPager;
 
-    @BindView(id = R.id.ll_bar1, click = true)
     private LinearLayout ll1;//
 
-    @BindView(id = R.id.ll_bar2, click = true)
     private LinearLayout ll2;//
 
-    @BindView(id = R.id.ll_bar3, click = true)
     private LinearLayout ll3;//
 
-    @BindView(id = R.id.ll_bar4, click = true)
     private LinearLayout ll4;//
 
-    @BindView(id = R.id.iv1)
     private ImageView iv1;
 
-    @BindView(id = R.id.iv2)
     private ImageView iv2;
 
-    @BindView(id = R.id.iv3)
     private ImageView iv3;
 
-    @BindView(id = R.id.iv4)
     private ImageView iv4;
 
     private HandpickSecFragment handpickFragment;// 精选

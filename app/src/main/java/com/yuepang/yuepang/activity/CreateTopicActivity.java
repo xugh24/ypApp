@@ -4,7 +4,6 @@ import android.text.TextUtils;
 import android.widget.EditText;
 
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
 import com.yuepang.yuepang.protocol.AddTopicProtocol;
 
@@ -15,7 +14,6 @@ import com.yuepang.yuepang.protocol.AddTopicProtocol;
 
 public class CreateTopicActivity extends BaseActivity {
 
-    @BindView(id = R.id.ed_topic)
     private EditText edTop;
 
     @Override

@@ -6,9 +6,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
+import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.AnnotateUtil;
-import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.Util.SysUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.ChatActivity;
@@ -57,15 +56,12 @@ public class TopicAdapter extends YueBaseAdapter<TopicInfo> implements AdapterVi
     }
 
     private final class ViewHolder {
-        @BindView(id = R.id.title_name)
         TextView head;
-        @BindView(id = R.id.tv_title)
         TextView title;
-        @BindView(id = R.id.time)
         TextView time;
 
         public ViewHolder(View view) {
-            AnnotateUtil.initBindView(this, view);
+            AnnotateBindViewUtil.initBindView(this,view,null);
         }
     }
 

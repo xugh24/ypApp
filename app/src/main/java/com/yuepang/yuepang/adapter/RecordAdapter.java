@@ -4,9 +4,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.AnnotateUtil;
-import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.model.RecordInfo;
 
@@ -42,23 +41,18 @@ public class RecordAdapter extends YueBaseAdapter <RecordInfo>{
 
 
     private final class ViewHolder {
-        @BindView(id = R.id.tv_name)
         TextView name;
 
-        @BindView(id = R.id.price)
         TextView price;
 
-        @BindView(id = R.id.orderid)
         TextView orderId;
 
-        @BindView(id = R.id.tv_state)
         TextView state;
 
-        @BindView(id = R.id.time)
         TextView time;
 
         public ViewHolder(View view) {
-            AnnotateUtil.initBindView(this, view);
+            AnnotateBindViewUtil.initBindView(this,view,null);
         }
     }
 }

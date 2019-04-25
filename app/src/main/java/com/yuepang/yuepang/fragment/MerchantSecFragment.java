@@ -5,7 +5,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.adapter.AreaAdapter;
 import com.yuepang.yuepang.adapter.MerchantAdapter;
@@ -28,13 +27,10 @@ public class MerchantSecFragment extends BaseSecFragment implements AreaInterFac
 
     private MerchantAdapter merchantAdapter;
 
-    @BindView(id = R.id.mer_lv)
     private ListView lvMer;
 
-    @BindView(id = R.id.ed_serch)
     private EditText edSearch;
 
-    @BindView(id = R.id.tv_serch)
     private TextView tvSearch;
 
 

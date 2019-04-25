@@ -9,6 +9,7 @@
     <EditText
         android:id="@+id/tv_rgtel"
         style="@style/syt_ed"
+        android:tag="edtel"
         android:layout_width="match_parent"
         android:hint="请输入手机号" />
 
@@ -16,6 +17,7 @@
         android:id="@+id/ed_regpwd"
         style="@style/syt_ed"
         android:layout_marginTop="10dp"
+        android:tag="edPwd"
         android:layout_width="match_parent"
         android:hint="请输入密码" />
 
@@ -32,6 +34,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:background="@null"
+            android:tag="edCode"
             android:hint="请输入6位验证码"
             android:inputType="number" />
 
@@ -45,6 +48,7 @@
             android:background="@null"
             android:gravity="center"
             android:text="获取验证码"
+            android:tag="tvGetCode"
             android:textColor="#01d45f"
             android:textSize="11.4dp" />
     </LinearLayout>
@@ -58,6 +62,7 @@
         android:id="@+id/btn_reg"
         style="@style/syt_btn_green"
         android:layout_width="match_parent"
+        android:tag="btnReg"
         android:layout_gravity="center"
         android:text="点击登录" />
 

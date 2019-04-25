@@ -1,11 +1,10 @@
 package com.yuepang.yuepang.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.yuepang.yuepang.Util.AnnotateUtil;
+
+import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.yuepang.yuepang.activity.MainActivity;
 import com.yuepang.yuepang.widget.LoadingFrame;
 
@@ -23,7 +22,7 @@ public abstract class BaseSecFragment extends com.android.common.activity.BaseFr
     protected View initView(LayoutInflater inflater, ViewGroup container) {
         if (contentView == null) {// 创建View
             contentView = inflater.inflate(getLyId(), container, false); // 绑定基类View
-            AnnotateUtil.initBindView(this, contentView);// 绑架组件
+            AnnotateBindViewUtil.initBindView(this,contentView,this);
         }
         init(); // 初始化子类View
         loadingFrame = new LoadingFrame(getActivity()) {

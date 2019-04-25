@@ -3,20 +3,18 @@ package com.yuepang.yuepang.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.common.activity.BaseFragmentActivity;
+import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.android.common.utils.LogUtils;
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.AnnotateUtil;
 import com.yuepang.yuepang.control.UserCentreControl;
 import com.yuepang.yuepang.dialog.CallDialog;
 import com.yuepang.yuepang.dialog.MapDialog;
@@ -65,7 +63,7 @@ public abstract class BaseActivity extends BaseFragmentActivity implements View.
     private void initContentView() {
         if (getContentViewId() != -1) {
             contentView = View.inflate(this, getContentViewId(), null);
-            AnnotateUtil.initBindView(this, contentView);// 绑定子类View
+            AnnotateBindViewUtil.initBindView(this,contentView,this);
         } else {
             if (getContentView() != null) {
                 contentView = getContentView();

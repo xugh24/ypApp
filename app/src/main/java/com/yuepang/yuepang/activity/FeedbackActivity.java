@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.BindView;
 
 /**
  * Created by xugh on 2019/3/24.
@@ -14,10 +13,8 @@ import com.yuepang.yuepang.Util.BindView;
 
 public class FeedbackActivity extends BaseActivity {
 
-    @BindView(id=R.id.feedback)
     private EditText edMsg;
 
-    @BindView(id = R.id.btn_sub,click = true)
     private Button btnSub;
 
 

@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.control.UserCentreControl;
 import com.yuepang.yuepang.model.PayItem;
 
@@ -17,19 +16,14 @@ import com.yuepang.yuepang.model.PayItem;
 
 public class PaySuccessActivity extends BaseActivity {
 
-    @BindView(id = R.id.tv_tel)
     private TextView tvTel;//手机号
 
-    @BindView(id = R.id.tv_orderid)
     private TextView tvOrderId;//订单金额
 
-    @BindView(id = R.id.tv_medname)
     private TextView tvMedName;// 商家名称
 
-    @BindView(id = R.id.tv_price)
     private TextView tvPrice;// 支付金额
 
-    @BindView(id = R.id.btn_back, click = true)
     private Button btnBack;
 
     @Override

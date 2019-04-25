@@ -12,21 +12,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.BindView;
-import com.yuepang.yuepang.Util.DrawableUtil;
 import com.yuepang.yuepang.Util.LogUtils;
-import com.yuepang.yuepang.control.DataControl;
 import com.yuepang.yuepang.control.UserCentreControl;
 import com.yuepang.yuepang.db.YuePangExternalDB;
 import com.yuepang.yuepang.dialog.PersonalDialog;
 import com.yuepang.yuepang.dialog.PicDialog;
 import com.yuepang.yuepang.dialog.SexDialog;
-import com.yuepang.yuepang.fragment.MineSecFragment;
-import com.yuepang.yuepang.model.UserInfo;
 import com.yuepang.yuepang.widget.CustomDatePicker;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -49,23 +42,14 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     public static final int BIR = 0x03;
     public static final int TEL = 0x04;
 
-    @BindView(id = R.id.iv_head, click = true)
     private ImageView ivHead;
-    @BindView(id = R.id.ll_nick, click = true)
     private LinearLayout llnick;//昵称
-    @BindView(id = R.id.ll_sex, click = true)
     private LinearLayout llsex;//性别
-    @BindView(id = R.id.ll_birthday, click = true)
     private LinearLayout llbirthday;//生日
-    @BindView(id = R.id.tv_pwd, click = true)
     private TextView tvPwd;
-    @BindView(id = R.id.tv_nick)
     private TextView tvNick;//
-    @BindView(id = R.id.tv_sex)
     private TextView tvsex;//
-    @BindView(id = R.id.tv_birthday)
     private TextView tvbirthday;//
-    @BindView(id = R.id.tv_tel)
     private TextView tvTel;//
     private int REQ_CROP = 0x03;
 

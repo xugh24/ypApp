@@ -5,9 +5,9 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.common.annotation.view.BindViewByTag;
 import com.android.common.annotation.view.OnClickView;
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.control.UserCentreControl;
 import com.yuepang.yuepang.interFace.LoginSuccess;
 
@@ -19,18 +19,6 @@ import com.yuepang.yuepang.interFace.LoginSuccess;
 
 public class FirstActivity extends BaseActivity implements LoginSuccess {
 
-    
-    /**
-     * 登录按钮
-     */
-    @BindView(id = R.id.btn_2login, click = true)
-    private Button btnLogin;
-
-    /**
-     * 注册按钮
-     */
-    @BindView(id = R.id.btn_2register, click = true)
-    private Button btnRegister;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,15 +26,16 @@ public class FirstActivity extends BaseActivity implements LoginSuccess {
         UserCentreControl.getInstance().addLoginMonitor(this);//设置登录成功的监听
     }
 
-
     @Override
     public String getMyTittle() {
         return null;
     }
 
+    @OnClickView({R.id.btn_2login, R.id.btn_2register})
+    private String click;
+
     @Override
     public void onClick(View v) {
-        super.onClick(v);
         switch (v.getId()) {
             case R.id.btn_2login:
                 startActivity(LoginActivity.class);
