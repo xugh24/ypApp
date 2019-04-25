@@ -28,8 +28,6 @@ import java.util.List;
 
 public class HandpickSecFragment extends BaseSecFragment implements AreaInterFace, CutAreaInterFace {
 
-
-
     @BindView(id = R.id.tv_merchant1)
     private TextView tvName1; // 商家1的名称
 
@@ -57,14 +55,11 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
         super.onCreate(savedInstanceState);
     }
 
-
-
     @Override
     protected void refreshView() {
         ivNot.setVisibility(View.GONE);
         goodLv.setVisibility(View.VISIBLE);
     }
-
 
     /**
      * 获得数据
@@ -73,7 +68,6 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
     protected boolean getData() {
         return goodAdapter.getData();
     }
-
 
     /**
      * 初始化方法

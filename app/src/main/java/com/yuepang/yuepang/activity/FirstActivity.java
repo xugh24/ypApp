@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.common.annotation.view.OnClickView;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.BindView;
 import com.yuepang.yuepang.control.UserCentreControl;
@@ -18,7 +19,7 @@ import com.yuepang.yuepang.interFace.LoginSuccess;
 
 public class FirstActivity extends BaseActivity implements LoginSuccess {
 
-
+    
     /**
      * 登录按钮
      */

@@ -2,6 +2,7 @@ package com.yuepang.yuepang.control;
 
 import android.content.Context;
 
+import com.android.common.activity.ActivityManage;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.FirstActivity;
 import com.yuepang.yuepang.db.YuePangExternalDB;
@@ -75,7 +76,7 @@ public class UserCentreControl {
         token = "";//置空当前token
         info.clear();// 清理用户信息
         activity.startActivity(FirstActivity.class);
-        BaseActivity.finishAll(FirstActivity.class);
+        ActivityManage.finishAll(FirstActivity.class);
     }
 
     public UserInfo getInfo() {

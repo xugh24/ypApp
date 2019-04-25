@@ -1,5 +1,7 @@
 package com.yuepang.yuepang.dialog;
 import android.content.DialogInterface;
+
+import com.android.common.activity.ActivityManage;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.widget.SDKdialog;
 
@@ -17,7 +19,7 @@ public class OutDialog extends SDKdialog {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                BaseActivity.finishAll();
+                ActivityManage.finishAll();
             }
         });
         setNegativeButton("否", new OnClickListener() {

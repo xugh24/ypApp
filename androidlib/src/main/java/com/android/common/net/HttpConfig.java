@@ -2,7 +2,8 @@ package com.android.common.net;
 
 import android.content.Context;
 
-import com.enumutils.HttpType;
+
+import com.android.common.enums.HttpType;
 
 import org.json.JSONObject;
 

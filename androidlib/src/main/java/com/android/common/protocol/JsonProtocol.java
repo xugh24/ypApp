@@ -10,6 +10,7 @@ import android.content.Context;
 import android.os.Build;
 
 import com.android.common.activity.ActivityManage;
+import com.android.common.enums.HttpType;
 import com.android.common.inter.HttpCallBack;
 import com.android.common.model.ResultInfo;
 import com.android.common.net.HttpConfig;
@@ -18,7 +19,6 @@ import com.android.common.utils.AppManage;
 import com.android.common.utils.ConfigBuild;
 import com.android.common.utils.DeviceUtils;
 import com.android.common.utils.LogUtils;
-import com.enumutils.HttpType;
 
 import org.json.JSONException;
 import org.json.JSONObject;

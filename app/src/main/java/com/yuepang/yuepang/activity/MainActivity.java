@@ -94,7 +94,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void onPageSelected(int position) {
                 selIv(position);
-                fragmentList.get(position).show();
+                fragmentList.get(position).onShow();
             }
 
             @Override
@@ -107,7 +107,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onResume() {
         super.onResume();
         if (viewPager != null) {
-            fragmentList.get(viewPager.getCurrentItem()).show();
+            fragmentList.get(viewPager.getCurrentItem()).onShow();
         }
     }
 

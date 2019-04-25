@@ -60,7 +60,7 @@ public abstract class BaseSecFragment extends com.android.common.activity.BaseFr
     protected abstract void init();
 
     @Override
-    protected void onShow() {
+    public void onShow() {
 
     }
 

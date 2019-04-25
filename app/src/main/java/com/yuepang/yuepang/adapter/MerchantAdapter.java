@@ -100,9 +100,9 @@ public class MerchantAdapter extends YueBaseAdapter <MerchantInfo> {
         public void onClick(View v) {
             LogUtils.e("----onClick------"+position);
             if (v == btnPay) {
-                activity.toPay(getItem(position) );
+                //activity.toPay(getItem(position) );
             }else {
-                activity.toMerActivity(getItem(position) );
+                //activity.toMerActivity(getItem(position) );
             }
         }
     }

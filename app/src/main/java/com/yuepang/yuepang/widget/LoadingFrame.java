@@ -21,6 +21,8 @@ import com.yuepang.yuepang.Util.SysUtils;
 public abstract class LoadingFrame extends BaseLoadingFrame {
 
 
+    private TextView mTextTips;
+
     public LoadingFrame(Context context) {
         super(context);
     }
@@ -30,13 +32,7 @@ public abstract class LoadingFrame extends BaseLoadingFrame {
 
     }
 
-    /**
-     * 加载无内容页面
-     */
-    @Override
-    protected View createNoContentView() {
-        return View.inflate(getContext(), R.layout.no_content_layout, null);
-    }
+    
 
     /**
      * 加载无网络页面
@@ -80,12 +76,6 @@ public abstract class LoadingFrame extends BaseLoadingFrame {
         lp.rightMargin = margin;
         layout.addView(mTextTips, lp);
         return layout;
-    }
-
-
-    @Override
-    protected CharSequence getNoContentText() {
-        return null;
     }
 
 

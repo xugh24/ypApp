@@ -1,6 +1,7 @@
 package com.android.common.async;
 
-import com.yuepang.yuepang.Util.LogUtils;
+
+import com.android.common.utils.LogUtils;
 
 public abstract class BackgroundTask<Result> {
     // ==========================================================================

@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.android.common.activity.ActivityManage;
 import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.android.common.annotation.view.BindView;
+import com.android.common.annotation.view.OnClickView;
 import com.android.common.utils.LogUtils;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.activity.BaseActivity;
@@ -18,7 +19,7 @@ import com.yuepang.yuepang.activity.BaseActivity;
 public class ActionBarTitle implements View.OnClickListener {
 
 
-    @BindView(id = R.id.iv_back)
+    @BindView(id = R.id.iv_back,click = true)
     private ImageView ivBack; // 返回按钮
 
 
@@ -49,6 +50,10 @@ public class ActionBarTitle implements View.OnClickListener {
         init();
     }
 
+    public View getBarView() {
+        return barView;
+    }
+
     private void init() {
         barView = View.inflate(activity, R.layout.bar_ly, null);
         AnnotateBindViewUtil.initBindView(this, barView, this);
@@ -70,7 +75,7 @@ public class ActionBarTitle implements View.OnClickListener {
         setTitle(tvRtitle, title);
     }
 
-
+   @OnClickView({R.id.iv_back})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

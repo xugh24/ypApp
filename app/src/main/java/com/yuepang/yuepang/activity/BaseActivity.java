@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -58,6 +59,7 @@ public abstract class BaseActivity extends BaseFragmentActivity implements View.
     private void initBarView() {
         barTitle = new ActionBarTitle(this);
         rlBar.setVisibility(isShowBar() ? View.VISIBLE : View.GONE);
+        rlBar.addView(barTitle.getBarView(), ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     private void initContentView() {
