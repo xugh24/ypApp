@@ -1,9 +1,13 @@
 package com.yuepang.yuepang.protocol;
 
+import com.android.common.enums.HttpType;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.control.UserCentreControl;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.lang.reflect.Type;
 
 /**
  * Created by xugh on 2019/4/3.
@@ -23,24 +27,32 @@ public class HandpickInfoProtocol extends JsonProtocol {
 
 
     public HandpickInfoProtocol(BaseActivity baseActivity, int areaId) {
-        super(baseActivity);
+        super(baseActivity,null);
         this.areaId = areaId;
     }
 
     @Override
-    public void creatDataJson(JSONObject json) throws Exception {
-        json.put(LONGITUDE, UserCentreControl.getInstance().getLatLng().longitude);
-        json.put(LATITUDE, UserCentreControl.getInstance().getLatLng().latitude);
-        json.put(AREAID, areaId);
+    public void creatDataJson(JSONObject json)  {
+        try {
+            json.put(LONGITUDE, UserCentreControl.getInstance().getLatLng().longitude);
+            json.put(LATITUDE, UserCentreControl.getInstance().getLatLng().latitude);
+            json.put(AREAID, areaId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
+
+    @Override
+    public HttpType getHttpType() {
+        return null;
+    }
+
+
 
     @Override
     public String getUrlToken() {
         return null;
     }
 
-    @Override
-    public Object onResponse(int code, String response) throws Exception {
-        return null;
-    }
 }

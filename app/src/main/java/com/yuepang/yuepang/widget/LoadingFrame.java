@@ -32,7 +32,6 @@ public abstract class LoadingFrame extends BaseLoadingFrame {
 
     }
 
-    
 
     /**
      * 加载无网络页面

@@ -18,7 +18,7 @@ public abstract class BaseLoadingFrame extends BaseFirstLoadingFrame {
 
     private LoadingTask mCurrentLoadingTask;
 
-    private LoadingFrameState mState = STATE_LOADING;
+    private LoadingFrameState mState;
 
     public BaseLoadingFrame(Context context) {
         super(context);
@@ -31,12 +31,13 @@ public abstract class BaseLoadingFrame extends BaseFirstLoadingFrame {
      * @param showLoadingView 是否需要展示加载中View
      */
     public void show(boolean showLoadingView) {
+        LogUtils.e("-----show----" + mState);
         synchronized (this) {
             switch (mState) {
                 case STATE_UNLOADED://如果状态为未加载，把状态标记为正在加载
                     mState = STATE_LOADING;
+                    removeLoadedView();// 移除加载完成视图
                     if (showLoadingView) {
-                        removeLoadedView();// 移除加载完成视图
                         showView(ViewType.LOADING_VIEW);
                     }
                     startNewTask();
@@ -88,6 +89,7 @@ public abstract class BaseLoadingFrame extends BaseFirstLoadingFrame {
             return load();
         }
 
+
         @Override
         protected void onProgressUpdate(Void... progress) {
 
@@ -96,6 +98,7 @@ public abstract class BaseLoadingFrame extends BaseFirstLoadingFrame {
         @Override
         protected void onPostExecute(Boolean result) {
             if (!result) {
+                LogUtils.e("result --");
                 mState = STATE_UNLOADED;
                 showView(ViewType.OFFLINE_VIEW);
                 return;
@@ -105,6 +108,7 @@ public abstract class BaseLoadingFrame extends BaseFirstLoadingFrame {
             addLoadeView();
             showLoadeView();
             mState = STATE_LOADED;
+            LogUtils.e("-----STATE_LOADED---");
         }
 
         @Override

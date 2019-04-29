@@ -21,7 +21,6 @@ public class LogUtils {
 	private static String sTag = "yuepang";
 	private static boolean sDebuggable = true;
 	private static long sTimestamp = 0;
-	private static Object sLogLock = new Object();
 
 	//==========================================================================
 	// Constructors

@@ -1,15 +1,28 @@
 package com.android.common.model;
 
+import org.json.JSONObject;
+
 /**
  * Created by xugh on 2019/4/15.
+ * <p>
+ * 协议请求类的返回的数据
+ * code 为返回码
+ * msg 为放回参数
  */
 
-public class ResultInfo<T> {
+public class ResultInfo {
+
+    public static int HTTP_NINET = -1;
+
+    public static int HTTP_OK = 200;
+
+    public static int LOGIN_INVALID = 444;
+
     private int code;
 
     private String msg;
 
-    private T data;
+    private JSONObject data;
 
     public ResultInfo(int code, String msg) {
         this.code = code;
@@ -32,11 +45,20 @@ public class ResultInfo<T> {
         this.msg = msg;
     }
 
-    public T getData() {
+    public JSONObject getData() {
         return data;
     }
 
-    public void setData(T data) {
+    public void setData(JSONObject data) {
         this.data = data;
+    }
+
+
+    public static ResultInfo getNoNetInfo() {
+        return getErrorInfo("网络连接失败");
+    }
+
+    public static ResultInfo getErrorInfo(String e) {
+        return new ResultInfo(HTTP_NINET, e);
     }
 }

@@ -83,6 +83,7 @@ public class UserCentreControl {
         return info;
     }
 
+
     public void setInfo(UserInfo info) {
         this.info = info;
     }

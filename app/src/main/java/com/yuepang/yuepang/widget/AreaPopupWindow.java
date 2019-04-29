@@ -67,6 +67,5 @@ public class AreaPopupWindow extends PopupWindow {
     public void setAdapter(AreaAdapter areaAdapter) {
         areaList.setAdapter(areaAdapter);
         areaList.setOnItemClickListener(areaAdapter);
-
     }
 }

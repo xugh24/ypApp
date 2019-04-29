@@ -66,13 +66,13 @@ public class TopicAdapter extends YueBaseAdapter<TopicInfo> implements AdapterVi
     }
 
     public boolean getData() {
-        GetTopicProtocol protocol = new GetTopicProtocol(activity);
-        if (protocol.request() == 200) {
-            setList((List<TopicInfo>) protocol.getData());
-            if (getCount() > 0) {
-                return true;
-            }
-        }
+//        GetTopicProtocol protocol = new GetTopicProtocol(activity);
+//        if (protocol.request() == 200) {
+//            setList((List<TopicInfo>) protocol.getData());
+//            if (getCount() > 0) {
+//                return true;
+//            }
+//        }
         return false;
     }
 }

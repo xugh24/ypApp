@@ -16,7 +16,7 @@ import com.yuepang.yuepang.model.UserInfo;
  * 数据交互和逻辑处理
  */
 
-public class LoginPresenter implements LoginControl.LoginResult {
+public class LoginPresenter  extends  BasePresenter<LoginActivity> implements LoginControl.LoginResult {
 
     private LoginControl loginControl;// 登录管理类
 
@@ -24,12 +24,10 @@ public class LoginPresenter implements LoginControl.LoginResult {
 
     private String pwd; // 密码
 
-    private LoginActivity activity; //登录页面 MVP 中的V
-
     private UserInfo info; // 用户信息 MVP中的M
 
     public LoginPresenter(LoginActivity activity) {
-        this.activity = activity;
+        super(activity);
         loginControl = new LoginControl(activity, this);
         loginName = DataControl.getInstance(activity).getLoginName();
         pwd = DataControl.getInstance(activity).getPwd();
@@ -53,9 +51,6 @@ public class LoginPresenter implements LoginControl.LoginResult {
     @Override
     public void loginSuccess() {
         saveAccount();
-        activity.dismissLoadingDialogSafe();
-        activity.startActivity(MainActivity.class);
-        activity.finish();
     }
 
     private void saveAccount() {

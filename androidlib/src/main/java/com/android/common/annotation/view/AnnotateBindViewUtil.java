@@ -1,7 +1,9 @@
 package com.android.common.annotation.view;
 
+import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.android.common.model.PayResultInfo;
 import com.android.common.utils.LogUtils;
@@ -41,9 +43,9 @@ public class AnnotateBindViewUtil {
         if (!TextUtils.isEmpty(tag) && sourceView != null && bindView != null) {
             field.setAccessible(true);
             View view = sourceView.findViewWithTag(tag);
-            boolean clickL = bindView.click();
             if (view != null) {
                 try {
+                    boolean clickL = bindView.click();
                     field.set(currentClass, view);
                     if (clickL) view.setOnClickListener(listener);
                 } catch (IllegalAccessException e) {
@@ -57,7 +59,6 @@ public class AnnotateBindViewUtil {
 
     private static void bindOnclick(final Field field, View sourceView, View.OnClickListener listene) {
         OnClickView onClick = field.getAnnotation(OnClickView.class);
-
         if (onClick != null) {
             try {
                 field.setAccessible(true);
@@ -77,6 +78,21 @@ public class AnnotateBindViewUtil {
 
         }
     }
+
+    /**
+     * 遍历所有的字View
+     */
+    public static void autoBindClik(View sourceView) {
+        LogUtils.e("sourceView --" + sourceView.getTag());
+        if (sourceView instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) sourceView;
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                View view = viewGroup.getChildAt(i);
+                autoBindClik(view);
+            }
+        }
+    }
+
 
     private static void bindView(Object currentClass, Field field, View sourceView, View.OnClickListener listene) {
         BindView bindView = (BindView) field.getAnnotation(BindView.class);

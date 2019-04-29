@@ -3,6 +3,7 @@ package com.yuepang.yuepang.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -47,23 +48,32 @@ public abstract class BaseActivity extends BaseFragmentActivity implements View.
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);// 设置全屏
         LogUtils.e("start activity = " + getClass().getName());
-        setContentView(R.layout.actionbar_ly);
-        rlBar = findViewById(R.id.rl_title);
-        llMain = findViewById(R.id.main_ly);
+        setContentView(R.layout.actionbar_ly);// 设置框架View
+        rlBar = findViewById(R.id.rl_title);// 初始化titleView的父view
+        llMain = findViewById(R.id.main_ly);// 初始 面view的主View；
+        initBarView();//
+        initbefore();
         initContentView();
-        initBarView();
+    }
+
+    /**
+     * 初始化前数据view前
+     */
+    protected void initbefore() {
+
     }
 
     private void initBarView() {
         barTitle = new ActionBarTitle(this);
         rlBar.setVisibility(isShowBar() ? View.VISIBLE : View.GONE);
         rlBar.addView(barTitle.getBarView(), ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        barTitle.init();
     }
 
     private void initContentView() {
         if (getContentViewId() != -1) {
             contentView = View.inflate(this, getContentViewId(), null);
-            AnnotateBindViewUtil.initBindView(this,contentView,this);
+            AnnotateBindViewUtil.initBindView(this, contentView, this);
         } else {
             if (getContentView() != null) {
                 contentView = getContentView();
@@ -71,6 +81,7 @@ public abstract class BaseActivity extends BaseFragmentActivity implements View.
         }
         llMain.addView(contentView, -1, -1);
     }
+
 
 
     protected boolean isShowBack() {
@@ -92,7 +103,7 @@ public abstract class BaseActivity extends BaseFragmentActivity implements View.
     }
 
     /**
-     * 获得中间文字
+     * 获得标题栏中间的文字
      */
     public abstract String getMyTittle();
 
@@ -102,18 +113,20 @@ public abstract class BaseActivity extends BaseFragmentActivity implements View.
 
     @Override
     public void onClick(View v) {
+
     }
 
     /**
      * 点击左边文字
      */
-    public void clikLeftTv() {
+    public void clickLeftTv() {
     }
 
     /**
      * 点击右边文字
      */
-    public void clikRt() {
+    public void clickRt() {
+
     }
 
     /**
@@ -130,12 +143,15 @@ public abstract class BaseActivity extends BaseFragmentActivity implements View.
     }
 
     public void showToastSafe(final CharSequence var1) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(BaseActivity.this, var1, Toast.LENGTH_SHORT).show();
-            }
-        });
+        if (!TextUtils.isEmpty(var1)) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(BaseActivity.this, var1, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
     }
 
     SDKLoadingDialog mLoadingDialog;

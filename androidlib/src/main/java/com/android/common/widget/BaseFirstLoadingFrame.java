@@ -87,6 +87,9 @@ public abstract class BaseFirstLoadingFrame extends RelativeLayout {
     }
 
     protected void addLoadeView() {
+        if (mLoadedView.getParent() != null) {
+            ((ViewGroup) mLoadedView.getParent()).removeView(mLoadedView);
+        }
         addChildrenView(mLoadedView, ViewType.CONTENT_VIEW);
     }
 

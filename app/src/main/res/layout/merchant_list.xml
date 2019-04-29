@@ -14,6 +14,7 @@
         <EditText
             android:id="@+id/ed_serch"
             android:layout_width="0dp"
+            android:tag="edSearch"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@null"
@@ -30,6 +31,7 @@
             android:id="@+id/tv_serch"
             android:layout_width="72dp"
             android:layout_height="match_parent"
+            android:tag="tvSearch"
             android:layout_gravity="center"
             android:background="@null"
             android:gravity="center"
@@ -41,6 +43,7 @@
 
     <ListView
         android:id="@+id/mer_lv"
+        android:tag="lvMer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:cacheColorHint="#00000000"

@@ -1,5 +1,7 @@
 package com.yuepang.yuepang.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.widget.EditText;
 
@@ -32,7 +34,7 @@ public class CreateTopicActivity extends BaseActivity {
     }
 
     @Override
-    public void clikRt() {
+    public void clickRt() {
         String title = edTop.getText().toString();
         if (TextUtils.isEmpty(title)) {  // 判断输入的话题是不是为null
             showToastSafe("标题为空");
@@ -40,6 +42,7 @@ public class CreateTopicActivity extends BaseActivity {
             creatTopic(title);
         }
     }
+
 
     /**
      * 创建话题
@@ -60,5 +63,10 @@ public class CreateTopicActivity extends BaseActivity {
             }
         });
 
+    }
+
+    public static void toThisActivity(Context context) {
+        Intent intent = new Intent(context, CreateTopicActivity.class);
+        context.startActivity(intent);
     }
 }

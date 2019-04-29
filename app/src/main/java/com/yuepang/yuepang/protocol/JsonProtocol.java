@@ -1,123 +1,120 @@
-/**
- * File Name: Protocol.java
- */
 package com.yuepang.yuepang.protocol;
 
-import android.text.TextUtils;
+import android.content.Context;
 
+import com.android.common.enums.HttpType;
+import com.android.common.model.ResultInfo;
+import com.android.common.protocol.BaseFirstProtocol;
 import com.yuepang.yuepang.Util.DomainUtil;
 import com.yuepang.yuepang.Util.LogUtils;
-import com.yuepang.yuepang.activity.BaseActivity;
-import com.yuepang.yuepang.net.MyOkHttpEngine;
+import com.yuepang.yuepang.control.UserCentreControl;
+import com.yuepang.yuepang.interFace.LoadCallBack;
 
 import org.json.JSONObject;
 
-public abstract class JsonProtocol<T> {
-    // ==========================================================================
-    // Constants
-    // ==========================================================================
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Map;
 
-    private static final String CODE = "code";//
-    private static final String MSG = "desc";
-    public static final String DATA = "data";
+/**
+ * Created by xugh on 2019/4/25.
+ */
 
+public abstract class JsonProtocol<T> extends BaseFirstProtocol {
 
+    private JSONObject reqJson;
 
-    // ==========================================================================
-    // Fields
-    // ==========================================================================
+    private LoadCallBack<T> callBack;
 
-    private String mCodeDesc = "";
-    public int mCode = 0;
-    protected JSONObject mResponse;
-    protected T mData;
-    private MyOkHttpEngine mHttpEngine;
-    protected BaseActivity baseActivity;
+    private ResultInfo resultInfo;
 
+    private T mData;
 
-    public JsonProtocol(BaseActivity baseActivity) {
-        this.baseActivity = baseActivity;
-        mHttpEngine = new MyOkHttpEngine(baseActivity);
+    public JsonProtocol(Context context, LoadCallBack<T> callBack) {
+        super(context);
+        this.callBack = callBack;
     }
 
-    /**
-     * 协议返回code描述信息
-     *
-     * @return
-     */
-    public String getCodeDesc() {
-        return mCodeDesc;
-    }
 
-    /**
-     * 协议返回code
-     *
-     * @return
-     */
-
-    public int getCode() {
-        return mCode;
-    }
-
-    public T getData() {
-        return mData;
-    }
-
-    // ==========================================================================
-    // Setters
-    // ==========================================================================
-
-    // ==========================================================================
-    // Methods
-    // ==========================================================================
-    public int request() {
-        JSONObject json = new JSONObject();
+    @Override
+    protected JSONObject getRequestJson() {
+        reqJson = new JSONObject();
         try {
-            creatDataJson(json);
-            mCode = executePost(json);
-            return mCode;
+            creatDataJson(reqJson);
         } catch (Exception e) {
             LogUtils.e(e);
         }
-        return mCode;
+        return reqJson;
     }
 
-    public String getHeardUrl() {
-        return DomainUtil.MAIN_URL;
+
+    @Override
+    public void onFailed(ResultInfo info) {
+        LogUtils.e("msg"+info.getMsg());
+        callBack.loadCallBack(LoadCallBack.CallType.FAILED, info.getCode(), info.getMsg(), null);
     }
 
-    protected int executePost(JSONObject json) throws Exception {
-        String reqAddr = getHeardUrl() + getUrlToken();
-        String response = mHttpEngine.executePost(json.toString(), reqAddr);
-        if (mHttpEngine.isCancel()) {
-            LogUtils.w("protocol canceled ignore!!");
-            return -2;
-        }
-        if (!TextUtils.isEmpty(response)) {
-            mResponse = new JSONObject(response);
-            mCode = mResponse.optInt(CODE);
-            mCodeDesc = mResponse.optString(MSG);
-            if(mCode == 200){
-                mData = onResponse(mCode, mResponse.optString(DATA));
-            }
-        }
-        return mCode;
+    @Override
+    public void onStart() {
+        callBack.loadCallBack(LoadCallBack.CallType.START, 0, null, null);
+    }
+
+    @Override
+    public void logout() {
+        callBack.loadCallBack(LoadCallBack.CallType.FAILED, 0, null, null);
+    }
+
+    @Override
+    public void onSuccess(ResultInfo info) {
+        mData = analysis(info.getData());
+        callBack.loadCallBack(LoadCallBack.CallType.SUCCESS, info.getCode(), info.getMsg(), mData);
+    }
+
+    protected  T analysis(JSONObject data){
+        return null;
+    }
+
+    @Override
+    public void onFinish() {
+        callBack.loadCallBack(LoadCallBack.CallType.FINISH, 0, null, null);
+    }
+
+
+
+    @Override
+    public HttpType getHttpType() {
+        return HttpType.POST;
+    }
+
+
+    @Override
+    protected String getUrl() {
+        return DomainUtil.MAIN_URL + getUrlToken();
     }
 
     /**
-     * 设置请求数据
+     * 获得接口名称
      */
-    public abstract void creatDataJson(JSONObject json) throws Exception;
+    protected abstract Object getUrlToken();
 
     /**
-     * @return 接口名
+     * 创建请求数据
      */
-    public abstract String getUrlToken();
+    protected abstract void creatDataJson(JSONObject reqJson);
 
-    public abstract T onResponse(int code, String response) throws Exception;
 
-    // ==========================================================================
-    // Inner/Nested Classes
-    // ==========================================================================
+    public CharSequence getCodeDesc() {
+        return null;
+    }
 
+    public String getData() {
+        return null;
+    }
+
+    @Override
+    public Map<String, String> getHeadMap() {
+        Map map = new HashMap<String,String>();
+        map.put("token", UserCentreControl.getInstance().getToken());
+        return map;
+    }
 }

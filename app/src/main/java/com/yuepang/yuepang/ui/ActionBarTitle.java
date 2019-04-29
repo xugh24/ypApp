@@ -27,15 +27,15 @@ public class ActionBarTitle implements View.OnClickListener {
     private TextView tvTitle; // 中间的title
 
 
-    @BindView(id = R.id.tv_r_title)
+    @BindView(id = R.id.tv_r_title,click = true)
     private TextView tvRtitle; // 右边的文字说明
 
 
-    @BindView(id = R.id.tv_left_title)
+    @BindView(id = R.id.tv_left_title,click = true)
     private TextView tvLeftTitle;// 左边的文字说明
 
 
-    @BindView(id = R.id.iv_star)
+    @BindView(id = R.id.iv_star,click = true)
     private ImageView ivStar;// 收藏星星页面使用
 
 
@@ -47,16 +47,15 @@ public class ActionBarTitle implements View.OnClickListener {
 
     public ActionBarTitle(BaseActivity activity) {
         this.activity = activity;
-        init();
+        barView = View.inflate(activity, R.layout.bar_ly, null);
+        AnnotateBindViewUtil.initBindView(this, barView, this);
     }
 
     public View getBarView() {
         return barView;
     }
 
-    private void init() {
-        barView = View.inflate(activity, R.layout.bar_ly, null);
-        AnnotateBindViewUtil.initBindView(this, barView, this);
+    public void init() {
         setRightTitle(activity.getMyRTitle());
         setTitle(activity.getMyTittle());
         setTvLeftTitle(activity.getLeftTitle());
@@ -84,14 +83,15 @@ public class ActionBarTitle implements View.OnClickListener {
                 activity.finish();
                 break;
             case R.id.tv_r_title:
-                LogUtils.e("---");
-                activity.clikRt();
+                LogUtils.e("--tv_r_title-");
+                activity.clickRt();
                 break;
             case R.id.iv_star:
 
                 break;
             case R.id.tv_left_title:
-                activity.clikLeftTv();
+                LogUtils.e("--tv_left_title-");
+                activity.clickLeftTv();
         }
     }
 

@@ -1,10 +1,12 @@
 package com.yuepang.yuepang.protocol;
 
+import com.android.common.enums.HttpType;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.model.RecordInfo;
 
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 /**
@@ -15,21 +17,23 @@ import java.util.List;
 
 public class GetRecordProtocol extends JsonProtocol {
     public GetRecordProtocol(BaseActivity baseActivity) {
-        super(baseActivity);
+        super(baseActivity,null);
     }
 
     @Override
-    public void creatDataJson(JSONObject json) throws Exception {
-
+    public void creatDataJson(JSONObject json) {
     }
+
+    @Override
+    public HttpType getHttpType() {
+        return null;
+    }
+
 
     @Override
     public String getUrlToken() {
         return null;
     }
 
-    @Override
-    public List<RecordInfo> onResponse(int code, String response) throws Exception {
-        return null;
-    }
+
 }

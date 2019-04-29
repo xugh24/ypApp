@@ -91,29 +91,29 @@ public class ChatPresenter {
      * 获得新的聊天数据并刷新，通过 synchronized 机制保证线程同步
      */
     public synchronized void getNewChatInfo() {
-        CommonTaskExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                GetChatProtocol protocol = new GetChatProtocol(activity, topicId);
-                if (protocol.request() == 200) {
-                    if (tempInfos.size() != ((Collection<TopicItemInfo>) protocol.getData()).size()) {// 如果本地临时数据和线上数据数量不一致，则刷新本地数据
-                        tempInfos.clear();
-                        tempInfos.addAll(((Collection<TopicItemInfo>) protocol.getData()));
-                        topicItemInfos.clear();
-                        topicItemInfos.add(firstinfo);
-                        topicItemInfos.addAll(tempInfos);
-                        activity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {// 更新消息数据后刷新UI
-                                adapter.setList(topicItemInfos);
-                                adapter.notifyDataSetChanged();
-                            }
-                        });
-                        getMsgState = false;// 获得消息标志位设置为false；
-                    }
-                }
-            }
-        });
+//        CommonTaskExecutor.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                GetChatProtocol protocol = new GetChatProtocol(activity, topicId);
+//                if (protocol.request() == 200) {
+//                    if (tempInfos.size() != ((Collection<TopicItemInfo>) protocol.getData()).size()) {// 如果本地临时数据和线上数据数量不一致，则刷新本地数据
+//                        tempInfos.clear();
+//                        tempInfos.addAll(((Collection<TopicItemInfo>) protocol.getData()));
+//                        topicItemInfos.clear();
+//                        topicItemInfos.add(firstinfo);
+//                        topicItemInfos.addAll(tempInfos);
+//                        activity.runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {// 更新消息数据后刷新UI
+//                                adapter.setList(topicItemInfos);
+//                                adapter.notifyDataSetChanged();
+//                            }
+//                        });
+//                        getMsgState = false;// 获得消息标志位设置为false；
+//                    }
+//                }
+//            }
+//        });
     }
 
     /**

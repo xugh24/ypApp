@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * Created by xugh on 2019/4/20.
  * <p>
- * 控件自定义绑定
+ * 控件自动化绑定注解，本项目的控件的绑定和事件注册均采用注解完成，大幅度节约代码量
  */
 
 @Target(value = {ElementType.FIELD})

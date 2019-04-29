@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.common.annotation.view.BindViewByTag;
+import com.android.common.annotation.view.OnClickView;
+import com.android.common.async.ImageLoaderUtil;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.control.UserCentreControl;
@@ -18,6 +21,9 @@ import com.yuepang.yuepang.db.YuePangExternalDB;
 import com.yuepang.yuepang.dialog.PersonalDialog;
 import com.yuepang.yuepang.dialog.PicDialog;
 import com.yuepang.yuepang.dialog.SexDialog;
+import com.yuepang.yuepang.interFace.LoadCallBack;
+import com.yuepang.yuepang.model.UserInfo;
+import com.yuepang.yuepang.protocol.SubPersonInfoProtocol;
 import com.yuepang.yuepang.widget.CustomDatePicker;
 
 import java.text.SimpleDateFormat;
@@ -35,35 +41,51 @@ import static com.yuepang.yuepang.dialog.PicDialog.PHOTO_CODE;
  * 不可以修改自己手机号
  */
 
-public class PersonageActivity extends BaseActivity implements PersonalDialog.CallBack {
+public class PersonageActivity extends BaseActivity implements PersonalDialog.CallBack, LoadCallBack<UserInfo> {
 
     public static final int NICK = 0x01;
     public static final int SEX = 0x02;
     public static final int BIR = 0x03;
     public static final int TEL = 0x04;
 
-    private ImageView ivHead;
-    private LinearLayout llnick;//昵称
-    private LinearLayout llsex;//性别
-    private LinearLayout llbirthday;//生日
-    private TextView tvPwd;
-    private TextView tvNick;//
-    private TextView tvsex;//
-    private TextView tvbirthday;//
-    private TextView tvTel;//
+    @BindViewByTag
+    private ImageView ivHead;// 头像
+
+    @BindViewByTag
+    private TextView tvNick;// 昵称
+
+    @BindViewByTag
+    private TextView tvsex;// 性别
+
+    @BindViewByTag
+    private TextView tvbirthday;// 生日
+
+    @BindViewByTag
+    private TextView tvTel;// 电话
+
     private int REQ_CROP = 0x03;
 
+    UserInfo info;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initbefore() {
+        info = new UserInfo();
     }
-
 
     @Override
     protected void onResume() {
         super.onResume();
         String tel = YuePangExternalDB.getInstance(this).getValueById(UserCentreControl.getInstance().getInfo().getId() + "", YuePangExternalDB.FIELD_TEL);
+        ImageLoaderUtil.LoadImageViewForUrl(ivHead, getUserInfo().getHeaderImgUrl());
+        tvTel.setText(getUserInfo().getTel());
+        tvNick.setText(getUserInfo().getNick());
+        tvbirthday.setText(getUserInfo().getBirthday());
+        tvsex.setText(getUserInfo().getSexTxte());
+    }
+
+    @Override
+    public void clickRt() {
+         new SubPersonInfoProtocol(this, this, info).request();
     }
 
     @Override
@@ -72,14 +94,20 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     }
 
     @Override
+    public String getMyRTitle() {
+        return "提交";
+    }
+
+    @Override
     protected int getContentViewId() {
         return R.layout.personage_ly;
     }
 
+    @OnClickView({R.id.ll_nick, R.id.ll_sex, R.id.ll_birthday, R.id.tv_pwd})
+    private String clik;
 
     @Override
     public void onClick(View v) {
-        super.onClick(v);
         switch (v.getId()) {
             case R.id.ll_nick:// 昵称
                 showInput(NICK);
@@ -116,7 +144,6 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
         customDatePicker.show("1997年-1月-1日");
     }
 
-
     PersonalDialog personalDialog;
     SexDialog sexDialog;
 
@@ -128,28 +155,29 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
         personalDialog.show();
     }
 
+
     @Override
     public void callBack(int type, Object obj) {
-        if (type == SEX) {
-            int sex = (int) obj;
-            if (sex == 1) {
-                getTargetText(type).setText("男");
-            } else {
-                getTargetText(type).setText("女");
-            }
-            UserCentreControl.getInstance().getInfo().setSex(sex);
-        } else {
-            String data = (String) obj;
-            if (obj != null && getTargetText(type) != null) {
+        String data = (String) obj;
+        switch (type){
+            case SEX:
+                info.setSex(data);
+                if ("1".equals(data)) {
+                    getTargetText(type).setText("男");
+                } else {
+                    getTargetText(type).setText("女");
+                }
+                break;
+            case NICK:
                 getTargetText(type).setText(data);
-            }
-            if (type == PersonageActivity.NICK) {
-                UserCentreControl.getInstance().getInfo().setNick(data);
-            }
-            if (type == PersonageActivity.BIR) {
-                UserCentreControl.getInstance().getInfo().setBirthday(data);
-            }
+                info.setNick(data);
+                break;
+            case BIR:
+                getTargetText(type).setText(data);
+                info.setBirthday(data);
+                break;
         }
+
     }
 
     @Override
@@ -206,5 +234,12 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     public static void toThisActivity(Context context) {
         Intent intent = new Intent(context, PersonageActivity.class);
         context.startActivity(intent);
+    }
+
+    @Override
+    public void loadCallBack(CallType callType, int CODE, String msg, UserInfo info) {
+        if(CODE == 200){
+            UserCentreControl.getInstance().setInfo(info);
+        }
     }
 }

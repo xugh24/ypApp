@@ -37,6 +37,7 @@
             <TextView
                 android:id="@+id/tv_merchant1"
                 style="@style/tv_2"
+                android:tag="tvName1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
@@ -61,6 +62,7 @@
             <TextView
                 android:id="@+id/tv_merchant2"
                 style="@style/tv_2"
+                android:tag="tvName2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
@@ -78,6 +80,7 @@
 
     <ImageView
         android:id="@+id/iv_not"
+        android:tag="ivNot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/bg_2" />
@@ -86,6 +89,7 @@
     <ListView
         android:id="@+id/goodlist"
         style="@style/sty_list"
+        android:tag="goodLv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"

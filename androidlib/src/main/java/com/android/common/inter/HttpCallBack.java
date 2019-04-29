@@ -10,20 +10,17 @@ import java.lang.reflect.Type;
 
 public interface HttpCallBack<T> {
 
-    int HTTP_OK = 200;
+    /**
+     * 协议请求开始，可以在本处展示load页面
+     */
+    void onStart();
 
-    int LOGIN_INVALID =444;
-
-    public void onStart();
-
-    public void callBack(ResultInfo info);
+    public void onFailed(ResultInfo info);
 
     public void logout();
 
-    public void onSuccess(ResultInfo<T> info);
+    public void onSuccess(ResultInfo info);
 
     public void onFinish();
-
-    public Type getType();
 
 }

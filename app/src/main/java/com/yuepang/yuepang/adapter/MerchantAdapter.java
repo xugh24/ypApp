@@ -45,9 +45,9 @@ public class MerchantAdapter extends YueBaseAdapter <MerchantInfo> {
             holder = (ViewHolder) convertView.getTag();
         }
         convertView.setOnClickListener(holder);
-        holder.name.setText(getItem(position).getName());
-        holder.loction.setText(getItem(position).getLocation());
-        holder.position = position;
+//        holder.name.setText(getItem(position).getName());
+//        holder.loction.setText(getItem(position).getLocation());
+//        holder.position = position;
         return convertView;
     }
 

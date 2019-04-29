@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.android.common.annotation.view.BindView;
 import com.android.common.annotation.view.BindViewByTag;
 import com.yuepang.yuepang.R;

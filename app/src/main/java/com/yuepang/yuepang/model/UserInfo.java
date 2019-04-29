@@ -2,20 +2,20 @@ package com.yuepang.yuepang.model;
 
 public class UserInfo {
 
-    private int sex;// 性别
+    private String sex;// 性别
     private String birthday;// 生日
     private String tel;// 手机号
-    private String headerImgUrl; // 头像地址
+    private String avatar; // 头像地址
     private String pwd;// 密码
-    private String nick;// 昵称
+    private String nick_name;// 昵称
     private int id;
 
 
-    public int getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(int sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -36,11 +36,11 @@ public class UserInfo {
     }
 
     public String getHeaderImgUrl() {
-        return headerImgUrl;
+        return avatar;
     }
 
     public void setHeaderImgUrl(String headerImgUrl) {
-        this.headerImgUrl = headerImgUrl;
+        this.avatar = headerImgUrl;
     }
 
     public String getPwd() {
@@ -60,23 +60,30 @@ public class UserInfo {
     }
 
     public String getNick() {
-        return nick;
+        return nick_name;
     }
 
     public void setNick(String nick) {
-        this.nick = nick;
+        this.nick_name = nick;
+    }
+
+    public String getSexTxte() {
+        if ("1".equals(sex)) {
+            return "男";
+        }
+        return "女";
     }
 
     /**
      * 清理用户信息
      */
     public void clear() {
-        sex = 0;
+        sex = "1";
         birthday = null;
         tel = null;// 手机号
-        headerImgUrl = null; // 头像地址
+        avatar = null; // 头像地址
         pwd = null;// 密码
-        nick = null;// 昵称
+        nick_name = null;// 昵称
         id = 0;
     }
 

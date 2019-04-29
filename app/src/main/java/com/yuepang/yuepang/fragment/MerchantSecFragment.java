@@ -1,9 +1,12 @@
 package com.yuepang.yuepang.fragment;
 
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.common.annotation.view.BindView;
+import com.android.common.annotation.view.BindViewByTag;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.adapter.AreaAdapter;
@@ -27,19 +30,15 @@ public class MerchantSecFragment extends BaseSecFragment implements AreaInterFac
 
     private MerchantAdapter merchantAdapter;
 
+    @BindViewByTag
     private ListView lvMer;
-
+    @BindViewByTag
     private EditText edSearch;
-
+    @BindViewByTag
     private TextView tvSearch;
 
 
-    @Override
-    protected void init() {
-        areaPopupWindow = new AreaPopupWindow(getMainActivity());
-        merchantAdapter = new MerchantAdapter(getMainActivity(),this);
-        lvMer.setAdapter(merchantAdapter);
-    }
+
 
     public void showAreaPop() {
         if (areaPopupWindow != null) {
@@ -49,12 +48,30 @@ public class MerchantSecFragment extends BaseSecFragment implements AreaInterFac
 
     @Override
     protected void refreshView() {
+        lvMer.setAdapter(merchantAdapter);
         merchantAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected boolean getData() {
         return merchantAdapter.getData();
+    }
+
+    @Override
+    protected void initafterView() {
+
+    }
+
+    @Override
+    protected void initbeforeView() {
+        areaPopupWindow = new AreaPopupWindow(getMainActivity());
+        merchantAdapter = new MerchantAdapter(getMainActivity(), this);
+    }
+
+    @Override
+    public void onShow() {
+        setTitle("商家");
+        setRightTitle(null);
     }
 
 
@@ -74,5 +91,10 @@ public class MerchantSecFragment extends BaseSecFragment implements AreaInterFac
     public void cutAreaInfo(AreaInfo info) {
         getMainActivity().getBarTitle().setTvLeftTitle(info.getName());
         merchantAdapter.refresh(info);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

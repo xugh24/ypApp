@@ -4,9 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v4.view.ViewPager
+    <com.android.common.widget.BaseViewPage
         android:id="@+id/main_vp"
         android:layout_width="wrap_content"
+        android:tag="viewPager"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
@@ -29,6 +30,7 @@
             <ImageView
                 android:id="@+id/iv1"
                 android:layout_width="wrap_content"
+                android:tag="iv1"
                 android:layout_height="wrap_content"
                 android:src="@drawable/bar1" />
 
@@ -53,6 +55,7 @@
                 android:id="@+id/iv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="iv2"
                 android:src="@drawable/bar2" />
 
             <TextView
@@ -76,6 +79,7 @@
                 android:id="@+id/iv3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="iv3"
                 android:src="@drawable/bar3" />
 
             <TextView
@@ -98,6 +102,7 @@
             <ImageView
                 android:id="@+id/iv4"
                 android:layout_width="wrap_content"
+                android:tag="iv4"
                 android:layout_height="wrap_content"
                 android:src="@drawable/bar4" />
 

@@ -1,6 +1,7 @@
 package com.yuepang.yuepang.dialog;
 
 import android.content.DialogInterface;
+
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.PersonageActivity;
 import com.yuepang.yuepang.widget.SDKdialog;
@@ -19,13 +20,13 @@ public class SexDialog extends SDKdialog {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                callBack.callBack(PersonageActivity.SEX, 1);
+                callBack.callBack(PersonageActivity.SEX, "1");
             }
         });
         setNegativeButton("女", new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                callBack.callBack(PersonageActivity.SEX, 2);
+                callBack.callBack(PersonageActivity.SEX, "2");
             }
         });
         hideEdInput();

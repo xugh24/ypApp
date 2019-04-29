@@ -1,48 +1,53 @@
 package com.yuepang.yuepang.adapter;
 
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.view.ViewGroup;
-
+import com.android.common.activity.BaseFragment;
+import com.android.common.adapter.BaseFragmentPagerAdapter;
 import com.yuepang.yuepang.fragment.BaseSecFragment;
+import com.yuepang.yuepang.fragment.HandpickSecFragment;
+import com.yuepang.yuepang.fragment.MerchantSecFragment;
+import com.yuepang.yuepang.fragment.MineSecFragment;
+import com.yuepang.yuepang.fragment.TopicSecFragment;
 
-import java.util.List;
 
 /**
  */
 
-public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
+public class MyFragmentPagerAdapter extends BaseFragmentPagerAdapter {
 
-    private FragmentManager fragmetnmanager;  //创建FragmentManager
-    private List<BaseSecFragment> listfragment; //创建一个List<Fragment>
+    HandpickSecFragment handpickSecFragment;
 
+    MerchantSecFragment merchantSecFragment;
 
-    public MyFragmentPagerAdapter(FragmentManager fm, List<BaseSecFragment> list) {
-        super(fm);
-        this.fragmetnmanager = fm;
-        this.listfragment = list;
-    }
+    TopicSecFragment topicSecFragment;
 
+    MineSecFragment mineSecFragment;
 
-    @Override
-    public Object instantiateItem(ViewGroup vg, int position) {
-        return super.instantiateItem(vg, position);
-    }
-
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        System.out.println("position Destory" + position);
-        super.destroyItem(container, position, object);
+    public MyFragmentPagerAdapter(FragmentManager fm, int count) {
+        super(fm, count);
+        handpickSecFragment = new HandpickSecFragment();
+        mineSecFragment = new MineSecFragment();
+        topicSecFragment = new TopicSecFragment();
+        merchantSecFragment = new MerchantSecFragment();
     }
 
     @Override
-    public Fragment getItem(int position) {
-        return listfragment.get(position); //返回第几个fragment
+    public BaseSecFragment getItem(int position) {
+        switch (position) {
+            case 0:
+                return handpickSecFragment;
+            case 1:
+                return merchantSecFragment;
+            case 2:
+                return topicSecFragment;
+            case 3:
+                return mineSecFragment;
+        }
+        return mineSecFragment;
     }
 
     @Override
     public int getCount() {
-        return listfragment.size();
+        return 4;
     }
 }

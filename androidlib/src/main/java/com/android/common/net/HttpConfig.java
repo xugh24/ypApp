@@ -1,6 +1,7 @@
 package com.android.common.net;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 
 import com.android.common.enums.HttpType;
@@ -8,6 +9,7 @@ import com.android.common.enums.HttpType;
 import org.json.JSONObject;
 
 import java.io.PipedOutputStream;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -34,7 +36,6 @@ public class HttpConfig {
         this.httpType = httpType;
         this.url = url;
         this.paraJson = paraJson;
-        init();
     }
 
     private void init() {
@@ -75,5 +76,9 @@ public class HttpConfig {
 
     public Map<String,Object> getParams() {
         return null;
+    }
+
+    public void setHeaderParams(Map<String, String> headerParams) {
+        this.headerParams = headerParams;
     }
 }

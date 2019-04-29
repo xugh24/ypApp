@@ -1,10 +1,12 @@
 package com.yuepang.yuepang.fragment;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.common.annotation.view.AnnotateBindViewUtil;
+import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.MainActivity;
 import com.yuepang.yuepang.widget.LoadingFrame;
 
@@ -14,17 +16,16 @@ import com.yuepang.yuepang.widget.LoadingFrame;
 
 public abstract class BaseSecFragment extends com.android.common.activity.BaseFragment implements View.OnClickListener {
 
-    protected View contentView;
+    protected View contentView;// 需要返回的主view
 
-    protected LoadingFrame loadingFrame;
+    protected LoadingFrame loadingFrame;//
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container) {
         if (contentView == null) {// 创建View
             contentView = inflater.inflate(getLyId(), container, false); // 绑定基类View
-            AnnotateBindViewUtil.initBindView(this,contentView,this);
+            AnnotateBindViewUtil.initBindView(this, contentView, this);
         }
-        init(); // 初始化子类View
         loadingFrame = new LoadingFrame(getActivity()) {
             @Override
             public boolean load() {
@@ -37,8 +38,23 @@ public abstract class BaseSecFragment extends com.android.common.activity.BaseFr
                 return contentView;
             }
         };
-        loadingFrame.show();
         return loadingFrame;
+    }
+
+    /**
+     * 请求数据
+     */
+    @Override
+    protected void initData() {
+        loadingFrame.show();
+    }
+
+    /**
+     * onAttach 在 creatView 前调用 再onshow 后调用
+     */
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
     }
 
     /**
@@ -53,31 +69,54 @@ public abstract class BaseSecFragment extends com.android.common.activity.BaseFr
      */
     protected abstract boolean getData();
 
-    /**
-     * 初始化View
-     */
-    protected abstract void init();
 
     @Override
     public void onShow() {
-
+        LogUtils.e("onshow");
     }
 
     @Override
     public void onHide() {
-
+        LogUtils.e("onHide");
     }
 
 
     public abstract int getLyId();
 
 
-    @Override
-    public void onClick(View v) {
+    public MainActivity getMainActivity() {
+        return (MainActivity) getActivity();
+    }
+
+    /**
+     * 接受外部点击右边文字的事件
+     */
+    public void onclikRight() {
 
     }
 
-    public MainActivity getMainActivity() {
-        return (MainActivity) getActivity();
+    /**
+     * 接受外部点击左边文字的事件
+     */
+    public void onClikLeft() {
+
+    }
+
+    public void setTitle(String title) {
+        if (getActivity() != null) {
+            getMainActivity().getBarTitle().setTitle(title);
+        }
+    }
+
+    public void setRightTitle(String title) {
+        if (getActivity() != null) {
+            getMainActivity().getBarTitle().setRightTitle(title);
+        }
+    }
+
+    public void setTvLeftTitle(String title) {
+        if (getActivity() != null) {
+            getMainActivity().getBarTitle().setTvLeftTitle(title);
+        }
     }
 }

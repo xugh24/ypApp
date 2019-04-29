@@ -19,19 +19,22 @@ import com.yuepang.yuepang.presenter.LoginPresenter;
 public class LoginActivity extends BaseActivity {
 
     @BindView(id = R.id.ed_login_tel)
-    private EditText edTel; // 用户手机号
+    private EditText edTel; // 用户手机号输入框
 
     @BindView(id = R.id.ed_login_pwd)
     private EditText edPwd;// 用户密码
 
-    private LoginPresenter presenter;
+    @OnClickView({R.id.btn_login, R.id.btn_reg, R.id.forget_pwd})// 注解绑定需要事件的控件Id
+    private String string;
+
+    private LoginPresenter presenter;// 登录presenter实现数据和页面的交互
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new LoginPresenter(this);
-        edTel.setText(presenter.getLoginName());
-        edPwd.setText(presenter.getPwd());
+        presenter = new LoginPresenter(this);// 初始化
+        edTel.setText(presenter.getLoginName());//设置本地记录的账号
+        edPwd.setText(presenter.getPwd());// 设置本地密码
     }
 
     @Override
@@ -39,8 +42,6 @@ public class LoginActivity extends BaseActivity {
         return "登录";
     }
 
-    @OnClickView({R.id.btn_login,R.id.btn_reg,R.id.forget_pwd})
-    private String string;
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -57,27 +58,21 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override
-    protected int getContentViewId() {
+    protected int getContentViewId() {// 获得页面页面的id
         return R.layout.login_ly;
     }
 
     /**
-     * 获得用户名
+     * 获得输入框用户名
      */
     public String getLoginName() {
-        if (edTel != null) {
-            return edTel.getText().toString().trim();
-        }
-        return null;
+        return getTvByName(edTel);
     }
 
     /**
-     * 获得用户名
+     * 获得密码输入框内容
      */
     public String getPwd() {
-        if (edTel != null) {
-            return edPwd.getText().toString().trim();
-        }
-        return null;
+        return getTvByName(edPwd);
     }
 }
