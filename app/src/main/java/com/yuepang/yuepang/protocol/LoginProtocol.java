@@ -5,6 +5,7 @@ import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.control.UserCentreControl;
 import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.UserInfo;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class LoginProtocol extends JsonProtocol <UserInfo>{
+public class LoginProtocol extends JsonProtocol<UserInfo> {
 
     private final static String NAME = "username";
     private final static String PASSWORD = "password";
@@ -38,18 +39,25 @@ public class LoginProtocol extends JsonProtocol <UserInfo>{
     }
 
     @Override
-    protected UserInfo analysis(JSONObject data) {
-        String userInfo = data.optString("userInfo");
-        String token = data.optString("token");
-        UserCentreControl.getInstance().setToken(token);
-        return GsonUtils.getInstance().fromJson(userInfo,UserInfo.class);
+    protected UserInfo analysis(String sty) {
+        JSONObject data = null;
+        try {
+            data = new JSONObject(sty);
+            String userInfo = data.optString("userInfo");
+            String token = data.optString("token");
+            UserCentreControl.getInstance().setToken(token);
+            return GsonUtils.getInstance().fromJson(userInfo, UserInfo.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+
     }
 
     @Override
     public String getUrlToken() {
         return "user/login/";
     }
-
 
 
 }

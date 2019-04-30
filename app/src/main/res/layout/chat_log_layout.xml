@@ -11,6 +11,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
+        android:tag="chatListView"
         android:layout_weight="1"
         android:background="#ffffff"
         android:cacheColorHint="#00000000"
@@ -49,7 +50,7 @@
             android:maxLength="400"
             android:maxLines="4"
             android:minHeight="38dp"
-            android:tag="azplg_chat_log_layout_et_message_content"
+            android:tag="edMsg"
             android:textColorHint="#a6a6a6"
             android:textCursorDrawable="@null"
             android:textSize="12.9dp" />
@@ -60,6 +61,7 @@
             style="@style/syt_btn_blue"
             android:layout_width="70dp"
             android:layout_height="30dp"
+            android:tag="btnSend"
             android:gravity="center"
             android:text="发送"
             android:textSize="12.9dp" />

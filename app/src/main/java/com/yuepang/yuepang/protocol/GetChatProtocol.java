@@ -1,8 +1,10 @@
 package com.yuepang.yuepang.protocol;
 
 import com.android.common.enums.HttpType;
+import com.android.common.utils.GsonUtils;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
+import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.TopicItemInfo;
 
 import org.json.JSONArray;
@@ -18,12 +20,12 @@ import java.util.List;
  */
 
 
-public class GetChatProtocol extends JsonProtocol {
+public class GetChatProtocol extends JsonProtocol <List<TopicItemInfo>> {
 
     private int id;
 
-    public GetChatProtocol(BaseActivity baseActivity, int id) {
-        super(baseActivity,null);
+    public GetChatProtocol(BaseActivity baseActivity, LoadCallBack<List<TopicItemInfo>> callBack, int id) {
+        super(baseActivity, callBack);
         this.id = id;
     }
 
@@ -36,34 +38,30 @@ public class GetChatProtocol extends JsonProtocol {
         }
     }
 
-    @Override
-    public HttpType getHttpType() {
-        return null;
-    }
-
-
 
     @Override
     public String getUrlToken() {
         return "yuepang/chatList/";
     }
 
-//    @Override
-//    public Object onResponse(int code, String response) throws Exception {
-//        List<TopicItemInfo> infos = new ArrayList<>();
-//        JSONArray array = new JSONArray(response);
-//        if (array.length() > 0) {
-//            for (int i = 0; i < array.length(); i++) {
-//                TopicItemInfo info = new TopicItemInfo();
-//                JSONObject json = new JSONObject(array.optString(i));
-//                LogUtils.e("json"+json);
-//                info.setName(json.optString("username"));
-//                info.setUrl(json.optString("userAvatar"));
-//                info.setId(json.optInt("id"));
-//                info.setMsg(json.optString("msg"));
-//                infos.add(info);
-//            }
-//        }
-//        return infos;
-//    }
+    @Override
+    protected List<TopicItemInfo> analysis(String data) {
+        List<TopicItemInfo> infos = new ArrayList<>();
+
+        try {
+            JSONArray array = new JSONArray(data);
+            if (array.length() > 0) {
+                for (int i = 0; i < array.length(); i++) {
+                    String s = array.optString(i);
+                    TopicItemInfo info = GsonUtils.getInstance().fromJson(s,TopicItemInfo.class);
+                    infos.add(info);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return infos;
+    }
+
 }

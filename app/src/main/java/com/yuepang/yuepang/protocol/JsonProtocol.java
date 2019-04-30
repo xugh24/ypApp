@@ -70,7 +70,7 @@ public abstract class JsonProtocol<T> extends BaseFirstProtocol {
         callBack.loadCallBack(LoadCallBack.CallType.SUCCESS, info.getCode(), info.getMsg(), mData);
     }
 
-    protected  T analysis(JSONObject data){
+    protected  T analysis(String data){
         return null;
     }
 
@@ -95,7 +95,7 @@ public abstract class JsonProtocol<T> extends BaseFirstProtocol {
     /**
      * 获得接口名称
      */
-    protected abstract Object getUrlToken();
+    protected abstract String getUrlToken();
 
     /**
      * 创建请求数据

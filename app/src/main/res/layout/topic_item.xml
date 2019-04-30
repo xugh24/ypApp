@@ -9,6 +9,7 @@
         android:id="@+id/title_name"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:tag="head"
         android:layout_gravity="center"
         android:background="@drawable/bg_good"
         android:gravity="center"
@@ -29,6 +30,7 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="title"
             android:lines="1"
             android:text="测试数据"
             android:textColor="@color/c6"
@@ -46,6 +48,7 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             android:textColor="@color/c5"
+            android:tag="time"
             android:textSize="@dimen/f4"
             android:text="时间" />
 

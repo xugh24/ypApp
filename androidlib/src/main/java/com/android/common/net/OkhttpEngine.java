@@ -96,6 +96,7 @@ public class OkhttpEngine<T> implements HttpEngine {
      */
     private void clientCall(final Context context, final String url, OkHttpClient client, Request request, final HttpCallBack callBack) {
         callBack.onStart();
+        LogUtils.e(" onResponse url:" + url);
         try {
             client.dispatcher().setMaxRequestsPerHost(10);
         } catch (Exception e) {
@@ -122,7 +123,7 @@ public class OkhttpEngine<T> implements HttpEngine {
                     JSONObject object = new JSONObject(json);
                     final int code = object.optInt("code");
                     final String desc = object.optString("desc");
-                    final JSONObject data = new JSONObject(object.optString("data"));
+                    final String data = (object.optString("data"));
                     if (code == 200) {
                         ResultInfo info = new ResultInfo(code,desc);
                         info.setData(data);

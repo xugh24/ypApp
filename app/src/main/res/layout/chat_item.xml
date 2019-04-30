@@ -10,6 +10,7 @@
     <ImageView
         android:id="@+id/iv_head"
         android:layout_width="36dp"
+        android:tag="ivHead"
         android:layout_height="36dp"
         android:src="@drawable/cs_head" />
 
@@ -24,6 +25,7 @@
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="name"
             android:text="测试名字"
             android:textColor="@color/color49"
             android:textSize="14dp" />
@@ -34,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:tag="msg"
             android:background="@drawable/pic_dialog_server"
             android:gravity="center_vertical"
             android:paddingLeft="14dp"

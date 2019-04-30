@@ -22,7 +22,7 @@ public class ResultInfo {
 
     private String msg;
 
-    private JSONObject data;
+    private String data;
 
     public ResultInfo(int code, String msg) {
         this.code = code;
@@ -45,11 +45,11 @@ public class ResultInfo {
         this.msg = msg;
     }
 
-    public JSONObject getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(JSONObject data) {
+    public void setData(String data) {
         this.data = data;
     }
 

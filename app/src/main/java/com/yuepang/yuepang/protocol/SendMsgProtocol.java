@@ -3,11 +3,10 @@ package com.yuepang.yuepang.protocol;
 import com.android.common.enums.HttpType;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.control.UserCentreControl;
+import com.yuepang.yuepang.interFace.LoadCallBack;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.lang.reflect.Type;
 
 /**
  */
@@ -18,8 +17,8 @@ public class SendMsgProtocol extends JsonProtocol {
 
     private String msg;
 
-    public SendMsgProtocol(BaseActivity baseActivity, int id, String msg) {
-        super(baseActivity, null);
+    public SendMsgProtocol(BaseActivity baseActivity, LoadCallBack callBack, int id, String msg) {
+        super(baseActivity, callBack);
         this.msg = msg;
         this.id = id;
     }
@@ -33,12 +32,6 @@ public class SendMsgProtocol extends JsonProtocol {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-    }
-
-    @Override
-    public HttpType getHttpType() {
-        return null;
     }
 
 

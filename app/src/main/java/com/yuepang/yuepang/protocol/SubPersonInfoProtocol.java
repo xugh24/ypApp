@@ -22,15 +22,22 @@ public class SubPersonInfoProtocol extends JsonProtocol<UserInfo> {
     }
 
     @Override
-    protected Object getUrlToken() {
+    protected String getUrlToken() {
         return "user/modifyUserInfo/";
     }
 
 
     @Override
-    protected UserInfo analysis(JSONObject json) {
-        String data  = json.optString("data");
-        return GsonUtils.getInstance().fromJson(data,UserInfo.class);
+    protected UserInfo analysis(String st) {
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(st);
+            String data = jsonObject.optString("data");
+            return GsonUtils.getInstance().fromJson(data, UserInfo.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override

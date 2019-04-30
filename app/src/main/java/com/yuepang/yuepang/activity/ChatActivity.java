@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.android.common.annotation.view.BindView;
+import com.android.common.annotation.view.BindViewByTag;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.presenter.ChatPresenter;
 
@@ -17,10 +19,11 @@ import com.yuepang.yuepang.presenter.ChatPresenter;
 public class ChatActivity extends BaseActivity {
 
 
+    @BindViewByTag(click = true)
     private Button btnSend;
-
+    @BindViewByTag
     private EditText edMsg;
-
+    @BindViewByTag
     private ListView chatListView;
 
     private ChatPresenter chatPresenter;// 消息逻辑处理类
@@ -34,7 +37,6 @@ public class ChatActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
-        super.onClick(v);
         if (v == btnSend) {
             chatPresenter.sendMsg();
         }

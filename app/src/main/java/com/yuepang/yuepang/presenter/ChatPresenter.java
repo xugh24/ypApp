@@ -2,9 +2,11 @@ package com.yuepang.yuepang.presenter;
 
 import android.text.TextUtils;
 
+import com.android.common.inter.HttpCallBack;
 import com.yuepang.yuepang.activity.ChatActivity;
 import com.yuepang.yuepang.adapter.ChatAdapter;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
+import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.TopicItemInfo;
 import com.yuepang.yuepang.protocol.GetChatProtocol;
 import com.yuepang.yuepang.protocol.SendMsgProtocol;
@@ -21,7 +23,7 @@ import java.util.TimerTask;
  * 消息界面的逻辑处理类
  */
 
-public class ChatPresenter {
+public class ChatPresenter implements LoadCallBack<List<TopicItemInfo>> {
 
     private final static long periodTime = 5 * 1000;// 间隔时间毫秒
 
@@ -56,7 +58,7 @@ public class ChatPresenter {
         firstinfo.setMsg(title);
         firstinfo.setName("发起人");
         topicItemInfos.add(firstinfo);
-        adapter = new ChatAdapter(activity,topicItemInfos );
+        adapter = new ChatAdapter(activity, topicItemInfos);
         activity.getChatListView().setAdapter(adapter);
         timer = new Timer(true);
         timer.schedule(task, periodTime, periodTime);// 启动心跳线程定时刷新数据
@@ -68,21 +70,22 @@ public class ChatPresenter {
         if (TextUtils.isEmpty(msg)) {
             activity.showToastSafe("消息为空");
         } else {
-            CommonTaskExecutor.execute(new Runnable() {
+            SendMsgProtocol protocol = new SendMsgProtocol(activity, new LoadCallBack() {
                 @Override
-                public void run() {
-                    SendMsgProtocol protocol = new SendMsgProtocol(activity, topicId, msg);
-                    if (protocol.request() == 200) {// 发送成功获取新数据
-                        getNewChatInfo();
-                        activity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
+                public void loadCallBack(final CallType callType, int CODE, String msg, Object info) {
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (callType.equals(CallType.SUCCESS)) {
+                                getNewChatInfo();
                                 activity.getEdMsg().setText("");// 发送消息成功后,置空消息输入框
                             }
-                        });
-                    }
+                        }
+                    });
+
                 }
-            });
+            }, topicId, msg);
+            protocol.request();
         }
     }
 
@@ -91,29 +94,7 @@ public class ChatPresenter {
      * 获得新的聊天数据并刷新，通过 synchronized 机制保证线程同步
      */
     public synchronized void getNewChatInfo() {
-//        CommonTaskExecutor.execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                GetChatProtocol protocol = new GetChatProtocol(activity, topicId);
-//                if (protocol.request() == 200) {
-//                    if (tempInfos.size() != ((Collection<TopicItemInfo>) protocol.getData()).size()) {// 如果本地临时数据和线上数据数量不一致，则刷新本地数据
-//                        tempInfos.clear();
-//                        tempInfos.addAll(((Collection<TopicItemInfo>) protocol.getData()));
-//                        topicItemInfos.clear();
-//                        topicItemInfos.add(firstinfo);
-//                        topicItemInfos.addAll(tempInfos);
-//                        activity.runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {// 更新消息数据后刷新UI
-//                                adapter.setList(topicItemInfos);
-//                                adapter.notifyDataSetChanged();
-//                            }
-//                        });
-//                        getMsgState = false;// 获得消息标志位设置为false；
-//                    }
-//                }
-//            }
-//        });
+        new GetChatProtocol(activity, this, topicId).request();
     }
 
     /**
@@ -136,6 +117,27 @@ public class ChatPresenter {
         if (timer != null) {
             timer.cancel();
             timer = null;
+        }
+    }
+
+    @Override
+    public void loadCallBack(CallType callType, int CODE, String msg, List<TopicItemInfo> info) {
+        if (callType.equals(CallType.SUCCESS)) {
+            if (tempInfos.size() != info.size()) {// 如果本地临时数据和线上数据数量不一致，则刷新本地数据
+                tempInfos.clear();
+                tempInfos.addAll(info);
+                topicItemInfos.clear();
+                topicItemInfos.add(firstinfo);
+                topicItemInfos.addAll(tempInfos);
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {// 更新消息数据后刷新UI
+                        adapter.setList(topicItemInfos);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                getMsgState = false;// 获得消息标志位设置为false；
+            }
         }
     }
 }

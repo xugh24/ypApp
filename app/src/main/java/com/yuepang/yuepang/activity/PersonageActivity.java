@@ -75,7 +75,6 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     @Override
     protected void onResume() {
         super.onResume();
-        String tel = YuePangExternalDB.getInstance(this).getValueById(UserCentreControl.getInstance().getInfo().getId() + "", YuePangExternalDB.FIELD_TEL);
         ImageLoaderUtil.LoadImageViewForUrl(ivHead, getUserInfo().getHeaderImgUrl());
         tvTel.setText(getUserInfo().getTel());
         tvNick.setText(getUserInfo().getNick());

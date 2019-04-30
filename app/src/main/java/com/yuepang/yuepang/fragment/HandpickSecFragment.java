@@ -18,8 +18,10 @@ import com.yuepang.yuepang.adapter.AreaAdapter;
 import com.yuepang.yuepang.adapter.GoodAdapter;
 import com.yuepang.yuepang.interFace.AreaInterFace;
 import com.yuepang.yuepang.interFace.CutAreaInterFace;
+import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.AreaInfo;
 import com.yuepang.yuepang.model.MerchantInfo;
+import com.yuepang.yuepang.protocol.GetBusinessAreaProtocol;
 import com.yuepang.yuepang.widget.AreaPopupWindow;
 
 import java.util.List;
@@ -28,7 +30,7 @@ import java.util.List;
  * 精选页面
  */
 
-public class HandpickSecFragment extends BaseSecFragment implements AreaInterFace, CutAreaInterFace {
+public class HandpickSecFragment extends BaseSecFragment implements AreaInterFace, CutAreaInterFace, LoadCallBack {
 
 
     @BindViewByTag
@@ -70,24 +72,18 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
     protected void initbeforeView() {
         areaPopupWindow = new AreaPopupWindow(getMainActivity()); // 新建需要加载的商圈View
         goodAdapter = new GoodAdapter(getMainActivity(), this);  // 新建适配器
+        GetBusinessAreaProtocol protocol = new GetBusinessAreaProtocol(getMainActivity(), this);
+        protocol.request();
     }
 
-    /**
-     * 获得数据返回后刷新View
-     */
+
     @Override
-    protected void refreshView() {
+    protected void initData() {
         ivNot.setVisibility(View.GONE);
         goodLv.setVisibility(View.VISIBLE);
     }
 
-    /**
-     * 获得数据
-     */
-    @Override
-    protected boolean getData() {
-        return goodAdapter.getData();
-    }
+
 
     @Override
     public int getLyId() {
@@ -101,10 +97,10 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.merchant1_ly:// 商家推荐位1
-                MerchantDetailActivity.toMerActivity(getContext(),info1);
+                MerchantDetailActivity.toMerActivity(getContext(), info1);
                 break;
             case R.id.merchant2_ly:// 商家推荐位2
-                MerchantDetailActivity.toMerActivity(getContext(),info2);
+                MerchantDetailActivity.toMerActivity(getContext(), info2);
                 break;
         }
     }
@@ -153,4 +149,8 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
         goodAdapter.refresh(info);
     }
 
+    @Override
+    public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
+
+    }
 }

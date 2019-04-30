@@ -18,36 +18,20 @@ public abstract class BaseSecFragment extends com.android.common.activity.BaseFr
 
     protected View contentView;// 需要返回的主view
 
-    protected LoadingFrame loadingFrame;//
-
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container) {
         if (contentView == null) {// 创建View
             contentView = inflater.inflate(getLyId(), container, false); // 绑定基类View
             AnnotateBindViewUtil.initBindView(this, contentView, this);
         }
-        loadingFrame = new LoadingFrame(getActivity()) {
-            @Override
-            public boolean load() {
-                return getData();
-            }
-
-            @Override
-            public View createLoadedView() {
-                refreshView();
-                return contentView;
-            }
-        };
-        return loadingFrame;
+        return contentView;
     }
 
     /**
      * 请求数据
      */
     @Override
-    protected void initData() {
-        loadingFrame.show();
-    }
+    protected abstract void initData() ;
 
     /**
      * onAttach 在 creatView 前调用 再onshow 后调用
@@ -56,18 +40,6 @@ public abstract class BaseSecFragment extends com.android.common.activity.BaseFr
     public void onAttach(Context context) {
         super.onAttach(context);
     }
-
-    /**
-     * 刷新View
-     */
-    protected abstract void refreshView();
-
-    /**
-     * 获得服务端数据
-     *
-     * @return true 获得成功 false 获得失败
-     */
-    protected abstract boolean getData();
 
 
     @Override

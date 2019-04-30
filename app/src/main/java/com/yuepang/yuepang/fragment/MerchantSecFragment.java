@@ -13,8 +13,10 @@ import com.yuepang.yuepang.adapter.AreaAdapter;
 import com.yuepang.yuepang.adapter.MerchantAdapter;
 import com.yuepang.yuepang.interFace.AreaInterFace;
 import com.yuepang.yuepang.interFace.CutAreaInterFace;
+import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.AreaInfo;
 import com.yuepang.yuepang.model.MerchantInfo;
+import com.yuepang.yuepang.protocol.GetShopListProtocol;
 import com.yuepang.yuepang.widget.AreaPopupWindow;
 
 import java.util.List;
@@ -22,7 +24,7 @@ import java.util.List;
 /**
  */
 
-public class MerchantSecFragment extends BaseSecFragment implements AreaInterFace, CutAreaInterFace {
+public class MerchantSecFragment extends BaseSecFragment implements AreaInterFace, CutAreaInterFace, LoadCallBack {
 
     private AreaPopupWindow areaPopupWindow; // 商家popvindow
 
@@ -38,28 +40,25 @@ public class MerchantSecFragment extends BaseSecFragment implements AreaInterFac
     private TextView tvSearch;
 
 
-
-
     public void showAreaPop() {
         if (areaPopupWindow != null) {
             areaPopupWindow.show(getMainActivity().getBarTitle().getTvLeftTitle());
         }
     }
 
+
     @Override
-    protected void refreshView() {
+    protected void initData() {
         lvMer.setAdapter(merchantAdapter);
         merchantAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    protected boolean getData() {
-        return merchantAdapter.getData();
-    }
+
 
     @Override
     protected void initafterView() {
-
+        GetShopListProtocol protocol = new GetShopListProtocol(getActivity(), this);
+        protocol.request();
     }
 
     @Override
@@ -70,8 +69,7 @@ public class MerchantSecFragment extends BaseSecFragment implements AreaInterFac
 
     @Override
     public void onShow() {
-        setTitle("商家");
-        setRightTitle(null);
+        super.onShow();
     }
 
 
@@ -95,6 +93,11 @@ public class MerchantSecFragment extends BaseSecFragment implements AreaInterFac
 
     @Override
     public void onClick(View v) {
+
+    }
+
+    @Override
+    public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
 
     }
 }

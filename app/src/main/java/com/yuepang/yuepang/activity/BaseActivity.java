@@ -19,6 +19,7 @@ import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.control.UserCentreControl;
 import com.yuepang.yuepang.dialog.CallDialog;
 import com.yuepang.yuepang.dialog.MapDialog;
+import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.location.LatLng;
 import com.yuepang.yuepang.model.MerchantInfo;
 import com.yuepang.yuepang.model.UserInfo;
@@ -211,4 +212,6 @@ public abstract class BaseActivity extends BaseFragmentActivity implements View.
     public ActionBarTitle getBarTitle() {
         return barTitle;
     }
+
+
 }

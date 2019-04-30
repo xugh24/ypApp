@@ -6,6 +6,7 @@
 
     <ListView
         android:id="@+id/top_lv"
+        android:tag="listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:cacheColorHint="#00000000"

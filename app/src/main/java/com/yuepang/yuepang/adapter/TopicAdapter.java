@@ -7,23 +7,27 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.android.common.annotation.view.AnnotateBindViewUtil;
+import com.android.common.annotation.view.BindViewByTag;
+import com.android.common.utils.LogUtils;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.SysUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.ChatActivity;
+import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.TopicInfo;
 import com.yuepang.yuepang.protocol.GetTopicProtocol;
 
 import java.util.List;
 
+
 /**
+ *
  */
 
-public class TopicAdapter extends YueBaseAdapter<TopicInfo> implements AdapterView.OnItemClickListener {
+public class TopicAdapter extends YueBaseAdapter<TopicInfo> implements AdapterView.OnItemClickListener, LoadCallBack {
 
-
-    public TopicAdapter(List<TopicInfo> topicInfos, BaseActivity baseActivity) {
-        super(baseActivity, topicInfos);
+    public TopicAdapter(BaseActivity baseActivity) {
+        super(baseActivity);
     }
 
 
@@ -55,24 +59,49 @@ public class TopicAdapter extends YueBaseAdapter<TopicInfo> implements AdapterVi
         activity.startActivity(intent);
     }
 
+
+    @Override
+    public void loadCallBack(final CallType callType, final int CODE, final String msg, final Object info) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                switch (callType) {
+                    case SUCCESS:
+                        List<TopicInfo> list = (List<TopicInfo>) info;
+                        LogUtils.e("list  " + list.size());
+                        setList(list);
+                        notifyDataSetInvalidated();
+                        break;
+                    case START:
+                       activity.showLoadingDialogSafe(false);
+                        break;
+                    case FINISH:
+                        activity.dismissLoadingDialogSafe();
+                        break;
+                }
+
+            }
+        });
+
+
+    }
+
     private final class ViewHolder {
+        @BindViewByTag
         TextView head;
+        @BindViewByTag
         TextView title;
+        @BindViewByTag
         TextView time;
 
         public ViewHolder(View view) {
-            AnnotateBindViewUtil.initBindView(this,view,null);
+            AnnotateBindViewUtil.initBindView(this, view, null);
         }
     }
 
     public boolean getData() {
-//        GetTopicProtocol protocol = new GetTopicProtocol(activity);
-//        if (protocol.request() == 200) {
-//            setList((List<TopicInfo>) protocol.getData());
-//            if (getCount() > 0) {
-//                return true;
-//            }
-//        }
-        return false;
+        GetTopicProtocol protocol = new GetTopicProtocol(activity, this);
+        protocol.request();
+        return true;
     }
 }

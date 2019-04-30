@@ -69,15 +69,13 @@ public class MineSecFragment extends BaseSecFragment {
         return R.layout.mine_ly;
     }
 
+
     @Override
-    protected void refreshView() {// 刷新当前View
+    protected void initData() {
 
     }
 
-    @Override
-    protected boolean getData() {
-        return true;
-    }
+
 
     @Override
     protected void initafterView() {

@@ -1,19 +1,12 @@
 package com.yuepang.yuepang.model;
 
-/**
- */
-
 public class TopicInfo {
-
 
     private String title;
 
     private int id;
 
-    private String contentSt;
-
-    private String time;
-
+    private String topicCreateTime;
 
     public String getTitle() {
         return title;
@@ -31,19 +24,11 @@ public class TopicInfo {
         this.id = id;
     }
 
-    public String getContentSt() {
-        return contentSt;
-    }
-
-    public void setContentSt(String contentSt) {
-        this.contentSt = contentSt;
-    }
-
     public String getTime() {
-        return time;
+        return topicCreateTime;
     }
 
     public void setTime(String time) {
-        this.time = time;
+        this.topicCreateTime = time;
     }
 }
