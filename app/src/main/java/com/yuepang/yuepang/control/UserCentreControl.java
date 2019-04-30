@@ -6,15 +6,20 @@ import com.android.common.activity.ActivityManage;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.FirstActivity;
 import com.yuepang.yuepang.db.YuePangExternalDB;
-import com.yuepang.yuepang.interFace.LoginSuccess;
+import com.yuepang.yuepang.interFace.LoginState;
 import com.yuepang.yuepang.location.LatLng;
 import com.yuepang.yuepang.location.Location;
 import com.yuepang.yuepang.model.UserInfo;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 全局数据管理类 主要保存需要全局使用的数据，单例数据
+ * <p>
+ * 包括 用户会话token
+ * <p>
+ * 用户信息
+ * 地理信息
  */
 
 public class UserCentreControl {
@@ -28,7 +33,7 @@ public class UserCentreControl {
     private LatLng latLng;
 
 
-    private List<LoginSuccess> loginSuccesses = new ArrayList<>();
+    private List<LoginState> loginSuccesses = new ArrayList<>();
 
     public static synchronized UserCentreControl getInstance() {
         if (centreControl == null) {
@@ -45,19 +50,19 @@ public class UserCentreControl {
         initLocation(context);
     }
 
-    public void addLoginMonitor(LoginSuccess loginSuccess) {
+    public void addLoginMonitor(LoginState loginSuccess) {
         if (loginSuccess != null) {
             loginSuccesses.add(loginSuccess);
         }
     }
 
-    public void relieveLoginMonitor(LoginSuccess loginSuccess) {
+    public void relieveLoginMonitor(LoginState loginSuccess) {
         loginSuccesses.remove(loginSuccess);
     }
 
     public void loginSuccesses() {
         if (loginSuccesses.size() > 0) {
-            for (LoginSuccess loginSuccess : loginSuccesses) {
+            for (LoginState loginSuccess : loginSuccesses) {
                 loginSuccess.loginSuccess();
             }
         }

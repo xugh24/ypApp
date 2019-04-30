@@ -11,6 +11,8 @@ import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.adapter.AreaAdapter;
 import com.yuepang.yuepang.adapter.GoodAdapter;
+import com.yuepang.yuepang.interFace.CutAreaInterFace;
+import com.yuepang.yuepang.model.AreaInfo;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
@@ -25,7 +27,7 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
  * 可以android中的一个碎片。
  */
 
-public class AreaPopupWindow extends PopupWindow {
+public class AreaPopupWindow extends PopupWindow implements CutAreaInterFace {
 
 
     private BaseActivity activity;
@@ -33,6 +35,8 @@ public class AreaPopupWindow extends PopupWindow {
     private View popRootView;
 
     private ListView areaList;
+
+    private AreaAdapter areaAdapter;// 切换商圈
 
     public AreaPopupWindow(final BaseActivity activity) {
         this.activity = activity;
@@ -52,6 +56,8 @@ public class AreaPopupWindow extends PopupWindow {
                 }
             });
         }
+        areaAdapter = new AreaAdapter(activity, this);
+        setAdapter(areaAdapter);
     }
 
     public void show(View referenceView) {
@@ -67,5 +73,14 @@ public class AreaPopupWindow extends PopupWindow {
     public void setAdapter(AreaAdapter areaAdapter) {
         areaList.setAdapter(areaAdapter);
         areaList.setOnItemClickListener(areaAdapter);
+    }
+
+    public void getdata() {
+        areaAdapter.getData();
+    }
+
+    @Override
+    public void cutAreaInfo(AreaInfo info) {
+
     }
 }

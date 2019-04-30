@@ -68,7 +68,6 @@ public abstract class BaseFragment extends Fragment {
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
-        LogUtils.e("---Fragment--setUserVisibleHint---"+getClass().getName());
         super.setUserVisibleHint(isVisibleToUser);
         //isVisibleToUser这个boolean值表示:该Fragment的UI 用户是否可见，获取该标志记录下来
         if (isVisibleToUser) {//如果用户可见

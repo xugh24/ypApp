@@ -31,7 +31,6 @@ public abstract class BaseLoadingFrame extends BaseFirstLoadingFrame {
      * @param showLoadingView 是否需要展示加载中View
      */
     public void show(boolean showLoadingView) {
-        LogUtils.e("-----show----" + mState);
         synchronized (this) {
             switch (mState) {
                 case STATE_UNLOADED://如果状态为未加载，把状态标记为正在加载

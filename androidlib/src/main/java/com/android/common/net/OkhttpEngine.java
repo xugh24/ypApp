@@ -57,6 +57,7 @@ public class OkhttpEngine<T> implements HttpEngine {
         this.httpCallBack = httpCallBack;
         this.httpConfig = httpConfig;
         url = httpConfig.getUrl();
+        LogUtils.e(" request url :" + url + "   request data : "+httpConfig.getParaJson());
         OkHttpClient client = new OkHttpClient.Builder().readTimeout(HttpConfig.TIMEOUT, TimeUnit.SECONDS).build();
         clientCall(httpConfig.getContext(), url, client, getBuilder().build(), httpCallBack);
     }
@@ -96,7 +97,6 @@ public class OkhttpEngine<T> implements HttpEngine {
      */
     private void clientCall(final Context context, final String url, OkHttpClient client, Request request, final HttpCallBack callBack) {
         callBack.onStart();
-        LogUtils.e(" onResponse url:" + url);
         try {
             client.dispatcher().setMaxRequestsPerHost(10);
         } catch (Exception e) {
@@ -119,7 +119,7 @@ public class OkhttpEngine<T> implements HttpEngine {
             public void onResponse(final Call call, Response response) throws IOException {
                 try {
                     String json = response.body().string();
-                    LogUtils.e(" onResponse:" + json);
+                    LogUtils.e(" onResponse url :" + url + "   onResponse data ：" +json);
                     JSONObject object = new JSONObject(json);
                     final int code = object.optInt("code");
                     final String desc = object.optString("desc");

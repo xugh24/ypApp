@@ -3,6 +3,8 @@ package com.yuepang.yuepang.interFace;
 /**
  */
 
-public interface LoginSuccess {
+public interface LoginState {
     public void loginSuccess();
+
+    public void loginFailed();
 }

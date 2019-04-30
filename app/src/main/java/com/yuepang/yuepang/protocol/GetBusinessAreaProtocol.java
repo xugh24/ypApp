@@ -19,17 +19,11 @@ public class GetBusinessAreaProtocol extends JsonProtocol {
 
     @Override
     protected String getUrlToken() {
-        return "yuepang/getBusinessArea/";
+        return "yuepang/getBusinessAreaList/";
     }
 
     @Override
     protected void creatDataJson(JSONObject reqJson) {
-        try {
-            reqJson.put("longitude", 120.100000000);
-            reqJson.put("latitude", "42.100000000");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
     }
 }

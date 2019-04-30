@@ -65,7 +65,6 @@ public class AnnotateBindViewUtil {
                 int[] ids = onClick.value();
                 if (ids != null && ids.length > 0) {
                     for (int id : ids) {
-                        LogUtils.e("id" + id);
                         View view = sourceView.findViewById(id);
                         if (view != null && listene != null) {
                             view.setOnClickListener(listene);
@@ -83,7 +82,6 @@ public class AnnotateBindViewUtil {
      * 遍历所有的字View
      */
     public static void autoBindClik(View sourceView) {
-        LogUtils.e("sourceView --" + sourceView.getTag());
         if (sourceView instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) sourceView;
             for (int i = 0; i < viewGroup.getChildCount(); i++) {

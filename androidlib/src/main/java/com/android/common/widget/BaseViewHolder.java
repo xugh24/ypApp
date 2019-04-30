@@ -71,13 +71,11 @@ public class BaseViewHolder implements View.OnClickListener {
     }
 
     public void setListener(ViewHolderClick listener) {
-        LogUtils.e("--setListener-+ " + "   "+listener);
         this.listener = listener;
     }
 
     @Override
     public void onClick(View v) {
-        LogUtils.e("--onClick-+ "+v.getId() + "   "+listener);
         if(listener!=null){
             listener.onClick(v,mPosition);
         }

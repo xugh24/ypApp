@@ -37,8 +37,9 @@ public class PersonalDialog extends SDKdialog {
         super.show();
     }
 
-    public void setType(int type) {
+    public PersonalDialog setType(int type) {
         this.type = type;
+        return this;
     }
 
     public interface CallBack {

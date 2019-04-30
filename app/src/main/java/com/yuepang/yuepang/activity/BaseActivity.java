@@ -16,6 +16,7 @@ import com.android.common.activity.BaseFragmentActivity;
 import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.android.common.utils.LogUtils;
 import com.yuepang.yuepang.R;
+import com.yuepang.yuepang.control.DataControl;
 import com.yuepang.yuepang.control.UserCentreControl;
 import com.yuepang.yuepang.dialog.CallDialog;
 import com.yuepang.yuepang.dialog.MapDialog;
@@ -213,5 +214,8 @@ public abstract class BaseActivity extends BaseFragmentActivity implements View.
         return barTitle;
     }
 
+    public DataControl getDataControl(){
+        return DataControl.getInstance(this);
+    }
 
 }

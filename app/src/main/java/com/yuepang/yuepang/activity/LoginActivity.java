@@ -33,8 +33,8 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = new LoginPresenter(this);// 初始化
-        edTel.setText(presenter.getLoginName());//设置本地记录的账号
-        edPwd.setText(presenter.getPwd());// 设置本地密码
+        edTel.setText(getDataControl().getLoginName());//设置本地记录的账号
+        edPwd.setText(getDataControl().getPwd());// 设置本地密码
     }
 
     @Override
@@ -49,10 +49,10 @@ public class LoginActivity extends BaseActivity {
                 presenter.login();
                 break;
             case R.id.btn_reg:// 跳转注册页面
-                presenter.toRegPage();
+                startActivity(RegisterActivity.class);
                 break;
             case R.id.forget_pwd://跳转忘记密码页面
-                presenter.toForgetPage();
+                startActivity(ForgetPwdActivity.class);
                 break;
         }
     }
@@ -60,6 +60,13 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected int getContentViewId() {// 获得页面页面的id
         return R.layout.login_ly;
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
     }
 
     /**

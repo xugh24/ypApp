@@ -29,9 +29,8 @@ public class SubPersonInfoProtocol extends JsonProtocol<UserInfo> {
 
     @Override
     protected UserInfo analysis(String st) {
-        JSONObject jsonObject = null;
         try {
-            jsonObject = new JSONObject(st);
+            JSONObject  jsonObject = new JSONObject(st);
             String data = jsonObject.optString("data");
             return GsonUtils.getInstance().fromJson(data, UserInfo.class);
         } catch (JSONException e) {

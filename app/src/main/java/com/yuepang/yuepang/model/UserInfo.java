@@ -3,10 +3,9 @@ package com.yuepang.yuepang.model;
 public class UserInfo {
 
     private String sex;// 性别
-    private String birthday;// 生日
+    private String signature;// 生日
     private String tel;// 手机号
     private String avatar; // 头像地址
-    private String pwd;// 密码
     private String nick_name;// 昵称
     private int id;
 
@@ -20,11 +19,11 @@ public class UserInfo {
     }
 
     public String getBirthday() {
-        return birthday;
+        return signature;
     }
 
     public void setBirthday(String birthday) {
-        this.birthday = birthday;
+        this.signature = birthday;
     }
 
     public String getTel() {
@@ -41,14 +40,6 @@ public class UserInfo {
 
     public void setHeaderImgUrl(String headerImgUrl) {
         this.avatar = headerImgUrl;
-    }
-
-    public String getPwd() {
-        return pwd;
-    }
-
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
     }
 
     public int getId() {
@@ -79,10 +70,9 @@ public class UserInfo {
      */
     public void clear() {
         sex = "1";
-        birthday = null;
+        signature = null;
         tel = null;// 手机号
         avatar = null; // 头像地址
-        pwd = null;// 密码
         nick_name = null;// 昵称
         id = 0;
     }

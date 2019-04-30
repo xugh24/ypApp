@@ -39,7 +39,6 @@ public class DeviceUtils {
             LogUtils.e(" market hasNetwork 网络异常");
             return false;
         } else {
-
             LogUtils.e(" market hasNetwork 网络良好");
         }
         return true;

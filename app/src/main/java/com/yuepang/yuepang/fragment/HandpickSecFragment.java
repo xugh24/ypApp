@@ -53,27 +53,27 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
 
     private AreaPopupWindow areaPopupWindow; // 商家popvindow
 
-    private AreaAdapter areaAdapter;// 切换商圈
-
-
-    /**
-     * View 创建前的初始化
-     */
-    @Override
-    protected void initafterView() {
-        goodLv.setAdapter(goodAdapter);
-        goodLv.setOnItemClickListener(goodAdapter);
-    }
 
     /**
      * View创建后的初始化
      */
     @Override
     protected void initbeforeView() {
-        areaPopupWindow = new AreaPopupWindow(getMainActivity()); // 新建需要加载的商圈View
-        goodAdapter = new GoodAdapter(getMainActivity(), this);  // 新建适配器
-        GetBusinessAreaProtocol protocol = new GetBusinessAreaProtocol(getMainActivity(), this);
-        protocol.request();
+
+    }
+
+    /**
+     * View 创建前的初始化
+     */
+    @Override
+    protected void initafterView() {
+
+    }
+
+    @Override
+    public void onShow() {
+        super.onShow();
+
     }
 
 
@@ -81,8 +81,13 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
     protected void initData() {
         ivNot.setVisibility(View.GONE);
         goodLv.setVisibility(View.VISIBLE);
+        areaPopupWindow = new AreaPopupWindow(getMainActivity()); // 新建需要加载的商圈View
+        goodAdapter = new GoodAdapter(getMainActivity(), this);  // 新建适配器
+        goodLv.setAdapter(goodAdapter);
+        goodLv.setOnItemClickListener(goodAdapter);
+        new GetBusinessAreaProtocol(getMainActivity(), this).request();
+      //  areaPopupWindow.getdata();
     }
-
 
 
     @Override
@@ -108,9 +113,6 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
 
     @Override
     public void callAreaInfo(List<AreaInfo> areaInfos, List<MerchantInfo> merchantInfos, final AreaInfo currentInfo) {
-        areaAdapter = new AreaAdapter(getMainActivity(), areaInfos, this);
-        areaPopupWindow.setAdapter(areaAdapter);
-        areaAdapter.notifyDataSetChanged();
         info1 = merchantInfos.get(0);
         info2 = merchantInfos.get(1);
         getMainActivity().runOnUiThread(new Runnable() {
@@ -123,10 +125,6 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
         });
     }
 
-    @Override
-    public void onShow() {
-        super.onShow();
-    }
 
     @Override
     public void onHide() {

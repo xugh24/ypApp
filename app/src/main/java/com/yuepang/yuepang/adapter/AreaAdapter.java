@@ -9,7 +9,9 @@ import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.interFace.CutAreaInterFace;
+import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.AreaInfo;
+import com.yuepang.yuepang.protocol.GetBusinessAreaProtocol;
 
 import java.util.List;
 
@@ -17,14 +19,20 @@ import java.util.List;
  * Created by xugh on 2019/3/26.
  */
 
-public class AreaAdapter extends YueBaseAdapter <AreaInfo> implements AdapterView.OnItemClickListener {
+public class AreaAdapter extends YueBaseAdapter<AreaInfo> implements AdapterView.OnItemClickListener, LoadCallBack {
 
 
     private CutAreaInterFace cutAreaInterFace;
 
-    public AreaAdapter(BaseActivity activity, List<AreaInfo> areaInfos, CutAreaInterFace cutAreaInterFace) {
-        super(activity, areaInfos);
+    public AreaAdapter(BaseActivity activity,  CutAreaInterFace cutAreaInterFace) {
+        super(activity);
         this.cutAreaInterFace = cutAreaInterFace;
+    }
+
+
+    public void getData() {
+        GetBusinessAreaProtocol protocol = new GetBusinessAreaProtocol(activity, this);
+        protocol.request();
     }
 
 
@@ -47,11 +55,16 @@ public class AreaAdapter extends YueBaseAdapter <AreaInfo> implements AdapterVie
         cutAreaInterFace.cutAreaInfo(getItem(position));
     }
 
+    @Override
+    public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
+
+    }
+
     private final class ViewHolder {
         TextView name;
 
         public ViewHolder(View view) {
-            AnnotateBindViewUtil.initBindView(this,view,null);
+            AnnotateBindViewUtil.initBindView(this, view, null);
         }
     }
 

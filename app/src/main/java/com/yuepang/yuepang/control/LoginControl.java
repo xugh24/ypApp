@@ -25,32 +25,34 @@ public class LoginControl implements LoadCallBack<UserInfo> {
 
     private BaseActivity baseActivity;
 
-    private LoginResult loginResult;
-
-    public LoginControl(BaseActivity baseActivity, LoginResult loginResult) {
+    public LoginControl(BaseActivity baseActivity) {
         this.baseActivity = baseActivity;
-        this.loginResult = loginResult;
     }
 
     @Override
-    public void loadCallBack(CallType callType, int CODE, String msg, UserInfo info) {
-        LogUtils.e("callType " + callType);
-        switch (callType) {
-            case SUCCESS:
-                baseActivity.startActivity(MainActivity.class);
-                UserCentreControl.getInstance().setInfo(info);
-                baseActivity.showToastSafe("登录成功");
-                loginResult.loginSuccess();
-                UserCentreControl.getInstance().loginSuccesses();
-                break;
-            case FINISH:
-                baseActivity.dismissLoadingDialogSafe();
-                baseActivity.finish();
-                break;
-            case FAILED:
-                baseActivity.showToastSafe(msg);
-                break;
-        }
+    public void loadCallBack(final CallType callType, int CODE, final String msg, final UserInfo info) {
+        baseActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                switch (callType) {
+                    case SUCCESS:// 登录成功处理
+                        UserCentreControl.getInstance().setInfo(info);// 设置全局User
+                        baseActivity.showToastSafe("登录成功");// 提示语
+                        UserCentreControl.getInstance().loginSuccesses();// 发出登录成功提示
+                        baseActivity.startActivity(MainActivity.class);// 启动主activity
+                        break;
+                    case FINISH:
+                        baseActivity.dismissLoadingDialogSafe();// 关闭laoding
+                        baseActivity.finish();
+                        break;
+                    case FAILED:
+                        baseActivity.showToastSafe(msg);
+                        break;
+                    case START:
+                        baseActivity.showLoadingDialogSafe(false);
+                }
+            }
+        });
     }
 
 
@@ -83,9 +85,4 @@ public class LoginControl implements LoadCallBack<UserInfo> {
     }
 
 
-    public interface LoginResult {
-        public abstract void loginSuccess();
-
-        public abstract void loginFailed();
-    }
 }

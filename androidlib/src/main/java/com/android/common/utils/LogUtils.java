@@ -89,7 +89,7 @@ public class LogUtils {
             int start = 0;
             int end = 0;
             int len = msg.length();
-            Log.i(sTag, "className=== " + className + "   methodName=== "+ methodName + "   lineNumber===  "+lineNumber);
+           // Log.i(sTag, "className=== " + className + "   methodName=== "+ methodName + "   lineNumber===  "+lineNumber);
             while (true) {
                 start = end;
                 end = start + MAX_LOG_LINE_LENGTH;

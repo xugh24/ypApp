@@ -73,7 +73,6 @@ public class YuePangExternalDB {
             ContentValues values = new ContentValues();
             cur = db.query(TABLE_USER, new String[]{FIELD_NAME}, null, null, null, null, null);
             values.put(FIELD_TEL, user.getTel());// 手机号
-            values.put(FIELD_PWD, user.getPwd());// 密码
             values.put(FIELD_NAME, user.getNick());// 昵称
             values.put(FIELD_SEX, user.getSex());// 性别
             values.put(FIELD_BIR, user.getBirthday());// 生日
@@ -105,7 +104,6 @@ public class YuePangExternalDB {
                 + "_id integer primary key AutoIncrement,"
                 + FIELD_NAME + " text," // 姓名
                 + FIELD_TEL + " text," // 电话
-                + FIELD_PWD + " text," // 密码
                 + FIELD_SEX + " text," // 性别
                 + FIELD_BIR + " text," // 生日
                 + FIELD_ID + " text," // ID

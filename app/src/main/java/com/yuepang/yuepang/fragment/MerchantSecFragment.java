@@ -80,7 +80,7 @@ public class MerchantSecFragment extends BaseSecFragment implements AreaInterFac
 
     @Override
     public void callAreaInfo(List<AreaInfo> areaInfos, List<MerchantInfo> merchantInfos, AreaInfo currentInfo) {
-        areaAdapter = new AreaAdapter((BaseActivity) getActivity(), areaInfos, this);
+        areaAdapter = new AreaAdapter((BaseActivity) getActivity(), this);
         areaPopupWindow.setAdapter(areaAdapter);
         areaAdapter.notifyDataSetChanged();
     }

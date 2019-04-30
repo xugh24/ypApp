@@ -7,13 +7,14 @@ import com.yuepang.yuepang.control.CheckManage;
 import com.yuepang.yuepang.control.DataControl;
 import com.yuepang.yuepang.control.GetTelCodeControl;
 import com.yuepang.yuepang.control.LoginControl;
+import com.yuepang.yuepang.interFace.LoginState;
 import com.yuepang.yuepang.model.AuthCodeInfo;
 
 /**
  * Created by xugh on 2019/3/27.
  */
 
-public class RegPresenter extends BasePresenter implements LoginControl.LoginResult {
+public class RegPresenter extends BasePresenter implements LoginState {
 
     private GetTelCodeControl codeControl;
 
@@ -29,7 +30,7 @@ public class RegPresenter extends BasePresenter implements LoginControl.LoginRes
         super(activity);
         this.registerActivity = (RegisterActivity) activity;
         codeControl = new GetTelCodeControl(registerActivity, registerActivity.getEdtel(), registerActivity.getEdCode(), registerActivity.getTvGetCode());
-        loginControl = new LoginControl(registerActivity, this);
+        loginControl = new LoginControl(registerActivity);
     }
 
 

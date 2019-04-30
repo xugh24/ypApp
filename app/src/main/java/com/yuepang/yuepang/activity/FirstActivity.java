@@ -9,7 +9,7 @@ import com.android.common.annotation.view.BindViewByTag;
 import com.android.common.annotation.view.OnClickView;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.control.UserCentreControl;
-import com.yuepang.yuepang.interFace.LoginSuccess;
+import com.yuepang.yuepang.interFace.LoginState;
 
 /**
  * <p>
@@ -17,7 +17,7 @@ import com.yuepang.yuepang.interFace.LoginSuccess;
  * 首页 包含登录和注册按钮
  */
 
-public class FirstActivity extends BaseActivity implements LoginSuccess {
+public class FirstActivity extends BaseActivity implements LoginState {
 
 
     @Override
@@ -68,5 +68,10 @@ public class FirstActivity extends BaseActivity implements LoginSuccess {
     @Override
     public void loginSuccess() {
         finish();
+    }
+
+    @Override
+    public void loginFailed() {
+
     }
 }

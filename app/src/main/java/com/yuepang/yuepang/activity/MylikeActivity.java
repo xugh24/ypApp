@@ -84,25 +84,25 @@ public class MylikeActivity extends BaseActivity implements LoadCallBack {
             stringBuilder.append("1");
         }
         if (chbMovie.isChecked()) {
-            stringBuilder.append("####2");
-        }
-        if (chbRecreation.isChecked()) {
-            stringBuilder.append("####3");
-        }
-        if (chbGroup.isChecked()) {
-            stringBuilder.append("####4");
-        }
-        if (chbhotel.isChecked()) {
             stringBuilder.append("####5");
         }
-        if (chbTravel.isChecked()) {
+        if (chbRecreation.isChecked()) {
             stringBuilder.append("####6");
         }
-        if (chbktv.isChecked()) {
+        if (chbGroup.isChecked()) {
             stringBuilder.append("####7");
         }
-        if (chbCate.isChecked()) {
+        if (chbhotel.isChecked()) {
             stringBuilder.append("####8");
+        }
+        if (chbTravel.isChecked()) {
+            stringBuilder.append("####9");
+        }
+        if (chbktv.isChecked()) {
+            stringBuilder.append("####10");
+        }
+        if (chbCate.isChecked()) {
+            stringBuilder.append("####11");
         }
         new AddLikeProtocol(this, this, stringBuilder.toString()).request();
 

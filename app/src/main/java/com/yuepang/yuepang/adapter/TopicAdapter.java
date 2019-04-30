@@ -68,7 +68,6 @@ public class TopicAdapter extends YueBaseAdapter<TopicInfo> implements AdapterVi
                 switch (callType) {
                     case SUCCESS:
                         List<TopicInfo> list = (List<TopicInfo>) info;
-                        LogUtils.e("list  " + list.size());
                         setList(list);
                         notifyDataSetInvalidated();
                         break;

@@ -5,10 +5,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.common.annotation.view.BindViewByTag;
@@ -17,7 +16,6 @@ import com.android.common.async.ImageLoaderUtil;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.control.UserCentreControl;
-import com.yuepang.yuepang.db.YuePangExternalDB;
 import com.yuepang.yuepang.dialog.PersonalDialog;
 import com.yuepang.yuepang.dialog.PicDialog;
 import com.yuepang.yuepang.dialog.SexDialog;
@@ -48,7 +46,7 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     public static final int BIR = 0x03;
     public static final int TEL = 0x04;
 
-    @BindViewByTag
+    @BindViewByTag(click = true)
     private ImageView ivHead;// 头像
 
     @BindViewByTag
@@ -65,17 +63,13 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
 
     private int REQ_CROP = 0x03;
 
-    UserInfo info;
+    private UserInfo info;// 需要修改的临时Info信息
+
 
     @Override
-    protected void initbefore() {
-        info = new UserInfo();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        ImageLoaderUtil.LoadImageViewForUrl(ivHead, getUserInfo().getHeaderImgUrl());
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ImageLoaderUtil.LoadImageViewForUrl(ivHead, getUserInfo().getHeaderImgUrl());//
         tvTel.setText(getUserInfo().getTel());
         tvNick.setText(getUserInfo().getNick());
         tvbirthday.setText(getUserInfo().getBirthday());
@@ -83,9 +77,10 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     }
 
     @Override
-    public void clickRt() {
-         new SubPersonInfoProtocol(this, this, info).request();
+    protected void initbefore() {
+        info = new UserInfo();
     }
+
 
     @Override
     public String getMyTittle() {
@@ -109,13 +104,10 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_nick:// 昵称
-                showInput(NICK);
+                new PersonalDialog(this, this).setType(NICK).show();
                 break;
             case R.id.ll_sex: // 性别
-                if (sexDialog == null) {
-                    sexDialog = new SexDialog(this, this);//
-                }
-                sexDialog.show();
+                new SexDialog(this, this).show();//
                 break;
             case R.id.ll_birthday: // 生日
                 init();
@@ -143,22 +135,10 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
         customDatePicker.show("1997年-1月-1日");
     }
 
-    PersonalDialog personalDialog;
-    SexDialog sexDialog;
-
-    private void showInput(int type) {
-        if (personalDialog == null) {
-            personalDialog = new PersonalDialog(this, this);//
-        }
-        personalDialog.setType(type);
-        personalDialog.show();
-    }
-
-
     @Override
     public void callBack(int type, Object obj) {
         String data = (String) obj;
-        switch (type){
+        switch (type) {
             case SEX:
                 info.setSex(data);
                 if ("1".equals(data)) {
@@ -176,7 +156,11 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
                 info.setBirthday(data);
                 break;
         }
+    }
 
+    @Override
+    public void clickRt() {
+        new SubPersonInfoProtocol(this, this, info).request();
     }
 
     @Override
@@ -200,7 +184,7 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     private static final String IMAGE_UNSPECIFIED = "image/*";
 
     /**
-     * 照片压缩
+     * 打开照片裁剪
      *
      * @param uri
      */
@@ -237,7 +221,7 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
 
     @Override
     public void loadCallBack(CallType callType, int CODE, String msg, UserInfo info) {
-        if(CODE == 200){
+        if (CODE == 200) {
             UserCentreControl.getInstance().setInfo(info);
         }
     }
