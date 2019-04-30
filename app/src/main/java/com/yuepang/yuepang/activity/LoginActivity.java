@@ -66,13 +66,13 @@ public class LoginActivity extends BaseActivity {
      * 获得输入框用户名
      */
     public String getLoginName() {
-        return getTvByName(edTel);
+        return getEditText(edTel);
     }
 
     /**
      * 获得密码输入框内容
      */
     public String getPwd() {
-        return getTvByName(edPwd);
+        return getEditText(edPwd);
     }
 }

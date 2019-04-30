@@ -8,6 +8,7 @@
     <EditText
         android:id="@+id/ed_tel"
         style="@style/syt_ed"
+        android:tag="edTel"
         android:layout_width="match_parent"
         android:hint="请输入手机号" />
 
@@ -23,6 +24,7 @@
             style="@style/syt_ed"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:tag="code"
             android:background="@null"
             android:hint="请输入验证码"
             android:inputType="number" />
@@ -36,6 +38,7 @@
             android:layout_marginRight="13.3dp"
             android:background="@null"
             android:gravity="center"
+            android:tag="tvGetCode"
             android:text="获取验证码"
             android:textColor="#01d45f"
             android:textSize="11.4dp" />
@@ -48,6 +51,7 @@
         style="@style/syt_ed"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
+        android:tag="pwd1"
         android:hint="请输入密码" />
 
     <EditText
@@ -55,12 +59,14 @@
         style="@style/syt_ed"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
+        android:tag="pwd2"
         android:hint="请输确认密码" />
 
 
     <Button
         android:id="@+id/btn_sub"
         style="@style/syt_btn_green"
+        android:tag="btnSure"
         android:layout_width="match_parent"
         android:layout_marginTop="60dp"
         android:text="提交" />

@@ -37,7 +37,7 @@ public class BaseFragmentActivity extends FragmentActivity {
         return textView != null ? textView.getText().toString().trim() : undefined;
     }
 
-    public String getTvByName(TextView textView) {
+    public String getEditText(TextView textView) {
         return getEditText(textView, null);
     }
 }

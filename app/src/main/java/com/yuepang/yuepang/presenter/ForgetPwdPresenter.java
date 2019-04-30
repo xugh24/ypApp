@@ -21,9 +21,9 @@ public class ForgetPwdPresenter extends BasePresenter {
     private ForgetPwdActivity forgetPwdActivity;
 
 
-    public ForgetPwdPresenter(BaseActivity activity) {
+    public ForgetPwdPresenter(ForgetPwdActivity activity) {
         super(activity);
-        this.forgetPwdActivity = (ForgetPwdActivity) activity;
+        this.forgetPwdActivity =  activity;
         codeControl = new GetTelCodeControl(activity, forgetPwdActivity.getEdTel(), forgetPwdActivity.getCode(), forgetPwdActivity.getTvGetCode());
     }
 
@@ -42,7 +42,5 @@ public class ForgetPwdPresenter extends BasePresenter {
                 }
             });
         }
-
-
     }
 }
