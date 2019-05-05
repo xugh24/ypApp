@@ -13,9 +13,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.common.annotation.view.BindViewByTag;
 import com.yuepang.yuepang.R;
+import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.MerchantInfo;
 import com.yuepang.yuepang.model.PayItem;
+import com.yuepang.yuepang.protocol.AddOrderProtocol;
 
 import static com.yuepang.yuepang.activity.MerchantDetailActivity.MERCHANTINFO;
 
@@ -23,23 +26,23 @@ import static com.yuepang.yuepang.activity.MerchantDetailActivity.MERCHANTINFO;
  * 支付页面
  */
 
-public class PayActivity extends BaseActivity {
+public class PayActivity extends BaseActivity implements LoadCallBack {
 
     public final static String PAYITEM = "payItem";
 
-
     private MerchantInfo info;
 
+    @BindViewByTag
     private EditText edprice;
-
+    @BindViewByTag
     private EditText edNodisPrice;
-
+    @BindViewByTag
     private LinearLayout linearLayout;
-
+    @BindViewByTag(click = true)
     private Button btnPay;
-
+    @BindViewByTag
     private CheckBox chx;
-
+    @BindViewByTag
     private TextView tvDis;
 
 
@@ -94,16 +97,20 @@ public class PayActivity extends BaseActivity {
         if (!TextUtils.isEmpty(price2)) {
             p2 = Integer.valueOf(price2);
         }
+
+
         price = (int) (p1 * 100 * info.getDiscount()) + p2 * 100;
-        PayItem payItem = new PayItem();
-        payItem.setMerchantName(info.getName());
-        payItem.setOrderId("2018545565");
-        payItem.setPrice(price);
-        Intent intent = new Intent();
-        intent.putExtra(PAYITEM, payItem);
-        intent.setClass(this, PaySuccessActivity.class);
-        finish();
-        startActivity(intent);
+        new AddOrderProtocol(this, this, 1, price).request();
+//        PayItem payItem = new PayItem();
+//        payItem.setMerchantName(info.getName());
+//        payItem.setOrderId("2018545565");
+//
+//        payItem.setPrice(price);
+//        Intent intent = new Intent();
+//        intent.putExtra(PAYITEM, payItem);
+//        intent.setClass(this, PaySuccessActivity.class);
+//        finish();
+//        startActivity(intent);
     }
 
     @Override
@@ -126,5 +133,10 @@ public class PayActivity extends BaseActivity {
         intent.putExtra(MERCHANTINFO, merchantInfo);
         intent.setClass(context, PayActivity.class);
         context.startActivity(intent);
+    }
+
+    @Override
+    public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
+
     }
 }

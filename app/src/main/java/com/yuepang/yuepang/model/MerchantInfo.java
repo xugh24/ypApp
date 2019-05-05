@@ -8,15 +8,17 @@ import android.os.Parcelable;
 
 public class MerchantInfo implements Parcelable {
 
+    private int id;
+
     private String name;// 名称
 
-    private String location;// 位置
+    private String address;// 位置
 
-    private String picture;// 图片
+    private String image;// 图片
 
     private String tel;//
 
-    private String details;// 详情
+    private String detail;// 详情
 
     private double longitude;// 经度
 
@@ -31,13 +33,14 @@ public class MerchantInfo implements Parcelable {
 
     protected MerchantInfo(Parcel in) {
         name = in.readString();
-        location = in.readString();
-        picture = in.readString();
+        address = in.readString();
+        image = in.readString();
         tel = in.readString();
-        details = in.readString();
+        detail = in.readString();
         longitude = in.readDouble();
         latitude = in.readDouble();
         discount = in.readFloat();
+        id=in.readInt();
     }
 
     public static final Creator<MerchantInfo> CREATOR = new Creator<MerchantInfo>() {
@@ -61,19 +64,19 @@ public class MerchantInfo implements Parcelable {
     }
 
     public String getLocation() {
-        return location;
+        return address;
     }
 
     public void setLocation(String location) {
-        this.location = location;
+        this.address = location;
     }
 
     public String getPicture() {
-        return picture;
+        return image;
     }
 
     public void setPicture(String picture) {
-        this.picture = picture;
+        this.image = picture;
     }
 
     public String getTel() {
@@ -85,11 +88,11 @@ public class MerchantInfo implements Parcelable {
     }
 
     public String getDetails() {
-        return details;
+        return detail;
     }
 
     public void setDetails(String details) {
-        this.details = details;
+        this.detail = details;
     }
 
     public float getDiscount() {
@@ -124,12 +127,21 @@ public class MerchantInfo implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
-        dest.writeString(location);
-        dest.writeString(picture);
+        dest.writeString(address);
+        dest.writeString(image);
         dest.writeString(tel);
-        dest.writeString(details);
+        dest.writeString(detail);
         dest.writeDouble(longitude);
         dest.writeDouble(latitude);
         dest.writeFloat(discount);
+        dest.writeInt(id);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

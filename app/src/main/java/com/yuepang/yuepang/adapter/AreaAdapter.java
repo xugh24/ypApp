@@ -21,7 +21,6 @@ import java.util.List;
 
 public class AreaAdapter extends YueBaseAdapter<AreaInfo> implements AdapterView.OnItemClickListener, LoadCallBack {
 
-
     private CutAreaInterFace cutAreaInterFace;
 
     public AreaAdapter(BaseActivity activity,  CutAreaInterFace cutAreaInterFace) {
@@ -29,12 +28,9 @@ public class AreaAdapter extends YueBaseAdapter<AreaInfo> implements AdapterView
         this.cutAreaInterFace = cutAreaInterFace;
     }
 
-
     public void getData() {
-        GetBusinessAreaProtocol protocol = new GetBusinessAreaProtocol(activity, this);
-        protocol.request();
+        new GetBusinessAreaProtocol(activity, this).request();
     }
-
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -56,13 +52,14 @@ public class AreaAdapter extends YueBaseAdapter<AreaInfo> implements AdapterView
     }
 
     @Override
-    public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
-
+    public void loadCallBack(CallType callType, int CODE, String msg, Object infos) {
+        List<AreaInfo> areaInfos = (List<AreaInfo>) infos;
+        setList(areaInfos);
+        notifyDataSetChanged();
     }
 
     private final class ViewHolder {
         TextView name;
-
         public ViewHolder(View view) {
             AnnotateBindViewUtil.initBindView(this, view, null);
         }

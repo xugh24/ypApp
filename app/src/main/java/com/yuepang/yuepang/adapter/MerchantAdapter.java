@@ -5,7 +5,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.LogUtils;
@@ -59,7 +58,7 @@ public class MerchantAdapter extends YueBaseAdapter <MerchantInfo> {
             }
         });
         if (interFace != null) { // 通知主页面刷新View
-            interFace.callAreaInfo(TestData.getinfos(), TestData.getMerinfos(), TestData.getinfos().get(0));
+            interFace.callAreaInfo(TestData.getMerinfos(), TestData.getinfos().get(0));
         }
         setList(TestData.getMerinfos());
         return true;

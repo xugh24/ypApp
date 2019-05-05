@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.common.annotation.view.BindView;
+import com.android.common.annotation.view.BindViewByTag;
+import com.android.common.async.ImageLoaderUtil;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.model.MerchantInfo;
 
@@ -19,16 +22,17 @@ public class MerchantDetailActivity extends BaseActivity {
 
     public final static String MERCHANTINFO = "MerchantInfo";
 
+    @BindViewByTag
     private ImageView ivMer;
-
+    @BindViewByTag
     private TextView tvName;
-
+    @BindViewByTag(click = true)
     private Button btnBuy;
-
+    @BindViewByTag
     private TextView tvMsg;
-
+    @BindViewByTag(click = true)
     private TextView tvloction;
-
+    @BindViewByTag(click = true)
     private TextView tvTel;
 
     private MerchantInfo merchantInfo;
@@ -37,6 +41,11 @@ public class MerchantDetailActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         merchantInfo = getIntent().getParcelableExtra(MERCHANTINFO);
+        ImageLoaderUtil.LoadImageViewForUrl(ivMer, merchantInfo.getPicture());
+        tvName.setText(merchantInfo.getName());
+        tvMsg.setText(merchantInfo.getDetails());
+        tvloction.setText(merchantInfo.getLocation());
+        tvTel.setText(merchantInfo.getTel());
     }
 
     @Override
@@ -59,7 +68,7 @@ public class MerchantDetailActivity extends BaseActivity {
     public void onClick(View v) {
         super.onClick(v);
         if (v == btnBuy) {
-            PayActivity.toPay(this,merchantInfo);
+            PayActivity.toPay(this, merchantInfo);
         } else if (v == tvTel) {
             showCallDialog(merchantInfo.getTel());
         } else if (tvloction == v) {

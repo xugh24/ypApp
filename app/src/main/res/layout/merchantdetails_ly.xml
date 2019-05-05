@@ -9,6 +9,7 @@
         android:id="@+id/mer_pic"
         android:layout_width="match_parent"
         android:layout_height="180dp"
+        android:tag="ivMer"
         android:scaleType="fitXY"
         android:src="@drawable/test3" />
 
@@ -23,6 +24,7 @@
             android:id="@+id/mer_title"
             style="@style/tv_3"
             android:layout_width="0dp"
+            android:tag="tvName"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="悦旁测试商家" />
@@ -32,6 +34,7 @@
             style="@style/syt_btn_green"
             android:layout_width="60dp"
             android:layout_height="26dp"
+            android:tag="btnBuy"
             android:layout_marginRight="8dp"
             android:text="买单"
             android:textSize="@dimen/f3" />
@@ -45,6 +48,7 @@
     <TextView
         android:id="@+id/mer_msg"
         style="@style/tv_3"
+        android:tag="tvMsg"
         android:layout_width="match_parent"
         android:layout_height="38dp"
         android:text="悦旁测试商家提供美食服务" />
@@ -58,6 +62,7 @@
         android:id="@+id/mer_loction"
         style="@style/tv_3"
         android:layout_width="match_parent"
+        android:tag="tvloction"
         android:layout_height="38dp"
         android:text="地址：南京XXX" />
 
@@ -69,6 +74,7 @@
     <TextView
         android:id="@+id/mer_tel"
         style="@style/tv_3"
+        android:tag="tvTel"
         android:layout_width="match_parent"
         android:layout_height="38dp"
         android:text="电话：1234567" />

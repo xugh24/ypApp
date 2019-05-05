@@ -30,7 +30,7 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 public class AreaPopupWindow extends PopupWindow implements CutAreaInterFace {
 
 
-    private BaseActivity activity;
+    private BaseActivity activity;// 传入的activity
 
     private View popRootView;
 
@@ -56,8 +56,7 @@ public class AreaPopupWindow extends PopupWindow implements CutAreaInterFace {
                 }
             });
         }
-        areaAdapter = new AreaAdapter(activity, this);
-        setAdapter(areaAdapter);
+
     }
 
     public void show(View referenceView) {
@@ -68,14 +67,9 @@ public class AreaPopupWindow extends PopupWindow implements CutAreaInterFace {
     private void initView() {
         popRootView = View.inflate(activity, R.layout.common_list, null);
         areaList = popRootView.findViewById(R.id.com_lv);// 初始化商圈列
-    }
-
-    public void setAdapter(AreaAdapter areaAdapter) {
+        areaAdapter = new AreaAdapter(activity, this);
         areaList.setAdapter(areaAdapter);
         areaList.setOnItemClickListener(areaAdapter);
-    }
-
-    public void getdata() {
         areaAdapter.getData();
     }
 

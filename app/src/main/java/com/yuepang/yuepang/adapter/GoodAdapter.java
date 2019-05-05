@@ -13,8 +13,10 @@ import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.GoodDetailActivity;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
 import com.yuepang.yuepang.interFace.AreaInterFace;
+import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.AreaInfo;
 import com.yuepang.yuepang.model.GoodInfo;
+import com.yuepang.yuepang.protocol.GetBusinessAreaProtocol;
 import com.yuepang.yuepang.protocol.HandpickInfoProtocol;
 import com.yuepang.yuepang.test.TestData;
 
@@ -22,7 +24,7 @@ import com.yuepang.yuepang.test.TestData;
  * Created by xugh on 2019/4/2.
  */
 
-public class GoodAdapter extends YueBaseAdapter <GoodInfo> implements AdapterView.OnItemClickListener {
+public class GoodAdapter extends YueBaseAdapter <GoodInfo> implements AdapterView.OnItemClickListener, LoadCallBack {
 
     private int areaId;
 
@@ -47,26 +49,11 @@ public class GoodAdapter extends YueBaseAdapter <GoodInfo> implements AdapterVie
         return convertView;
     }
 
-
     /**
      * 请求数据
      */
-    public boolean getData() {
-        CommonTaskExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                HandpickInfoProtocol protocol = new HandpickInfoProtocol(activity, areaId);
-//                if (protocol.request() == 200) {
-//                    // TODO 接口参数
-//                }
-            }
-        });
-        if (interFace != null) { // 通知主页面刷新View
-            interFace.callAreaInfo(TestData.getinfos(), TestData.getMerinfos(), TestData.getinfos().get(0));
-        }
-        setList( TestData.getGoods());
-        notifyDataSetChanged();
-        return true;
+    public void getData() {
+
     }
 
     /**
@@ -82,6 +69,12 @@ public class GoodAdapter extends YueBaseAdapter <GoodInfo> implements AdapterVie
         Intent intent = new Intent(activity, GoodDetailActivity.class);
         intent.putExtra(GoodDetailActivity.GOODINFO, getItem(position));
         activity.startActivity(intent);
+    }
+
+    @Override
+    public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
+        setList( TestData.getGoods());
+        notifyDataSetChanged();
     }
 
     private final class ViewHolder {

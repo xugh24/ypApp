@@ -4,8 +4,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.android.common.annotation.view.BindView;
 import com.android.common.annotation.view.BindViewByTag;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.activity.BaseActivity;
@@ -79,9 +77,8 @@ public class MerchantSecFragment extends BaseSecFragment implements AreaInterFac
     }
 
     @Override
-    public void callAreaInfo(List<AreaInfo> areaInfos, List<MerchantInfo> merchantInfos, AreaInfo currentInfo) {
+    public void callAreaInfo( List<MerchantInfo> merchantInfos, AreaInfo currentInfo) {
         areaAdapter = new AreaAdapter((BaseActivity) getActivity(), this);
-        areaPopupWindow.setAdapter(areaAdapter);
         areaAdapter.notifyDataSetChanged();
     }
 
