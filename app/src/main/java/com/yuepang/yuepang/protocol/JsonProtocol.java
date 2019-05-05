@@ -48,7 +48,7 @@ public abstract class JsonProtocol<T> extends BaseFirstProtocol {
         return reqJson;
     }
 
-    public void initCfg(HttpConfig httpConfig){
+    public void initCfg(){
 
     }
 

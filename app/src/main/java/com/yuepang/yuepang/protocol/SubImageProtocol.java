@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Environment;
 
 import com.android.common.net.HttpConfig;
+import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.interFace.LoadCallBack;
 
 import org.json.JSONObject;
@@ -58,7 +59,8 @@ public class SubImageProtocol extends JsonProtocol {
         }
     }
 
-    protected void initCfg() {
+    public void initCfg() {
+        LogUtils.e("initCfg-------");
         getHttpConfig().setPostMap(postMap);
         getHttpConfig().setIspostFild(true);
     }
