@@ -76,6 +76,16 @@ public class SysUtils {
         res = simpleDateFormat.format(date);
         return res;
     }
+    /*
+     * 将时间戳转换为时间
+     */
+    public static String stampToDate(long lt) {
+        String res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date(lt);
+        res = simpleDateFormat.format(date);
+        return res;
+    }
 
 
     /**

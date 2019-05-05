@@ -24,7 +24,7 @@ import java.util.List;
 public class PayRecordActivity extends BaseActivity {
 
     @BindViewByTag
-    private ListView recordLv;
+    private ListView recordLv; // listView
 
     private RecordAdapter adapter;
 
@@ -36,8 +36,8 @@ public class PayRecordActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        adapter = new RecordAdapter(this);
-        recordLv.setAdapter(adapter);
+        adapter = new RecordAdapter(this);// 创建设配器
+        recordLv.setAdapter(adapter); // 添加设配器
     }
 
     @Override

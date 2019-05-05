@@ -22,6 +22,14 @@ public class ImageLoaderUtil {
         }
         Glide.with(imageView.getContext()).load(url).apply(options).into(imageView);
     }
+    public static void LoadcircleImage(ImageView imageView, String url) {
+        RequestOptions options = new RequestOptions().dontAnimate().placeholder(imageView.getDrawable()).priority(Priority.HIGH).circleCrop().skipMemoryCache(false)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+        if (imageView != null) {
+            imageView.setTag(null);
+        }
+        Glide.with(imageView.getContext()).load(url).apply(options).into(imageView);
+    }
 
     public void loadCircleImage(String url, int placeholder, ImageView imageView) {
         if (imageView == null)

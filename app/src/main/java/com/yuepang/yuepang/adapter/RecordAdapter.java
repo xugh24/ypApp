@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.android.common.annotation.view.BindViewByTag;
 import com.yuepang.yuepang.R;
+import com.yuepang.yuepang.Util.SysUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.PayRecordActivity;
 import com.yuepang.yuepang.interFace.LoadCallBack;
@@ -25,7 +26,7 @@ public class RecordAdapter extends YueBaseAdapter<RecordInfo> implements LoadCal
 
     public RecordAdapter(BaseActivity activity) {
         super(activity);
-        getdata();
+        getdata();// 获得数据
     }
 
     private void getdata() {
@@ -42,26 +43,24 @@ public class RecordAdapter extends YueBaseAdapter<RecordInfo> implements LoadCal
         } else if (convertView.getTag() instanceof ViewHolder) {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.name.setText(getItem(position).getMerchantName());
-        viewHolder.orderId.setText(getItem(position).getOrderId());
-        viewHolder.price.setText(getItem(position).getPrice() + "");
-        viewHolder.time.setText(getItem(position).getTime() + "");
+        viewHolder.name.setText("商家名称：" + getItem(position).getMerchantName());
+        viewHolder.orderId.setText("订单号："+ getItem(position).getOrderId());
+        viewHolder.price.setText("金额："+getItem(position).getPrice() + "");
+        viewHolder.time.setText(getItem(position).getData());
         return convertView;
     }
 
     @Override
-    public void loadCallBack(final CallType callType, int CODE, String msg,final List<RecordInfo> infos) {
+    public void loadCallBack(final CallType callType, int CODE, String msg, final List<RecordInfo> infos) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if(callType.equals(CallType.SUCCESS)){
+                if (callType.equals(CallType.SUCCESS)) {
                     setList(infos);
                     notifyDataSetChanged();
                 }
             }
         });
-
-
     }
 
 

@@ -1,5 +1,10 @@
 package com.yuepang.yuepang.model;
 
+import com.yuepang.yuepang.Util.SysUtils;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by xugh on 2019/3/27.
  */
@@ -12,7 +17,6 @@ public class RecordInfo {
 
     private int price;// 金额
 
-    private String OrderId;// 订单
 
 
     public String getMerchantName() {
@@ -27,6 +31,10 @@ public class RecordInfo {
         return orderDate;
     }
 
+    public String getData(){
+        return SysUtils.stampToDate(orderDate);
+    }
+
     public void setTime(long time) {
         this.orderDate = time;
     }
@@ -39,12 +47,17 @@ public class RecordInfo {
         this.price = price;
     }
 
-    public String getOrderId() {
-        return OrderId;
+
+    /*
+    * 将时间戳转换为时间
+    */
+    public  String getOrderId() {
+        String res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        Date date = new Date(orderDate);
+        res = simpleDateFormat.format(date);
+        return res+orderDate;
     }
 
-    public void setOrderId(String orderId) {
-        OrderId = orderId;
-    }
 
 }

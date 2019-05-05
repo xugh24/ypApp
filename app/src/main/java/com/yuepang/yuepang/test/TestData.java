@@ -23,22 +23,18 @@ public class TestData {
     public static List<RecordInfo> getRecInfos() {
         List<RecordInfo> list = new ArrayList<>();
         RecordInfo info1 = new RecordInfo();
-        info1.setOrderId("2019040201");
         info1.setMerchantName("商家1");
         info1.setPrice(200);
         info1.setTime(System.currentTimeMillis());
         RecordInfo info2 = new RecordInfo();
-        info2.setOrderId("2019040201");
         info2.setMerchantName("商家2");
         info2.setPrice(300);
         info2.setTime(System.currentTimeMillis());
         RecordInfo info3 = new RecordInfo();
-        info3.setOrderId("2019040201");
         info3.setMerchantName("商家3");
         info3.setPrice(400);
         info3.setTime(System.currentTimeMillis());
         RecordInfo info4 = new RecordInfo();
-        info4.setOrderId("2019040201");
         info4.setMerchantName("商家4");
         info4.setPrice(400);
         info4.setTime(System.currentTimeMillis());

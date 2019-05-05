@@ -27,7 +27,7 @@ public class MineSecFragment extends BaseSecFragment {
     @Override
     public void onShow() {// 刷新头像照片
         super.onShow();
-        ImageLoaderUtil.LoadImageViewForUrl(ivHead, getMainActivity().getUserInfo().getHeaderImgUrl());
+        ImageLoaderUtil.LoadcircleImage(ivHead, getMainActivity().getUserInfo().getHeaderImgUrl());
     }
 
     public void onClick(View v) {
