@@ -2,7 +2,11 @@ package com.yuepang.yuepang.protocol;
 
 import android.content.Context;
 
+import com.android.common.utils.GsonUtils;
+import com.android.common.utils.LogUtils;
 import com.yuepang.yuepang.interFace.LoadCallBack;
+import com.yuepang.yuepang.interFace.LoginState;
+import com.yuepang.yuepang.model.PayItem;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,7 +15,7 @@ import org.json.JSONObject;
  * Created by xugh on 2019/5/5.
  */
 
-public class AddOrderProtocol extends JsonProtocol {
+public class AddOrderProtocol  extends JsonProtocol <PayItem>{
 
     private int shopId ;
 
@@ -25,6 +29,13 @@ public class AddOrderProtocol extends JsonProtocol {
     }
 
     @Override
+    protected PayItem analysis(String data) {
+        LogUtils.e("data "+data);
+        PayItem payItem = GsonUtils.getInstance().fromJson(data,PayItem.class);
+        return payItem;
+    }
+
+    @Override
     protected String getUrlToken() {
         return "yuepang/addOrder/";
     }
@@ -32,7 +43,7 @@ public class AddOrderProtocol extends JsonProtocol {
     protected void creatDataJson(JSONObject reqJson) {
         try {
             reqJson.put("shopId",shopId);
-            reqJson.put("price",1.0f);
+            reqJson.put("price",price);
         } catch (JSONException e) {
             e.printStackTrace();
         }

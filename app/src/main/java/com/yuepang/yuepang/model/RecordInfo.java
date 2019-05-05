@@ -6,30 +6,29 @@ package com.yuepang.yuepang.model;
 
 public class RecordInfo {
 
-    private String merchantName;// 商家名称
+    private String shopName;// 商家名称
 
-    private long time;// 时间
+    private long orderDate;// 时间
 
     private int price;// 金额
 
     private String OrderId;// 订单
 
-    private int state;// 订单状态
 
     public String getMerchantName() {
-        return merchantName;
+        return shopName;
     }
 
     public void setMerchantName(String merchantName) {
-        this.merchantName = merchantName;
+        this.shopName = merchantName;
     }
 
     public long getTime() {
-        return time;
+        return orderDate;
     }
 
     public void setTime(long time) {
-        this.time = time;
+        this.orderDate = time;
     }
 
     public int getPrice() {
@@ -48,11 +47,4 @@ public class RecordInfo {
         OrderId = orderId;
     }
 
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
 }

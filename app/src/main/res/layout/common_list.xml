@@ -9,6 +9,7 @@
     <!-- 通用listView-->
     <ListView
         android:id="@+id/com_lv"
+        android:tag="recordLv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:cacheColorHint="#00000000"

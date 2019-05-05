@@ -18,8 +18,12 @@ import java.util.List;
  */
 
 public class GetShopListProtocol  extends JsonProtocol  {
-    public GetShopListProtocol(Context context, LoadCallBack callBack) {
+
+    private int id;
+
+    public GetShopListProtocol(Context context, LoadCallBack callBack,int id) {
         super(context, callBack);
+        this.id = id;
     }
 
     @Override
@@ -45,7 +49,7 @@ public class GetShopListProtocol  extends JsonProtocol  {
     @Override
     protected void creatDataJson(JSONObject reqJson) {
         try {
-            reqJson.put("businessAreaId", 1);
+            reqJson.put("businessAreaId", id);
         } catch (JSONException e) {
             e.printStackTrace();
         }

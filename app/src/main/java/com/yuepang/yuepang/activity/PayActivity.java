@@ -26,25 +26,26 @@ import static com.yuepang.yuepang.activity.MerchantDetailActivity.MERCHANTINFO;
  * 支付页面
  */
 
-public class PayActivity extends BaseActivity implements LoadCallBack {
+public class PayActivity extends BaseActivity implements LoadCallBack<PayItem> {
 
     public final static String PAYITEM = "payItem";
-
     private MerchantInfo info;
 
     @BindViewByTag
-    private EditText edprice;
+    private EditText edprice;//可以打折的金额
     @BindViewByTag
-    private EditText edNodisPrice;
+    private EditText edNodisPrice;// 无法打折的金额
     @BindViewByTag
     private LinearLayout linearLayout;
+
     @BindViewByTag(click = true)
-    private Button btnPay;
+    private Button btnPay; // 支付按钮
+
     @BindViewByTag
-    private CheckBox chx;
+    private CheckBox chx;// 复选框
+
     @BindViewByTag
     private TextView tvDis;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,7 +70,6 @@ public class PayActivity extends BaseActivity implements LoadCallBack {
 
     @Override
     public void onClick(View v) {
-        super.onClick(v);
         pay();
     }
 
@@ -97,20 +97,8 @@ public class PayActivity extends BaseActivity implements LoadCallBack {
         if (!TextUtils.isEmpty(price2)) {
             p2 = Integer.valueOf(price2);
         }
-
-
         price = (int) (p1 * 100 * info.getDiscount()) + p2 * 100;
         new AddOrderProtocol(this, this, 1, price).request();
-//        PayItem payItem = new PayItem();
-//        payItem.setMerchantName(info.getName());
-//        payItem.setOrderId("2018545565");
-//
-//        payItem.setPrice(price);
-//        Intent intent = new Intent();
-//        intent.putExtra(PAYITEM, payItem);
-//        intent.setClass(this, PaySuccessActivity.class);
-//        finish();
-//        startActivity(intent);
     }
 
     @Override
@@ -128,15 +116,26 @@ public class PayActivity extends BaseActivity implements LoadCallBack {
         return R.layout.pay_ly;
     }
 
+
+
+    @Override
+    public void loadCallBack(CallType callType, int CODE, String msg, PayItem payItem) {
+        if (callType.equals(CallType.SUCCESS)) {
+            Intent intent = new Intent();
+            intent.putExtra(PAYITEM, payItem);
+            intent.setClass(this, PaySuccessActivity.class);
+            finish();
+            startActivity(intent);
+        }
+    }
+
+    /**
+     * 进入支付页面方法
+     */
     public static void toPay(Context context, MerchantInfo merchantInfo) {
         Intent intent = new Intent();
         intent.putExtra(MERCHANTINFO, merchantInfo);
         intent.setClass(context, PayActivity.class);
         context.startActivity(intent);
-    }
-
-    @Override
-    public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
-
     }
 }

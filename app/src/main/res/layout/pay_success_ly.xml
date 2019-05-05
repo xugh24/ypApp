@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="86.6dp"
         android:background="@color/colorwhite"
+        android:tag="tvTel"
         android:gravity="center"
         android:includeFontPadding="false"
         android:text="支付成功"
@@ -34,6 +35,7 @@
         android:id="@+id/tv_orderid"
         style="@style/tv_4"
         android:layout_width="match_parent"
+        android:tag="tvOrderId"
         android:layout_height="42dp"
         android:text="订  单  号：" />
 
@@ -46,6 +48,7 @@
         android:id="@+id/tv_price"
         style="@style/tv_4"
         android:layout_width="match_parent"
+        android:tag="tvPrice"
         android:layout_height="42dp"
         android:text="支付金额：" />
 
@@ -58,6 +61,7 @@
         android:id="@+id/tv_medname"
         style="@style/tv_4"
         android:layout_width="match_parent"
+        android:tag="tvMedName"
         android:layout_height="42dp"
         android:text="商家名称：" />
 

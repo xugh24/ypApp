@@ -1,10 +1,7 @@
 package com.yuepang.yuepang.adapter;
 
 import android.widget.BaseAdapter;
-
 import com.yuepang.yuepang.activity.BaseActivity;
-import com.yuepang.yuepang.model.MerchantInfo;
-
 import java.util.ArrayList;
 import java.util.List;
 

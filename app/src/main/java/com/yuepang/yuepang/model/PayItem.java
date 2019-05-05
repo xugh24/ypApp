@@ -9,20 +9,28 @@ import android.os.Parcelable;
 
 public class PayItem implements Parcelable {
 
-    private int price;
+    private int id;
+
+    private float price;
 
     private String orderId;
 
     private String merchantName;
+
+    private long time;
+
+
 
     public PayItem() {
     }
 
 
     protected PayItem(Parcel in) {
-        price = in.readInt();
+        id = in.readInt();
+        price = in.readFloat();
         orderId = in.readString();
         merchantName = in.readString();
+        time = in.readLong();
     }
 
     public static final Creator<PayItem> CREATOR = new Creator<PayItem>() {
@@ -68,8 +76,28 @@ public class PayItem implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(price);
+
+        dest.writeInt(id);
+        dest.writeFloat(price);
         dest.writeString(orderId);
         dest.writeString(merchantName);
+        dest.writeLong(time);
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
     }
 }

@@ -42,7 +42,6 @@
 
 
     <ListView
-        android:id="@+id/mer_lv"
         android:tag="lvMer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

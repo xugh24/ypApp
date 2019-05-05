@@ -2,9 +2,11 @@ package com.yuepang.yuepang.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
+import com.android.common.annotation.view.BindViewByTag;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.adapter.RecordAdapter;
@@ -19,42 +21,28 @@ import java.util.List;
  * Created by xugh on 2019/3/27.
  */
 
-public class PayRecordActivity extends BaseLoadFrameActivity {
+public class PayRecordActivity extends BaseActivity {
 
-
+    @BindViewByTag
     private ListView recordLv;
 
-    private List<RecordInfo> recordInfos;
-
-    private View view;
-
     private RecordAdapter adapter;
-
 
     @Override
     public String getMyTittle() {
         return "消费记录";
     }
 
-
     @Override
-    protected View getMainView() {
-        view = View.inflate(this, R.layout.common_list, null);
-        recordLv = view.findViewById(R.id.com_lv);
-        LogUtils.e("recordInfos" + recordInfos.size());
-        adapter = new RecordAdapter(this, recordInfos);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        adapter = new RecordAdapter(this);
         recordLv.setAdapter(adapter);
-        return view;
     }
 
     @Override
-    protected boolean getdata() {
-        final GetRecordProtocol protocol = new GetRecordProtocol(PayRecordActivity.this);
-//        if (protocol.request() == 200) {
-//            recordInfos = (List<RecordInfo>) protocol.getData();
-//        }
-        recordInfos = TestData.getRecInfos();
-        return true;
+    protected int getContentViewId() {
+        return R.layout.common_list;
     }
 
     public static void toThisActivity(Context context) {

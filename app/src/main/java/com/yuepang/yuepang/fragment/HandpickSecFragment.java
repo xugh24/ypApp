@@ -106,7 +106,7 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
                     }
                 });
             }
-        }).request();
+        },1).request();
     }
 
 
@@ -129,7 +129,6 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
         }
     }
 
-    @Override
     public void callAreaInfo(List<MerchantInfo> merchantInfos, final AreaInfo currentInfo) {
       //  getMainActivity().getBarTitle().setTvLeftTitle(currentInfo.getName());
     }
@@ -156,4 +155,8 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
     }
 
 
+    @Override
+    public void callAreaInfo(AreaInfo currentInfo) {
+
+    }
 }

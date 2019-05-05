@@ -5,9 +5,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.common.annotation.view.AnnotateBindViewUtil;
+import com.android.common.annotation.view.BindViewByTag;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.activity.BaseActivity;
+import com.yuepang.yuepang.activity.PayRecordActivity;
+import com.yuepang.yuepang.interFace.LoadCallBack;
+import com.yuepang.yuepang.model.PayItem;
 import com.yuepang.yuepang.model.RecordInfo;
+import com.yuepang.yuepang.protocol.GetRecordProtocol;
 
 import java.util.List;
 
@@ -15,11 +20,16 @@ import java.util.List;
  * Created by xugh on 2019/3/27.
  */
 
-public class RecordAdapter extends YueBaseAdapter <RecordInfo>{
+public class RecordAdapter extends YueBaseAdapter<RecordInfo> implements LoadCallBack<List<RecordInfo>> {
 
 
-    public RecordAdapter(BaseActivity activity, List<RecordInfo> recordInfos) {
-        super(activity, recordInfos);
+    public RecordAdapter(BaseActivity activity) {
+        super(activity);
+        getdata();
+    }
+
+    private void getdata() {
+        new GetRecordProtocol(activity, this).request();
     }
 
     @Override
@@ -34,25 +44,39 @@ public class RecordAdapter extends YueBaseAdapter <RecordInfo>{
         }
         viewHolder.name.setText(getItem(position).getMerchantName());
         viewHolder.orderId.setText(getItem(position).getOrderId());
-        viewHolder.price.setText(getItem(position).getPrice()+"");
+        viewHolder.price.setText(getItem(position).getPrice() + "");
         viewHolder.time.setText(getItem(position).getTime() + "");
         return convertView;
     }
 
+    @Override
+    public void loadCallBack(final CallType callType, int CODE, String msg,final List<RecordInfo> infos) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(callType.equals(CallType.SUCCESS)){
+                    setList(infos);
+                    notifyDataSetChanged();
+                }
+            }
+        });
+
+
+    }
+
 
     private final class ViewHolder {
+        @BindViewByTag
         TextView name;
-
+        @BindViewByTag
         TextView price;
-
+        @BindViewByTag
         TextView orderId;
-
-        TextView state;
-
+        @BindViewByTag
         TextView time;
 
         public ViewHolder(View view) {
-            AnnotateBindViewUtil.initBindView(this,view,null);
+            AnnotateBindViewUtil.initBindView(this, view, null);
         }
     }
 }
