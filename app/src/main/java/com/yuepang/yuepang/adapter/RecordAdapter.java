@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.android.common.annotation.view.BindViewByTag;
+import com.android.common.utils.MathUtils;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.SysUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
@@ -45,7 +46,7 @@ public class RecordAdapter extends YueBaseAdapter<RecordInfo> implements LoadCal
         }
         viewHolder.name.setText("商家名称：" + getItem(position).getMerchantName());
         viewHolder.orderId.setText("订单号："+ getItem(position).getOrderId());
-        viewHolder.price.setText("金额："+getItem(position).getPrice() + "");
+        viewHolder.price.setText("金额："+ MathUtils.divide(getItem(position).getPrice(),100,2)  );
         viewHolder.time.setText(getItem(position).getData());
         return convertView;
     }

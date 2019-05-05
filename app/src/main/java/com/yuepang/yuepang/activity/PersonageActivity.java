@@ -168,7 +168,6 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
         LogUtils.e("---requestCode-----" + requestCode + "===" + data);
         if (requestCode == PHOTO_CODE) {
             startPhotoZoom(Uri.fromFile(PicDialog.getHeaderTempBmpFile()));//获取地址并调用裁剪
-            startPhotoZoom(data.getData());//返回的是地址，然后对图片裁剪
         } else if (requestCode == REQ_CROP) {
             if (data != null) {
                 Bundle bundle = data.getExtras();//把数据取出来，Bundle是一个装数据的可以在activity之间传输的类

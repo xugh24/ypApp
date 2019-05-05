@@ -23,6 +23,7 @@ public class OkEngineUtils {
      * @return 获取网络请求的header(以okhttp的Headers格式)
      */
     public static Headers getHeaders(Map<String, String> header) {
+        LogUtils.e(" header "+ header);
         Headers.Builder headerB = new Headers.Builder().add("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
         if (header != null && header.size() != 0) {
             for (String key : header.keySet()) {

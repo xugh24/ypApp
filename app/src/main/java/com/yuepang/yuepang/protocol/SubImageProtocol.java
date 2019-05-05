@@ -25,7 +25,11 @@ public class SubImageProtocol extends JsonProtocol {
     private Map<String, Object> postMap;
 
     public SubImageProtocol(Context context, Bitmap bitmap) {
-        super(context, null);
+        super(context, new LoadCallBack() {
+            @Override
+            public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
+            }
+        });
         sub(bitmap);
     }
 
@@ -60,17 +64,14 @@ public class SubImageProtocol extends JsonProtocol {
     }
 
     public void initCfg() {
-        LogUtils.e("initCfg-------");
         getHttpConfig().setPostMap(postMap);
         getHttpConfig().setIspostFild(true);
     }
 
 
     private void loadInfo(String img, File file) {
-        if (getHttpConfig() != null) {
             postMap = new HashMap<>();
             postMap.put(img, file);
-        }
     }
 
     @Override

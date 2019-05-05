@@ -115,6 +115,7 @@ public class OkhttpEngine<T> implements HttpEngine {
             public void onFailure(Call call, final IOException e) {
                 callBack.onFailed(ResultInfo.getErrorInfo(e.getMessage()));//
                 callBack.onFinish();// 结束访问
+                LogUtils.e(  "onFailure  == "+ e);
             }
 
             @Override
@@ -139,6 +140,7 @@ public class OkhttpEngine<T> implements HttpEngine {
                     }
                 } catch (final Exception e) {
                     callBack.onFailed(ResultInfo.getErrorInfo(e.getMessage()));//
+                    LogUtils.e(  "catch  == "+ e);
                 } finally {
                     callBack.onFinish();
                 }
@@ -147,28 +149,7 @@ public class OkhttpEngine<T> implements HttpEngine {
     }
 
 
-    /**
-     * 通过Okhttp 获得图片
-     *
-     * @return
-     * @throws IOException
-     */
-    public static Drawable createGetRequest(Context context, String url) throws IOException {
-        LogUtils.e("market downloadGet url:" + url);
-        if (DeviceUtils.hasNetwork(context)) {
-            OkHttpClient client = new OkHttpClient();//获取请求对象
-            Request request = new Request.Builder().url(url).build();//获取响应体
-            ResponseBody body = client.newCall(request).execute().body(); //获取流
-            InputStream in = body.byteStream();
-            Drawable drawable = Drawable.createFromStream(in, null);
-            in.close();
-            FileOutputStream fos = new FileOutputStream(new File(ConfigBuild.getImageCacheDir(context), String.valueOf(url.hashCode())));// 保存图片
-            ((BitmapDrawable) drawable).getBitmap().compress(Bitmap.CompressFormat.PNG, 100, fos);
-            fos.close();
-            return drawable;
-        }
-        return null;
-    }
+
 
     private RequestBody getBody() {
         RequestBody body = FormBody.create(MediaType.parse("application/json; charset=utf-8"), httpConfig.getParaJson());
