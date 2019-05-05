@@ -21,6 +21,7 @@ import com.yuepang.yuepang.dialog.PicDialog;
 import com.yuepang.yuepang.dialog.SexDialog;
 import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.UserInfo;
+import com.yuepang.yuepang.protocol.SubImageProtocol;
 import com.yuepang.yuepang.protocol.SubPersonInfoProtocol;
 import com.yuepang.yuepang.widget.CustomDatePicker;
 
@@ -46,6 +47,9 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     public static final int BIR = 0x03;
     public static final int TEL = 0x04;
 
+    @OnClickView({R.id.ll_nick, R.id.ll_sex, R.id.ll_birthday, R.id.tv_pwd})
+    private String clik;
+
     @BindViewByTag(click = true)
     private ImageView ivHead;// 头像
 
@@ -65,11 +69,10 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
 
     private UserInfo info;// 需要修改的临时Info信息
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ImageLoaderUtil.LoadImageViewForUrl(ivHead, getUserInfo().getHeaderImgUrl());//
+        ImageLoaderUtil.LoadcircleImage(ivHead, getUserInfo().getHeaderImgUrl());//
         tvTel.setText(getUserInfo().getTel());
         tvNick.setText(getUserInfo().getNick());
         tvbirthday.setText(getUserInfo().getBirthday());
@@ -80,7 +83,6 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     protected void initbefore() {
         info = new UserInfo();
     }
-
 
     @Override
     public String getMyTittle() {
@@ -96,9 +98,6 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     protected int getContentViewId() {
         return R.layout.personage_ly;
     }
-
-    @OnClickView({R.id.ll_nick, R.id.ll_sex, R.id.ll_birthday, R.id.tv_pwd})
-    private String clik;
 
     @Override
     public void onClick(View v) {
@@ -175,6 +174,7 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
                 Bundle bundle = data.getExtras();//把数据取出来，Bundle是一个装数据的可以在activity之间传输的类
                 Bitmap bitmap = bundle.getParcelable("data");//获取位图
                 ivHead.setImageBitmap(bitmap);//设置位图，显示
+                new SubImageProtocol(this, bitmap).request();
             }
         } else if (requestCode == CODE) {
             startPhotoZoom(data.getData());//返回的是地址，然后对图片裁剪

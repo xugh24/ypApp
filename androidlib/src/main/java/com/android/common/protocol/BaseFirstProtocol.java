@@ -12,8 +12,6 @@ import com.android.common.utils.LogUtils;
 
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -46,6 +44,7 @@ public abstract class BaseFirstProtocol<T> implements HttpCallBack {
 
     protected void executePost(JSONObject json) throws Exception {
         httpConfig = new HttpConfig(mContext, getHttpType(), getUrl(), json);
+        initCfg();
         httpConfig.setHeaderParams(getHeadMap());
         CommonTaskExecutor.execute(new Runnable() {
             @Override
@@ -54,6 +53,8 @@ public abstract class BaseFirstProtocol<T> implements HttpCallBack {
             }
         });
     }
+
+    protected abstract void initCfg();
 
     @Override
     public abstract void onStart();
@@ -84,4 +85,8 @@ public abstract class BaseFirstProtocol<T> implements HttpCallBack {
     public abstract HttpType getHttpType();
 
     public abstract Map<String, String> getHeadMap();
+
+    public HttpConfig getHttpConfig() {
+        return httpConfig;
+    }
 }

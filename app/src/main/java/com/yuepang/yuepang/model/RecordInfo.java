@@ -18,7 +18,6 @@ public class RecordInfo {
     private int price;// 金额
 
 
-
     public String getMerchantName() {
         return shopName;
     }
@@ -31,7 +30,7 @@ public class RecordInfo {
         return orderDate;
     }
 
-    public String getData(){
+    public String getData() {
         return SysUtils.stampToDate(orderDate);
     }
 
@@ -47,16 +46,15 @@ public class RecordInfo {
         this.price = price;
     }
 
-
     /*
     * 将时间戳转换为时间
     */
-    public  String getOrderId() {
+    public String getOrderId() {
         String res;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         Date date = new Date(orderDate);
         res = simpleDateFormat.format(date);
-        return res+orderDate;
+        return res + orderDate;
     }
 
 

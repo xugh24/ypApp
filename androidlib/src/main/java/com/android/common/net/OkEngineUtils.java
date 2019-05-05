@@ -2,6 +2,8 @@ package com.android.common.net;
 
 import android.text.TextUtils;
 
+import com.android.common.utils.LogUtils;
+
 import java.io.File;
 import java.util.Map;
 
@@ -43,6 +45,7 @@ public class OkEngineUtils {
     }
 
     public static MultipartBody.Builder getMultipartBodyBodyBuilder(Map<String, Object> params) {
+        LogUtils.e("---getMultipartBodyBodyBuilder------" +params);
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         if (params != null && params.size() > 0) {
             for (String key : params.keySet()) {

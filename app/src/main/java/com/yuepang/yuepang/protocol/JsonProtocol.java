@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.android.common.enums.HttpType;
 import com.android.common.model.ResultInfo;
+import com.android.common.net.HttpConfig;
 import com.android.common.protocol.BaseFirstProtocol;
 import com.yuepang.yuepang.Util.DomainUtil;
 import com.yuepang.yuepang.Util.LogUtils;
@@ -45,6 +46,10 @@ public abstract class JsonProtocol<T> extends BaseFirstProtocol {
             LogUtils.e(e);
         }
         return reqJson;
+    }
+
+    public void initCfg(HttpConfig httpConfig){
+
     }
 
 

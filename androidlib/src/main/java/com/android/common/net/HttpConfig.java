@@ -26,9 +26,13 @@ public class HttpConfig {
 
     private String url;// 网络请求地址
 
-    private JSONObject paraJson;// 参数
+    public JSONObject paraJson;// 参数
 
     private Map<String, String> headerParams;
+
+    private Map<String, Object> postMap;
+
+    private boolean isPostFild = false;
 
 
     public HttpConfig(Context context, HttpType httpType, String url, JSONObject paraJson) {
@@ -71,14 +75,22 @@ public class HttpConfig {
     }
 
     public boolean isPostFile() {
-        return false;
+        return isPostFild;
     }
 
-    public Map<String,Object> getParams() {
-        return null;
+    public Map<String, Object> getParams() {
+        return postMap;
     }
 
     public void setHeaderParams(Map<String, String> headerParams) {
         this.headerParams = headerParams;
+    }
+
+    public void setPostMap(Map<String, Object> postMap) {
+        this.postMap = postMap;
+    }
+
+    public void setIspostFild(boolean b) {
+        isPostFild = b;
     }
 }
