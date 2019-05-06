@@ -9,7 +9,6 @@ import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.android.common.annotation.view.BindViewByTag;
 import com.android.common.async.ImageLoaderUtil;
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.MerchantDetailActivity;
 import com.yuepang.yuepang.activity.PayActivity;
@@ -18,6 +17,7 @@ import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.AreaInfo;
 import com.yuepang.yuepang.model.MerchantInfo;
 import com.yuepang.yuepang.protocol.GetShopListProtocol;
+
 import java.util.List;
 
 
@@ -25,7 +25,7 @@ import java.util.List;
  * 商家设配器类
  */
 
-public class MerchantAdapter    extends YueBaseAdapter <MerchantInfo>  implements LoadCallBack  {
+public class MerchantAdapter extends YueBaseAdapter<MerchantInfo> implements LoadCallBack {
 
     private AreaInterFace interFace;
 
@@ -50,12 +50,12 @@ public class MerchantAdapter    extends YueBaseAdapter <MerchantInfo>  implement
         holder.name.setText(getItem(position).getName());
         holder.loction.setText(getItem(position).getLocation());
         holder.position = position;
-        ImageLoaderUtil.LoadImageViewForUrl(holder.iv,getItem(position).getPicture());
+        ImageLoaderUtil.LoadImageViewForUrl(holder.iv, getItem(position).getPicture());
         return convertView;
     }
 
-    public void getData() {
-        new GetShopListProtocol(activity, this, 1).request();
+    public void getData(int areaId) {
+        new GetShopListProtocol(activity, this, areaId).request();
     }
 
 
@@ -64,15 +64,15 @@ public class MerchantAdapter    extends YueBaseAdapter <MerchantInfo>  implement
      */
     public void refresh(AreaInfo info) {
         areaId = info.getId();
-        getData();
+        getData(areaId);
     }
 
     @Override
-    public void loadCallBack(final CallType callType, int CODE, String msg,final Object infos) {
+    public void loadCallBack(final CallType callType, int CODE, String msg, final Object infos) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if(callType.equals(CallType.SUCCESS)){
+                if (callType.equals(CallType.SUCCESS)) {
                     setList((List<MerchantInfo>) infos);
                     notifyDataSetChanged();
                 }
@@ -93,17 +93,17 @@ public class MerchantAdapter    extends YueBaseAdapter <MerchantInfo>  implement
         Button btnPay;
 
         private int position;
+
         public ViewHolder(View view) {
             AnnotateBindViewUtil.initBindView(this, view, this);
         }
 
         @Override
         public void onClick(View v) {
-            LogUtils.e("----onClick------" + position);
             if (v == btnPay) {
-                PayActivity.toPay(activity,getItem(position));
+                PayActivity.toPay(activity, getItem(position));
             } else {
-                MerchantDetailActivity.toMerActivity(activity,getItem(position));
+                MerchantDetailActivity.toMerActivity(activity, getItem(position));
             }
         }
     }

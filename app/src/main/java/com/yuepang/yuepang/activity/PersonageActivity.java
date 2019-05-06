@@ -3,8 +3,13 @@ package com.yuepang.yuepang.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +18,7 @@ import android.widget.TextView;
 import com.android.common.annotation.view.BindViewByTag;
 import com.android.common.annotation.view.OnClickView;
 import com.android.common.async.ImageLoaderUtil;
+import com.yuepang.yuepang.BuildConfig;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.control.UserCentreControl;
@@ -25,6 +31,7 @@ import com.yuepang.yuepang.protocol.SubImageProtocol;
 import com.yuepang.yuepang.protocol.SubPersonInfoProtocol;
 import com.yuepang.yuepang.widget.CustomDatePicker;
 
+import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -167,20 +174,31 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
         super.onActivityResult(requestCode, resultCode, data);
         LogUtils.e("---requestCode-----" + requestCode + "===" + data);
         if (requestCode == PHOTO_CODE) {
-            startPhotoZoom(Uri.fromFile(PicDialog.getHeaderTempBmpFile()));//获取地址并调用裁剪
+            Uri uri = null;
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+                String authority = "com.jit.yqq.yuepang.fileprovider";
+                uri = FileProvider.getUriForFile(this, authority, PicDialog.getHeaderTempBmpFile());
+            } else {
+                uri = Uri.fromFile(PicDialog.getHeaderTempBmpFile());
+            }
+            startPhotoZoom(uri);//获取地址并调用裁剪
         } else if (requestCode == REQ_CROP) {
-            if (data != null) {
-                Bundle bundle = data.getExtras();//把数据取出来，Bundle是一个装数据的可以在activity之间传输的类
-                Bitmap bitmap = bundle.getParcelable("data");//获取位图
-                ivHead.setImageBitmap(bitmap);//设置位图，显示
-                new SubImageProtocol(this, bitmap).request();
+            try {
+                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uritempFile));
+                ImageLoaderUtil.LoadcircleImage(ivHead, bitmap);//设置位图，显示
+                new SubImageProtocol(this, this, bitmap).request();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
         } else if (requestCode == CODE) {
-            startPhotoZoom(data.getData());//返回的是地址，然后对图片裁剪
+            if(data!=null){
+                startPhotoZoom(data.getData());//返回的是地址，然后对图片裁剪
+            }
         }
     }
 
     private static final String IMAGE_UNSPECIFIED = "image/*";
+    Uri uritempFile;
 
     /**
      * 打开照片裁剪
@@ -189,6 +207,9 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
      */
     public void startPhotoZoom(Uri uri) {
         Intent intent = new Intent("com.android.camera.action.CROP");//裁剪意图
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {//添加这一句表示对目标应用临时授权该Uri所代表的文件
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        }
         intent.setDataAndType(uri, IMAGE_UNSPECIFIED);//设置裁剪的地址和类型
         intent.putExtra("crop", false);//把未裁剪信息附加到intent上
         //设置宽高比例为1:1
@@ -198,6 +219,8 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
         intent.putExtra("outputY", 150);
         //设置裁剪图片的宽高
         intent.putExtra("return-data", true);//要返回值
+        uritempFile = Uri.parse("file://" + "/" + Environment.getExternalStorageDirectory().getPath() + "/" + "small.jpg");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uritempFile);
         startActivityForResult(intent, REQ_CROP);//执行意图，赋予请求码
     }
 
@@ -220,7 +243,7 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
 
     @Override
     public void loadCallBack(CallType callType, int CODE, String msg, UserInfo info) {
-        if (CODE == 200) {
+        if (callType.equals(CallType.SUCCESS)) {
             UserCentreControl.getInstance().setInfo(info);
         }
     }

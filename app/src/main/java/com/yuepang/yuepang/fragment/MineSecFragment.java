@@ -6,6 +6,7 @@ import com.android.common.annotation.view.BindViewByTag;
 import com.android.common.annotation.view.OnClickView;
 import com.android.common.async.ImageLoaderUtil;
 import com.yuepang.yuepang.R;
+import com.yuepang.yuepang.activity.CollectShopActivity;
 import com.yuepang.yuepang.activity.MyTopicActivity;
 import com.yuepang.yuepang.activity.MylikeActivity;
 import com.yuepang.yuepang.activity.PayRecordActivity;
@@ -39,7 +40,7 @@ public class MineSecFragment extends BaseSecFragment {
                 PayRecordActivity.toThisActivity(getContext());
                 break;
             case R.id.rl_uc_2:// 进入我的收藏页面
-
+                CollectShopActivity.tothisAvtivity(getContext());
                 break;
             case R.id.rl_uc_3:// 进入话题页面
                 MyTopicActivity.toThisActivity(getContext());

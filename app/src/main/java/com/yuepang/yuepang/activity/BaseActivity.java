@@ -85,6 +85,10 @@ public abstract class BaseActivity extends BaseFragmentActivity implements View.
     }
 
 
+    public void onClikLeftIv(){
+
+    }
+
 
     protected boolean isShowBack() {
         return true;
@@ -193,7 +197,7 @@ public abstract class BaseActivity extends BaseFragmentActivity implements View.
 
     public void showMapDialog(MerchantInfo info) {
         LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
-        new MapDialog(this, latLng, "西小口").show();
+        new MapDialog(this, latLng, info.getLocation()).show();
     }
 
     @Override

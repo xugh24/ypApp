@@ -45,7 +45,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="10dp"
-        android:src="@drawable/ic_stars_yellow"
+        android:src="@drawable/bg_star"
         android:visibility="gone" />
 
     <TextView

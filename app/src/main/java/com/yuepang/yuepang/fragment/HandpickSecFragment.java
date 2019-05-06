@@ -109,13 +109,10 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
         },1).request();
     }
 
-
     @Override
     public int getLyId() {
         return R.layout.handpick_ly;
     }
-
-
 
     @Override
     public void onClick(View v) {

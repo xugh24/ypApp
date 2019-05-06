@@ -83,11 +83,10 @@ public class ActionBarTitle implements View.OnClickListener {
                 activity.finish();
                 break;
             case R.id.tv_r_title:
-                LogUtils.e("--tv_r_title-");
                 activity.clickRt();
                 break;
             case R.id.iv_star:
-
+                activity.onClikLeftIv();
                 break;
             case R.id.tv_left_title:
                 LogUtils.e("--tv_left_title-");
@@ -113,5 +112,13 @@ public class ActionBarTitle implements View.OnClickListener {
                 tv.setText(text);
             }
         }
+    }
+
+    public ImageView getIvStar() {
+        return ivStar;
+    }
+
+    public void setIvStar(ImageView ivStar) {
+        this.ivStar = ivStar;
     }
 }

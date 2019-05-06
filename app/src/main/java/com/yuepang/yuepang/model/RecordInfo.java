@@ -54,7 +54,7 @@ public class RecordInfo {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         Date date = new Date(orderDate);
         res = simpleDateFormat.format(date);
-        return res + orderDate;
+        return res + orderDate / 1000;
     }
 
 

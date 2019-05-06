@@ -12,6 +12,7 @@ import com.android.common.annotation.view.BindView;
 import com.android.common.annotation.view.BindViewByTag;
 import com.android.common.async.ImageLoaderUtil;
 import com.yuepang.yuepang.R;
+import com.yuepang.yuepang.control.DataControl;
 import com.yuepang.yuepang.model.MerchantInfo;
 
 /**
@@ -46,6 +47,8 @@ public class MerchantDetailActivity extends BaseActivity {
         tvMsg.setText(merchantInfo.getDetails());
         tvloction.setText(merchantInfo.getLocation());
         tvTel.setText(merchantInfo.getTel());
+        getBarTitle().getIvStar().setVisibility(View.VISIBLE);
+        getBarTitle().getIvStar().setSelected(getDataControl().checkCollect(merchantInfo.getId()));
     }
 
     @Override
@@ -74,6 +77,20 @@ public class MerchantDetailActivity extends BaseActivity {
         } else if (tvloction == v) {
             showMapDialog(merchantInfo);
         }
+    }
+
+    @Override
+    public void onClikLeftIv() {
+        if(getBarTitle().getIvStar().isSelected()){//
+            showToastSafe("取消收藏成功");
+            getDataControl().removeCollect(merchantInfo.getId());
+            getBarTitle().getIvStar().setSelected(false);
+        }else{
+            showToastSafe("收藏成功");
+            getDataControl().setCollect(merchantInfo.getId());
+            getBarTitle().getIvStar().setSelected(true);
+        }
+
     }
 
     public static void toMerActivity(Context context, MerchantInfo info) {

@@ -5,9 +5,12 @@ import android.graphics.Bitmap;
 import android.os.Environment;
 
 import com.android.common.net.HttpConfig;
+import com.android.common.utils.GsonUtils;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.interFace.LoadCallBack;
+import com.yuepang.yuepang.model.UserInfo;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -21,15 +24,10 @@ import java.util.Map;
 
 public class SubImageProtocol extends JsonProtocol {
 
-
     private Map<String, Object> postMap;
 
-    public SubImageProtocol(Context context, Bitmap bitmap) {
-        super(context, new LoadCallBack() {
-            @Override
-            public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
-            }
-        });
+    public SubImageProtocol(Context context, LoadCallBack<UserInfo> loadCallBack, Bitmap bitmap) {
+        super(context,loadCallBack);
         sub(bitmap);
     }
 
@@ -61,6 +59,18 @@ public class SubImageProtocol extends JsonProtocol {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected UserInfo analysis(String st) {
+        try {
+            JSONObject  jsonObject = new JSONObject(st);
+            String data = jsonObject.optString("data");
+            return GsonUtils.getInstance().fromJson(data, UserInfo.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void initCfg() {

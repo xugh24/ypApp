@@ -43,7 +43,7 @@ public class MerchantSecFragment extends BaseSecFragment implements AreaInterFac
 
     @Override
     protected void initData() {// 获取数据
-        merchantAdapter.getData();
+        merchantAdapter.getData(1);
     }
 
     public void showAreaPop() {

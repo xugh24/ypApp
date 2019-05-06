@@ -9,6 +9,7 @@ import com.yuepang.yuepang.db.YuePangExternalDB;
 import com.yuepang.yuepang.interFace.LoginState;
 import com.yuepang.yuepang.location.LatLng;
 import com.yuepang.yuepang.location.Location;
+import com.yuepang.yuepang.model.AreaInfo;
 import com.yuepang.yuepang.model.UserInfo;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class UserCentreControl {
 
     private LatLng latLng;
 
+    private List<AreaInfo> list;
 
     private List<LoginState> loginSuccesses = new ArrayList<>();
 
@@ -88,7 +90,6 @@ public class UserCentreControl {
         return info;
     }
 
-
     public void setInfo(UserInfo info) {
         this.info = info;
     }
@@ -101,11 +102,18 @@ public class UserCentreControl {
         this.token = token;
     }
 
-
     public LatLng getLatLng() {
         if (latLng == null) {
             latLng = new LatLng(0, 0);
         }
         return latLng;
+    }
+
+    public List<AreaInfo> getList() {
+        return list;
+    }
+
+    public void setList(List<AreaInfo> list) {
+        this.list = list;
     }
 }

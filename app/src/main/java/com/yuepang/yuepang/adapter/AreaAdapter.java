@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.activity.BaseActivity;
+import com.yuepang.yuepang.control.UserCentreControl;
 import com.yuepang.yuepang.interFace.CutAreaInterFace;
 import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.AreaInfo;
@@ -54,6 +55,7 @@ public class AreaAdapter extends YueBaseAdapter<AreaInfo> implements AdapterView
     @Override
     public void loadCallBack(CallType callType, int CODE, String msg, Object infos) {
         List<AreaInfo> areaInfos = (List<AreaInfo>) infos;
+        UserCentreControl.getInstance().setList(areaInfos);
         setList(areaInfos);
         notifyDataSetChanged();
     }

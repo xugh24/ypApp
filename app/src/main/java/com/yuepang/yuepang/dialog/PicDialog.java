@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 
+import com.android.common.utils.LogUtils;
 import com.yuepang.yuepang.Util.SysUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.widget.SDKdialog;
@@ -40,6 +41,7 @@ public class PicDialog extends SDKdialog {
                 } else {
                     imageUri = Uri.fromFile(getHeaderTempBmpFile());
                 }
+                LogUtils.e("imageUri == "+imageUri);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                 activity.startActivityForResult(intent, PHOTO_CODE);
                 dismiss();

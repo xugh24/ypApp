@@ -140,6 +140,10 @@
             android:name="com.yuepang.yuepang.activity.ChangePwdActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.yuepang.yuepang.activity.CollectShopActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 
 
         <provider
@@ -156,7 +160,6 @@
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" />
-
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
