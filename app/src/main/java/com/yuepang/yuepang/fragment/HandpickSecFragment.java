@@ -1,31 +1,38 @@
 package com.yuepang.yuepang.fragment;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.android.common.annotation.view.BindViewByTag;
 import com.android.common.annotation.view.OnClickView;
 import com.android.common.async.ImageLoaderUtil;
+import com.android.common.utils.LogUtils;
 import com.yuepang.yuepang.R;
+import com.yuepang.yuepang.activity.GoodDetailActivity;
 import com.yuepang.yuepang.activity.MerchantDetailActivity;
 import com.yuepang.yuepang.adapter.GoodAdapter;
 import com.yuepang.yuepang.interFace.AreaInterFace;
+import com.yuepang.yuepang.interFace.ClikGoodInter;
 import com.yuepang.yuepang.interFace.CutAreaInterFace;
 import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.AreaInfo;
+import com.yuepang.yuepang.model.GoodInfo;
 import com.yuepang.yuepang.model.MerchantInfo;
 import com.yuepang.yuepang.protocol.GetBusinessAreaProtocol;
 import com.yuepang.yuepang.protocol.GetShopListProtocol;
 import com.yuepang.yuepang.widget.AreaPopupWindow;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 精选页面
  */
 
-public class HandpickSecFragment extends BaseSecFragment implements AreaInterFace, CutAreaInterFace {
+public class HandpickSecFragment extends BaseSecFragment implements AreaInterFace, CutAreaInterFace, ClikGoodInter {
 
     @OnClickView({R.id.merchant1_ly, R.id.merchant2_ly})
     private String string;
@@ -37,15 +44,15 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
     private TextView tvName2; // 商家2的名称
 
     @BindViewByTag
-    private ImageView iv1;
+    private ImageView iv1;// 商家图片1
     @BindViewByTag
-    private ImageView iv2;
+    private ImageView iv2;// 商家图片2
 
     @BindViewByTag
     private ListView goodLv;// 精选商品列表
 
     @BindViewByTag
-    private ImageView ivNot;
+    private ImageView ivNot; // 精选商品无数据
 
     private GoodAdapter goodAdapter; // 商品
 
@@ -55,12 +62,14 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
 
     private AreaPopupWindow areaPopupWindow; // 商家popvindow
 
+    private List<MerchantInfo> merchantInfos;
+
     /**
      * View创建后的初始化
      */
     @Override
     protected void initbeforeView() {
-
+        merchantInfos = new ArrayList<>();
     }
 
     /**
@@ -81,32 +90,35 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
         super.onShow();
     }
 
-
     @Override
     protected void initData() {
-        goodAdapter.getData();
-        initShop();
+        goodAdapter.getData();// 获得商品信息
+        initShop();// 获得商铺信息
+        getMainActivity().getBarTitle().setTitle("精选");
     }
 
     private void initShop() {
-        new GetShopListProtocol(getMainActivity(), new LoadCallBack< List<MerchantInfo>>() {
+        new GetShopListProtocol(getMainActivity(), new LoadCallBack<List<MerchantInfo>>() {
             @Override
-            public void loadCallBack(final CallType callType, int CODE, String msg,final List<MerchantInfo> infos) {
+            public void loadCallBack(final CallType callType, int CODE, String msg, final List<MerchantInfo> infos) {
                 getMainActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if(callType.equals(CallType.SUCCESS)){
+                        if (callType.equals(CallType.SUCCESS)) {
+                            merchantInfos.clear();
+                            merchantInfos.addAll(infos);
                             info1 = infos.get(0);
                             info2 = infos.get(1);
                             tvName1.setText(info1.getName());
                             tvName2.setText(info2.getName());
-                            ImageLoaderUtil.LoadImageViewForUrl(iv1,info1.getPicture());
-                            ImageLoaderUtil.LoadImageViewForUrl(iv2,info2.getPicture());
+                            ImageLoaderUtil.LoadImageViewForUrl(iv1, info1.getPicture());
+                            ImageLoaderUtil.LoadImageViewForUrl(iv2, info2.getPicture());
+                            getMainActivity().getBarTitle().setTvLeftTitle("测试");;
                         }
                     }
                 });
             }
-        },1).request();
+        }, 1).request();
     }
 
     @Override
@@ -126,9 +138,6 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
         }
     }
 
-    public void callAreaInfo(List<MerchantInfo> merchantInfos, final AreaInfo currentInfo) {
-      //  getMainActivity().getBarTitle().setTvLeftTitle(currentInfo.getName());
-    }
 
     @Override
     public void onHide() {
@@ -137,6 +146,7 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
 
     @Override
     public void onClikLeft() {
+        LogUtils.e("接受点击事件 ----onClikLeft--");
         if (areaPopupWindow != null) {
             areaPopupWindow.show(getMainActivity().getBarTitle().getTvLeftTitle());
         }
@@ -153,7 +163,19 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
 
 
     @Override
-    public void callAreaInfo(AreaInfo currentInfo) {
+    public void callAreaInfo(List<GoodInfo> infos) {
 
+    }
+
+    @Override
+    public void toGooddeatail(GoodInfo info) {
+        for (MerchantInfo merchantInfo : merchantInfos) {
+            if (info.getShop() == merchantInfo.getId()) {
+                info.setInfo(merchantInfo);
+            }
+        }
+        Intent intent = new Intent(getMainActivity(), GoodDetailActivity.class);
+        intent.putExtra(GoodDetailActivity.GOODINFO, info);
+        getMainActivity().startActivity(intent);
     }
 }

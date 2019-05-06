@@ -1,6 +1,7 @@
 package com.yuepang.yuepang.interFace;
 
 import com.yuepang.yuepang.model.AreaInfo;
+import com.yuepang.yuepang.model.GoodInfo;
 import com.yuepang.yuepang.model.MerchantInfo;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 public interface AreaInterFace {
     /**
      * 获得当前商圈信息的通知接口
-     * @param currentInfo   当前商圈
+     * @param infos
      */
-    public void callAreaInfo( AreaInfo currentInfo);
+    public void callAreaInfo( List<GoodInfo> infos);
 }

@@ -8,6 +8,7 @@
     <ImageView
         android:id="@+id/iv_good"
         android:layout_width="match_parent"
+        android:tag="ivPic"
         android:layout_height="120dp"
         android:scaleType="fitXY"
         android:src="@drawable/test2" />
@@ -17,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:tag="name"
         android:text="测试商品名称"
         android:textColor="@color/c6"
         android:textSize="@dimen/f4" />
@@ -26,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:tag="msg"
         android:text="测试商家说明xxxxxxx"
         android:textColor="@color/c6"
         android:textSize="@dimen/f4" />

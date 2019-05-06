@@ -52,4 +52,7 @@ public abstract class YueBaseAdapter <T>  extends BaseAdapter {
         this.list = list;
     }
 
+    public List<T> getList() {
+        return list;
+    }
 }

@@ -8,6 +8,7 @@ import com.android.common.inter.ViewHolderClick;
 import com.android.common.widget.BaseViewHolder;
 import com.android.common.widget.ViewPageLayout;
 import com.yuepang.yuepang.R;
+import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.CreateTopicActivity;
 import com.yuepang.yuepang.adapter.MyFragmentPagerAdapter;
@@ -100,8 +101,10 @@ public class MainViewPage extends ViewPageLayout {
     }
 
     public void onClikLeft() {
+        LogUtils.e("------onClikLeft--onClikLeft----"+getCurrentPosition());
         switch (getCurrentPosition()) {
             case 0:
+
                 mfpa.getItem(0).onClikLeft();
                 break;
             case 1:

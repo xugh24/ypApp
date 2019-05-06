@@ -4,7 +4,9 @@ import android.content.Context;
 
 import com.android.common.enums.HttpType;
 import com.android.common.utils.GsonUtils;
+import com.android.common.utils.LogUtils;
 import com.yuepang.yuepang.interFace.LoadCallBack;
+import com.yuepang.yuepang.model.AreaInfo;
 import com.yuepang.yuepang.model.MerchantInfo;
 
 import org.json.JSONArray;
@@ -18,7 +20,7 @@ import java.util.List;
  * Created by xugh on 2019/4/30.
  */
 
-public class GetBusinessAreaProtocol extends JsonProtocol<List<MerchantInfo>> {
+public class GetBusinessAreaProtocol extends JsonProtocol<List<AreaInfo>> {
 
     public GetBusinessAreaProtocol(Context context, LoadCallBack callBack) {
         super(context, callBack);
@@ -30,17 +32,17 @@ public class GetBusinessAreaProtocol extends JsonProtocol<List<MerchantInfo>> {
     }
 
     @Override
-    protected List<MerchantInfo> analysis(String data) {
-        List<MerchantInfo> merchantInfos = new ArrayList<>();
+    protected List<AreaInfo> analysis(String data) {
+        List<AreaInfo> areaInfos = new ArrayList<>();
         try {
             JSONArray array = new JSONArray(data);
             for (int i = 0; i < array.length(); i++) {
-                merchantInfos.add(GsonUtils.getInstance().fromJson(array.optString(i), MerchantInfo.class));
+                areaInfos.add(GsonUtils.getInstance().fromJson(array.optString(i), AreaInfo.class));
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return merchantInfos;
+        return areaInfos;
     }
 
     @Override

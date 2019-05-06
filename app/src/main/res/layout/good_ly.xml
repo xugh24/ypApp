@@ -21,14 +21,15 @@
                 android:id="@+id/iv_good"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:scaleType="fitXY"
                 android:layout_marginBottom="20dp"
+                android:scaleType="fitXY"
                 android:src="@drawable/test2" />
 
             <TextView
                 android:id="@+id/title"
                 style="@style/tv_5"
                 android:layout_width="wrap_content"
+                android:tag="goodTitle"
                 android:text="商品标题" />
 
             <View
@@ -41,6 +42,7 @@
                 style="@style/tv_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="goodMsg"
                 android:text="商品介紹" />
 
             <View
@@ -52,6 +54,7 @@
                 android:id="@+id/mer_name"
                 style="@style/tv_5"
                 android:layout_width="wrap_content"
+                android:tag="merName"
                 android:text="商家名称" />
 
             <View
@@ -64,6 +67,7 @@
                 style="@style/tv_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="merLoaction"
                 android:text="地址" />
 
             <View
@@ -75,6 +79,8 @@
                 android:id="@+id/tv_tel"
                 style="@style/tv_5"
                 android:layout_width="wrap_content"
+
+                android:tag="merTel"
                 android:text="电话" />
         </LinearLayout>
     </ScrollView>
@@ -84,6 +90,7 @@
         android:id="@+id/btn_buy"
         style="@style/syt_btn_green"
         android:layout_width="match_parent"
+        android:tag="btnPay"
         android:text="买单" />
 
 

@@ -13,6 +13,7 @@ import com.yuepang.yuepang.control.UserCentreControl;
 import com.yuepang.yuepang.interFace.AreaInterFace;
 import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.AreaInfo;
+import com.yuepang.yuepang.model.GoodInfo;
 import com.yuepang.yuepang.model.MerchantInfo;
 import com.yuepang.yuepang.protocol.GetShopListProtocol;
 
@@ -53,12 +54,11 @@ public class CollectShopActivity extends BaseActivity implements AreaInterFace, 
     }
 
     private void load() {
-        List<AreaInfo> list = UserCentreControl.getInstance().getList();
-        LogUtils.e("list.size()=============" + list.size());
-        if (list != null && list.size() > 0) {
-            LogUtils.e("list.size()" + list.size());
-            size = list.size();
-            for (AreaInfo info : list) {
+        List<AreaInfo> areaInfos = UserCentreControl.getInstance().getList();
+        LogUtils.e("list.size()=============" + areaInfos.size());
+        if (areaInfos != null && areaInfos.size() > 0) {
+            size = areaInfos.size();
+            for (AreaInfo info :areaInfos) {
                 LogUtils.e("info  " + info.getId());
                 new GetShopListProtocol(this, this, info.getId()).request();
             }
@@ -76,10 +76,7 @@ public class CollectShopActivity extends BaseActivity implements AreaInterFace, 
         return R.layout.my_shop_ly;
     }
 
-    @Override
-    public void callAreaInfo(AreaInfo currentInfo) {
 
-    }
 
     @Override
     public void loadCallBack(final CallType callType, int CODE, String msg,final List<MerchantInfo> infos) {
@@ -116,5 +113,10 @@ public class CollectShopActivity extends BaseActivity implements AreaInterFace, 
     public static void tothisAvtivity(Context context) {
         Intent intent = new Intent(context,CollectShopActivity.class);
         context.startActivity(intent);
+    }
+
+    @Override
+    public void callAreaInfo(List<GoodInfo> infos) {
+
     }
 }

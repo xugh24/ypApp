@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.common.annotation.view.BindViewByTag;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.dialog.CallDialog;
 import com.yuepang.yuepang.dialog.MapDialog;
@@ -22,18 +23,25 @@ public class GoodDetailActivity extends BaseActivity {
 
     public final static String GOODINFO = "goodInfo";
 
+    @BindViewByTag
     private ImageView ivGood;// 商品图片
 
+    @BindViewByTag
     private TextView goodTitle;// 商品标题
 
+    @BindViewByTag
     private TextView goodMsg;// 商品介绍
 
+    @BindViewByTag
     private TextView merName;// 商家名称
 
+    @BindViewByTag(click = true)
     private TextView merLoaction;// 商家地址
 
+    @BindViewByTag(click = true)
     private TextView merTel;// 商家电话
 
+    @BindViewByTag(click = true)
     private Button btnPay;// 支付按钮
 
     private GoodInfo info;
@@ -68,7 +76,7 @@ public class GoodDetailActivity extends BaseActivity {
             new CallDialog(this, info.getInfo().getTel()).show();
         } else if (merLoaction == v) {
             LatLng latLng = new LatLng(info.getInfo().getLatitude(), info.getInfo().getLongitude());
-            new MapDialog(this, latLng, "西小口").show();
+            new MapDialog(this, latLng, info.getInfo().getLocation()).show();
         }
     }
 }

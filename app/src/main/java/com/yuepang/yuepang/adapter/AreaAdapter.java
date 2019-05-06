@@ -20,7 +20,7 @@ import java.util.List;
  * Created by xugh on 2019/3/26.
  */
 
-public class AreaAdapter extends YueBaseAdapter<AreaInfo> implements AdapterView.OnItemClickListener, LoadCallBack {
+public class AreaAdapter extends YueBaseAdapter<AreaInfo> implements AdapterView.OnItemClickListener, LoadCallBack<List<AreaInfo>> {
 
     private CutAreaInterFace cutAreaInterFace;
 
@@ -53,11 +53,17 @@ public class AreaAdapter extends YueBaseAdapter<AreaInfo> implements AdapterView
     }
 
     @Override
-    public void loadCallBack(CallType callType, int CODE, String msg, Object infos) {
-        List<AreaInfo> areaInfos = (List<AreaInfo>) infos;
-        UserCentreControl.getInstance().setList(areaInfos);
-        setList(areaInfos);
-        notifyDataSetChanged();
+    public void loadCallBack(final CallType callType, int CODE, String msg,final List<AreaInfo> areaInfos) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(callType.equals(CallType.SUCCESS)){
+                    UserCentreControl.getInstance().setList(areaInfos);
+                    setList(areaInfos);
+                    notifyDataSetChanged();
+                }
+            }
+        });
     }
 
     private final class ViewHolder {

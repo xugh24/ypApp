@@ -11,8 +11,11 @@ import com.yuepang.yuepang.interFace.AreaInterFace;
 import com.yuepang.yuepang.interFace.CutAreaInterFace;
 import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.AreaInfo;
+import com.yuepang.yuepang.model.GoodInfo;
 import com.yuepang.yuepang.protocol.GetShopListProtocol;
 import com.yuepang.yuepang.widget.AreaPopupWindow;
+
+import java.util.List;
 
 /**
  */
@@ -78,8 +81,9 @@ public class MerchantSecFragment extends BaseSecFragment implements AreaInterFac
 
     }
 
+
     @Override
-    public void callAreaInfo(AreaInfo currentInfo) {
+    public void callAreaInfo(List<GoodInfo> infos) {
 
     }
 }

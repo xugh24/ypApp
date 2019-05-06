@@ -13,21 +13,29 @@ public class GoodInfo implements Parcelable {
 
     private MerchantInfo info;
 
-    private String picUrl; // 商品图片地址
+    private String image; // 商品图片地址
 
-    private String title;// 商品名称
+    private String name;// 商品名称
 
-    private String msg;// 商品简介
+    private String detail;// 商品简介
+
+    private int id;
+
+    private int shop;
+
 
     public GoodInfo(){
 
     }
 
+
     protected GoodInfo(Parcel in) {
         info = in.readParcelable(MerchantInfo.class.getClassLoader());
-        picUrl = in.readString();
-        title = in.readString();
-        msg = in.readString();
+        image = in.readString();
+        name = in.readString();
+        detail = in.readString();
+        id = in.readInt();
+        shop = in.readInt();
     }
 
     public static final Creator<GoodInfo> CREATOR = new Creator<GoodInfo>() {
@@ -51,27 +59,27 @@ public class GoodInfo implements Parcelable {
     }
 
     public String getPicUrl() {
-        return picUrl;
+        return image;
     }
 
     public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
+        this.image = picUrl;
     }
 
     public String getTitle() {
-        return title;
+        return name;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.name = title;
     }
 
     public String getMsg() {
-        return msg;
+        return detail;
     }
 
     public void setMsg(String msg) {
-        this.msg = msg;
+        this.detail = msg;
     }
 
     @Override
@@ -81,9 +89,29 @@ public class GoodInfo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+
         dest.writeParcelable(info, flags);
-        dest.writeString(picUrl);
-        dest.writeString(title);
-        dest.writeString(msg);
+        dest.writeString(image);
+        dest.writeString(name);
+        dest.writeString(detail);
+        dest.writeInt(id);
+        dest.writeInt(shop);
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getShop() {
+        return shop;
+    }
+
+    public void setShop(int shop) {
+        this.shop = shop;
     }
 }
