@@ -68,7 +68,6 @@ public class MainViewPage extends ViewPageLayout {
     public void pageChanged(int lastPosition, int position) {
         switch (position) {
             case 0:
-
                 break;
             case 1:
                 break;

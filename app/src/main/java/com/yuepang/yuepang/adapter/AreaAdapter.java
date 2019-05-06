@@ -6,6 +6,7 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.android.common.annotation.view.AnnotateBindViewUtil;
+import com.android.common.annotation.view.BindViewByTag;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.control.UserCentreControl;
@@ -67,6 +68,7 @@ public class AreaAdapter extends YueBaseAdapter<AreaInfo> implements AdapterView
     }
 
     private final class ViewHolder {
+        @BindViewByTag
         TextView name;
         public ViewHolder(View view) {
             AnnotateBindViewUtil.initBindView(this, view, null);

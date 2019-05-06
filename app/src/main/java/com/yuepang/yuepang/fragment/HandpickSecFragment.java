@@ -77,8 +77,8 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
      */
     @Override
     protected void initafterView() {
-        ivNot.setVisibility(View.GONE);
-        goodLv.setVisibility(View.VISIBLE);
+        ivNot.setVisibility(View.GONE);// 隐藏无数据内容
+        goodLv.setVisibility(View.VISIBLE);// 展示数据无数据内容
         areaPopupWindow = new AreaPopupWindow(getMainActivity()); // 新建需要加载的商圈View
         goodAdapter = new GoodAdapter(getMainActivity(), this);  // 新建适配器
         goodLv.setAdapter(goodAdapter);
@@ -113,7 +113,8 @@ public class HandpickSecFragment extends BaseSecFragment implements AreaInterFac
                             tvName2.setText(info2.getName());
                             ImageLoaderUtil.LoadImageViewForUrl(iv1, info1.getPicture());
                             ImageLoaderUtil.LoadImageViewForUrl(iv2, info2.getPicture());
-                            getMainActivity().getBarTitle().setTvLeftTitle("测试");;
+                            getMainActivity().getBarTitle().setTvLeftTitle("测试");
+                            ;
                         }
                     }
                 });

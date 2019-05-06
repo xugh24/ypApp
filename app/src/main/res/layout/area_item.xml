@@ -7,6 +7,7 @@
         android:id="@+id/tv_name"
         android:layout_width="72dp"
         android:layout_height="30dp"
+        android:tag="name"
         android:text="测试商圈"
         android:gravity="center"
         android:background="@drawable/ic_item_gray_pressed"

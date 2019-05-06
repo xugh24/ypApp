@@ -33,7 +33,6 @@ public class BaseViewPage extends ViewPager {
         setId(12);
         lastPosition = -1;
         currentPosition = -1;
-
         setOffscreenPageLimit(count > 10 ? 10 : count);
         init();
     }
