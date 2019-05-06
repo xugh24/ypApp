@@ -100,10 +100,8 @@ public class MainViewPage extends ViewPageLayout {
     }
 
     public void onClikLeft() {
-        LogUtils.e("------onClikLeft--onClikLeft----"+getCurrentPosition());
         switch (getCurrentPosition()) {
             case 0:
-
                 mfpa.getItem(0).onClikLeft();
                 break;
             case 1:

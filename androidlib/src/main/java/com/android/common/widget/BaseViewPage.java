@@ -32,7 +32,7 @@ public class BaseViewPage extends ViewPager {
         this.count = count;
         setId(12);
         lastPosition = -1;
-        currentPosition = -1;
+        currentPosition = 0;
         setOffscreenPageLimit(count > 10 ? 10 : count);
         init();
     }

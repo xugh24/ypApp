@@ -35,6 +35,8 @@ public class UserCentreControl {
 
     private List<AreaInfo> list;
 
+    private AreaInfo currentAraeInfo;
+
     private List<LoginState> loginSuccesses = new ArrayList<>();
 
     public static synchronized UserCentreControl getInstance() {
@@ -115,5 +117,13 @@ public class UserCentreControl {
 
     public void setList(List<AreaInfo> list) {
         this.list = list;
+    }
+
+    public AreaInfo getCurrentAraeInfo() {
+        return currentAraeInfo;
+    }
+
+    public void setCurrentAraeInfo(AreaInfo currentAraeInfo) {
+        this.currentAraeInfo = currentAraeInfo;
     }
 }
