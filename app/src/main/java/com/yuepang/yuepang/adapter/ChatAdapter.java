@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.android.common.annotation.view.BindViewByTag;
+import com.android.common.async.ImageLoaderUtil;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.model.TopicItemInfo;
@@ -39,6 +40,9 @@ public class ChatAdapter extends YueBaseAdapter<TopicItemInfo> {
             convertView.setTag(holder);
         } else if (convertView.getTag() instanceof ViewHolder) {
             holder = (ViewHolder) convertView.getTag();
+        }
+        if(position!=0){
+            ImageLoaderUtil.LoadcircleImage(holder.ivHead,getItem(position).getUrl());
         }
         holder.name.setText(getItem(position).getName());
         holder.msg.setText(getItem(position).getMsg());

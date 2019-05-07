@@ -1,5 +1,6 @@
 package com.yuepang.yuepang.widget;
 
+import android.app.Activity;
 import android.support.v4.app.FragmentActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -116,7 +117,11 @@ public class MainViewPage extends ViewPageLayout {
 
     public void onClikRight() {
         if (getCurrentPosition() == 2) {
-            CreateTopicActivity.toThisActivity(getContext());
+            CreateTopicActivity.toThisActivity((Activity) getContext());
         }
+    }
+
+    public void refreshTop() {
+        mfpa.getItem(2).onShow();
     }
 }

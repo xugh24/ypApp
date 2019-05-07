@@ -84,6 +84,16 @@ public abstract class BaseActivity extends BaseFragmentActivity implements View.
         llMain.addView(contentView, -1, -1);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        onResult(requestCode,resultCode,data);
+    }
+
+    public void onResult(int requestCode, int resultCode, Intent data){
+
+    }
+
 
     public void onClikLeftIv(){
 

@@ -6,8 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-
-import com.android.common.annotation.view.BindView;
 import com.android.common.annotation.view.BindViewByTag;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.presenter.ChatPresenter;
@@ -17,7 +15,6 @@ import com.yuepang.yuepang.presenter.ChatPresenter;
  */
 
 public class ChatActivity extends BaseActivity {
-
 
     @BindViewByTag(click = true)
     private Button btnSend;

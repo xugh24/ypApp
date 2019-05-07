@@ -4,20 +4,21 @@ package com.yuepang.yuepang.model;
  */
 
 public class TopicItemInfo {
-    private String name;
+
+    private String username;
 
     private String msg;
 
     private int id;
 
-    private String url;
+    private String userAvatar;
 
     public String getName() {
-        return name;
+        return username;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
     }
 
     public String getMsg() {
@@ -37,10 +38,10 @@ public class TopicItemInfo {
     }
 
     public String getUrl() {
-        return url;
+        return userAvatar;
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        this.userAvatar = url;
     }
 }

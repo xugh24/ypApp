@@ -1,6 +1,8 @@
 package com.yuepang.yuepang.activity;
 
+import android.content.Intent;
 import android.view.View;
+
 import com.android.common.inter.ViewHolderClick;
 import com.yuepang.yuepang.dialog.OutDialog;
 import com.yuepang.yuepang.widget.MainViewPage;
@@ -41,6 +43,13 @@ public class MainActivity extends BaseActivity implements ViewHolderClick {
     @Override
     public void onClick(View v, int i) {
         mainViewPage.setCurrentItem(i);// 点击主页面底下，跳转到对应的frame
+    }
+
+    @Override
+    public void onResult(int requestCode, int resultCode, Intent data) {// 创建消息成功后刷新当前消息
+        if (requestCode == 2) {
+            mainViewPage.refreshTop();
+        }
     }
 
     @Override

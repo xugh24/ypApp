@@ -1,13 +1,13 @@
 package com.yuepang.yuepang.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.widget.EditText;
-
 import com.android.common.annotation.view.BindViewByTag;
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.async.CommonTaskExecutor;
+import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.protocol.AddTopicProtocol;
 
 /**
@@ -15,7 +15,7 @@ import com.yuepang.yuepang.protocol.AddTopicProtocol;
  * 创建话题页面
  */
 
-public class CreateTopicActivity extends BaseActivity {
+public class CreateTopicActivity extends BaseActivity implements LoadCallBack {
 
     @BindViewByTag
     private EditText edTop;
@@ -45,30 +45,25 @@ public class CreateTopicActivity extends BaseActivity {
         }
     }
 
-
     /**
      * 创建话题
      */
-    private void creatTopic(final String title) {
-        CommonTaskExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                AddTopicProtocol protocol = new AddTopicProtocol(CreateTopicActivity.this, title);
-                if (protocol.request() == 200) { // 创建成功后 关闭页面
-                    showToastSafe("创建成功");
-                    finish();
-                } else {
-                    if (!TextUtils.isEmpty(protocol.getCodeDesc())) { // 如果服务端返回错误原因，则抛出
-                        showToastSafe(protocol.getCodeDesc());
-                    }
-                }
-            }
-        });
-
+    private void creatTopic(String title) {
+        new AddTopicProtocol(this,this, title).request();
     }
 
-    public static void toThisActivity(Context context) {
-        Intent intent = new Intent(context, CreateTopicActivity.class);
-        context.startActivity(intent);
+    public static void toThisActivity(Activity activity) {
+        Intent intent = new Intent(activity, CreateTopicActivity.class);
+        activity.startActivityForResult(intent,2);
+    }
+
+    @Override
+    public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
+        if(callType.equals(CallType.SUCCESS)){
+            if(CODE == 200){
+                showToastSafe("创建成功");
+                finish();
+            }
+        }
     }
 }

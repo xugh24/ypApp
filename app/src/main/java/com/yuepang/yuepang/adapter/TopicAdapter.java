@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.android.common.annotation.view.BindViewByTag;
+import com.android.common.async.ImageLoaderUtil;
 import com.android.common.utils.LogUtils;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.SysUtils;

@@ -62,7 +62,7 @@ public class ChatPresenter implements LoadCallBack<List<TopicItemInfo>> {
         activity.getChatListView().setAdapter(adapter);
         timer = new Timer(true);
         timer.schedule(task, periodTime, periodTime);// 启动心跳线程定时刷新数据
-        activity.setTitle(title);
+        activity.getBarTitle().setTitle(title);
     }
 
     public void sendMsg() {
