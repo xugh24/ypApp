@@ -44,6 +44,8 @@ public class MylikeActivity extends BaseActivity implements LoadCallBack {
 
     private List<CheckBox> boxs;
 
+    private List<Integer> newList;
+
 
     @Override
     protected int getContentViewId() {
@@ -58,6 +60,7 @@ public class MylikeActivity extends BaseActivity implements LoadCallBack {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         boxs = new ArrayList<>();
+        newList = new ArrayList<>();
         boxs.add(chbCate);
         boxs.add(chbMovie);
         boxs.add(chbRecreation);
@@ -112,9 +115,11 @@ public class MylikeActivity extends BaseActivity implements LoadCallBack {
 
     private void sub() {// 上传喜好数据
         StringBuilder stringBuilder = new StringBuilder();
+        newList.clear();
         for (CheckBox checkBox : boxs) {
             if (checkBox.isChecked()) {
                 int temp = Integer.valueOf((String) checkBox.getTag());
+                newList.add(temp);
                 int tag = 0;
                 if (temp == 1) {
                     tag = 0;
@@ -143,6 +148,12 @@ public class MylikeActivity extends BaseActivity implements LoadCallBack {
 
     @Override
     public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
+        if (callType.equals(CallType.SUCCESS)) {
+            showToastSafe("保存成功");
+            getUserInfo().getFavorite().clear();
+            getUserInfo().getFavorite().addAll(newList);
+        }
+
 
     }
 }

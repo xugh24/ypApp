@@ -46,7 +46,6 @@ public class OkEngineUtils {
     }
 
     public static MultipartBody.Builder getMultipartBodyBodyBuilder(Map<String, Object> params) {
-        LogUtils.e("---getMultipartBodyBodyBuilder------" +params);
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         if (params != null && params.size() > 0) {
             for (String key : params.keySet()) {
@@ -71,7 +70,6 @@ public class OkEngineUtils {
         if (params == null || params.size() <= 0) {
             return url;
         }
-
         StringBuffer stringBuffer = new StringBuffer(url);
         if (!url.contains("?")) {
             stringBuffer.append("?");
@@ -80,11 +78,9 @@ public class OkEngineUtils {
                 stringBuffer.append("&");
             }
         }
-
         for (Map.Entry<String, Object> entry : params.entrySet()) {
             stringBuffer.append(entry.getKey() + "=" + entry.getValue() + "&");
         }
-
         stringBuffer.deleteCharAt(stringBuffer.length() - 1);
         return stringBuffer.toString();
     }

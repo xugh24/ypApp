@@ -34,7 +34,6 @@ public class HttpConfig {
 
     private boolean isPostFild = false;
 
-
     public HttpConfig(Context context, HttpType httpType, String url, JSONObject paraJson) {
         this.context = context;
         this.httpType = httpType;
@@ -42,13 +41,10 @@ public class HttpConfig {
         this.paraJson = paraJson;
     }
 
-    private void init() {
-    }
 
     public HttpType getHttpType() {
         return httpType;
     }
-
 
     public String getParaJson() {
         return paraJson.toString();
