@@ -22,7 +22,7 @@
         <CheckBox
             android:id="@+id/chb_cate"
             style="@style/sty_chb1"
-            android:tag="chbCate"
+            android:tag="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -45,7 +45,7 @@
         <CheckBox
             android:id="@+id/chb_movie"
             style="@style/sty_chb1"
-            android:tag="chbMovie"
+            android:tag="5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -68,7 +68,7 @@
         <CheckBox
             android:id="@+id/chb_recreation"
             style="@style/sty_chb1"
-            android:tag="chbRecreation"
+            android:tag="6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -91,7 +91,7 @@
         <CheckBox
             android:id="@+id/chb_group"
             style="@style/sty_chb1"
-            android:tag="chbGroup"
+            android:tag="7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -114,7 +114,7 @@
         <CheckBox
             android:id="@+id/chb_hotel"
             style="@style/sty_chb1"
-            android:tag="chbhotel"
+            android:tag="8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -137,7 +137,7 @@
         <CheckBox
             android:id="@+id/chb_travel"
             style="@style/sty_chb1"
-            android:tag="chbTravel"
+            android:tag="9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -161,7 +161,7 @@
         <CheckBox
             android:id="@+id/chb_ktv"
             style="@style/sty_chb1"
-            android:tag="chbktv"
+            android:tag="10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -184,7 +184,7 @@
         <CheckBox
             android:id="@+id/chb_pet"
             style="@style/sty_chb1"
-            android:tag="chbpet"
+            android:tag="11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

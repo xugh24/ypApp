@@ -2,16 +2,22 @@ package com.yuepang.yuepang.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 
+import com.android.common.annotation.view.BindView;
 import com.android.common.annotation.view.BindViewByTag;
 import com.android.common.annotation.view.OnClickView;
+import com.android.common.utils.LogUtils;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.protocol.AddLikeProtocol;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 我的喜好页面
@@ -19,22 +25,24 @@ import com.yuepang.yuepang.protocol.AddLikeProtocol;
 
 public class MylikeActivity extends BaseActivity implements LoadCallBack {
 
-    @BindViewByTag
+    @BindView(id = R.id.chb_cate, click = true)
     private CheckBox chbCate;// 美食
-    @BindViewByTag
+    @BindView(id = R.id.chb_movie, click = true)
     private CheckBox chbMovie;// 电影
-    @BindViewByTag
+    @BindView(id = R.id.chb_recreation, click = true)
     private CheckBox chbRecreation;//娱乐
-    @BindViewByTag
+    @BindView(id = R.id.chb_group, click = true)
     private CheckBox chbGroup;// 团购
-    @BindViewByTag
+    @BindView(id = R.id.chb_hotel, click = true)
     private CheckBox chbhotel;// 旅馆
-    @BindViewByTag
+    @BindView(id = R.id.chb_travel, click = true)
     private CheckBox chbTravel;// 旅游
-    @BindViewByTag
+    @BindView(id = R.id.chb_ktv, click = true)
     private CheckBox chbktv;
-    @BindViewByTag
+    @BindView(id = R.id.chb_pet, click = true)
     private CheckBox chbpet;
+
+    private List<CheckBox> boxs;
 
 
     @Override
@@ -45,6 +53,32 @@ public class MylikeActivity extends BaseActivity implements LoadCallBack {
     @OnClickView({R.id.ll_cate, R.id.ll_movie, R.id.ll_recreation, R.id.ll_group,
             R.id.ll_travel, R.id.ll_hotel, R.id.ll_ktv, R.id.ll_pet, R.id.btn_sub})
     private String clik;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        boxs = new ArrayList<>();
+        boxs.add(chbCate);
+        boxs.add(chbMovie);
+        boxs.add(chbRecreation);
+        boxs.add(chbhotel);
+        boxs.add(chbTravel);
+        boxs.add(chbpet);
+        boxs.add(chbGroup);
+        boxs.add(chbktv);
+        if (getUserInfo().getFavorite().size() > 0) {
+            for (int i : getUserInfo().getFavorite()) {
+                for (CheckBox box : boxs) {
+                    int tag = Integer.valueOf((String) box.getTag()) ;
+                    if (i == tag) {
+                        box.setChecked(true);
+                    }
+                }
+
+            }
+        }
+
+    }
 
     @Override
     public void onClick(View v) {
@@ -80,32 +114,17 @@ public class MylikeActivity extends BaseActivity implements LoadCallBack {
 
     private void sub() {
         StringBuilder stringBuilder = new StringBuilder();
-        if (chbCate.isChecked()) {
-            stringBuilder.append("1");
-        }
-        if (chbMovie.isChecked()) {
-            stringBuilder.append("####5");
-        }
-        if (chbRecreation.isChecked()) {
-            stringBuilder.append("####6");
-        }
-        if (chbGroup.isChecked()) {
-            stringBuilder.append("####7");
-        }
-        if (chbhotel.isChecked()) {
-            stringBuilder.append("####8");
-        }
-        if (chbTravel.isChecked()) {
-            stringBuilder.append("####9");
-        }
-        if (chbktv.isChecked()) {
-            stringBuilder.append("####10");
-        }
-        if (chbCate.isChecked()) {
-            stringBuilder.append("####11");
+        for (CheckBox checkBox : boxs) {
+            if (checkBox.isChecked()) {
+                int tag = Integer.valueOf((String) checkBox.getTag()) ;
+                if (stringBuilder.length() > 0) {
+                    stringBuilder.append("####" + tag);
+                } else {
+                    stringBuilder.append(tag);
+                }
+            }
         }
         new AddLikeProtocol(this, this, stringBuilder.toString()).request();
-
     }
 
     @Override

@@ -12,7 +12,7 @@ public class UserInfo {
     private String avatar; // 头像地址
     private String nick_name;// 昵称
     private int id;
-    private List<Object> favorite;
+    private List<Integer> favorite;
 
 
     public String getSex() {
@@ -83,11 +83,11 @@ public class UserInfo {
         favorite = null;
     }
 
-    public List<Object> getFavorite() {
+    public List<Integer> getFavorite() {
         return favorite;
     }
 
-    public void setFavorite(List<Object> favorite) {
+    public void setFavorite(List<Integer> favorite) {
         this.favorite = favorite;
     }
 
