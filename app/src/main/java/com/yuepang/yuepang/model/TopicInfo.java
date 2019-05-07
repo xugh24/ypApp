@@ -8,6 +8,8 @@ public class TopicInfo {
 
     private String topicCreateTime;
 
+    private int user;
+
     public String getTitle() {
         return title;
     }
@@ -30,5 +32,13 @@ public class TopicInfo {
 
     public void setTime(String time) {
         this.topicCreateTime = time;
+    }
+
+    public int getUser() {
+        return user;
+    }
+
+    public void setUser(int user) {
+        this.user = user;
     }
 }

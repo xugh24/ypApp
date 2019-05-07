@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
-
 import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.android.common.annotation.view.BindViewByTag;
 import com.android.common.utils.LogUtils;
@@ -24,12 +23,11 @@ import java.util.List;
  *
  */
 
-public class TopicAdapter extends YueBaseAdapter<TopicInfo> implements AdapterView.OnItemClickListener, LoadCallBack {
+public class TopicAdapter extends YueBaseAdapter<TopicInfo> implements AdapterView.OnItemClickListener, LoadCallBack<List<TopicInfo>> {
 
     public TopicAdapter(BaseActivity baseActivity) {
         super(baseActivity);
     }
-
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -61,24 +59,23 @@ public class TopicAdapter extends YueBaseAdapter<TopicInfo> implements AdapterVi
 
 
     @Override
-    public void loadCallBack(final CallType callType, final int CODE, final String msg, final Object info) {
+    public void loadCallBack(final CallType callType, final int CODE, final String msg, final List<TopicInfo> infos) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 switch (callType) {
                     case SUCCESS:
-                        List<TopicInfo> list = (List<TopicInfo>) info;
-                        setList(list);
+                        setList(infos);
                         notifyDataSetInvalidated();
+                        LogUtils.e("infos  --- "+infos.size());
                         break;
                     case START:
-                       activity.showLoadingDialogSafe(false);
+                        activity.showLoadingDialogSafe(false);
                         break;
                     case FINISH:
                         activity.dismissLoadingDialogSafe();
                         break;
                 }
-
             }
         });
 
@@ -98,9 +95,7 @@ public class TopicAdapter extends YueBaseAdapter<TopicInfo> implements AdapterVi
         }
     }
 
-    public boolean getData() {
-        GetTopicProtocol protocol = new GetTopicProtocol(activity, this);
-        protocol.request();
-        return true;
+    public void getData() {
+        new GetTopicProtocol(activity, this).request();
     }
 }

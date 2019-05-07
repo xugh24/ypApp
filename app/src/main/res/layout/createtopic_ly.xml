@@ -6,6 +6,7 @@
 
     <EditText
         android:id="@+id/ed_topic"
+        android:tag="edTop"
         style="@style/syt_ed"
         android:layout_width="match_parent"
         android:hint="请输入话题名称" />

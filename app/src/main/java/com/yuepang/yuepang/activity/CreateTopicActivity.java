@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.widget.EditText;
 
+import com.android.common.annotation.view.BindViewByTag;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
 import com.yuepang.yuepang.protocol.AddTopicProtocol;
@@ -16,6 +17,7 @@ import com.yuepang.yuepang.protocol.AddTopicProtocol;
 
 public class CreateTopicActivity extends BaseActivity {
 
+    @BindViewByTag
     private EditText edTop;
 
     @Override
