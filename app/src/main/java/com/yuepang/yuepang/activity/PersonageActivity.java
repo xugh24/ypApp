@@ -57,7 +57,7 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     @OnClickView({R.id.ll_nick, R.id.ll_sex, R.id.ll_birthday, R.id.tv_pwd})
     private String clik;
 
-    @BindViewByTag(click = true)
+    @BindViewByTag
     private ImageView ivHead;// 头像
 
     @BindViewByTag
@@ -172,7 +172,6 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        LogUtils.e("---requestCode-----" + requestCode + "===" + data);
         if (requestCode == PHOTO_CODE) {
             Uri uri = null;
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
@@ -244,6 +243,7 @@ public class PersonageActivity extends BaseActivity implements PersonalDialog.Ca
     @Override
     public void loadCallBack(CallType callType, int CODE, String msg, UserInfo info) {
         if (callType.equals(CallType.SUCCESS)) {
+            LogUtils.e("--info-----"+info);
             UserCentreControl.getInstance().setInfo(info);
         }
     }

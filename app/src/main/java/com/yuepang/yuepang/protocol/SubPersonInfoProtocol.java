@@ -3,6 +3,7 @@ package com.yuepang.yuepang.protocol;
 import android.content.Context;
 
 import com.android.common.utils.GsonUtils;
+import com.android.common.utils.LogUtils;
 import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.UserInfo;
 
@@ -29,14 +30,7 @@ public class SubPersonInfoProtocol extends JsonProtocol<UserInfo> {
 
     @Override
     protected UserInfo analysis(String st) {
-        try {
-            JSONObject  jsonObject = new JSONObject(st);
-            String data = jsonObject.optString("data");
-            return GsonUtils.getInstance().fromJson(data, UserInfo.class);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return GsonUtils.getInstance().fromJson(st, UserInfo.class);
     }
 
     @Override

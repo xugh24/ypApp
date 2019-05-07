@@ -1,5 +1,9 @@
 package com.yuepang.yuepang.model;
 
+import org.json.JSONArray;
+
+import java.util.List;
+
 public class UserInfo {
 
     private String sex;// 性别
@@ -8,6 +12,7 @@ public class UserInfo {
     private String avatar; // 头像地址
     private String nick_name;// 昵称
     private int id;
+    private List<Object> favorite;
 
 
     public String getSex() {
@@ -75,6 +80,15 @@ public class UserInfo {
         avatar = null; // 头像地址
         nick_name = null;// 昵称
         id = 0;
+        favorite = null;
+    }
+
+    public List<Object> getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(List<Object> favorite) {
+        this.favorite = favorite;
     }
 
 

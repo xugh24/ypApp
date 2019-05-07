@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
+
 import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.android.common.annotation.view.BindViewByTag;
 import com.android.common.async.ImageLoaderUtil;
@@ -13,10 +14,12 @@ import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.SysUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.ChatActivity;
+import com.yuepang.yuepang.control.UserCentreControl;
 import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.TopicInfo;
 import com.yuepang.yuepang.protocol.GetTopicProtocol;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,9 +29,13 @@ import java.util.List;
 
 public class TopicAdapter extends YueBaseAdapter<TopicInfo> implements AdapterView.OnItemClickListener, LoadCallBack<List<TopicInfo>> {
 
+
+    private boolean isMy = false;
+
     public TopicAdapter(BaseActivity baseActivity) {
         super(baseActivity);
     }
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -66,9 +73,10 @@ public class TopicAdapter extends YueBaseAdapter<TopicInfo> implements AdapterVi
             public void run() {
                 switch (callType) {
                     case SUCCESS:
+                        setInfo(infos);
                         setList(infos);
                         notifyDataSetInvalidated();
-                        LogUtils.e("infos  --- "+infos.size());
+                        LogUtils.e("infos  --- " + infos.size());
                         break;
                     case START:
                         activity.showLoadingDialogSafe(false);
@@ -79,8 +87,25 @@ public class TopicAdapter extends YueBaseAdapter<TopicInfo> implements AdapterVi
                 }
             }
         });
+    }
 
+    private void setInfo(List<TopicInfo> infos) {
+        if (isMy) {
+            List<TopicInfo> myInfos = new ArrayList<>();
+            for (TopicInfo info : infos) {
+                if (info.getUser() == UserCentreControl.getInstance().getInfo().getId()) {
+                    myInfos.add(info);
+                }
+            }
+            setList(myInfos);
+        } else {
+            setList(infos);
+        }
 
+    }
+
+    public void setMy(boolean my) {
+        isMy = my;
     }
 
     private final class ViewHolder {

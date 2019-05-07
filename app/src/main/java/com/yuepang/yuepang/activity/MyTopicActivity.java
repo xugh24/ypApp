@@ -16,7 +16,6 @@ import com.yuepang.yuepang.adapter.TopicAdapter;
  */
 
 public class MyTopicActivity extends BaseActivity {
-    private View view;
 
     @BindView(id= R.id.com_lv)
     private ListView recordLv;
@@ -26,6 +25,7 @@ public class MyTopicActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         adapter = new TopicAdapter(this);
+        adapter.setMy(true);
         super.onCreate(savedInstanceState);
         recordLv.setAdapter(adapter);
         recordLv.setOnItemClickListener(adapter);
