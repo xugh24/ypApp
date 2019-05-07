@@ -25,7 +25,7 @@ public class AreaAdapter extends YueBaseAdapter<AreaInfo> implements AdapterView
 
     private CutAreaInterFace cutAreaInterFace;
 
-    public AreaAdapter(BaseActivity activity,  CutAreaInterFace cutAreaInterFace) {
+    public AreaAdapter(BaseActivity activity, CutAreaInterFace cutAreaInterFace) {
         super(activity);
         this.cutAreaInterFace = cutAreaInterFace;
     }
@@ -54,12 +54,13 @@ public class AreaAdapter extends YueBaseAdapter<AreaInfo> implements AdapterView
     }
 
     @Override
-    public void loadCallBack(final CallType callType, int CODE, String msg,final List<AreaInfo> areaInfos) {
+    public void loadCallBack(final CallType callType, int CODE, String msg, final List<AreaInfo> areaInfos) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if(callType.equals(CallType.SUCCESS)){
+                if (callType.equals(CallType.SUCCESS)) {
                     UserCentreControl.getInstance().setList(areaInfos);
+                    cutAreaInterFace.cutAreaInfo(areaInfos.get(0));
                     setList(areaInfos);
                     notifyDataSetChanged();
                 }
@@ -70,6 +71,7 @@ public class AreaAdapter extends YueBaseAdapter<AreaInfo> implements AdapterView
     private final class ViewHolder {
         @BindViewByTag
         TextView name;
+
         public ViewHolder(View view) {
             AnnotateBindViewUtil.initBindView(this, view, null);
         }

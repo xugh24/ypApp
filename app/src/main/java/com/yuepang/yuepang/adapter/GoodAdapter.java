@@ -1,27 +1,20 @@
 package com.yuepang.yuepang.adapter;
 
-import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.android.common.annotation.view.BindViewByTag;
 import com.android.common.async.ImageLoaderUtil;
 import com.yuepang.yuepang.R;
-import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
-import com.yuepang.yuepang.activity.GoodDetailActivity;
-import com.yuepang.yuepang.interFace.AreaInterFace;
 import com.yuepang.yuepang.interFace.ClikGoodInter;
 import com.yuepang.yuepang.interFace.LoadCallBack;
-import com.yuepang.yuepang.model.AreaInfo;
 import com.yuepang.yuepang.model.GoodInfo;
 import com.yuepang.yuepang.protocol.GetGoodListProtocol;
-import com.yuepang.yuepang.test.TestData;
 
 import java.util.List;
 
@@ -59,17 +52,9 @@ public class GoodAdapter extends YueBaseAdapter<GoodInfo> implements AdapterView
     /**
      * 请求数据
      */
-    public void getData() {
-        GetGoodListProtocol protocol = new GetGoodListProtocol(activity, this, 1);
+    public void getData(int id) {
+        GetGoodListProtocol protocol = new GetGoodListProtocol(activity, this, id);
         protocol.request();
-    }
-
-    /**
-     * 切换商圈 重新刷新数据
-     */
-    public void refresh(AreaInfo info) {
-        areaId = info.getId();
-        getData();
     }
 
     @Override
@@ -83,7 +68,6 @@ public class GoodAdapter extends YueBaseAdapter<GoodInfo> implements AdapterView
             @Override
             public void run() {
                 if(callType.equals(CallType.SUCCESS)){
-                    LogUtils.e("-------infos---------------"+ infos.size());
                     setList(infos);
                     notifyDataSetChanged();
                 }

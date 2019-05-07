@@ -7,20 +7,16 @@ import android.widget.TextView;
 import com.android.common.annotation.view.BindViewByTag;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.adapter.MerchantAdapter;
-import com.yuepang.yuepang.interFace.AreaInterFace;
 import com.yuepang.yuepang.interFace.CutAreaInterFace;
 import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.AreaInfo;
-import com.yuepang.yuepang.model.GoodInfo;
-import com.yuepang.yuepang.protocol.GetShopListProtocol;
 import com.yuepang.yuepang.widget.AreaPopupWindow;
 
-import java.util.List;
 
 /**
  */
 
-public class MerchantSecFragment extends BaseSecFragment implements AreaInterFace, CutAreaInterFace, LoadCallBack {
+public class MerchantSecFragment extends BaseSecFragment implements  CutAreaInterFace, LoadCallBack {
 
     private AreaPopupWindow areaPopupWindow; // 商家popvindow
 
@@ -35,12 +31,12 @@ public class MerchantSecFragment extends BaseSecFragment implements AreaInterFac
 
     @Override
     protected void initbeforeView() {
-        areaPopupWindow = new AreaPopupWindow(getMainActivity());
+        areaPopupWindow = new AreaPopupWindow(getMainActivity(),this);
     }
 
     @Override
     protected void initafterView() {
-        merchantAdapter = new MerchantAdapter(getMainActivity(), this);
+        merchantAdapter = new MerchantAdapter(getMainActivity());
         lvMer.setAdapter(merchantAdapter);
     }
 
@@ -82,8 +78,4 @@ public class MerchantSecFragment extends BaseSecFragment implements AreaInterFac
     }
 
 
-    @Override
-    public void callAreaInfo(List<GoodInfo> infos) {
-
-    }
 }

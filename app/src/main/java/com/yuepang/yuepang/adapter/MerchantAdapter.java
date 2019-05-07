@@ -12,7 +12,6 @@ import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.activity.MerchantDetailActivity;
 import com.yuepang.yuepang.activity.PayActivity;
-import com.yuepang.yuepang.interFace.AreaInterFace;
 import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.AreaInfo;
 import com.yuepang.yuepang.model.MerchantInfo;
@@ -27,13 +26,11 @@ import java.util.List;
 
 public class MerchantAdapter extends YueBaseAdapter<MerchantInfo> implements LoadCallBack {
 
-    private AreaInterFace interFace;
 
     private int areaId;
 
-    public MerchantAdapter(BaseActivity baseActivity, AreaInterFace interFace) {
+    public MerchantAdapter(BaseActivity baseActivity) {
         super(baseActivity);
-        this.interFace = interFace;
     }
 
     @Override

@@ -27,7 +27,7 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
  * 可以android中的一个碎片。
  */
 
-public class AreaPopupWindow extends PopupWindow implements CutAreaInterFace {
+public class AreaPopupWindow extends PopupWindow {
 
     private BaseActivity activity;// 传入的activity
 
@@ -37,38 +37,31 @@ public class AreaPopupWindow extends PopupWindow implements CutAreaInterFace {
 
     private AreaAdapter areaAdapter;// 切换商圈
 
-    public AreaPopupWindow(final BaseActivity activity) {
+    private CutAreaInterFace interFace;
+
+    public AreaPopupWindow(final BaseActivity activity, CutAreaInterFace interFace) {
         this.activity = activity;
+        this.interFace = interFace;
         setHeight(WRAP_CONTENT);
         initView();
         setContentView(popRootView);
-        setOutsideTouchable(true);
-        setFocusable(true);
-        if (Build.VERSION.SDK_INT >= 11) {
-            activity.getWindow().getDecorView().getRootView().addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-                @Override
-                public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                    activity.getWindow().getDecorView().getRootView().removeOnLayoutChangeListener(this);
-                    if (oldBottom < bottom) {
-                        dismiss();
-                    }
-                }
-            });
-        }
     }
 
+    /**
+     * 展示商圈popWindow
+     */
     public void show(View referenceView) {
         setWidth(referenceView.getWidth() + 2);
         showAsDropDown(referenceView, -1, 0);
     }
 
-    private void initView() {
-        popRootView = View.inflate(activity, R.layout.common_list, null);
+    private void initView() {// 初始化View
+        popRootView = View.inflate(activity, R.layout.listview, null);
         areaList = popRootView.findViewById(R.id.com_lv);// 初始化商圈列
-        areaAdapter = new AreaAdapter(activity, this);
+        areaAdapter = new AreaAdapter(activity, interFace);
         areaList.setAdapter(areaAdapter);
         areaList.setOnItemClickListener(areaAdapter);
-        areaAdapter.getData();
+        areaAdapter.getData();// 获得数据
     }
 
     public AreaInfo getAreaInfoById(int id) {
@@ -80,10 +73,5 @@ public class AreaPopupWindow extends PopupWindow implements CutAreaInterFace {
             }
         }
         return null;
-    }
-
-    @Override
-    public void cutAreaInfo(AreaInfo info) {
-
     }
 }

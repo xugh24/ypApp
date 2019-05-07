@@ -10,7 +10,6 @@ import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.adapter.MerchantAdapter;
 import com.yuepang.yuepang.control.UserCentreControl;
-import com.yuepang.yuepang.interFace.AreaInterFace;
 import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.AreaInfo;
 import com.yuepang.yuepang.model.GoodInfo;
@@ -26,7 +25,7 @@ import java.util.List;
  * Created by xugh on 2019/5/6.
  */
 
-public class CollectShopActivity extends BaseActivity implements AreaInterFace, LoadCallBack<List<MerchantInfo>> {
+public class CollectShopActivity extends BaseActivity implements  LoadCallBack<List<MerchantInfo>> {
     @BindViewByTag
     private ListView lvMer;
 
@@ -45,7 +44,7 @@ public class CollectShopActivity extends BaseActivity implements AreaInterFace, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         allInfo = new ArrayList<>();
-        merchantAdapter = new MerchantAdapter(this, this);
+        merchantAdapter = new MerchantAdapter(this);
         lvMer.setAdapter(merchantAdapter);
         jsonArray = getDataControl().getCollect();
         if(jsonArray!=null && jsonArray.length()>0){
@@ -115,8 +114,4 @@ public class CollectShopActivity extends BaseActivity implements AreaInterFace, 
         context.startActivity(intent);
     }
 
-    @Override
-    public void callAreaInfo(List<GoodInfo> infos) {
-
-    }
 }

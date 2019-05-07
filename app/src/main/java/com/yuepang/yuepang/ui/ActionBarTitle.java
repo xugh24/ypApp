@@ -89,7 +89,6 @@ public class ActionBarTitle implements View.OnClickListener {
                 activity.onClikLeftIv();
                 break;
             case R.id.tv_left_title:
-                LogUtils.e("--tv_left_title-");
                 activity.clickLeftTv();
         }
     }
