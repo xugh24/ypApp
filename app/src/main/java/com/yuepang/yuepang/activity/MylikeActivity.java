@@ -69,15 +69,13 @@ public class MylikeActivity extends BaseActivity implements LoadCallBack {
         if (getUserInfo().getFavorite().size() > 0) {
             for (int i : getUserInfo().getFavorite()) {
                 for (CheckBox box : boxs) {
-                    int tag = Integer.valueOf((String) box.getTag()) ;
+                    int tag = Integer.valueOf((String) box.getTag());
                     if (i == tag) {
                         box.setChecked(true);
                     }
                 }
-
             }
         }
-
     }
 
     @Override
@@ -112,11 +110,17 @@ public class MylikeActivity extends BaseActivity implements LoadCallBack {
         }
     }
 
-    private void sub() {
+    private void sub() {// 上传喜好数据
         StringBuilder stringBuilder = new StringBuilder();
         for (CheckBox checkBox : boxs) {
             if (checkBox.isChecked()) {
-                int tag = Integer.valueOf((String) checkBox.getTag()) ;
+                int temp = Integer.valueOf((String) checkBox.getTag());
+                int tag = 0;
+                if (temp == 1) {
+                    tag = 0;
+                } else {
+                    tag = temp - 4;
+                }
                 if (stringBuilder.length() > 0) {
                     stringBuilder.append("####" + tag);
                 } else {
