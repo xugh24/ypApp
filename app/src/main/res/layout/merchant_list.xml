@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,15 +14,14 @@
         <EditText
             android:id="@+id/ed_serch"
             android:layout_width="0dp"
-            android:tag="edSearch"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@null"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:hint="点击搜索"
-            android:inputType="number"
             android:singleLine="true"
+            android:tag="edSearch"
             android:textCursorDrawable="@null"
             android:textSize="14dp" />
 
@@ -31,10 +30,10 @@
             android:id="@+id/tv_serch"
             android:layout_width="72dp"
             android:layout_height="match_parent"
-            android:tag="tvSearch"
             android:layout_gravity="center"
             android:background="@null"
             android:gravity="center"
+            android:tag="tvSearch"
             android:text="搜索"
             android:textColor="@color/c12"
             android:textSize="11.4dp" />
@@ -42,13 +41,14 @@
 
 
     <ListView
-        android:tag="lvMer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:cacheColorHint="#00000000"
         android:divider="@drawable/divider_shape"
         android:dividerHeight="0dp"
         android:fadingEdgeLength="0dp"
-        android:listSelector="@drawable/bg_account_list" />
+        android:listSelector="@drawable/bg_account_list"
+        android:tag="lvMer" />
 
 </LinearLayout>

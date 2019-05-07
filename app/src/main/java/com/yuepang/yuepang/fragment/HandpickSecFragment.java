@@ -62,6 +62,8 @@ public class HandpickSecFragment extends BaseSecFragment implements CutAreaInter
 
     private List<MerchantInfo> merchantInfos;
 
+    private AreaInfo cuurentAreaInfo;
+
     /**
      * View创建后的初始化
      */
@@ -86,6 +88,9 @@ public class HandpickSecFragment extends BaseSecFragment implements CutAreaInter
     @Override
     public void onShow() {
         super.onShow();
+        if(cuurentAreaInfo!=null){
+            setTvLeftTitle(cuurentAreaInfo.getName());
+        }
     }
 
     @Override
@@ -152,9 +157,10 @@ public class HandpickSecFragment extends BaseSecFragment implements CutAreaInter
     @Override
     public void cutAreaInfo(AreaInfo info) {
         areaPopupWindow.dismiss();
-        getMainActivity().getBarTitle().setTvLeftTitle(info.getName());
+        setTvLeftTitle(info.getName());
         goodAdapter.getData(info.getId());// 获得商品信息
         initShop(info.getId());// 获得商铺信息
+        cuurentAreaInfo = info;
     }
 
 

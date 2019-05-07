@@ -68,10 +68,14 @@ public class MainViewPage extends ViewPageLayout {
     public void pageChanged(int lastPosition, int position) {
         switch (position) {
             case 0:
+                mfpa.getItem(position).setRightTitle(null);
                 break;
             case 1:
+                mfpa.getItem(position).setRightTitle(null);
                 break;
             case 2:
+                mfpa.getItem(position).setTvLeftTitle(null);
+                mfpa.getItem(position).setRightTitle("创建");
                 break;
             case 3:
                 mfpa.getItem(position).setTvLeftTitle(null);

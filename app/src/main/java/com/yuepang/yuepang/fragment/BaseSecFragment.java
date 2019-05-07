@@ -91,4 +91,6 @@ public abstract class BaseSecFragment extends com.android.common.activity.BaseFr
             getMainActivity().getBarTitle().setTvLeftTitle(title);
         }
     }
+
+
 }

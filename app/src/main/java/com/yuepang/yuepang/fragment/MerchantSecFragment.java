@@ -1,59 +1,66 @@
 package com.yuepang.yuepang.fragment;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.android.common.annotation.view.BindViewByTag;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.adapter.MerchantAdapter;
 import com.yuepang.yuepang.interFace.CutAreaInterFace;
-import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.AreaInfo;
 import com.yuepang.yuepang.widget.AreaPopupWindow;
 
 
 /**
+ * 商家列表页
  */
 
-public class MerchantSecFragment extends BaseSecFragment implements  CutAreaInterFace, LoadCallBack {
+public class MerchantSecFragment extends BaseSecFragment implements CutAreaInterFace {
 
-    private AreaPopupWindow areaPopupWindow; // 商家popvindow
+    private AreaPopupWindow areaPopupWindow; // 商圈popvindow
 
-    private MerchantAdapter merchantAdapter;
+    private MerchantAdapter merchantAdapter; // 商家设配器
+
+    private AreaInfo cuurentAreaInfo;
 
     @BindViewByTag
     private ListView lvMer;
     @BindViewByTag
     private EditText edSearch;
-    @BindViewByTag
+    @BindViewByTag(click = true)
     private TextView tvSearch;
 
     @Override
-    protected void initbeforeView() {
-        areaPopupWindow = new AreaPopupWindow(getMainActivity(),this);
+    protected void initbeforeView() {// 创建商圈视图
+        merchantAdapter = new MerchantAdapter(getMainActivity());
     }
 
     @Override
     protected void initafterView() {
-        merchantAdapter = new MerchantAdapter(getMainActivity());
+        areaPopupWindow = new AreaPopupWindow(getMainActivity(), this);
         lvMer.setAdapter(merchantAdapter);
     }
 
     @Override
     protected void initData() {// 获取数据
-        merchantAdapter.getData(1);
-    }
-
-    public void showAreaPop() {
-        if (areaPopupWindow != null) {
-            areaPopupWindow.show(getMainActivity().getBarTitle().getTvLeftTitle());
-        }
     }
 
     @Override
     public void onShow() {
         super.onShow();
+        if(cuurentAreaInfo!=null){
+            setTvLeftTitle(cuurentAreaInfo.getName());
+        }
+    }
+
+    @Override
+    public void onClikLeft() {
+        if (areaPopupWindow != null) {
+            areaPopupWindow.show(getMainActivity().getBarTitle().getTvLeftTitle());
+        }
     }
 
     @Override
@@ -61,21 +68,22 @@ public class MerchantSecFragment extends BaseSecFragment implements  CutAreaInte
         return R.layout.merchant_list;
     }
 
+    /**
+     * 切换商家
+     */
     @Override
     public void cutAreaInfo(AreaInfo info) {
-        getMainActivity().getBarTitle().setTvLeftTitle(info.getName());
         merchantAdapter.refresh(info);
+        areaPopupWindow.dismiss();
+        cuurentAreaInfo = info;
+        setTvLeftTitle(info.getName());
     }
 
     @Override
     public void onClick(View v) {
-
+        if ("tvSearch".equals(v.getTag())) {
+            merchantAdapter.serchList(getMainActivity().getEditText(edSearch));// 搜索商家
+        }
     }
-
-    @Override
-    public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
-
-    }
-
 
 }

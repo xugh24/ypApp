@@ -1,5 +1,6 @@
 package com.yuepang.yuepang.adapter;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,7 +17,7 @@ import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.AreaInfo;
 import com.yuepang.yuepang.model.MerchantInfo;
 import com.yuepang.yuepang.protocol.GetShopListProtocol;
-
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,13 +25,14 @@ import java.util.List;
  * 商家设配器类
  */
 
-public class MerchantAdapter extends YueBaseAdapter<MerchantInfo> implements LoadCallBack {
+public class MerchantAdapter extends YueBaseAdapter<MerchantInfo> implements LoadCallBack<List<MerchantInfo>> {
 
 
-    private int areaId;
+    private List<MerchantInfo> allInfos;
 
     public MerchantAdapter(BaseActivity baseActivity) {
         super(baseActivity);
+        allInfos = new ArrayList<>();
     }
 
     @Override
@@ -51,33 +53,50 @@ public class MerchantAdapter extends YueBaseAdapter<MerchantInfo> implements Loa
         return convertView;
     }
 
-    public void getData(int areaId) {
-        new GetShopListProtocol(activity, this, areaId).request();
-    }
-
-
     /**
      * 切换商圈 重新刷新数据
      */
     public void refresh(AreaInfo info) {
-        areaId = info.getId();
-        getData(areaId);
+        new GetShopListProtocol(activity, this, info.getId()).request();
     }
 
     @Override
-    public void loadCallBack(final CallType callType, int CODE, String msg, final Object infos) {
+    public void loadCallBack(final CallType callType, int CODE, String msg, final List<MerchantInfo> infos) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (callType.equals(CallType.SUCCESS)) {
-                    setList((List<MerchantInfo>) infos);
+                    allInfos.clear();
+                    allInfos.addAll(infos);
+                    setList(infos);
                     notifyDataSetChanged();
                 }
             }
         });
-
     }
 
+    /**
+     * 模糊搜索功能
+     */
+    public void serchList(String s) {
+        if (TextUtils.isEmpty(s)) {// 如果关键词为空，设置全部数据
+            setList(allInfos);
+        } else {
+            List<MerchantInfo> newList = new ArrayList<>();// 新建新数据
+            for (MerchantInfo info : allInfos) { // 遍历原数据。满足调教设置到新数据
+                if (info.getName().indexOf(s) != -1) {
+                    newList.add(info);
+                }
+            }
+            if (newList.size() == 0) {// 如果新数据为空，设置原数据，并提示用户
+                setList(allInfos);
+                activity.showToastSafe("搜索无结果，返回原数据");
+            } else {// 否则设置新数据
+                setList(newList);
+            }
+        }//  刷新UI
+        notifyDataSetChanged();
+    }
 
     private final class ViewHolder implements View.OnClickListener {
         @BindViewByTag
@@ -86,7 +105,7 @@ public class MerchantAdapter extends YueBaseAdapter<MerchantInfo> implements Loa
         TextView name;
         @BindViewByTag
         TextView loction;
-        @BindViewByTag
+        @BindViewByTag(click = true)
         Button btnPay;
 
         private int position;

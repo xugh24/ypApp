@@ -80,7 +80,7 @@ public class ActionBarTitle implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_back:
-                activity.finish();
+                activity.onBackPressed();
                 break;
             case R.id.tv_r_title:
                 activity.clickRt();
