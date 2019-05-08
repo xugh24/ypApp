@@ -2,6 +2,7 @@ package com.yuepang.yuepang.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import com.android.common.annotation.view.BindView;
@@ -33,9 +34,12 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = new LoginPresenter(this);// 初始化
-        LogUtils.e("----getDataControl().getLoginName()---"+getDataControl().getLoginName());
         edTel.setText(getDataControl().getLoginName());//设置本地记录的账号
-        edPwd.setText(getDataControl().getPwdBy(getEditText(edTel)));// 设置本地密码
+        String pwd = getDataControl().getNewPwd(getEditText(edTel));
+        if(TextUtils.isEmpty(pwd)){
+            pwd = getDataControl().getPwdBy(getEditText(edTel));
+        }
+        edPwd.setText(pwd);// 设置本地密码
     }
 
     @Override

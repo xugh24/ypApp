@@ -26,7 +26,7 @@ public class ForgetPwdActivity extends BaseActivity {
     private EditText pwd1;// 密码框1
     @BindViewByTag
     private EditText pwd2;// 密码框2
-    @BindViewByTag
+    @BindViewByTag(click = true)
     private Button btnSure;//
 
     private ForgetPwdPresenter forgetPwdPresenter;
