@@ -114,6 +114,7 @@ public class HandpickSecFragment extends BaseSecFragment implements CutAreaInter
                             tvName2.setText(info2.getName());
                             ImageLoaderUtil.LoadImageViewForUrl(iv1, info1.getPicture());
                             ImageLoaderUtil.LoadImageViewForUrl(iv2, info2.getPicture());
+                            goodAdapter.getData(infos);// 获得商品信息
                         }
                     }
                 });
@@ -158,7 +159,6 @@ public class HandpickSecFragment extends BaseSecFragment implements CutAreaInter
     public void cutAreaInfo(AreaInfo info) {
         areaPopupWindow.dismiss();
         setTvLeftTitle(info.getName());
-        goodAdapter.getData(info.getId());// 获得商品信息
         initShop(info.getId());// 获得商铺信息
         cuurentAreaInfo = info;
     }

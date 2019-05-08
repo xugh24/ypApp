@@ -31,16 +31,6 @@ public class ForgetPwdPresenter extends BasePresenter {
         final String pw1 = forgetPwdActivity.getPwd1();
         final String pw2 = forgetPwdActivity.getPwd2();
         final AuthCodeInfo info = codeControl.getInfo();
-        if (info != null && CheckManage.checkPwd(pw1, pw2, forgetPwdActivity)) {
-            CommonTaskExecutor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    RegisterProtocol protocol = new RegisterProtocol(forgetPwdActivity, info, pw1);
-                    if (protocol.request() == 200) {
-                        UserCentreControl.getInstance().outLogin(forgetPwdActivity);
-                    }
-                }
-            });
-        }
+
     }
 }

@@ -6,13 +6,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.android.common.annotation.view.BindView;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.async.CommonTaskExecutor;
+import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.AuthCodeInfo;
-import com.yuepang.yuepang.protocol.GetCodeProtocol;
+import com.yuepang.yuepang.protocol.SendCode;
 
 /**
  * Created by xugh on 2019/3/6.
@@ -20,7 +20,7 @@ import com.yuepang.yuepang.protocol.GetCodeProtocol;
  * 短信验证管理类
  */
 
-public class GetTelCodeControl implements View.OnClickListener {
+public class GetTelCodeControl implements View.OnClickListener, LoadCallBack {
 
     public final static int GET_TEL_CODE_WAITING = 1;
 
@@ -58,31 +58,8 @@ public class GetTelCodeControl implements View.OnClickListener {
      */
     private void getTelCode() {
         final String telNum = edTel.getText().toString().trim();
-
         if (CheckManage.checkTel(telNum, activity)) {
-
-            CommonTaskExecutor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        GetCodeProtocol protocol = new GetCodeProtocol(activity, telNum);
-                        if (protocol.request() == 200) {
-                            // TODO
-                            info.setmValidCode("");// 设置校验码
-                            activity.showToastSafe("短信获得成功");
-                            timeTemp = 60;
-                            tvGetCodeState = 1;
-                            startCountDown();
-                        } else {
-
-                        }
-
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
+            new SendCode(activity,this,telNum).request();
         }
     }
 
@@ -145,4 +122,13 @@ public class GetTelCodeControl implements View.OnClickListener {
     }
 
 
+    @Override
+    public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
+        if(callType.equals(CallType.SUCCESS)){
+            activity.showToastSafe("短信获得成功");
+            timeTemp = 60;
+            tvGetCodeState = 1;
+            startCountDown();
+        }
+    }
 }

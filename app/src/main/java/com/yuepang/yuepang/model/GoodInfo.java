@@ -19,6 +19,8 @@ public class GoodInfo implements Parcelable {
 
     private String detail;// 商品简介
 
+    private int favorite;//
+
     private int id;
 
     private int shop;
@@ -113,5 +115,13 @@ public class GoodInfo implements Parcelable {
 
     public void setShop(int shop) {
         this.shop = shop;
+    }
+
+    public int getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(int favorite) {
+        this.favorite = favorite;
     }
 }

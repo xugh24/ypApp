@@ -13,6 +13,7 @@ import com.yuepang.yuepang.db.YuePangExternalDB;
 import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.AuthCodeInfo;
 import com.yuepang.yuepang.model.UserInfo;
+import com.yuepang.yuepang.protocol.CheckCodeProtocol;
 import com.yuepang.yuepang.protocol.LoginProtocol;
 import com.yuepang.yuepang.protocol.RegisterProtocol;
 
@@ -57,32 +58,19 @@ public class LoginControl implements LoadCallBack<UserInfo> {
 
 
     public void loginByPwd(String loginName, final String pwd) {
-        final LoginProtocol protocol = new LoginProtocol(baseActivity, this, loginName, Md5.string2MD5(pwd));
-        protocol.request();
+        new LoginProtocol(baseActivity, this, loginName, Md5.string2MD5(pwd)).request();
     }
 
-    public void regByPwd(AuthCodeInfo info, String pwd) {
-//        final RegisterProtocol registerProtocol = new RegisterProtocol(baseActivity,info,pwd);
-//        CommonTaskExecutor.execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                int code = registerProtocol.request();
-//                if (code == 200) {
-//                    baseActivity.startActivity(MainActivity.class);
-//                    JSONObject json = (JSONObject) registerProtocol.getData();
-//                    // TODO 协议好了具体处理
-//                    baseActivity.showToastSafe("登录成功");
-//                    loginResult.loginSuccess();
-//                    UserCentreControl.getInstance().loginSuccesses();
-//                } else {
-//                    if (!TextUtils.isEmpty(registerProtocol.getCodeDesc())) {
-//                        baseActivity.showToastSafe(registerProtocol.getCodeDesc());
-//                    }
-//                    loginResult.loginFailed();
-//                }
-//            }
-//        });
+    public void regByPwd(AuthCodeInfo info,final String pwd) {
+       final String tel = info.getmTel();
+        String code = info.getCode();
+        new CheckCodeProtocol(baseActivity, new LoadCallBack() {
+            @Override
+            public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
+                if(callType.equals(CallType.SUCCESS)){
+                    new RegisterProtocol(baseActivity, this, tel, Md5.string2MD5(pwd)).request();
+                }
+            }
+        }, tel, code).request();
     }
-
-
 }

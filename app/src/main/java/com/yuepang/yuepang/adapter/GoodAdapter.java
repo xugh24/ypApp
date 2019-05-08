@@ -1,5 +1,6 @@
 package com.yuepang.yuepang.adapter;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -10,12 +11,15 @@ import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.android.common.annotation.view.BindViewByTag;
 import com.android.common.async.ImageLoaderUtil;
 import com.yuepang.yuepang.R;
+import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.BaseActivity;
 import com.yuepang.yuepang.interFace.ClikGoodInter;
 import com.yuepang.yuepang.interFace.LoadCallBack;
 import com.yuepang.yuepang.model.GoodInfo;
+import com.yuepang.yuepang.model.MerchantInfo;
 import com.yuepang.yuepang.protocol.GetGoodListProtocol;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,10 +30,14 @@ public class GoodAdapter extends YueBaseAdapter<GoodInfo> implements AdapterView
 
     private int areaId;
     ClikGoodInter interFace;
+    private List<GoodInfo> allGoodIndos;
+    private int shopSize;
+    private int infoSize;
 
     public GoodAdapter(BaseActivity activity, ClikGoodInter interFace) {
         super(activity);
         this.interFace = interFace;
+        allGoodIndos = new ArrayList<>();
     }
 
     @Override
@@ -50,11 +58,15 @@ public class GoodAdapter extends YueBaseAdapter<GoodInfo> implements AdapterView
     }
 
     /**
-     * 请求数据
+     * 请求新的商品数据
      */
-    public void getData(int id) {
-        GetGoodListProtocol protocol = new GetGoodListProtocol(activity, this, id);
-        protocol.request();
+    public void getData(List<MerchantInfo> infos) {
+        allGoodIndos.clear();// 清理老数据
+        shopSize = infos.size();
+        infoSize = 0;
+        for (MerchantInfo info : infos) {
+            new GetGoodListProtocol(activity, this, info.getId()).request();
+        }
     }
 
     @Override
@@ -63,13 +75,23 @@ public class GoodAdapter extends YueBaseAdapter<GoodInfo> implements AdapterView
     }
 
     @Override
-    public void loadCallBack(final CallType callType, int CODE, String msg,final List<GoodInfo> infos) {
+    public void loadCallBack(final CallType callType, int CODE, String msg, final List<GoodInfo> infos) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if(callType.equals(CallType.SUCCESS)){
-                    setList(infos);
-                    notifyDataSetChanged();
+                if (callType.equals(CallType.SUCCESS)) {
+                    infoSize++;
+                    for (GoodInfo info : infos) {
+                        for (int favorite : activity.getUserInfo().getFavorite()) {
+                            if (favorite == info.getFavorite()) {
+                                allGoodIndos.add(info);
+                            }
+                        }
+                    }
+                    if (infoSize == shopSize) {
+                        setList(allGoodIndos);
+                        notifyDataSetChanged();
+                    }
                 }
             }
         });

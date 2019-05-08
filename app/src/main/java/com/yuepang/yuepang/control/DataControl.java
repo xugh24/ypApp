@@ -20,6 +20,7 @@ public class DataControl extends BaseDataControl {
     public final static String KEY_LOGINGNAME = "KEY_LOGINGNAME";// 登录名
     public final static String KEY_PWD = "KEY_PWD";// 密码
     public final static String KEY_COLLECT = "KEY_COLLECT";
+    public final static String KEY_NEW_PED = "KEY_NEW_PED";
 
     private static DataControl dControl;
 
@@ -106,5 +107,13 @@ public class DataControl extends BaseDataControl {
             }
         }
         return false;
+    }
+
+    public String getNewPwd() {
+        return getString(KEY_NEW_PED);
+    }
+
+    public void setNewPwd(String pwd) {
+        setString(KEY_NEW_PED, pwd);
     }
 }

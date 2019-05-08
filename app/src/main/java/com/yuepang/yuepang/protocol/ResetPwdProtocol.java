@@ -29,7 +29,6 @@ public class ResetPwdProtocol extends JsonProtocol {
         try {
             json.put("username", info.getmTel());
             json.put("code", info.getCode());
-            json.put("mValidCode", info.getmValidCode());
             json.put("password", pwd);
         } catch (JSONException e) {
             e.printStackTrace();
