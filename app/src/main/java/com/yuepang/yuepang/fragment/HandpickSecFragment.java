@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.android.common.annotation.view.BindViewByTag;
 import com.android.common.annotation.view.OnClickView;
 import com.android.common.async.ImageLoaderUtil;
-import com.android.common.utils.LogUtils;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.activity.GoodDetailActivity;
 import com.yuepang.yuepang.activity.MerchantDetailActivity;

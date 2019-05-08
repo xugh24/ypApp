@@ -1,6 +1,8 @@
 package com.yuepang.yuepang.adapter;
 
+import android.content.Context;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -8,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.common.annotation.view.AnnotateBindViewUtil;
+import com.android.common.annotation.view.BindView;
 import com.android.common.annotation.view.BindViewByTag;
 import com.android.common.async.ImageLoaderUtil;
 import com.yuepang.yuepang.R;
@@ -44,11 +47,11 @@ public class GoodAdapter extends YueBaseAdapter<GoodInfo> implements AdapterView
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
         if (convertView == null) {
-            convertView = View.inflate(activity, R.layout.good_item, null);
+            LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.good_item, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
-        }
-        if (convertView.getTag() instanceof ViewHolder) {
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.name.setText(getItem(position).getTitle());
@@ -89,6 +92,7 @@ public class GoodAdapter extends YueBaseAdapter<GoodInfo> implements AdapterView
                         }
                     }
                     if (infoSize == shopSize) {
+                        LogUtils.e("notifyDataSetChanged");
                         setList(allGoodIndos);
                         notifyDataSetChanged();
                     }
@@ -99,7 +103,7 @@ public class GoodAdapter extends YueBaseAdapter<GoodInfo> implements AdapterView
     }
 
     private final class ViewHolder {
-        @BindViewByTag
+        @BindView(id = R.id.iv_good)
         ImageView ivPic;
         @BindViewByTag
         TextView name;

@@ -16,6 +16,7 @@ import com.bumptech.glide.request.RequestOptions;
 public class ImageLoaderUtil {
 
     public static void LoadImageViewForUrl(ImageView imageView, String url) {
+
         RequestOptions options = new RequestOptions().dontAnimate().placeholder(imageView.getDrawable()).priority(Priority.HIGH).skipMemoryCache(false)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
         if (imageView != null) {
