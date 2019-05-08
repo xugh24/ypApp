@@ -43,12 +43,12 @@ public class DataControl extends BaseDataControl {
         setString(KEY_LOGINGNAME, name);
     }
 
-    public void setPwd(String pwd) {
-        setString(KEY_PWD, pwd);
+    public void setPwd(String name,String pwd) {
+        setString(KEY_PWD+name, pwd);
     }
 
-    public String getPwd() {
-        return getString(KEY_PWD);
+    public String getPwdBy(String name) {
+        return getString(KEY_PWD+name);
     }
 
     @Override
@@ -109,11 +109,11 @@ public class DataControl extends BaseDataControl {
         return false;
     }
 
-    public String getNewPwd() {
-        return getString(KEY_NEW_PED);
+    public String getNewPwd(String name) {
+        return getString(KEY_NEW_PED+name);
     }
 
-    public void setNewPwd(String pwd) {
-        setString(KEY_NEW_PED, pwd);
+    public void setNewPwd(String name ,String pwd) {
+        setString(KEY_NEW_PED+name, pwd);
     }
 }

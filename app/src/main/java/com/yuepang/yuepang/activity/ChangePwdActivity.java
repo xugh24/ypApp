@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.android.common.annotation.view.BindViewByTag;
 import com.yuepang.yuepang.R;
 import com.yuepang.yuepang.Util.Md5;
 import com.yuepang.yuepang.control.CheckManage;
@@ -18,13 +19,16 @@ import com.yuepang.yuepang.protocol.LoginProtocol;
 
 public class ChangePwdActivity extends BaseActivity implements LoadCallBack {
 
-
+    @BindViewByTag
     private EditText edoldpwd;
 
+    @BindViewByTag
     private EditText edpwd1;
 
+    @BindViewByTag
     private EditText edPwd2;
 
+    @BindViewByTag(click = true)
     private Button btnChange;
 
     private String oldPwd;
@@ -47,18 +51,17 @@ public class ChangePwdActivity extends BaseActivity implements LoadCallBack {
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        if(btnChange == v){
+        if (btnChange == v) {
             oldPwd = edoldpwd.getText().toString();
             pwd1 = edpwd1.getText().toString();
             pwd2 = edPwd2.getText().toString();
-            if(TextUtils.isEmpty(oldPwd)){
+            if (TextUtils.isEmpty(oldPwd)) {
                 showToastSafe("请输入旧密码");
                 return;
             }
-            if(CheckManage.checkPwd(pwd1,pwd2,this)){
-                new LoginProtocol(this,this,getUserInfo().getTel(), Md5.string2MD5(oldPwd)).request();
+            if (CheckManage.checkPwd(pwd1, pwd2, this)) {
+                new LoginProtocol(this, this, getUserInfo().getTel(), Md5.string2MD5(oldPwd)).request();
             }
-
         }
     }
 
@@ -68,8 +71,8 @@ public class ChangePwdActivity extends BaseActivity implements LoadCallBack {
 
     @Override
     public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
-        if(callType.equals(CallType.SUCCESS)){// 验证成功设置密码
-            getDataControl().setNewPwd(pwd1);
+        if (callType.equals(CallType.SUCCESS)) {// 验证成功设置密码
+            getDataControl().setNewPwd(getUserInfo().getTel(),pwd1);
             UserCentreControl.getInstance().outLogin(this);
         }
     }

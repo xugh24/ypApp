@@ -26,6 +26,10 @@ public class LoginControl implements LoadCallBack<UserInfo> {
 
     private BaseActivity baseActivity;
 
+    private String name;
+
+    private String rPwd;
+
     public LoginControl(BaseActivity baseActivity) {
         this.baseActivity = baseActivity;
     }
@@ -41,10 +45,13 @@ public class LoginControl implements LoadCallBack<UserInfo> {
                         baseActivity.showToastSafe("登录成功");// 提示语
                         UserCentreControl.getInstance().loginSuccesses();// 发出登录成功提示
                         baseActivity.startActivity(MainActivity.class);// 启动主activity
+                        DataControl.getInstance(baseActivity).setLoginName(name);
+                        DataControl.getInstance(baseActivity).setPwd(name, rPwd);
+                        baseActivity.finish();
                         break;
                     case FINISH:
                         baseActivity.dismissLoadingDialogSafe();// 关闭laoding
-                        baseActivity.finish();
+
                         break;
                     case FAILED:
                         baseActivity.showToastSafe(msg);
@@ -58,17 +65,29 @@ public class LoginControl implements LoadCallBack<UserInfo> {
 
 
     public void loginByPwd(String loginName, final String pwd) {
-        new LoginProtocol(baseActivity, this, loginName, Md5.string2MD5(pwd)).request();
+        String newPwd = baseActivity.getDataControl().getNewPwd(loginName);
+        name = loginName;
+        rPwd = pwd;
+        if (!TextUtils.isEmpty(newPwd)) {
+            if (pwd.equals(newPwd)) {
+                rPwd = baseActivity.getDataControl().getPwdBy(loginName);
+            } else {
+                rPwd = newPwd;
+            }
+        }
+        new LoginProtocol(baseActivity, this, loginName, Md5.string2MD5(rPwd)).request();
     }
 
-    public void regByPwd(AuthCodeInfo info,final String pwd) {
-       final String tel = info.getmTel();
+    public void regByPwd(AuthCodeInfo info, final String pwd) {
+        final String tel = info.getmTel();
         String code = info.getCode();
         new CheckCodeProtocol(baseActivity, new LoadCallBack() {
             @Override
             public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
-                if(callType.equals(CallType.SUCCESS)){
-                    new RegisterProtocol(baseActivity, this, tel, Md5.string2MD5(pwd)).request();
+                if (callType.equals(CallType.SUCCESS)) {
+                    name = tel;
+                    rPwd = pwd;
+                    new RegisterProtocol(baseActivity, this, name, Md5.string2MD5(rPwd)).request();
                 }
             }
         }, tel, code).request();

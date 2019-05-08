@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
-
 import com.android.common.annotation.view.BindView;
 import com.android.common.annotation.view.OnClickView;
 import com.yuepang.yuepang.R;
+import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.presenter.LoginPresenter;
 
 /**
@@ -33,8 +33,9 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = new LoginPresenter(this);// 初始化
+        LogUtils.e("----getDataControl().getLoginName()---"+getDataControl().getLoginName());
         edTel.setText(getDataControl().getLoginName());//设置本地记录的账号
-        edPwd.setText(getDataControl().getPwd());// 设置本地密码
+        edPwd.setText(getDataControl().getPwdBy(getEditText(edTel)));// 设置本地密码
     }
 
     @Override

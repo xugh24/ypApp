@@ -47,8 +47,6 @@ public class LoginPresenter extends BasePresenter<LoginActivity> implements Logi
      */
     @Override
     public void loginSuccess() {// 保存账号密码
-        DataControl.getInstance(activity).setLoginName(loginName);
-        DataControl.getInstance(activity).setPwd(pwd);
     }
 
     @Override

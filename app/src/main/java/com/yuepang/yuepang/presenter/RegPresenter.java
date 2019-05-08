@@ -57,8 +57,7 @@ public class RegPresenter extends BasePresenter implements LoginState {
     }
 
     private void saveAccount() {
-        DataControl.getInstance(registerActivity).setLoginName(tel);
-        DataControl.getInstance(registerActivity).setPwd(pwd);
+
     }
 
     @Override
