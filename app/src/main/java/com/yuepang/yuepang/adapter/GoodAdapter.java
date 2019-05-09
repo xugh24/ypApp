@@ -84,9 +84,9 @@ public class GoodAdapter extends YueBaseAdapter<GoodInfo> implements AdapterView
             public void run() {
                 if (callType.equals(CallType.SUCCESS)) {
                     infoSize++;
-                    for (GoodInfo info : infos) {
-                        for (int favorite : activity.getUserInfo().getFavorite()) {
-                            if (favorite == info.getFavorite()) {
+                    for (GoodInfo info : infos) { // 遍历所有商品
+                        for (int favorite : activity.getUserInfo().getFavorite()) {// 遍历当前用户的喜好
+                            if (favorite == info.getFavorite()) { // 如果用户喜好和商品喜好相同添加商品到列表
                                 allGoodIndos.add(info);
                             }
                         }
