@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import com.android.common.annotation.view.AnnotateBindViewUtil;
 import com.yuepang.yuepang.Util.LogUtils;
 import com.yuepang.yuepang.activity.MainActivity;
-import com.yuepang.yuepang.widget.LoadingFrame;
 
 /**
  * Fragment 基类处理方法

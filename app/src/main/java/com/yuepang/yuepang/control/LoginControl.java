@@ -34,6 +34,11 @@ public class LoginControl implements LoadCallBack<UserInfo> {
         this.baseActivity = baseActivity;
     }
 
+
+    /**
+     * 登录、注册统一
+     * 回调处理
+     */
     @Override
     public void loadCallBack(final CallType callType, int CODE, final String msg, final UserInfo info) {
         baseActivity.runOnUiThread(new Runnable() {
@@ -45,15 +50,14 @@ public class LoginControl implements LoadCallBack<UserInfo> {
                         baseActivity.showToastSafe("登录成功");// 提示语
                         UserCentreControl.getInstance().loginSuccesses();// 发出登录成功提示
                         baseActivity.startActivity(MainActivity.class);// 启动主activity
-                        DataControl.getInstance(baseActivity).setLoginName(name);
+                        DataControl.getInstance(baseActivity).setLoginName(name);// 保存用户和密码
                         DataControl.getInstance(baseActivity).setPwd(name, rPwd);
                         baseActivity.finish();
                         break;
                     case FINISH:
                         baseActivity.dismissLoadingDialogSafe();// 关闭laoding
-
                         break;
-                    case FAILED:
+                    case FAILED:// 如果登录失败提示失败原因
                         baseActivity.showToastSafe(msg);
                         break;
                     case START:
@@ -64,7 +68,7 @@ public class LoginControl implements LoadCallBack<UserInfo> {
     }
 
 
-    public void loginByPwd(String loginName, final String pwd) {
+    public void loginByPwd(String loginName, final String pwd) {// 通过逻辑判断规则将用户输入的密码转化服务器 验证的密码
         String newPwd = baseActivity.getDataControl().getNewPwd(loginName);
         name = loginName;
         rPwd = pwd;
@@ -74,7 +78,7 @@ public class LoginControl implements LoadCallBack<UserInfo> {
             } else {
                 rPwd = newPwd;
             }
-        }
+        }// 发起登录
         new LoginProtocol(baseActivity, this, loginName, Md5.string2MD5(rPwd)).request();
     }
 
@@ -83,7 +87,7 @@ public class LoginControl implements LoadCallBack<UserInfo> {
         String code = info.getCode();
         new CheckCodeProtocol(baseActivity, new LoadCallBack() {
             @Override
-            public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
+            public void loadCallBack(CallType callType, int CODE, String msg, Object info) {// 验证码验证成功后发起注册
                 if (callType.equals(CallType.SUCCESS)) {
                     name = tel;
                     rPwd = pwd;

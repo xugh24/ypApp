@@ -116,7 +116,7 @@ public class MainViewPage extends ViewPageLayout {
     }
 
     public void onClikRight() {
-        if (getCurrentPosition() == 2) {
+        if (getCurrentPosition() == 2) {// 当前页面显示话题是点击右侧文字进入创建话题页面
             CreateTopicActivity.toThisActivity((Activity) getContext());
         }
     }

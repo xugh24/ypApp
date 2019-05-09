@@ -59,7 +59,7 @@ public class CreateTopicActivity extends BaseActivity implements LoadCallBack {
 
     @Override
     public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
-        if(callType.equals(CallType.SUCCESS)){
+        if(callType.equals(CallType.SUCCESS)){// 接受创建回调
             if(CODE == 200){
                 showToastSafe("创建成功");
                 finish();
