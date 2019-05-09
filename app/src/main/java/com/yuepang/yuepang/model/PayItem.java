@@ -3,6 +3,9 @@ package com.yuepang.yuepang.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by xugh on 2019/4/3.
  */
@@ -15,9 +18,9 @@ public class PayItem implements Parcelable {
 
     private String orderId;
 
-    private String merchantName;
+    private String shopName;
 
-    private long time;
+    private long orderDate;
 
 
 
@@ -29,8 +32,8 @@ public class PayItem implements Parcelable {
         id = in.readInt();
         price = in.readFloat();
         orderId = in.readString();
-        merchantName = in.readString();
-        time = in.readLong();
+        shopName = in.readString();
+        orderDate = in.readLong();
     }
 
     public static final Creator<PayItem> CREATOR = new Creator<PayItem>() {
@@ -62,11 +65,11 @@ public class PayItem implements Parcelable {
     }
 
     public String getMerchantName() {
-        return merchantName;
+        return shopName;
     }
 
     public void setMerchantName(String merchantName) {
-        this.merchantName = merchantName;
+        this.shopName = merchantName;
     }
 
     @Override
@@ -76,12 +79,11 @@ public class PayItem implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
         dest.writeInt(id);
         dest.writeFloat(price);
         dest.writeString(orderId);
-        dest.writeString(merchantName);
-        dest.writeLong(time);
+        dest.writeString(shopName);
+        dest.writeLong(orderDate);
     }
 
 
@@ -94,10 +96,22 @@ public class PayItem implements Parcelable {
     }
 
     public long getTime() {
-        return time;
+        return orderDate;
     }
 
     public void setTime(long time) {
-        this.time = time;
+        this.orderDate = time;
     }
+
+    /*
+    * 将时间戳转换为时间
+    */
+    public String getOrderIdst() {
+        String res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        Date date = new Date(orderDate);
+        res = simpleDateFormat.format(date);
+        return res + orderDate / 1000;
+    }
+
 }

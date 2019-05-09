@@ -36,7 +36,7 @@ public class PaySuccessActivity extends BaseActivity {
         LogUtils.e("payItem  ===="+payItem);
         tvTel.setText("充值账号："+UserCentreControl.getInstance().getInfo().getTel());
         tvMedName.setText("商家名称："+payItem.getMerchantName());
-        tvOrderId.setText("订  单  号："+payItem.getOrderId());
+        tvOrderId.setText("订  单  号："+payItem.getOrderIdst());
         tvPrice.setText("支付金额："+payItem.getPrice() / 100 + "元");
     }
 
