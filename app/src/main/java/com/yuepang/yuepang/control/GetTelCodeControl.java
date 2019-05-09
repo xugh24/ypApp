@@ -18,6 +18,7 @@ import com.yuepang.yuepang.protocol.SendCode;
  * Created by xugh on 2019/3/6.
  * <p>
  * 短信验证管理类
+ * 封装了获得短信逻辑
  */
 
 public class GetTelCodeControl implements View.OnClickListener, LoadCallBack {
@@ -44,13 +45,13 @@ public class GetTelCodeControl implements View.OnClickListener, LoadCallBack {
         this.edTel = edTel;
         this.code = code;
         this.tvGetCode = tvGetCode;
-        tvGetCode.setOnClickListener(this);
+        tvGetCode.setOnClickListener(this);// 设置点击获得验证的事件处理
         info = new AuthCodeInfo();
     }
 
     @Override
     public void onClick(View v) {
-        getTelCode();
+        getTelCode();//获得验证码
     }
 
     /**
@@ -58,11 +59,10 @@ public class GetTelCodeControl implements View.OnClickListener, LoadCallBack {
      */
     private void getTelCode() {
         final String telNum = edTel.getText().toString().trim();
-        if (CheckManage.checkTel(telNum, activity)) {
+        if (CheckManage.checkTel(telNum, activity)) {// 验证手机号成功后发起获得验证码逻辑
             new SendCode(activity,this,telNum).request();
         }
     }
-
 
     private void startCountDown() {
         activity.runOnUiThread(new Runnable() {
@@ -74,7 +74,6 @@ public class GetTelCodeControl implements View.OnClickListener, LoadCallBack {
     }
 
     private void refreshGetCodeTv() {
-
         if (tvGetCodeState == GET_TEL_CODE_WAITING) {
             if (timeTemp == 0) {
                 tvGetCode.setText("获得验证码");
@@ -104,7 +103,6 @@ public class GetTelCodeControl implements View.OnClickListener, LoadCallBack {
         }
     }
 
-
     public AuthCodeInfo getInfo() {
         info.setCode(code.getText().toString());
         info.setmTel(edTel.getText().toString());
@@ -122,13 +120,16 @@ public class GetTelCodeControl implements View.OnClickListener, LoadCallBack {
     }
 
 
+    /**
+     * 发送手机号成功的回调处理
+     */
     @Override
     public void loadCallBack(CallType callType, int CODE, String msg, Object info) {
         if(callType.equals(CallType.SUCCESS)){
             activity.showToastSafe("短信获得成功");
             timeTemp = 60;
             tvGetCodeState = 1;
-            startCountDown();
+            startCountDown();// 切换UI显示开启倒计时
         }
     }
 }
