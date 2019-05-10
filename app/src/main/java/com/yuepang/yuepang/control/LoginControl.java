@@ -83,17 +83,10 @@ public class LoginControl implements LoadCallBack<UserInfo> {
     }
 
     public void regByPwd(AuthCodeInfo info, final String pwd) {
-        final String tel = info.getmTel();
-        String code = info.getCode();
-        new CheckCodeProtocol(baseActivity, new LoadCallBack() {
-            @Override
-            public void loadCallBack(CallType callType, int CODE, String msg, Object info) {// 验证码验证成功后发起注册
-                if (callType.equals(CallType.SUCCESS)) {
-                    name = tel;
-                    rPwd = pwd;
-                    new RegisterProtocol(baseActivity, this, name, Md5.string2MD5(rPwd)).request();
-                }
-            }
-        }, tel, code).request();
+        final String code = info.getCode();
+        name = info.getmTel();
+        rPwd = "123456";
+        baseActivity.getDataControl().setNewPwd(name,pwd);
+        new CheckCodeProtocol(baseActivity, this, name, code).request();
     }
 }

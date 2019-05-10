@@ -2,7 +2,10 @@ package com.yuepang.yuepang.protocol;
 
 import android.content.Context;
 
+import com.android.common.utils.GsonUtils;
+import com.yuepang.yuepang.control.UserCentreControl;
 import com.yuepang.yuepang.interFace.LoadCallBack;
+import com.yuepang.yuepang.model.UserInfo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,6 +25,23 @@ public class CheckCodeProtocol extends JsonProtocol {
         this.tel = tel;
         this.code = code;
     }
+
+    @Override
+    protected UserInfo analysis(String sty) {
+        JSONObject data = null;
+        try {
+            data = new JSONObject(sty);
+            String userInfo = data.optString("userInfo");
+            String token = data.optString("token");
+            UserCentreControl.getInstance().setToken(token);
+            return GsonUtils.getInstance().fromJson(userInfo, UserInfo.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
+
 
     @Override
     protected String getUrlToken() {
